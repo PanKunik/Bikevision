@@ -1,0 +1,96 @@
+﻿@model bikevision.Models.Klient
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Klient</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.imie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.imie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nazwisko)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nazwisko)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.login)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.login)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hash)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hash)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numerTelefonu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numerTelefonu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.adresEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adresEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.adresZamieszkania)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adresZamieszkania)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.kodPocztowy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.kodPocztowy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Miejscowosc.miejscowosc1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Miejscowosc.miejscowosc1)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

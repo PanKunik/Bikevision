@@ -1,0 +1,74 @@
+﻿@model bikevision.Models.Przedmiot
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Przedmiot</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nazwaPrzedmiotu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nazwaPrzedmiotu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.opisPrzedmiotu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.opisPrzedmiotu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cena)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cena)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.waga)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.waga)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.wymiary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.wymiary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kategoria.kategoria1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kategoria.kategoria1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TypPrzedmiotu.typ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypPrzedmiotu.typ)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idPrzedmiot }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
