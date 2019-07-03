@@ -135,7 +135,6 @@
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocalitiesController.cs" />
-    <Compile Include="Controllers\ObjectsController.cs" />
     <Compile Include="Controllers\ObjectTypesController.cs" />
     <Compile Include="Controllers\PositionsController.cs" />
     <Compile Include="Controllers\SaleDetailsController.cs" />
@@ -292,11 +291,6 @@
     <Content Include="Views\Localities\Details.cshtml" />
     <Content Include="Views\Localities\Edit.cshtml" />
     <Content Include="Views\Localities\Index.cshtml" />
-    <Content Include="Views\Objects\Create.cshtml" />
-    <Content Include="Views\Objects\Delete.cshtml" />
-    <Content Include="Views\Objects\Details.cshtml" />
-    <Content Include="Views\Objects\Edit.cshtml" />
-    <Content Include="Views\Objects\Index.cshtml" />
     <Content Include="Views\ObjectTypes\Create.cshtml" />
     <Content Include="Views\ObjectTypes\Delete.cshtml" />
     <Content Include="Views\ObjectTypes\Details.cshtml" />
