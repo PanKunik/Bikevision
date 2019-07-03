@@ -1,0 +1,57 @@
+﻿@model IEnumerable<bikevision.Models.Sale>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.value)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SaleType.type)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.value)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SaleType.type)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idSale }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idSale }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idSale })
+        </td>
+    </tr>
+}
+
+</table>

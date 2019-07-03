@@ -134,9 +134,9 @@
     <Compile Include="Controllers\EmployeeInThePositionsController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ItemsController.cs" />
+    <Compile Include="Controllers\ItemTypesController.cs" />
     <Compile Include="Controllers\LocalitiesController.cs" />
-    <Compile Include="Controllers\ObjectsController.cs" />
-    <Compile Include="Controllers\ObjectTypesController.cs" />
     <Compile Include="Controllers\PositionsController.cs" />
     <Compile Include="Controllers\SaleDetailsController.cs" />
     <Compile Include="Controllers\SalesController.cs" />
@@ -179,13 +179,13 @@
     <Compile Include="Models\EmployeeInThePosition.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Item.cs">
+      <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ItemType.cs">
+      <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Locality.cs">
-      <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Object.cs">
-      <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ObjectType.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Position.cs">
@@ -287,16 +287,21 @@
     <Content Include="Views\EmployeeInThePositions\Details.cshtml" />
     <Content Include="Views\EmployeeInThePositions\Edit.cshtml" />
     <Content Include="Views\EmployeeInThePositions\Index.cshtml" />
+    <Content Include="Views\Items\Create.cshtml" />
+    <Content Include="Views\Items\Delete.cshtml" />
+    <Content Include="Views\Items\Details.cshtml" />
+    <Content Include="Views\Items\Edit.cshtml" />
+    <Content Include="Views\Items\Index.cshtml" />
+    <Content Include="Views\ItemTypes\Create.cshtml" />
+    <Content Include="Views\ItemTypes\Delete.cshtml" />
+    <Content Include="Views\ItemTypes\Details.cshtml" />
+    <Content Include="Views\ItemTypes\Edit.cshtml" />
+    <Content Include="Views\ItemTypes\Index.cshtml" />
     <Content Include="Views\Localities\Create.cshtml" />
     <Content Include="Views\Localities\Delete.cshtml" />
     <Content Include="Views\Localities\Details.cshtml" />
     <Content Include="Views\Localities\Edit.cshtml" />
     <Content Include="Views\Localities\Index.cshtml" />
-    <Content Include="Views\ObjectTypes\Create.cshtml" />
-    <Content Include="Views\ObjectTypes\Delete.cshtml" />
-    <Content Include="Views\ObjectTypes\Details.cshtml" />
-    <Content Include="Views\ObjectTypes\Edit.cshtml" />
-    <Content Include="Views\ObjectTypes\Index.cshtml" />
     <Content Include="Views\Positions\Create.cshtml" />
     <Content Include="Views\Positions\Delete.cshtml" />
     <Content Include="Views\Positions\Details.cshtml" />
@@ -327,11 +332,6 @@
     <Content Include="Views\ServiceTypes\Details.cshtml" />
     <Content Include="Views\ServiceTypes\Edit.cshtml" />
     <Content Include="Views\ServiceTypes\Index.cshtml" />
-    <Content Include="Views\Objects\Create.cshtml" />
-    <Content Include="Views\Objects\Delete.cshtml" />
-    <Content Include="Views\Objects\Details.cshtml" />
-    <Content Include="Views\Objects\Edit.cshtml" />
-    <Content Include="Views\Objects\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
