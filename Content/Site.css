@@ -1,8 +1,16 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿html, body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
 }
 
+.bg-red {
+    background-color: #ff0000;
+}
+
+.bg-blue {
+    background-color: #4800ff;
+}
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
