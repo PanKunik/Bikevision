@@ -13,10 +13,25 @@ namespace bikevision.Controllers
             return View();
         }
 
+        public ActionResult Service()
+        {
+            return View();
+        }
+
+        public ActionResult Shop()
+        {
+            return View();
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
 
+            return View();
+        }
+
+        public ActionResult Help()
+        {
             return View();
         }
 
