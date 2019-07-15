@@ -12,12 +12,20 @@
     background-color: #000000;
 }
 
-.bg-blue {
-    background-color: #4800ff;
+.bg-darkred {
+    background-color: #4a0404;
 }
 
 .fill-even {
     flex: 1 1 0;
+}
+
+.font-raleway {
+    font-family: 'Raleway', sans-serif;
+}
+
+.font-size-big {
+    font-size: 64px;
 }
 
 /* Set padding to keep content from hitting the edges */
