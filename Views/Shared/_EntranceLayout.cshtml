@@ -10,43 +10,42 @@
 </head>
 <body>
 
-    <div class="container-fluid cover-container d-flex flex-column px-0 mx-0">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top flex-grow-0">
-            <a class="navbar-fluid" href="#">
-                <img src="../Content/Images/bikevision.png" />
-            </a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+    <div class="container-fluid d-flex flex-column bg-black px-0">
+        <nav class="flex-row navbar navbar-expand-md navbar-dark bg-dark">
+            <a href="#" class="navbar-brand"> Bikevision </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse align-left" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Strona główna</a>
+                        @Html.ActionLink("Strona główna", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Sklep</a>
+                        @Html.ActionLink("Serwis", "Service", "Home", new { area = "" }, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Serwis</a>
+                        @Html.ActionLink("Sklep", "Shop", "Home", new { area = "" }, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">O nas</a>
+                        @Html.ActionLink("O nas", "About", "Home", new { area = "" }, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Kontakt</a>
+                        @Html.ActionLink("Pomoc", "Help", "Home", new { area = "" }, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Pomoc</a>
+                        @Html.ActionLink("Kontakt", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })
                     </li>
                 </ul>
             </div>
         </nav>
+
         @RenderBody()
 
-        <div class="flex-grow-0">
-            <p class="lead"> Footer </p>
-        </div>
+        <footer class="flex-row bg-dark text-light">
+            <p> Footer </p>
+        </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")

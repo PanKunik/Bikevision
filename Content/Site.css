@@ -8,9 +8,18 @@
     background-color: #ff0000;
 }
 
+.bg-black {
+    background-color: #000000;
+}
+
 .bg-blue {
     background-color: #4800ff;
 }
+
+.fill-even {
+    flex: 1 1 0;
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
