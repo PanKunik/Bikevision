@@ -4,12 +4,32 @@
     height: 100%;
 }
 
+.big-icon {
+    font-size: 64px !important;
+}
+
+.font-weight-600 {
+    font-weight: 600 !important;
+}
+
+.font-weight-900 {
+    font-weight: 900 !important;
+}
+
 .bg-red {
     background-color: #ff0000;
 }
 
 .bg-black {
     background-color: #000000;
+}
+
+.bg-grey {
+    background-color: #808080;
+}
+
+.bg-darkgrey {
+    background-color: #404040;
 }
 
 .bg-darkred {
