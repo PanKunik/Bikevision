@@ -4,10 +4,10 @@
 }
 
     <section class="d-flex flex-fill flex-column flex-md-row">
-        <div class="d-flex flex-column bg-grey fill-even font-raleway px-3 align-items-center justify-content-around">
+        <div class="d-flex flex-column bg-grey fill-even font-raleway px-3 py-3 align-items-center justify-content-around">
             <div class="flex-row my-2">
                 <h3 class="font-weight-600 text-uppercase text-nowrap">
-                    Skontaktuj się z Nami...
+                    Skontaktuj się z Nami
                 </h3>
             </div>
 
@@ -49,9 +49,135 @@
             </div>
         </div>
 
-        <div class="d-flex flex-column bg-darkgrey fill-even px-3 text-center justify-content-center">
-            <h3 class="font-weight-600 text-uppercase my-5">
-                ...lub skorzystaj z naszego formularza
-            </h3>
+        <div class="d-flex flex-column bg-darkgrey fill-even px-0 align-items-center justify-content-around">
+            <div class="fill-even pt-3">
+                <h3 class="font-weight-600 text-uppercase mt-5 text-nowrap">
+                    Formularz kontaktowy
+                </h3>
+            </div>
+
+            <form class="d-flex flex-column fill-even w-100 mb-5">
+                <div class="d-flex flex-column flex-xl-row fill-even">
+                    <div class="d-flex flex-column fill-even">
+                        <div class="d-flex flex-column justify-content-start form-group fill-even px-2">
+                            <label for="name">Imię:</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="material-icons">person</i></div>
+                                </div>
+                                <input type="text" class="form-control mw-100" id="name" placeholder="Wpisz swoje imię">
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-column justify-content-around form-group fill-even px-2">
+                            <label for="email">Adres e-mail:</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="material-icons">email</i></div>
+                                </div>
+                                <input type="text" class="form-control mw-100" id="email" placeholder="Wpisz swój adres e-mail">
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-column justify-content-end form-group fill-even px-2">
+                            <label for="subject">Temat wiadomości:</label>
+                            <select id="subject" class="form-control mw-100">
+                                <option selected>Wybierz temat wiadomości...</option>
+                                <option>Pomoc</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-column justify-content-around form-group fill-even px-2">
+                        <label for="message">Treść wiadomości:</label>
+                        <textarea class="flex-grow-1 form-control mw-100" id="message" rows="9"></textarea>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center align-content-center">
+                    <button type="submit" class="btn btn-outline-primary py-2 px-5"> Wyślij </button>
+                </div>
+            </form>
+            <!--
+    <form class="d-flex flex-column flex-xl-row fill-even w-100 px-2 mb-5">
+        <div class="d-flex flex-column form-group fill-even">
+            <div class="form-group fill-even px-2">
+                <label for="name">Imię:</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="material-icons">person</i></div>
+                    </div>
+                    <input type="text" class="form-control mw-100" id="name" placeholder="Wpisz swoje imię">
+                </div>
+            </div>
+
+            <div class="form-group fill-even px-2">
+                <label for="email">Adres e-mail:</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="material-icons">email</i></div>
+                    </div>
+                    <input type="text" class="form-control mw-100" id="email" placeholder="Wpisz swój adres e-mail">
+                </div>
+            </div>
+
+            <div class="form-group fill-even px-2">
+                <label for="subject">Temat wiadomości:</label>
+                <select id="subject" class="form-control mw-100">
+                    <option selected>Wybierz temat wiadomości...</option>
+                    <option>Pomoc</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="d-flex flex-column form-group fill-even">
+            <div class="form-group fill-even px-2">
+                <label for="message">Treść wiadomości:</label>
+                <textarea class="form-control mw-100 h-100" id="message"></textarea>
+            </div>
+        </div>
+
+        <div class="">
+            <button type="submit" class="btn-success"> Submit </button>
+        </div>
+    </form>
+    <form class="d-flex flex-row w-100 p-2">
+        <div class="d-flex flex-column fill-even p-1 justify-content-around">
+            <div class="flex-row form-group flex-fill">
+                <label for="name">Imię:</label>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="material-icons">person</i></div>
+                    </div>
+                    <input type="text" class="form-control mw-100" id="name" placeholder="Wpisz swoje imię">
+                </div>
+            </div>
+
+            <div class="flex-row form-group flex-fill">
+                <label for="email">Adres email:</label>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="material-icons">email</i></div>
+                    </div>
+                    <input type="text" class="form-control mw-100" id="email" placeholder="Wpisz swój adres mailowy">
+                </div>
+            </div>
+
+            <div class="flex-row form-group flex-fill">
+                <label for="subject">Temat wiadomości</label>
+                <select id="subject" class="form-control mw-100">
+                    <option selected>Wybierz temat wiadomości...</option>
+                    <option>Pomoc</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="flex-column fill-even p-1">
+            <div class="flex-row form-group flex-fill">
+                <label for="message">Treść wiadomości:</label>
+                <textarea class="form-control mw-100" id="message" rows="9"></textarea>
+            </div>
+        </div>
+    </form>
+    -->
         </div>
 </section>
