@@ -8,12 +8,6 @@
     font-size: 64px !important;
 }
 
-.center-image {
-    display: block;
-    position: relative;
-    bottom: 50%;
-}
-
 .input-group-addon {
     padding: 6px 12px;
     font-size: 14px;
@@ -26,12 +20,19 @@
     border-radius: 4px;
 }
 
-.max-height-400 {
-    max-height: 400px;
+.max-height-500 {
+    max-height: 500px;
 }
 
-.center-img {
+.image-carousel-responsivity {
+    max-height: 500px;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+}
 
+.min-height-500 {
+    min-height: 500px;
 }
 
 .font-weight-600 {
