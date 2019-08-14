@@ -1,7 +1,2 @@
-﻿bootstrapValidate('#name', 'max: 30: Your name must not be longer than 30 characters', function (isValid) {
-    if (isValid) {
-        alert('Element is valid');
-    } else {
-        alert('Element is invalid');
-    }
-});
+﻿bootstrapValidate('#name', 'max: 30: Imię musi być krótsze niż 30 znaków.');
+bootstrapValidate('#email', 'email: Wpisz poprawny adres email.');
