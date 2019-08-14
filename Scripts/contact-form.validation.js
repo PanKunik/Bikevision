@@ -1,5 +1,5 @@
 ﻿$(function () {
-    $('#submit').submit(function () {
+    $('#submit').on("click", function () {
         if ($('.invalid-feedback').length > 0) {
             alert('the form is valid');
         }
