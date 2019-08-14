@@ -1,18 +1,21 @@
 ﻿<!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>@ViewBag.Title - BIKEVISION</title>
+    <title>@ViewBag.Title - BIKEVISION</title>
 
-        @Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
 
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:300,400,600,900&display=swap&subset=latin-ext">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    </head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:300,400,600,900&display=swap&subset=latin-ext">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <script src="~/Scripts/bootstrap-validate.js"></script>
+    <script src="~/Scripts/contact-form.validation.js"></script>
+</head>
 
     <body class="container-fluid d-flex flex-column px-0">
         @RenderBody()

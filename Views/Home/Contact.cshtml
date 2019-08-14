@@ -56,7 +56,7 @@
                 </h3>
             </div>
 
-            <form class="d-flex flex-column fill-even w-100 mb-5">
+            <form class="d-flex flex-column fill-even w-100 mb-5 ">
                 <div class="d-flex flex-column flex-xl-row fill-even">
                     <div class="d-flex flex-column fill-even">
                         <div class="d-flex flex-column justify-content-start form-group fill-even px-2">
@@ -66,6 +66,7 @@
                                     <div class="input-group-text border-0"><i class="material-icons">person</i></div>
                                 </div>
                                 <input type="text" class="form-control mw-100" id="name" placeholder="Wpisz swoje imię">
+
                             </div>
                         </div>
 
@@ -99,3 +100,6 @@
             </form>
         </div>
 </section>
+    <script>
+bootstrapValidate('#email', 'email:Enter a valid email address');
+    </script>
