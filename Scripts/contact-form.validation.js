@@ -1,37 +1,50 @@
-﻿$(function () {
-    $.validate({
-        lang: 'pt'
-    });
-});
-
-/*$(function () {
-    $('#submit').on("click", function (e) {
-        if ($('.invalid-feedback').length > 0) {
-            alert('Niepoprawnie wypełniłeś pola');
-            e.preventDefault(e);
-        }
-        if ($('.valid-feedback').length > 0) {
-            alert('Poprawnie wypełniłeś pola');
-            e.preventDefault(e);
-        }
-    });
-});
+﻿var myLanguage = {
+    errorTitle: 'Przesyłanie formularza nie powiodło się!',
+    requiredField: 'To pole jest wymagane.',
+    requiredFields: 'Nie odpowiedziano na wszystkie wymagane pola.',
+    badTime: 'Nie podano prawidłowego czasu.',
+    badEmail: 'Niepoprawny adres e-mail.',
+    badTelephone: 'Niepoprawny numer telefonu.',
+    badSecurityAnswer: 'Nie udzielono prawidłowej odpowiedzi na pytanie bezpieczeństwa.',
+    badDate: 'Nie podano prawidłowej daty.',
+    lengthBadStart: 'Pole musi zawierać pomiędzy ',
+    lengthBadEnd: ' znaków.',
+    lengthTooLongStart: 'The input value is longer than ',
+    lengthTooShortStart: 'The input value is shorter than ',
+    notConfirmed: 'Nie można potwierdzić wartości wejściowych.',
+    badDomain: 'Niepoprawna wartość domeny.',
+    badUrl: 'Niepoprawny adres URL.',
+    badCustomVal: 'Niepoprawna wartość wejściowa.',
+    andSpaces: ' i spacje.',
+    badInt: 'Wartośc wejściowa nie była poprawną liczbą.',
+    badSecurityNumber: 'Numer ubezpieczenia społecznego jest niepoprawny.',
+    badUKVatAnswer: 'Nieprawidłowy numer UK VAT.',
+    badStrength: 'Hasło nie jest wystarczająco silne.',
+    badNumberOfSelectedOptionsStart: 'Musi zostać wybrana co najmniej ',
+    badNumberOfSelectedOptionsEnd: ' odpowiedź.',
+    badAlphaNumeric: 'Wartość wejściowa może zawierać tylko znaki alfanumeryczne ',
+    badAlphaNumericExtra: ' i ',
+    wrongFileSize: 'Plik, który próbujesz przesłać jest za duży (maks. %s).',
+    wrongFileType: 'Dozwolone są tylko pliki typu %s.',
+    groupCheckedRangeStart: 'Proszę wybrać pomiędzy ',
+    groupCheckedTooFewStart: 'Proszę wybrać co najmniej ',
+    groupCheckedTooManyStart: 'Proszę wybrać maksymalnie ',
+    groupCheckedEnd: ' pozycję.',
+    badCreditCard: 'Numer karty kredytowej jest nieprawidłowy.',
+    badCVV: 'Numer CVV jest niepoprawny.',
+    wrongFileDim: 'Niepoprawne wymiary obrazu,',
+    imageTooTall: 'obraz nie może być wyższy niż',
+    imageTooWide: 'obraz nie może być szerszy niż',
+    imageTooSmall: 'obraz jest zbyt mały.',
+    min: 'min',
+    max: 'max',
+    imageRatioNotAccepted: 'Współczynnik obrazu nie jest akceptowany.'
+};
 
 $(function () {
-    $('#name').on("focusin", function (e) {
-        $('#message').val($('#name').val());
-        
-    });
-    $('#name').on("focusout", function (e) {
-        $('#message').val($('#name').val());
-
-    });
-    $('#name').on("change", function (e) {
-        $('#message').val($('#name').val());
-
-    });
+    $.validate({
+    language: myLanguage
 });
 
-bootstrapValidate('#name', 'max: 30: Imię musi być krótsze niż 30 znaków.|required: To pole jest wymagane.');
-bootstrapValidate('#email', 'email: Wpisz poprawny adres email.|required: Podaj adres email.');
-bootstrapValidate('#message', 'min: 10: Treść wiadomości musi zawierać minimum 10 znaków.');*/
+    $('#message').restrictLength($('#max-length-element'));
+});

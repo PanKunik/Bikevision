@@ -56,7 +56,7 @@
             </h3>
         </div>
 
-        <form method="post" class="d-flex flex-column fill-even w-100 mb-5 ">
+        <form action="" method="post" class="d-flex flex-column fill-even w-100 mb-5 ">
             <div class="d-flex flex-column flex-xl-row fill-even">
                 <div class="d-flex flex-column fill-even">
                     <div class="d-flex flex-column justify-content-start form-group fill-even px-2">
@@ -65,7 +65,7 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text border-0"><i class="material-icons">person</i></div>
                             </div>
-                            <input data-validation="length" data-validation-length="min5" type="text" class="form-control mw-100" id="name" placeholder="Wpisz swoje imię">
+                            <input data-validation="required length alphanumeric" data-validation-length="5-35" type="text" class="form-control mw-100" id="name" placeholder="Wpisz swoje imię">
 
                         </div>
                     </div>
@@ -76,22 +76,23 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text border-0"><i class="material-icons">email</i></div>
                             </div>
-                            <input data-validation="email" type="email" class="form-control mw-100" id="email" placeholder="Wpisz swój adres e-mail">
+                            <input data-validation="required email" type="email" class="form-control mw-100" id="email" placeholder="Wpisz swój adres e-mail">
                         </div>
                     </div>
 
                     <div class="d-flex flex-column justify-content-end form-group fill-even px-2">
                         <label for="subject">Temat wiadomości:</label>
-                        <select id="subject" class="form-control mw-100">
-                            <option selected>Wybierz temat wiadomości...</option>
-                            <option>Pomoc</option>
+                        <select data-validation="required" id="subject" class="form-control mw-100">
+                            <option value="" selected>Wybierz temat wiadomości...</option>
+                            <option value="Pomoc">Pomoc</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="d-flex flex-column justify-content-around form-group fill-even px-2">
                     <label for="message">Treść wiadomości:</label>
-                    <textarea class="flex-grow-1 form-control mw-100" id="message" rows="9"></textarea>
+                    <textarea data-validation="required length" data-validation-length="10-2000" class="flex-grow-1 form-control mw-100" id="message" rows="9"></textarea>
+                    <span>Pozostało <span id="max-length-element">2000</span> znaków</span>
                 </div>
             </div>
             <div class="d-flex justify-content-center align-content-center">

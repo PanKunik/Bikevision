@@ -8,6 +8,19 @@
     font-size: 64px !important;
 }
 
+.form-control#name, .form-control#email {
+    padding-right: 27px;
+}
+
+.form-control {
+    border: 2px solid #444;
+}
+
+select.error, select.valid {
+    background-position: right 15px center;
+    background-repeat: no-repeat;
+}
+
 .input-group-addon {
     padding: 6px 12px;
     font-size: 14px;
