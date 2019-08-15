@@ -221,6 +221,7 @@
     <Content Include="Content\Images\1.jpg" />
     <Content Include="Content\Images\2.jpg" />
     <Content Include="Content\Images\3.jpg" />
+    <Content Include="Content\Images\60353.jpg" />
     <Content Include="Content\Images\bikevision.png" />
     <Content Include="Content\theme-default.css" />
     <Content Include="favicon.ico" />

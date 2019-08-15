@@ -12,6 +12,14 @@
     padding-right: 27px;
 }
 
+.card-header .material-icons {
+    transition: .3s transform ease-in-out;
+}
+
+.card-header .collapsed .material-icons {
+    transform: rotate(90deg);
+}
+
 .form-control {
     border: 2px solid #444;
 }
