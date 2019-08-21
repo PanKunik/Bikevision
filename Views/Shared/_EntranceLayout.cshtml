@@ -28,6 +28,26 @@
             <li class="nav-item">
                 @Html.ActionLink("Kontakt", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })
             </li>
+            <li class="nav-item d-md-none">
+                @Html.ActionLink("Zaloguj", "Login", "Home", new { area = "" }, new { @class = "nav-link" })
+            </li>
+            <li class="nav-item d-md-none">
+                @Html.ActionLink("Zarejestruj się", "Signup", "Home", new { area = "" }, new { @class = "nav-link" })
+            </li>
+        </ul>
+
+        <ul class="d-none d-md-block nav navbar-nav ml-auto">
+            <li class="dropdown order-1">
+                <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-info dropdown-toggle"><i class="material-icons align-bottom">person</i> Twoje konto <span class="caret"></span></button>
+                <ul class="dropdown-menu mt-2">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><span><i class="material-icons align-bottom">account_circle</i> Zarejestruj się </span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><span><i class="material-icons align-bottom">exit_to_app</i> Zaloguj </span></a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </div>
 </nav>
