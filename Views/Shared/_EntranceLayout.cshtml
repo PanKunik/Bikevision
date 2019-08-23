@@ -32,7 +32,7 @@
                 @Html.ActionLink("Zaloguj", "Login", "Home", new { area = "" }, new { @class = "nav-link" })
             </li>
             <li class="nav-item d-md-none">
-                @Html.ActionLink("Zarejestruj się", "Signup", "Home", new { area = "" }, new { @class = "nav-link" })
+                @Html.ActionLink("Zarejestruj się", "SignUp", "Home", new { area = "" }, new { @class = "nav-link" })
             </li>
         </ul>
 
@@ -41,10 +41,10 @@
                 <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-info dropdown-toggle"><i class="material-icons align-bottom">person</i> Twoje konto <span class="caret"></span></button>
                 <ul class="dropdown-menu mt-2">
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><span><i class="material-icons align-bottom">account_circle</i> Zarejestruj się </span></a>
+                        @Html.Raw(Html.ActionLink("ToReplace", "SignUp", "Home", new { area = "" }, new { @class = "nav-link" }).ToHtmlString().Replace("ToReplace", "<span><i class=\"material-icons align-bottom\">account_circle</i> Zarejestruj się </span>"))
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><span><i class="material-icons align-bottom">exit_to_app</i> Zaloguj </span></a>
+                        @Html.Raw(Html.ActionLink("ToReplace", "Login", "Home", new { area = "" }, new { @class = "nav-link" }).ToHtmlString().Replace("ToReplace", "<span><i class=\"material-icons align-bottom\">exit_to_app</i> Zaloguj </span>"))
                     </li>
                 </ul>
             </li>
