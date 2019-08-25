@@ -115,3 +115,42 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.text-size-small {
+    font-size: 16px;
+}
+
+.text-size-medium {
+    font-size: 32px;
+}
+
+.text-size-big {
+    font-size: 64px;
+}
+
+/* For Bootstrap 4 'default' breakpoint */
+@media (max-width: 575.98px) {
+    
+}
+
+/* For Bootstrap 4 'sm' breakpoint */ 
+@media (min-width: 576px) {
+    
+}
+
+/* For Bootstrap 4 'md' breakpoint */ 
+@media (min-width: 768px) {
+    .text-size-md-big {
+        font-size: 64px;
+    }
+}
+
+/* For Bootstrap 4 'lg' breakpoint */ 
+@media (min-width: 992px) {
+    
+}
+
+/* For Bootstrap 4 'xl' breakpoint */ 
+@media (min-width: 1200px) {
+
+}
