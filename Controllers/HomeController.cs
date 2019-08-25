@@ -41,5 +41,19 @@ namespace bikevision.Controllers
 
             return View();
         }
+
+        public ActionResult Signup()
+        {
+            ViewBag.Message = "Your signup page.";
+
+            return View();
+        }
+
+        public ActionResult Login()
+        {
+            ViewBag.Message = "Your login page.";
+
+            return View();
+        }
     }
 }
