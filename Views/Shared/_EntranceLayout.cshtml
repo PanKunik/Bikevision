@@ -39,7 +39,7 @@
         <ul class="d-none d-md-block nav navbar-nav ml-auto">
             <li class="dropdown order-1">
                 <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-info dropdown-toggle"><i class="fas fa-user small-icon mr-1"></i> Twoje konto <span class="caret"></span></button>
-                <ul class="dropdown-menu mt-2">
+                <ul class="dropdown-menu dropdown-menu-right mt-2">
                     <li class="nav-item">
                         @Html.Raw(Html.ActionLink("ToReplace", "Signup", "Home", new { area = "" }, new { @class = "nav-link" }).ToHtmlString().Replace("ToReplace", "<span><i class=\"fas fa-user-circle small-icon mr-1\"></i> Zarejestruj się </span>"))
                     </li>
