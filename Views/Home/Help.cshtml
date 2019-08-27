@@ -5,17 +5,9 @@
 }
 
 <section class="d-flex flex-column flex-fill font-raleway">
-    <div id="helpImage" class="">
-        <div id="carouselExampleSlidesOnly" class="carousel slide h-100" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="vw-100" src="~/Content/Images/60353.jpg" />
-                    <div class="carousel-caption d-block">
-                        <h1 class="text-size-medium text-size-md-big"> Najczęściej zadawane pytania </h1>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div id="helpImage" style="position: relative; display: inline-block;">
+        <img class="vw-100" style="display: block" src="/Content/Images/60353.jpg">
+        <h1 class="text-size-medium text-size-md-big" style="position: absolute; top: 50%; left: 50%; transform: translate( -50%, -50% ); text-align: center;"> Najczęściej zadawane pytania </h1>
     </div>
 
     <div class="flex-fill">
@@ -34,7 +26,7 @@
                         <h5 class="card-header" role="tab" id="headingOne">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="collapsed d-block">
                                 <span>1. Kim jesteśmy?</span>
-                                <i class="material-icons float-right">expand_more</i>
+                                <i class="fas fa-chevron-down float-right"></i>
                             </a>
                         </h5>
 
@@ -55,7 +47,7 @@
                         <h5 class="card-header" role="tab" id="headingTwo">
                             <a class="collapsed d-block" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                 <span>2. Co to za sklep?</span>
-                                <i class="material-icons float-right">expand_more</i>
+                                <i class="fas fa-chevron-down float-right"></i>
                             </a>
                         </h5>
                         <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
@@ -75,7 +67,7 @@
                         <h5 class="card-header" role="tab" id="headingThree">
                             <a class="collapsed d-block" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                 <span>3. Czego tutaj szukam?</span>
-                                <i class="material-icons float-right">expand_more</i>
+                                <i class="fas fa-chevron-down float-right"></i>
                             </a>
                         </h5>
                         <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
