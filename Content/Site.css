@@ -137,6 +137,19 @@ div#loginImage {
     background-size: cover;
 }
 
+div#helpImage {
+    position: relative;
+    display: inline-block;
+}
+
+h1#helpHeader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate( -50%, -50% );
+    text-align: center;
+}
+
 /* For Bootstrap 4 'default' breakpoint */
 @media (max-width: 575.98px) {
 }
