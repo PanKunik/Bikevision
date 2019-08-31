@@ -60,7 +60,6 @@ select.error, select.valid {
 }
 
 .image-carousel-responsivity {
-    max-height: 500px;
     max-width: 100%;
     width: auto;
     height: auto;

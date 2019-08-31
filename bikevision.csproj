@@ -240,6 +240,7 @@
     <Content Include="Content\Images\3.jpg" />
     <Content Include="Content\Images\60353.jpg" />
     <Content Include="Content\Images\bikevision.png" />
+    <Content Include="Content\Images\promotion.png" />
     <Content Include="Content\Images\wallpaper_rocks_bike.jpg" />
     <Content Include="Content\theme-default.css" />
     <Content Include="favicon.ico" />
@@ -425,6 +426,8 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Signup.cshtml" />
     <Content Include="Views\Shared\_AccountLayout.cshtml" />
+    <Content Include="Views\Shared\_ShopLayout.cshtml" />
+    <Content Include="Views\Home\Product.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
