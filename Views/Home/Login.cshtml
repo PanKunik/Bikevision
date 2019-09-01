@@ -23,7 +23,7 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text border-0"><i class="fas fa-user"></i></div>
                     </div>
-                    <input data-validation="required" type="text" class="form-control mw-100" id="login" placeholder="Login">
+                    <input data-validation-error-msg="Nie wpisałeś poprawnego loginu" data-validation="required" type="text" class="form-control mw-100" id="login" placeholder="Login">
                 </div>
             </div>
 
@@ -32,7 +32,7 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text border-0"><i class="fas fa-key"></i></div>
                     </div>
-                    <input data-validation="required" type="password" class="form-control mw-100" id="password" placeholder="Hasło">
+                    <input data-validation-error-msg-container="#password-validation-error" data-validation-error-msg="Nie wpisałeś poprawnego hasła" data-validation="required" type="password" class="form-control mw-100" id="password" placeholder="Hasło">
                 </div>
             </div>
 
@@ -51,4 +51,16 @@
         <span class="d-flex justify-content-center">Nie masz jeszcze konta? &nbsp; <a href="#" class=""> Zarejestruj się. </a></span>
         <a href="#" class="d-flex justify-content-center"> Nie pamiętasz hasła? </a>
     </footer>
+
+    <div id="validation-errors-container" class="form-error alert alert-danger d-none">
+        <strong> Nieprawidłowe dane w formularzu! </strong>
+        <ul id="errorList">
+        </ul>
+    </div>
 </div>
+
+
+@section scripts
+{
+    @Scripts.Render("~/Scripts/login-form.validation.js")
+}
