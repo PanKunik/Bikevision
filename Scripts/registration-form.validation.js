@@ -68,7 +68,7 @@ $(function () {
         },
 
         submitErrorMessageCallback: function ($form, errorMessages, config) {
-            //foreach...
+            //foreach
         }
 });
 

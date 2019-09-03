@@ -130,7 +130,7 @@ select.error, select.valid {
 
 /* Elements with IDs */
 div#loginImage {
-    background-image: url('Images/wallpaper_rocks_bike.jpg');
+    background-image: url('Images/wallpaper_rocks_bike(low-res).jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
