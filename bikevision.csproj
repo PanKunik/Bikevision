@@ -239,6 +239,13 @@
     <Content Include="Content\Images\2.jpg" />
     <Content Include="Content\Images\3.jpg" />
     <Content Include="Content\Images\60353.jpg" />
+    <Content Include="Content\Images\About\about_1.jpg" />
+    <Content Include="Content\Images\About\about_2.jpg" />
+    <Content Include="Content\Images\About\about_3.jpg" />
+    <Content Include="Content\Images\About\about_4.jpg" />
+    <Content Include="Content\Images\About\about_5.jpg" />
+    <Content Include="Content\Images\About\about_6.jpg" />
+    <Content Include="Content\Images\About\about_7.jpg" />
     <Content Include="Content\Images\bikevision.png" />
     <Content Include="Content\Images\promotion.png" />
     <Content Include="Content\Images\wallpaper_rocks_bike%28low-res%29.jpg" />
