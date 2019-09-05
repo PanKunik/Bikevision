@@ -1,26 +1,40 @@
 ﻿
 @{
-    ViewBag.Title = "Shop";
-    Layout = "~/Views/Shared/_ShopLayout.cshtml";
+ViewBag.Title = "Shop";
+Layout = "~/Views/Shared/_ShopLayout.cshtml";
 
 }
 <section>
     <div id="carouselShop" class="carousel slide carousel-fade w-100" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselShop" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselShop" data-slide-to="1"></li>
+            <li data-target="#carouselShop" data-slide-to="2"></li>
+        </ol>
+
         <div class="carousel-inner bg-black">
             <div class="carousel-item active">
-                <img src="~/Content/Images/promotion.png"  class="d-block image-carousel-responsivity m-auto"/>
+                <img src="~/Content/Images/Shop/shop_1.jpg" class="d-block image-carousel-responsivity m-auto" />
+                <div class="carousel-caption d-none d-md-block">
+                    <h5> First slide </h5>
+                    <p> Lorem ipsum .... </p>
+                </div>
             </div>
 
             <div class="carousel-item">
-                <img src="~/Content/Images/promotion.png" class="d-block image-carousel-responsivity m-auto" />
+                <img src="~/Content/Images/Shop/shop_2.jpg" class="d-block image-carousel-responsivity m-auto" />
+                <div class="carousel-caption d-none d-md-block">
+                    <h5> Second slide </h5>
+                    <p> Lorem ipsum .... </p>
+                </div>
             </div>
 
             <div class="carousel-item">
-                <img src="~/Content/Images/promotion.png" class="d-block image-carousel-responsivity m-auto" />
-            </div>
-
-            <div class="carousel-item">
-                <img src="~/Content/Images/promotion.png" class="d-block image-carousel-responsivity m-auto" />
+                <img src="~/Content/Images/Shop/shop_3.jpg" class="d-block image-carousel-responsivity m-auto" />
+                <div class="carousel-caption d-none d-md-block">
+                    <h5> Third slide </h5>
+                    <p> Lorem ipsum .... </p>
+                </div>
             </div>
         </div>
 

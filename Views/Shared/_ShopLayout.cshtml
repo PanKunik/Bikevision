@@ -1,9 +1,62 @@
 ﻿@{
-    Layout = "~/Views/Shared/_EntranceLayout.cshtml";
+    Layout = "~/Views/Shared/_HeadingLayout.cshtml";
 }
 
-<nav>
-    <p> Nawigacja po produktach </p>
+<nav class="container-fluid navbar navbar-dark bg-dark">
+    <div class="text-center order-1 order-md-2 col-12 col-md-4 mb-2 mb-md-0">
+        @Html.ActionLink("BIKEVISION", "Index", "Home", new { area = "" }, new { @class = "p-2 navbar-brand nav-link border text-light border-light" })
+    </div>
+    <div class="text-right order-2 order-md-1 col-6 col-md-4 mt-2 mt-md-0">
+        <form action="">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text bg-transparent"><i class="fas fa-search"></i></div>
+                </div>
+                <input type="text" class="form-control border-0 bg-dark" placeholder="Wyszukiwanie frazą">
+            </div>
+        </form>
+    </div>
+    <div class="order-3 col-6 col-md-4 mt-2 mt-md-0">
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+                <a href="#" class="nav-link p-1 text-light"><i class="fas fa-shopping-cart pr-2 small-icon"></i></a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link p-1 text-light"><i class="fas fa-heart px-2 small-icon"></i></a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link p-1 text-light"><i class="fas fa-user-alt px-2 pl-md-2 px-md-0 small-icon"></i></a>
+            </li>
+            <li class="nav-item d-md-none ml-md-0 text-center">
+                <a href="#" class="nav-link p-1 text-light" data-toggle="collapse" data-target="#navbarShopNavigation"><i class="fas fa-bars pl-2 pl-md-0 small-icon"></i></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<nav class="container-fluid flex-row navbar navbar-expand-md navbar-dark bg-grey py-0 py-md-3">
+    <div class="collapse navbar-collapse" id="navbarShopNavigation">
+        <ul class="navbar-nav text-left mr-auto py-3 py-md-0">
+            <li class="nav-item">
+                @Html.ActionLink("Strona główna", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Serwis", "Service", "Home", new { area = "" }, new { @class = "nav-link" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Sklep", "Shop", "Home", new { area = "" }, new { @class = "nav-link" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("O nas", "About", "Home", new { area = "" }, new { @class = "nav-link" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Pomoc", "Help", "Home", new { area = "" }, new { @class = "nav-link" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Kontakt", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })
+            </li>
+        </ul>
+    </div>
 </nav>
 
 @RenderBody()
