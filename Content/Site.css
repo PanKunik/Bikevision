@@ -126,6 +126,25 @@ select.error, select.valid {
     font-size: 64px;
 }
 
+.dropdown-menu-squared {
+    border: none;
+    border-radius: 0;
+}
+
+.menu-area {
+    position: static;
+}
+
+.mega-area {
+    position: absolute;
+    width: 100%;
+    top: 68px;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    background-color: #333;
+}
+
 .text-over-img {
     position: absolute;
     top: 75%;
@@ -160,13 +179,23 @@ h1#helpHeader {
 
 /* For Bootstrap 4 'sm' breakpoint */ 
 @media (min-width: 576px) {
+    ul#shopMenu > li {
+        border-bottom: 1px solid #303030;
+    }
 
+    ul#shopMenu > li:last-child {
+        border-bottom: none;
+    }
 }
 
 /* For Bootstrap 4 'md' breakpoint */ 
 @media (min-width: 768px) {
     .text-size-md-big {
         font-size: 64px;
+    }
+
+    ul#shopMenu > li {
+        border-bottom: none;
     }
 }
 
