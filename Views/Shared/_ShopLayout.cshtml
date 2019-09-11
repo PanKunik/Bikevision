@@ -1,8 +1,8 @@
 ﻿@{
     Layout = "~/Views/Shared/_HeadingLayout.cshtml";
 
-    /* 
-    
+    /*
+
     TO-DO:
     -Change classes to BEM convention
     -Change dropdown-menus (style and colors)
@@ -244,6 +244,8 @@
     <p> Footer </p>
 </footer>
 
+
 @section scripts
 {
+    @RenderSection("scripts", required: false)
 }
