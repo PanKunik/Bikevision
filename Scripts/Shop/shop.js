@@ -2,7 +2,7 @@
     var itemsMainDiv = ('.MultiCarousel');
     var itemsDiv = ('.MultiCarousel-inner');
     var itemWidth = "";
-
+ 
     $('.leftLst, .rightLst').click(function () {
         var condition = $(this).hasClass("leftLst");
         if (condition)
@@ -10,16 +10,16 @@
         else
             click(1, this)
     });
-
+ 
     ResCarouselSize();
-
-
-
-
+ 
+ 
+ 
+ 
     $(window).resize(function () {
         ResCarouselSize();
     });
-
+ 
     //this function define the size of the items
     function ResCarouselSize() {
         var incno = 0;
@@ -36,8 +36,8 @@
             btnParentSb = $(this).parent().attr(dataItems);
             itemsSplit = btnParentSb.split(',');
             $(this).parent().attr("id", "MultiCarousel" + id);
-
-
+ 
+ 
             if (bodyWidth >= 1200) {
                 incno = itemsSplit[3];
                 itemWidth = sampwidth / incno;
@@ -58,14 +58,14 @@
             $(this).find(itemClass).each(function () {
                 $(this).outerWidth(itemWidth);
             });
-
-            $(".leftLst").addClass("over");
+ 
+            $(".leftLst").removeClass("over");
             $(".rightLst").removeClass("over");
-
+ 
         });
     }
-
-
+ 
+ 
     //this function used to move the items
     function ResCarousel(e, el, s) {
         var leftBtn = ('.leftLst');
@@ -77,30 +77,29 @@
         if (e == 0) {
             translateXval = parseInt(xds) - parseInt(itemWidth * s);
             $(el + ' ' + rightBtn).removeClass("over");
-
+ 
             if (translateXval <= itemWidth / 2) {
-                translateXval = 0;
-                $(el + ' ' + leftBtn).addClass("over");
+                var itemsCondition = $(el).find(itemsDiv).width() - $(el).width();
+                translateXval = itemsCondition;
             }
         }
         else if (e == 1) {
             var itemsCondition = $(el).find(itemsDiv).width() - $(el).width();
             translateXval = parseInt(xds) + parseInt(itemWidth * s);
             $(el + ' ' + leftBtn).removeClass("over");
-
+ 
             if (translateXval >= itemsCondition - itemWidth / 2) {
-                translateXval = itemsCondition;
-                $(el + ' ' + rightBtn).addClass("over");
+                translateXval = 0;
             }
         }
         $(el + ' ' + itemsDiv).css('transform', 'translateX(' + -translateXval + 'px)');
     }
-
+ 
     //It is used to get some elements from btn
     function click(ell, ee) {
         var Parent = "#" + $(ee).parent().attr("id");
         var slide = $(Parent).attr("data-slide");
         ResCarousel(ell, Parent, slide);
     }
-
+ 
 });
