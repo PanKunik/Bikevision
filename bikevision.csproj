@@ -248,6 +248,8 @@
     <Content Include="Content\Images\Shop\shop_1.jpg" />
     <Content Include="Content\Images\Shop\shop_2.jpg" />
     <Content Include="Content\Images\Shop\shop_3.jpg" />
+    <Content Include="Content\Images\Shop\siodelko_1.jpg" />
+    <Content Include="Content\Images\Shop\siodelko_2.jpg" />
     <Content Include="Content\Images\wallpaper_rocks_bike%28low-res%29.jpg" />
     <Content Include="Content\theme-default.css" />
     <Content Include="favicon.ico" />
