@@ -496,10 +496,7 @@ h1#helpHeader {
 
             .MultiCarousel .MultiCarousel-inner .item > div {
                 text-align: center;
-                padding: 10px;
-                margin: 10px;
-                background: #f1f1f1;
-                color: #666;
+                margin: 0px 15px;
             }
 
     .MultiCarousel .leftLst, .MultiCarousel .rightLst {
