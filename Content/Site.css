@@ -517,3 +517,11 @@ h1#helpHeader {
             pointer-events: none;
             background: #ccc;
         }
+
+
+.floating-button {
+    width: 200px;
+    position: fixed;
+    left: calc(50% - 100px);
+    bottom: 10px;
+}
