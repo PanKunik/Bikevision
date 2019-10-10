@@ -23,6 +23,11 @@ namespace bikevision.Controllers
             return View();
         }
 
+        public ActionResult ProductList()
+        {
+            return View();
+        }
+
         public ActionResult Product()
         {
             return View();
