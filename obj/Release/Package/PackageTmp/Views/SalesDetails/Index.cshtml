@@ -1,0 +1,45 @@
+﻿@model IEnumerable<bikevision.Models.SzczegolySprzedazy>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.wartosc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Przedmiot.nazwaPrzedmiotu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sprzedaz.idSprzedaz)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.wartosc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Przedmiot.nazwaPrzedmiotu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sprzedaz.idSprzedaz)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

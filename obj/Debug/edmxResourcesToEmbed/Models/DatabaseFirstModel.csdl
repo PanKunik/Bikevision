@@ -1,0 +1,401 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BikeVisionDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Administrator">
+    <Key>
+      <PropertyRef Name="idAdministrator" />
+    </Key>
+    <Property Name="idAdministrator" Type="Int32" Nullable="false" />
+    <Property Name="login" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="hash" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="idCategory" />
+    </Key>
+    <Property Name="idCategory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="category1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Item" Relationship="Self.fk_Item_Category1" FromRole="Category" ToRole="Item" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="idCustomer" />
+    </Key>
+    <Property Name="idCustomer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="login" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="hash" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="telephoneNumber" Type="Int64" />
+    <Property Name="emailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="addressOfResidence" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="zipCode" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="Locality_idLocality" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Locality" Relationship="Self.fk_Customer_Locality1" FromRole="Customer" ToRole="Locality" />
+    <NavigationProperty Name="Sale" Relationship="Self.fk_Sale_Customer1" FromRole="Customer" ToRole="Sale" />
+    <NavigationProperty Name="Service" Relationship="Self.fk_Service_Customer1" FromRole="Customer" ToRole="Service" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="idEmployee" />
+    </Key>
+    <Property Name="idEmployee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="surname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="login" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="hash" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="EmployeeInThePosition" Relationship="Self.fk_EmployeeInThePosition_Employee1" FromRole="Employee" ToRole="EmployeeInThePosition" />
+    <NavigationProperty Name="Sale" Relationship="Self.fk_Sale_Employee1" FromRole="Employee" ToRole="Sale" />
+    <NavigationProperty Name="Service" Relationship="Self.fk_Service_Employee1" FromRole="Employee" ToRole="Service" />
+  </EntityType>
+  <EntityType Name="EmployeeInThePosition">
+    <Key>
+      <PropertyRef Name="Employee_idEmployee" />
+      <PropertyRef Name="Position_idPosition" />
+    </Key>
+    <Property Name="dateOfEmployment" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Employee_idEmployee" Type="Int32" Nullable="false" />
+    <Property Name="Position_idPosition" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="Self.fk_EmployeeInThePosition_Employee1" FromRole="EmployeeInThePosition" ToRole="Employee" />
+    <NavigationProperty Name="Position" Relationship="Self.fk_EmployeeInThePosition_Position1" FromRole="EmployeeInThePosition" ToRole="Position" />
+  </EntityType>
+  <EntityType Name="Item">
+    <Key>
+      <PropertyRef Name="idItem" />
+    </Key>
+    <Property Name="idItem" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="itemName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="itemDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="price" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="weight" Type="Double" />
+    <Property Name="dimensions" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ItemType_idItemType" Type="Int32" Nullable="false" />
+    <Property Name="Category_idCategory" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Category" Relationship="Self.fk_Item_Category1" FromRole="Item" ToRole="Category" />
+    <NavigationProperty Name="ItemType" Relationship="Self.fk_Item_ItemType1" FromRole="Item" ToRole="ItemType" />
+    <NavigationProperty Name="SaleDetails" Relationship="Self.fk_SaleDetails_Item1" FromRole="Item" ToRole="SaleDetails" />
+  </EntityType>
+  <EntityType Name="ItemType">
+    <Key>
+      <PropertyRef Name="idItemType" />
+    </Key>
+    <Property Name="idItemType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="type" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Item" Relationship="Self.fk_Item_ItemType1" FromRole="ItemType" ToRole="Item" />
+  </EntityType>
+  <EntityType Name="Locality">
+    <Key>
+      <PropertyRef Name="idLocality" />
+    </Key>
+    <Property Name="idLocality" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="locality1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Customer" Relationship="Self.fk_Customer_Locality1" FromRole="Locality" ToRole="Customer" />
+  </EntityType>
+  <EntityType Name="Position">
+    <Key>
+      <PropertyRef Name="idPosition" />
+    </Key>
+    <Property Name="idPosition" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="EmployeeInThePosition" Relationship="Self.fk_EmployeeInThePosition_Position1" FromRole="Position" ToRole="EmployeeInThePosition" />
+  </EntityType>
+  <EntityType Name="Sale">
+    <Key>
+      <PropertyRef Name="idSale" />
+    </Key>
+    <Property Name="idSale" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="value" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="Customer_idCustomer" Type="Int32" Nullable="false" />
+    <Property Name="SaleType_idSaleType" Type="Int32" Nullable="false" />
+    <Property Name="Employee_idEmployee" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Customer" Relationship="Self.fk_Sale_Customer1" FromRole="Sale" ToRole="Customer" />
+    <NavigationProperty Name="Employee" Relationship="Self.fk_Sale_Employee1" FromRole="Sale" ToRole="Employee" />
+    <NavigationProperty Name="SaleType" Relationship="Self.fk_Sale_SaleType1" FromRole="Sale" ToRole="SaleType" />
+    <NavigationProperty Name="SaleDetails" Relationship="Self.fk_SaleDetails_Sale1" FromRole="Sale" ToRole="SaleDetails" />
+  </EntityType>
+  <EntityType Name="SaleDetails">
+    <Key>
+      <PropertyRef Name="Sale_idSale" />
+      <PropertyRef Name="Item_idItem" />
+    </Key>
+    <Property Name="value" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="Sale_idSale" Type="Int32" Nullable="false" />
+    <Property Name="Item_idItem" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Item" Relationship="Self.fk_SaleDetails_Item1" FromRole="SaleDetails" ToRole="Item" />
+    <NavigationProperty Name="Sale" Relationship="Self.fk_SaleDetails_Sale1" FromRole="SaleDetails" ToRole="Sale" />
+  </EntityType>
+  <EntityType Name="SaleType">
+    <Key>
+      <PropertyRef Name="idSaleType" />
+    </Key>
+    <Property Name="idSaleType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="type" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Sale" Relationship="Self.fk_Sale_SaleType1" FromRole="SaleType" ToRole="Sale" />
+  </EntityType>
+  <EntityType Name="Service">
+    <Key>
+      <PropertyRef Name="idService" />
+    </Key>
+    <Property Name="idService" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="price" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="dateOfEmployment" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="dateOfCompletion" Type="DateTime" Precision="0" />
+    <Property Name="Customer_idCustomer" Type="Int32" Nullable="false" />
+    <Property Name="ServiceType_idServiceType" Type="Int32" Nullable="false" />
+    <Property Name="Employee_idEmployee" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Customer" Relationship="Self.fk_Service_Customer1" FromRole="Service" ToRole="Customer" />
+    <NavigationProperty Name="Employee" Relationship="Self.fk_Service_Employee1" FromRole="Service" ToRole="Employee" />
+    <NavigationProperty Name="ServiceType" Relationship="Self.fk_Service_ServiceType1" FromRole="Service" ToRole="ServiceType" />
+  </EntityType>
+  <EntityType Name="ServiceType">
+    <Key>
+      <PropertyRef Name="idServiceType" />
+    </Key>
+    <Property Name="idServiceType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="type" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Service" Relationship="Self.fk_Service_ServiceType1" FromRole="ServiceType" ToRole="Service" />
+  </EntityType>
+  <EntityType Name="database_firewall_rules">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="start_ip_address" />
+      <PropertyRef Name="end_ip_address" />
+      <PropertyRef Name="create_date" />
+      <PropertyRef Name="modify_date" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="start_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="end_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <Association Name="fk_Item_Category1">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="Item" Type="Self.Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="idCategory" />
+      </Principal>
+      <Dependent Role="Item">
+        <PropertyRef Name="Category_idCategory" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Customer_Locality1">
+    <End Role="Locality" Type="Self.Locality" Multiplicity="1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Locality">
+        <PropertyRef Name="idLocality" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="Locality_idLocality" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Sale_Customer1">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="idCustomer" />
+      </Principal>
+      <Dependent Role="Sale">
+        <PropertyRef Name="Customer_idCustomer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Service_Customer1">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Service" Type="Self.Service" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="idCustomer" />
+      </Principal>
+      <Dependent Role="Service">
+        <PropertyRef Name="Customer_idCustomer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_EmployeeInThePosition_Employee1">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="EmployeeInThePosition" Type="Self.EmployeeInThePosition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="idEmployee" />
+      </Principal>
+      <Dependent Role="EmployeeInThePosition">
+        <PropertyRef Name="Employee_idEmployee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Sale_Employee1">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="idEmployee" />
+      </Principal>
+      <Dependent Role="Sale">
+        <PropertyRef Name="Employee_idEmployee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Service_Employee1">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Service" Type="Self.Service" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="idEmployee" />
+      </Principal>
+      <Dependent Role="Service">
+        <PropertyRef Name="Employee_idEmployee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_EmployeeInThePosition_Position1">
+    <End Role="Position" Type="Self.Position" Multiplicity="1" />
+    <End Role="EmployeeInThePosition" Type="Self.EmployeeInThePosition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Position">
+        <PropertyRef Name="idPosition" />
+      </Principal>
+      <Dependent Role="EmployeeInThePosition">
+        <PropertyRef Name="Position_idPosition" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Item_ItemType1">
+    <End Role="ItemType" Type="Self.ItemType" Multiplicity="1" />
+    <End Role="Item" Type="Self.Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ItemType">
+        <PropertyRef Name="idItemType" />
+      </Principal>
+      <Dependent Role="Item">
+        <PropertyRef Name="ItemType_idItemType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_SaleDetails_Item1">
+    <End Role="Item" Type="Self.Item" Multiplicity="1" />
+    <End Role="SaleDetails" Type="Self.SaleDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="idItem" />
+      </Principal>
+      <Dependent Role="SaleDetails">
+        <PropertyRef Name="Item_idItem" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Sale_SaleType1">
+    <End Role="SaleType" Type="Self.SaleType" Multiplicity="1" />
+    <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleType">
+        <PropertyRef Name="idSaleType" />
+      </Principal>
+      <Dependent Role="Sale">
+        <PropertyRef Name="SaleType_idSaleType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_SaleDetails_Sale1">
+    <End Role="Sale" Type="Self.Sale" Multiplicity="1" />
+    <End Role="SaleDetails" Type="Self.SaleDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sale">
+        <PropertyRef Name="idSale" />
+      </Principal>
+      <Dependent Role="SaleDetails">
+        <PropertyRef Name="Sale_idSale" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Service_ServiceType1">
+    <End Role="ServiceType" Type="Self.ServiceType" Multiplicity="1" />
+    <End Role="Service" Type="Self.Service" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ServiceType">
+        <PropertyRef Name="idServiceType" />
+      </Principal>
+      <Dependent Role="Service">
+        <PropertyRef Name="ServiceType_idServiceType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BikeVisionDBEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Administrator" EntityType="Self.Administrator" />
+    <EntitySet Name="Category" EntityType="Self.Category" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" />
+    <EntitySet Name="EmployeeInThePosition" EntityType="Self.EmployeeInThePosition" />
+    <EntitySet Name="Item" EntityType="Self.Item" />
+    <EntitySet Name="ItemType" EntityType="Self.ItemType" />
+    <EntitySet Name="Locality" EntityType="Self.Locality" />
+    <EntitySet Name="Position" EntityType="Self.Position" />
+    <EntitySet Name="Sale" EntityType="Self.Sale" />
+    <EntitySet Name="SaleDetails" EntityType="Self.SaleDetails" />
+    <EntitySet Name="SaleType" EntityType="Self.SaleType" />
+    <EntitySet Name="Service" EntityType="Self.Service" />
+    <EntitySet Name="ServiceType" EntityType="Self.ServiceType" />
+    <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" />
+    <AssociationSet Name="fk_Item_Category1" Association="Self.fk_Item_Category1">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Item" EntitySet="Item" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Customer_Locality1" Association="Self.fk_Customer_Locality1">
+      <End Role="Locality" EntitySet="Locality" />
+      <End Role="Customer" EntitySet="Customer" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Sale_Customer1" Association="Self.fk_Sale_Customer1">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Sale" EntitySet="Sale" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Service_Customer1" Association="Self.fk_Service_Customer1">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Service" EntitySet="Service" />
+    </AssociationSet>
+    <AssociationSet Name="fk_EmployeeInThePosition_Employee1" Association="Self.fk_EmployeeInThePosition_Employee1">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="EmployeeInThePosition" EntitySet="EmployeeInThePosition" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Sale_Employee1" Association="Self.fk_Sale_Employee1">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Sale" EntitySet="Sale" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Service_Employee1" Association="Self.fk_Service_Employee1">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Service" EntitySet="Service" />
+    </AssociationSet>
+    <AssociationSet Name="fk_EmployeeInThePosition_Position1" Association="Self.fk_EmployeeInThePosition_Position1">
+      <End Role="Position" EntitySet="Position" />
+      <End Role="EmployeeInThePosition" EntitySet="EmployeeInThePosition" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Item_ItemType1" Association="Self.fk_Item_ItemType1">
+      <End Role="ItemType" EntitySet="ItemType" />
+      <End Role="Item" EntitySet="Item" />
+    </AssociationSet>
+    <AssociationSet Name="fk_SaleDetails_Item1" Association="Self.fk_SaleDetails_Item1">
+      <End Role="Item" EntitySet="Item" />
+      <End Role="SaleDetails" EntitySet="SaleDetails" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Sale_SaleType1" Association="Self.fk_Sale_SaleType1">
+      <End Role="SaleType" EntitySet="SaleType" />
+      <End Role="Sale" EntitySet="Sale" />
+    </AssociationSet>
+    <AssociationSet Name="fk_SaleDetails_Sale1" Association="Self.fk_SaleDetails_Sale1">
+      <End Role="Sale" EntitySet="Sale" />
+      <End Role="SaleDetails" EntitySet="SaleDetails" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Service_ServiceType1" Association="Self.fk_Service_ServiceType1">
+      <End Role="ServiceType" EntitySet="ServiceType" />
+      <End Role="Service" EntitySet="Service" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

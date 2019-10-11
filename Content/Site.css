@@ -522,6 +522,7 @@ h1#helpHeader {
 .floating-button {
     width: 200px;
     position: fixed;
-    left: calc(50% - 100px);
+    left: 50%;
     bottom: 10px;
+    transform: translate(-50%, -50%);
 }
