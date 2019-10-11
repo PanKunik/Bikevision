@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "Help";
+    Layout = "~/Views/Shared/_EntranceLayout.cshtml";
+}
+
+<section class="d-flex flex-column flex-fill font-raleway">
+    <div id="helpImage">
+        <img class="w-100 d-block" src="/Content/Images/60353.jpg">
+        <h1 id="helpHeader" class="text-size-medium text-size-md-big"> Najczęściej zadawane pytania </h1>
+    </div>
+
+    <div class="flex-fill">
+        <div class="container-fluid my-2 d-flex flex-column flex-md-row">
+            <aside class="list-group flex-lg-shrink-0">
+                <a href="#" class="list-group-item list-group-item-action active px-5 text-nowrap"> Kategoria pierwsza </a>
+                <a href="#" class="list-group-item list-group-item-action px-5 text-nowrap"> Kategoria druga </a>
+                <a href="#" class="list-group-item list-group-item-action px-5 text-nowrap"> Kategoria trzecia </a>
+                <a href="#" class="list-group-item list-group-item-action px-5 text-nowrap"> Kategoria czwarta </a>
+                <a href="#" class="list-group-item list-group-item-action px-5 text-nowrap"> Kategoria piąta </a>
+            </aside>
+
+            <article class="flex-fill p-2">
+                <div id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="card">
+                        <h5 class="card-header" role="tab" id="headingOne">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="collapsed d-block">
+                                <span>1. Kim jesteśmy?</span>
+                                <i class="fas fa-chevron-down float-right"></i>
+                            </a>
+                        </h5>
+
+                        <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="card-body">
+                                <p class="text-justify">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
+                                    moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
+                                    Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
+                                    shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea
+                                    proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim
+                                    aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h5 class="card-header" role="tab" id="headingTwo">
+                            <a class="collapsed d-block" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <span>2. Co to za sklep?</span>
+                                <i class="fas fa-chevron-down float-right"></i>
+                            </a>
+                        </h5>
+                        <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="card-body">
+                                <p class="text-justify">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
+                                    moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
+                                    Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
+                                    shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea
+                                    proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim
+                                    aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h5 class="card-header" role="tab" id="headingThree">
+                            <a class="collapsed d-block" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <span>3. Czego tutaj szukam?</span>
+                                <i class="fas fa-chevron-down float-right"></i>
+                            </a>
+                        </h5>
+                        <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+                            <div class="card-body">
+                                <p class="text-justify">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
+                                    moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
+                                    Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
+                                    shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea
+                                    proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim
+                                    aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
