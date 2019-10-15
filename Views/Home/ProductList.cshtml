@@ -19,46 +19,99 @@
         </div>
 
         <div class="d-flex flex-row">
-            <div class="d-none d-md-flex flex-column">
-                <div class="">
-                    <p class="border-bottom"> Filtrowanie po... </p>
-                    <form>
-                        <input type="checkbox" id="optA" value="A" /> <label for="optA"> Opcja A </label> <br />
-                        <input type="checkbox" id="optB" value="B" /> <label for="optB"> Opcja B </label> <br />
-                        <input type="checkbox" id="optC" value="C" /> <label for="optC"> Opcja C </label> <br />
-                        <input type="checkbox" id="optD" value="D" /> <label for="optD"> Opcja D </label> <br />
-                    </form>
+            <div class="d-none d-md-flex flex-column left-column">
+                <div class="filtering-card">
+                    Filtrowanie po czymś tam
                 </div>
-                <div class="">
-                    <p class="border-bottom"> Filtrowanie po... </p>
-                    <input type="text" id="textOd" /> <span> - </span> <input type="text" id="testDo" />
-                    <input type="range" inputmode="numeric"/>
+                <div class="filtering-card">
+                    Filtrowanie po czymś tam
                 </div>
-                <div class="">
-                    Filtorwanie nr 3
+                <div class="filtering-card">
+                    Filtrowanie po czymś tam
                 </div>
-                <div class="">
-                    Filtorwanie nr 4
+                <div class="filtering-card">
+                    Filtrowanie po czymś tam
                 </div>
-                <div class="">
-                    Filtorwanie nr 5
-                </div>
+                <div class="filtering-card">
+                    Filtrowanie po czymś tam
+				</div>
             </div>
-            <div class="d-flex flex-column">
-                <div class="d-flex flex-row">
-                    <div class="">
+            <div class="d-flex flex-column right-column">
+                <div class="d-flex flex-row justify-content-between">
+                    <div class="p-1">
                         Lista / Siatka
                     </div>
-                    <div class="">
-                        Sortowanie
+                    <div class="p-1">
+                        <span> Sortuj: </span>
+                        <select>
+                            <option> Cena /\ </option>
+                            <option> Cena \/ </option>
+                            <option> Alfabetycznie A-Z </option>
+                            <option> Alfabetycznie Z-A </option>
+                            <option> Ocena klientów /\ </option>
+                        </select>
                     </div>
                 </div>
-                <div class="d-flex flex-row">
-                    Produkty
+                <div class="d-flex flex-row flex-wrap">
+                    <div class="shopping-item">
+                        <p> Nazwa produktu </p>
+                        <div class=""><img src="~/Content/Images/Shop/shop_2.jpg" /></div>
+                    </div>
+                    <div class="shopping-item">
+                        <p> Nazwa produktu </p>
+                        <div class=""><img src="~/Content/Images/Shop/shop_2.jpg" /></div>
+                    </div>
+                    <div class="shopping-item">
+                        <p> Nazwa produktu </p>
+                        <div class=""><img src="~/Content/Images/Shop/shop_2.jpg" /></div>
+                    </div>
+                    <div class="shopping-item">
+                        <p> Nazwa produktu </p>
+                        <div class=""><img src="~/Content/Images/Shop/shop_2.jpg" /></div>
+                    </div>
+                    <div class="shopping-item">
+                        <p> Nazwa produktu </p>
+                        <div class=""><img src="~/Content/Images/Shop/shop_2.jpg" /></div>
+                    </div>
+                    <div class="shopping-item">
+                        <p> Nazwa produktu </p>
+                        <div class=""><img src="~/Content/Images/Shop/shop_2.jpg" /></div>
+                    </div>
+                    <div class="shopping-item">
+                        <p> Nazwa produktu </p>
+                        <div class=""><img src="~/Content/Images/Shop/shop_2.jpg" /></div>
+                    </div>
+                    <div class="shopping-item">
+                        <p> Nazwa produktu </p>
+                        <div class=""><img src="~/Content/Images/Shop/shop_2.jpg" /></div>
+                    </div>
+                    <div class="shopping-item">
+                        <p> Nazwa produktu </p>
+                        <div class=""><img src="~/Content/Images/Shop/shop_2.jpg" /></div>
+                    </div>
+                    <div class="shopping-item">
+                        <p> Nazwa produktu </p>
+                        <div class=""><img src="~/Content/Images/Shop/shop_2.jpg" /></div>
+                    </div>
+                    <div class="shopping-item">
+                        <p> Nazwa produktu </p>
+                        <div class=""><img src="~/Content/Images/Shop/shop_2.jpg" /></div>
+                    </div>
                 </div>
-                <div class="d-none d-md-block mt-auto flex-row">
-                    Paginacja
-                </div>
+                <nav class="d-none d-md-block flex-row mt-2">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">Previous</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+                <button class="d-block d-md-none btn btn-info"> Więcej \/ </button>
             </div>
         </div>
 

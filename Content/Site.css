@@ -532,3 +532,75 @@ h1#helpHeader {
     left: calc(50% - 100px);
     bottom: 10px;
 }
+
+
+.shopping-item > div > img {
+    width: 100%;
+}
+
+.filtering-card {
+    width: calc(100% - 10px);
+    height: 150px;
+    color: black;
+    background-color: darkgray;
+    padding: 5px;
+    margin: 5px;
+}
+
+.left-column {
+    width: 25%;
+}
+
+/* For Bootstrap 4 'default' breakpoint */
+@media (max-width: 575.98px) {
+    .right-column {
+        width: 100%;
+    }
+
+    .shopping-item {
+        background-color: white;
+        color: black;
+        width: calc(calc(100% / 3) - 10px);
+        margin: 5px;
+    }
+}
+
+/* For Bootstrap 4 'sm' breakpoint */
+@media (min-width: 576px) {
+    .right-column {
+        width: 100%;
+    }
+
+    .shopping-item {
+        background-color: white;
+        color: black;
+        width: calc(calc(100% / 3) - 10px);
+        margin: 5px;
+    }
+}
+
+/* For Bootstrap 4 'md' breakpoint */
+@media (min-width: 768px) {
+}
+
+/* For Bootstrap 4 'lg' breakpoint */
+@media (min-width: 992px) {
+    .right-column {
+        width: 75%;
+    }
+
+    .shopping-item {
+        background-color: white;
+        color: black;
+        width: calc(calc(100% / 4) - 10px);
+        margin: 5px;
+    }
+}
+
+/* For Bootstrap 4 'xl' breakpoint */
+@media (min-width: 1200px) {
+}
+
+/* For width bigger than 1600 */
+@media (min-width: 1600px) {
+}
