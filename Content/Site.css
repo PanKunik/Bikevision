@@ -213,11 +213,65 @@ h1#helpHeader {
 @media (min-width: 1600px) {
     .container--big {
         max-width: 1540px;
+        height: 100px;
+        margin: 0 auto;
+        background-color: gray;
     }
 }
 
+.shopping-card {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    float: left;
+    width: 350px;
+    height: 450px;
+    margin: 0px 5px;
+    background-color: white;
+}
 
+.shopping-card__content:hover {
+    width: 450px;
+    height: 550px;
+    background-color: white;
+    padding: 5px;
+    z-index: 2;
+    transition: .5s ease;
+}
 
+.shopping-card__hidden-buttons, shopping-card__hidden-gallery {
+    color: black;
+    background-color: red;
+    height: 50px;
+
+}
+
+.shopping-card__main-content {
+    width: 350px;
+    height: 450px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.shopping-card__image {
+    width: 100%;
+    height: auto;
+    z-index: 1;
+}
+
+.shopping-card__underline {
+    border: 1px solid black;
+    width: 98%;
+}
+
+.shopping-card__title {
+    color: black;
+}
+
+.shopping-card__subtitle {
+    color: black;
+}
 /*                                */
 
 
