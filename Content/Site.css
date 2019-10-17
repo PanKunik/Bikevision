@@ -180,7 +180,8 @@ h1#helpHeader {
     top: 0px;
     left: 0px;
     float: left;
-    width: 350px;
+    /* width: 350px; */
+    width: calc(calc(100% / 4) - 10px);
     height: 450px;
     margin: 5px 5px;
     background-color: white;
@@ -188,7 +189,8 @@ h1#helpHeader {
 }
 
 .shopping-card__content {
-    width: 350px;
+    /* width: 350px; */
+    width: 100%;
     height: 450px;
     position: absolute;
     top: 0;
@@ -201,7 +203,8 @@ h1#helpHeader {
 }
 
 .shopping-card__main-content {
-    width: 340px;
+    /* width: 340px; */
+    width: calc(100% - 10px);
     height: 440px;
 }
 
@@ -234,6 +237,10 @@ h1#helpHeader {
 
 /* For Bootstrap 4 'default' and 'sm'  breakpoint */
 @media (min-width: 0px) {
+
+    .shopping-card {
+        width: calc(calc(100% / 2) - 10px);
+    }
     ul #shopMenu > li {
         border-bottom: 1px solid #303030;
     }
@@ -245,15 +252,21 @@ h1#helpHeader {
 
 /* For Bootstrap 4 'default' breakpoint */
 @media (max-width: 575.98px) {
+
 }
 
 
 /* For Bootstrap 4 'sm' breakpoint */
 @media (min-width: 576px) {
+
 }
 
 /* For Bootstrap 4 'md' breakpoint */ 
 @media (min-width: 768px) {
+    .shopping-card {
+        width: calc(calc(100% / 3) - 10px);
+    }
+
     .text-size-md-big {
         font-size: 64px;
     }
@@ -267,18 +280,25 @@ h1#helpHeader {
     }
 
     .shopping-card:hover > .shopping-card__content {
-        width: 350px;
+        width: 100%;
         height: 550px;
         transition: .5s ease;
     }
 
     .shopping-card:hover > .shopping-card__content--wider {
-        width: 450px;
+        width: calc(100% + 100px);
         transition: .5s ease;
     }
 
+        .shopping-card:hover > .shopping-card__content--wider > .shopping-card__main-column {
+            width: calc(100% - 100px);
+            transition: .5s ease;
+        }
+
     .shopping-card__main-column {
-        width: 340px;
+        /* width: 340px; */
+        width: 100%;
+        transition: .5s ease;
         height: 540px;
         position: absolute;
         left: 5px;
@@ -286,7 +306,7 @@ h1#helpHeader {
     }
 
     .shopping-card__hidden-content {
-        width: 340px;
+        width: calc(100% - 10px);
         height: 95px;
         position: relative;
         background-color: gray;
@@ -299,13 +319,22 @@ h1#helpHeader {
         height: 540px;
         position: absolute;
         background-color: gray;
-        left: 350px;
+        left: 100%;
+        transition: .5s ease;
         top: 5px;
+    }
+
+    .shopping-card:hover .shopping-card__gallery-column {
+        left: calc(100% - 100px);
+        transition: .5s ease;
     }
 }
 
 /* For Bootstrap 4 'lg' breakpoint */ 
 @media (min-width: 992px) {
+    .shopping-card {
+        width: calc(calc(100% / 4) - 10px);
+    }
     
 }
 
