@@ -173,105 +173,8 @@ h1#helpHeader {
     text-align: center;
 }
 
-/* Shoppping cards */
-
-.shopping-card {
-    position: relative;
-    float: left;
-    /* width: 350px; */
-    width: calc(calc(100% / 4) - 10px);
-    height: 450px;
-    /*min-height: 250px;*/
-    margin: 5px 5px;
-    z-index: 1;
-}
-
-.shopping-card__content {
-    /* width: 350px; */
-    width: 100%;
-    height: 440px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: .5s ease;
-    background-color: white;
-    color: black;
-    clear: both;
-    overflow: hidden;
-}
-
-.shopping-card__main-content {
-    /* width: 340px; */
-    width: calc(100% - 10px);
-    height: 440px;
-    padding: 5px;
-}
-
-.shopping-card__banner {
-    position: absolute;
-    top: 5px;
-    right: 10px;
-    width: 100px;
-    height: 35px;
-    background-color: lightblue;
-    z-index: 2;
-}
-
-.shopping-card__image {
-    width: 75%;
-    margin: 0 auto;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.shopping-card__title {
-    font-weight: 900;
-    color: black;
-}
-
-.shopping-card__subtitle {
-    color: black;
-}
-
-.shopping-card__underline {
-    width: 100%;
-    border: 1px solid black;
-    margin: 0 auto;
-}
-
-.shopping-card__footer {
-    margin-top: 5px;
-    width: 100%;
-    height: 80px;
-}
-
-.shopping-card__price {
-    float: left;
-    width: 50%;
-    height: 100%;
-}
-
-.shopping-card__discount {
-    float: left;
-    width: 50%;
-    height: 100%;
-    text-decoration: line-through;
-}
-
-.shopping-card__hidden-button {
-    position: absolute;
-    top: 75%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
 /* For Bootstrap 4 'default' and 'sm'  breakpoint */
 @media (min-width: 0px) {
-
-    .shopping-card {
-        width: calc(calc(100% / 2) - 10px);
-    }
     ul #shopMenu > li {
         border-bottom: 1px solid #303030;
     }
@@ -294,10 +197,6 @@ h1#helpHeader {
 
 /* For Bootstrap 4 'md' breakpoint */ 
 @media (min-width: 768px) {
-    .shopping-card {
-        width: calc(calc(100% / 3) - 10px);
-    }
-
     .text-size-md-big {
         font-size: 64px;
     }
@@ -305,83 +204,10 @@ h1#helpHeader {
     ul#shopMenu > li {
         border-bottom: none;
     }
-
-    .shopping-card:hover {
-        z-index: 3;
-    }
-
-    .shopping-card:hover > .shopping-card__content {
-        width: 100%;
-        height: 550px;
-        transition: .5s ease;
-    }
-
-    .shopping-card:hover > .shopping-card__content--wider {
-        width: calc(100% + 100px);
-        transition: .5s ease;
-    }
-
-        .shopping-card:hover > .shopping-card__content--wider > .shopping-card__main-column {
-            width: calc(100% - 100px);
-            transition: .5s ease;
-        }
-
-    .shopping-card__main-column {
-        /* width: 340px; */
-        width: 100%;
-        height: 540px;
-        transition: .5s ease;
-        position: absolute;
-        left: 5px;
-        top: 5px;
-    }
-
-    .shopping-card__hidden-content {
-        width: calc(100% - 10px);
-        height: 95px;
-        position: relative;
-        top: 5px;
-        left: 0;
-    }
-
-    .shopping-card__cart-button {
-        width: 100%;
-        height: 50%;
-    }
-
-    .shopping-card__additional-buttons {
-        width: 100%;
-        height: 50%;
-    }
-
-    .shopping-card__additional-button {
-        float: left;
-        width: 50%;
-        height: 100%;
-    }
-
-    .shopping-card__gallery-column {
-        width: 95px;
-        height: 540px;
-        position: absolute;
-        border-left: 1px solid darkgrey;
-        padding: 5px;
-        left: 100%;
-        transition: .5s ease;
-        top: 5px;
-    }
-
-    .shopping-card:hover .shopping-card__gallery-column {
-        left: calc(100% - 100px);
-        transition: .5s ease;
-    }
 }
 
 /* For Bootstrap 4 'lg' breakpoint */ 
 @media (min-width: 992px) {
-    .shopping-card {
-        width: calc(calc(100% / 4) - 10px);
-    }
     
 }
 

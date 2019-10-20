@@ -75,7 +75,7 @@
         var values = divStyle.match(/-?[\d\.]+/g);
         var xds = Math.abs(values[4]);
         if (e == 0) {
-            translateXval = parseInt(xds) - parseInt(itemWidth * s);
+            translateXval = xds - itemWidth * s;
             $(el + ' ' + rightBtn).removeClass("over");
  
             if (translateXval <= itemWidth / 2) {
@@ -85,7 +85,7 @@
         }
         else if (e == 1) {
             var itemsCondition = $(el).find(itemsDiv).width() - $(el).width();
-            translateXval = parseInt(xds) + parseInt(itemWidth * s);
+            translateXval = xds + itemWidth * s;
             $(el + ' ' + leftBtn).removeClass("over");
  
             if (translateXval >= itemsCondition - itemWidth / 2) {
