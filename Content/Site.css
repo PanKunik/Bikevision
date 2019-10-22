@@ -609,3 +609,17 @@ h1#helpHeader {
 /* For width bigger than 1600 */
 @media (min-width: 1600px) {
 }
+
+.shop-gallery__main-image {
+    width: 100%;
+}
+
+.shop-gallery__subimage {
+    margin-left: 5px;
+    margin-top: 5px;
+    width: calc(calc(100% - 15px) / 4);
+}
+
+.shop-gallery__subimage:first-child {
+    margin-left: 0;
+}

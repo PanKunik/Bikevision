@@ -88,7 +88,7 @@
 
 .shopping-card__hidden-button {
     position: absolute;
-    top: 75%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -110,9 +110,9 @@
 /* For Bootstrap 4 'md' breakpoint */
 @media (min-width: 768px) {
     .shopping-card {
-        width: calc(calc(100% / 3) - 10px);
+        width: calc(calc(100% / 2) - 10px);
         height: 0;
-        padding-bottom: calc(calc(100% / 3) + 60px);
+        padding-bottom: calc(calc(100% / 2) + 60px);
     }
 
     .shopping-card:hover {
@@ -196,15 +196,19 @@
 /* For Bootstrap 4 'lg' breakpoint */
 @media (min-width: 992px) {
     .shopping-card {
-        width: calc(calc(100% / 4) - 10px);
+        width: calc(calc(100% / 3) - 10px);
         height: 0;
-        padding-bottom: calc(calc(100% / 4) + 60px);
+        padding-bottom: calc(calc(100% / 3) + 60px);
     }
 }
 
 /* For Bootstrap 4 'xl' breakpoint */
 @media (min-width: 1200px) {
-
+    .shopping-card {
+        width: calc(calc(100% / 4) - 10px);
+        height: 0;
+        padding-bottom: calc(calc(100% / 4) + 60px);
+    }
 }
 
 /* For width bigger than 1600 */

@@ -4,229 +4,177 @@
     Layout = "~/Views/Shared/_ShopLayout.cshtml";
 
 }
-<section>
-    <div class="container--big">
-        <div class="shopping-card">
-            <div class="shopping-card__content">
-                <div class="shopping-card__main-column">
-                    <div class="shopping-card__main-content">
-                        <div class="shopping-card__banner">
-                            Promocja
-                        </div>
-                        <img class="shopping-card__image" src="~/Content/Images/Shop/siodelko_1.jpg" />
-                        <h6 class="shopping-card__subtitle"> DT Swiss </h6>
-                        <h4 class="shopping-card__title"> Siodełko </h4>
-                        <hr class="shopping-card__underline" />
-                        <div class="shopping-card__footer">
-                            <h3 class="shopping-card__price"> 1000 zł </h3>
-                            <h5 class="shopping-card__discount"> 1250 zł </h5>
-                        </div>
-                    </div>
-                    <div class="d-none d-md-block shopping-card__hidden-content">
-                        <button class="shopping-card__cart-button"> Do koszyka </button>
-                        <div class="shopping-card__additional-buttons">
-                            <button class="shopping-card__additional-button"> Ulubiony </button>
-                            <button class="shopping-card__additional-button"> Porównaj </button>
-                        </div>
-                    </div>
-                    <button class="d-md-none d-block btn btn-info shopping-card__hidden-button">
-                        Wybierz inny
-                    </button>
+<section class="container--big d-flex">
+    <div class="d-flex flex-column">
+        <nav class="py-2" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Kategoria</li>
+            </ol>
+        </nav>
+
+        <div class="d-flex flex-md-row flex-column">
+            <div class="d-flex flex-column fill-even p-1">
+                <img src="~/Content/Images/Shop/siodelko_1.jpg" class="shop-gallery__main-image" />
+                <div class="d-flex flex-row w-100">
+                    <img src="~/Content/Images/Shop/siodelko_1.jpg" class="float-left shop-gallery__subimage" />
+                    <img src="~/Content/Images/Shop/siodelko_1.jpg" class="float-left shop-gallery__subimage" />
+                    <img src="~/Content/Images/Shop/siodelko_1.jpg" class="float-left shop-gallery__subimage" />
+                    <img src="~/Content/Images/Shop/siodelko_1.jpg" class="float-left shop-gallery__subimage" />
                 </div>
             </div>
-        </div>
-
-        <div class="shopping-card">
-            <div class="shopping-card__content">
-                <div class="shopping-card__main-column">
-                    <div class="shopping-card__main-content">
-                        <div class="shopping-card__banner">
-                            <span> Promocja </span>
-                        </div>
-                        <img class="shopping-card__image" src="~/Content/Images/Shop/siodelko_1.jpg" />
-                        <h6 class="shopping-card__subtitle"> DT Swiss </h6>
-                        <h4 class="shopping-card__title"> Siodełko </h4>
-                        <hr class="shopping-card__underline" />
-                        <div class="shopping-card__footer">
-                            <h3 class="shopping-card__price"> 1000 zł </h3>
-                            <h5 class="shopping-card__discount"> 1250 zł </h5>
-                        </div>
-                    </div>
-                    <div class="d-none d-md-block shopping-card__hidden-content">
-                        <button class="shopping-card__cart-button"> Do koszyka </button>
-                        <div class="shopping-card__additional-buttons">
-                            <button class="shopping-card__additional-button"> Ulubiony </button>
-                            <button class="shopping-card__additional-button"> Porównaj </button>
-                        </div>
-                    </div>
-                    <button class="d-md-none d-block btn btn-info shopping-card__hidden-button">
-                        Wybierz inny
-                    </button>
-                </div>
+            <div class="fill-even p-1">
+                <h3> Wybrór opcji produktu </h3>
+                <hr />
+                <form>
+                    <label> Cecha 1: </label>
+                    <br />
+                    <select>
+                        <option> Opcja A </option>
+                        <option> Opcja B </option>
+                        <option> Opcja C </option>
+                        <option> Opcja D </option>
+                    </select>
+                    <br />
+                    <br />
+                    <label> Cecha 2: </label>
+                    <br />
+                    <label> Opcja A <input type="radio" name="color" value="A" /> </label>
+                    <br />
+                    <label> Opcja B <input type="radio" name="color" value="B" /> </label>
+                    <br />
+                    <label> Opcja C <input type="radio" name="color" value="C" /> </label>
+                    <br />
+                    <label> Opcja D <input type="radio" name="color" value="D" /> </label>
+                </form>
             </div>
         </div>
+        <div class="">
+            <h1> Pierwszy tytuł - Np. specyfikacja </h1>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel ipsum sit amet magna malesuada condimentum. Sed varius tellus porttitor malesuada gravida. Praesent feugiat aliquet pretium. Vestibulum tincidunt hendrerit erat, finibus vulputate elit pharetra quis. Nunc sodales sed nulla posuere tincidunt. Phasellus urna diam, faucibus a urna et, gravida gravida libero. Fusce molestie neque sed finibus suscipit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam ligula quam, volutpat eu pellentesque ut, volutpat sit amet ipsum. Etiam magna ipsum, aliquam pharetra egestas at, commodo et odio.
 
-        <div class="shopping-card">
-            <div class="shopping-card__content shopping-card__content--wider">
-                <div class="shopping-card__main-column">
-                    <div class="shopping-card__main-content">
-                        <div class="shopping-card__banner">
-                            Promocja
-                        </div>
-                        <img class="shopping-card__image" src="~/Content/Images/Shop/siodelko_1.jpg" />
-                        <h6 class="shopping-card__subtitle"> DT Swiss </h6>
-                        <h4 class="shopping-card__title"> Siodełko </h4>
-                        <hr class="shopping-card__underline" />
-                        <div class="shopping-card__footer">
-                            <h3 class="shopping-card__price"> 1000 zł </h3>
-                            <h5 class="shopping-card__discount"> 1250 zł </h5>
-                        </div>
-                    </div>
-                    <div class="d-none d-md-block shopping-card__hidden-content">
-                        <button class="shopping-card__cart-button"> Do koszyka </button>
-                        <div class="shopping-card__additional-buttons">
-                            <button class="shopping-card__additional-button"> Ulubiony </button>
-                            <button class="shopping-card__additional-button"> Porównaj </button>
-                        </div>
-                    </div>
-                    <button class="d-md-none d-block btn btn-info shopping-card__hidden-button">
-                        Wybierz inny
-                    </button>
-                </div>
-                <div class="d-none d-md-block shopping-card__gallery-column">
-                    Gallery
-                </div>
-            </div>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque blandit condimentum. Donec vehicula ultrices nunc, ac elementum sapien facilisis a. Aliquam egestas aliquet lectus sit amet sodales. Morbi facilisis rutrum sapien interdum pellentesque. Aenean in facilisis nisi. Morbi accumsan vitae metus ut fringilla. Aliquam consectetur vulputate velit vitae vestibulum. Praesent tincidunt nisi ut lacus hendrerit sollicitudin ut et magna.
+
+                Aliquam ullamcorper ipsum ut enim bibendum, ut cursus eros condimentum. In hac habitasse platea dictumst. Integer sit amet tristique ipsum. Nullam hendrerit sed justo at bibendum. In sed congue ipsum, eget pharetra libero. Maecenas placerat volutpat dui luctus sagittis. Ut eget nunc ut leo tempus iaculis eu sed ex. Praesent scelerisque tortor ac libero auctor dapibus. Praesent congue quis est ac dictum. Donec nec ante odio. Nulla aliquam justo sed nisi ullamcorper, in euismod felis pretium. Nullam mollis dolor justo, quis volutpat ex tincidunt facilisis. Donec vulputate sem in lorem laoreet gravida. Proin consequat suscipit turpis, vitae congue purus accumsan eu. In sapien mauris, hendrerit consequat arcu sed, lacinia egestas ligula.
+            </p>
+            <h2> Drugi tytuł - Np. opis producenta </h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel ipsum sit amet magna malesuada condimentum. Sed varius tellus porttitor malesuada gravida. Praesent feugiat aliquet pretium. Vestibulum tincidunt hendrerit erat, finibus vulputate elit pharetra quis. Nunc sodales sed nulla posuere tincidunt. Phasellus urna diam, faucibus a urna et, gravida gravida libero. Fusce molestie neque sed finibus suscipit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam ligula quam, volutpat eu pellentesque ut, volutpat sit amet ipsum. Etiam magna ipsum, aliquam pharetra egestas at, commodo et odio.
+
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque blandit condimentum. Donec vehicula ultrices nunc, ac elementum sapien facilisis a. Aliquam egestas aliquet lectus sit amet sodales. Morbi facilisis rutrum sapien interdum pellentesque. Aenean in facilisis nisi. Morbi accumsan vitae metus ut fringilla. Aliquam consectetur vulputate velit vitae vestibulum. Praesent tincidunt nisi ut lacus hendrerit sollicitudin ut et magna.
+
+                Aliquam ullamcorper ipsum ut enim bibendum, ut cursus eros condimentum. In hac habitasse platea dictumst. Integer sit amet tristique ipsum. Nullam hendrerit sed justo at bibendum. In sed congue ipsum, eget pharetra libero. Maecenas placerat volutpat dui luctus sagittis. Ut eget nunc ut leo tempus iaculis eu sed ex. Praesent scelerisque tortor ac libero auctor dapibus. Praesent congue quis est ac dictum. Donec nec ante odio. Nulla aliquam justo sed nisi ullamcorper, in euismod felis pretium. Nullam mollis dolor justo, quis volutpat ex tincidunt facilisis. Donec vulputate sem in lorem laoreet gravida. Proin consequat suscipit turpis, vitae congue purus accumsan eu. In sapien mauris, hendrerit consequat arcu sed, lacinia egestas ligula.
+            </p>
         </div>
 
-        <div class="shopping-card">
-            <div class="shopping-card__content shopping-card__content--wider">
-                <div class="shopping-card__main-column">
-                    <div class="shopping-card__main-content">
-                        <div class="shopping-card__banner">
-                            Promocja
-                        </div>
-                        <img class="shopping-card__image" src="~/Content/Images/Shop/siodelko_1.jpg" />
-                        <h6 class="shopping-card__subtitle"> DT Swiss </h6>
-                        <h4 class="shopping-card__title"> Siodełko </h4>
-                        <hr class="shopping-card__underline" />
-                        <div class="shopping-card__footer">
-                            <h3 class="shopping-card__price"> 1000 zł </h3>
-                            <h5 class="shopping-card__discount"> 1250 zł </h5>
-                        </div>
+        <div class="d-flex flex-column">
+            <div class="shop-opinion">
+                <div class="shop-opinion__header">
+                    <h4> Tytuł </h4>
+                    <div class="shop-opinion__header-mark">
+                        Ocena 4/5: XXXX
                     </div>
-                    <div class="d-none d-md-block shopping-card__hidden-content">
-                        <button class="shopping-card__cart-button"> Do koszyka </button>
-                        <div class="shopping-card__additional-buttons">
-                            <button class="shopping-card__additional-button"> Ulubiony </button>
-                            <button class="shopping-card__additional-button"> Porównaj </button>
-                        </div>
+                    <div class="shop-opinion__header-date">
+                        2019-05-10
                     </div>
-                    <button class="d-md-none d-block btn btn-info shopping-card__hidden-button">
-                        Wybierz inny
-                    </button>
                 </div>
-                <div class="d-none d-md-block shopping-card__gallery-column">
-                    Gallery
-                </div>
-            </div>
-        </div>
-
-        <div class="shopping-card">
-            <div class="shopping-card__content shopping-card__content--wider">
-                <div class="shopping-card__main-column">
-                    <div class="shopping-card__main-content">
-                        <div class="shopping-card__banner">
-                            Promocja
-                        </div>
-                        <img class="shopping-card__image" src="~/Content/Images/Shop/siodelko_1.jpg" />
-                        <h6 class="shopping-card__subtitle"> DT Swiss </h6>
-                        <h4 class="shopping-card__title"> Siodełko </h4>
-                        <hr class="shopping-card__underline" />
-                        <div class="shopping-card__footer">
-                            <h3 class="shopping-card__price"> 1000 zł </h3>
-                            <h5 class="shopping-card__discount"> 1250 zł </h5>
-                        </div>
-                    </div>
-                    <div class="d-none d-md-block shopping-card__hidden-content">
-                        <button class="shopping-card__cart-button"> Do koszyka </button>
-                        <div class="shopping-card__additional-buttons">
-                            <button class="shopping-card__additional-button"> Ulubiony </button>
-                            <button class="shopping-card__additional-button"> Porównaj </button>
-                        </div>
-                    </div>
-                    <button class="d-md-none d-block btn btn-info shopping-card__hidden-button">
-                        Wybierz inny
-                    </button>
-                </div>
-                <div class="d-none d-md-block shopping-card__gallery-column">
-                    Gallery
+                <hr />
+                <div class="shop-opinion__main-content">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque blandit condimentum. Donec vehicula ultrices nunc, ac elementum sapien facilisis a. Aliquam egestas aliquet lectus sit amet sodales. Morbi facilisis rutrum sapien interdum pellentesque. Aenean in facilisis nisi. Morbi accumsan vitae metus ut fringilla. Aliquam consectetur vulputate velit vitae vestibulum. Praesent tincidunt nisi ut lacus hendrerit sollicitudin ut et magna.
+                    </p>
+                    <p class="shop-opinion__advantages">
+                        <span> Zalety: </span>
+                        <ul>
+                            <li> A </li>
+                            <li> B </li>
+                            <li> C </li>
+                            <li> D </li>
+                        </ul>
+                    </p>
+                    <p class="shop-opinion__disadvantages">
+                        <span> Wady: </span>
+                        <ul>
+                            <li> A </li>
+                            <li> B </li>
+                            <li> C </li>
+                            <li> D </li>
+                        </ul>
+                    </p>
                 </div>
             </div>
-        </div>
 
-        <div class="shopping-card">
-            <div class="shopping-card__content shopping-card__content--wider">
-                <div class="shopping-card__main-column">
-                    <div class="shopping-card__main-content">
-                        <div class="shopping-card__banner">
-                            Promocja
-                        </div>
-                        <img class="shopping-card__image" src="~/Content/Images/Shop/siodelko_1.jpg" />
-                        <h6 class="shopping-card__subtitle"> DT Swiss </h6>
-                        <h4 class="shopping-card__title"> Siodełko </h4>
-                        <hr class="shopping-card__underline" />
-                        <div class="shopping-card__footer">
-                            <h3 class="shopping-card__price"> 1000 zł </h3>
-                            <h5 class="shopping-card__discount"> 1250 zł </h5>
-                        </div>
+            <div class="shop-opinion">
+                <div class="shop-opinion__header">
+                    <h4> Tytuł </h4>
+                    <div class="shop-opinion__header-mark">
+                        Ocena 4/5: XXXX
                     </div>
-                    <div class="d-none d-md-block shopping-card__hidden-content">
-                        <button class="shopping-card__cart-button"> Do koszyka </button>
-                        <div class="shopping-card__additional-buttons">
-                            <button class="shopping-card__additional-button"> Ulubiony </button>
-                            <button class="shopping-card__additional-button"> Porównaj </button>
-                        </div>
+                    <div class="shop-opinion__header-date">
+                        2019-05-10
                     </div>
-                    <button class="d-md-none d-block btn btn-info shopping-card__hidden-button">
-                        Wybierz inny
-                    </button>
                 </div>
-                <div class="d-none d-md-block shopping-card__gallery-column">
-                    Gallery
+                <hr />
+                <div class="shop-opinion__main-content">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque blandit condimentum. Donec vehicula ultrices nunc, ac elementum sapien facilisis a. Aliquam egestas aliquet lectus sit amet sodales. Morbi facilisis rutrum sapien interdum pellentesque. Aenean in facilisis nisi. Morbi accumsan vitae metus ut fringilla. Aliquam consectetur vulputate velit vitae vestibulum. Praesent tincidunt nisi ut lacus hendrerit sollicitudin ut et magna.
+                    </p>
+                    <p class="shop-opinion__advantages">
+                        <span> Zalety: </span>
+                        <ul>
+                            <li> A </li>
+                            <li> B </li>
+                            <li> C </li>
+                            <li> D </li>
+                        </ul>
+                    </p>
+                    <p class="shop-opinion__disadvantages">
+                        <span> Wady: </span>
+                        <ul>
+                            <li> A </li>
+                            <li> B </li>
+                            <li> C </li>
+                            <li> D </li>
+                        </ul>
+                    </p>
                 </div>
             </div>
-        </div>
 
-        <div class="shopping-card">
-            <div class="shopping-card__content shopping-card__content--wider">
-                <div class="shopping-card__main-column">
-                    <div class="shopping-card__main-content">
-                        <div class="shopping-card__banner">
-                            Promocja
-                        </div>
-                        <img class="shopping-card__image" src="~/Content/Images/Shop/siodelko_1.jpg" />
-                        <h6 class="shopping-card__subtitle"> DT Swiss </h6>
-                        <h4 class="shopping-card__title"> Siodełko </h4>
-                        <hr class="shopping-card__underline" />
-                        <div class="shopping-card__footer">
-                            <h3 class="shopping-card__price"> 1000 zł </h3>
-                            <h5 class="shopping-card__discount"> 1250 zł </h5>
-                        </div>
+            <div class="shop-opinion">
+                <div class="shop-opinion__header">
+                    <h4> Tytuł </h4>
+                    <div class="shop-opinion__header-mark">
+                        Ocena 4/5: XXXX
                     </div>
-                    <div class="d-none d-md-block shopping-card__hidden-content">
-                        <button class="shopping-card__cart-button"> Do koszyka </button>
-                        <div class="shopping-card__additional-buttons">
-                            <button class="shopping-card__additional-button"> Ulubiony </button>
-                            <button class="shopping-card__additional-button"> Porównaj </button>
-                        </div>
+                    <div class="shop-opinion__header-date">
+                        2019-05-10
                     </div>
-                    <button class="d-md-none d-block btn btn-info shopping-card__hidden-button">
-                        Wybierz inny
-                    </button>
                 </div>
-                <div class="d-none d-md-block shopping-card__gallery-column">
-                    Gallery
+                <hr />
+                <div class="shop-opinion__main-content">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque blandit condimentum. Donec vehicula ultrices nunc, ac elementum sapien facilisis a. Aliquam egestas aliquet lectus sit amet sodales. Morbi facilisis rutrum sapien interdum pellentesque. Aenean in facilisis nisi. Morbi accumsan vitae metus ut fringilla. Aliquam consectetur vulputate velit vitae vestibulum. Praesent tincidunt nisi ut lacus hendrerit sollicitudin ut et magna.
+                    </p>
+                    <p class="shop-opinion__advantages">
+                        <span> Zalety: </span>
+                        <ul>
+                            <li> A </li>
+                            <li> B </li>
+                            <li> C </li>
+                            <li> D </li>
+                        </ul>
+                    </p>
+                    <p class="shop-opinion__disadvantages">
+                        <span> Wady: </span>
+                        <ul>
+                            <li> A </li>
+                            <li> B </li>
+                            <li> C </li>
+                            <li> D </li>
+                        </ul>
+                    </p>
                 </div>
             </div>
         </div>
