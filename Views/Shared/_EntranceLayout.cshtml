@@ -2,7 +2,7 @@
     Layout = "~/Views/Shared/_HeadingLayout.cshtml";
 }
 
-<nav class="flex-row navbar navbar-expand-md navbar-dark bg-dark">
+<nav class="flex-row navbar navbar-dark bg-primary navbar-expand-lg">
     @Html.ActionLink("BIKEVISION", "Index", "Home", new { area = "" }, new { @class = "px-0 navbar-brand nav-link" })
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMainNavigation">
         <span class="navbar-toggler-icon"></span>
@@ -10,36 +10,36 @@
 
     <div class="collapse navbar-collapse" id="navbarMainNavigation">
         <ul class="navbar-nav text-left mr-auto">
-            <li class="nav-item">
+            <li class="nav-item mr-lg-1">
                 @Html.ActionLink("Strona główna", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
             </li>
-            <li class="nav-item">
+            <li class="nav-item mr-lg-1">
                 @Html.ActionLink("Serwis", "Service", "Home", new { area = "" }, new { @class = "nav-link" })
             </li>
-            <li class="nav-item">
+            <li class="nav-item mr-lg-1">
                 @Html.ActionLink("Sklep", "Shop", "Home", new { area = "" }, new { @class = "nav-link" })
             </li>
-            <li class="nav-item">
+            <li class="nav-item mr-lg-1">
                 @Html.ActionLink("O nas", "About", "Home", new { area = "" }, new { @class = "nav-link" })
             </li>
-            <li class="nav-item">
+            <li class="nav-item mr-lg-1">
                 @Html.ActionLink("Pomoc", "Help", "Home", new { area = "" }, new { @class = "nav-link" })
             </li>
-            <li class="nav-item">
+            <li class="nav-item mr-lg-1">
                 @Html.ActionLink("Kontakt", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })
             </li>
-            <li class="nav-item d-md-none">
+            <li class="nav-item d-lg-none">
                 @Html.ActionLink("Zaloguj", "Login", "Home", new { area = "" }, new { @class = "nav-link" })
             </li>
-            <li class="nav-item d-md-none">
+            <li class="nav-item d-lg-none">
                 @Html.ActionLink("Zarejestruj się", "Signup", "Home", new { area = "" }, new { @class = "nav-link" })
             </li>
         </ul>
 
-        <ul class="d-none d-md-block nav navbar-nav ml-auto">
+        <ul class="d-none d-lg-block nav navbar-nav ml-auto">
             <li class="dropdown order-1">
                 <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-info dropdown-toggle"><i class="fas fa-user small-icon mr-1"></i> Twoje konto <span class="caret"></span></button>
-                <ul class="dropdown-menu dropdown-menu-right mt-2">
+                <ul class="dropdown-menu dropdown-menu-right bg-dark mt-2">
                     <li class="nav-item">
                         @Html.Raw(Html.ActionLink("ToReplace", "Signup", "Home", new { area = "" }, new { @class = "nav-link" }).ToHtmlString().Replace("ToReplace", "<span><i class=\"fas fa-user-circle small-icon mr-1\"></i> Zarejestruj się </span>"))
                     </li>

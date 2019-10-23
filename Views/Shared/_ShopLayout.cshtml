@@ -13,11 +13,11 @@
     */
 }
 
-<nav class="container-fluid navbar navbar-dark">
-    <div class="text-center order-1 order-md-2 col-12 col-md-4 mb-2 mb-md-0">
+<nav class="container-fluid navbar navbar-dark bg-primary">
+    <div class="text-center order-1 order-lg-2 col-12 col-lg-4 mb-2 mb-lg-0">
         @Html.ActionLink("BIKEVISION", "Index", "Home", new { area = "" }, new { @class = "p-2 navbar-brand nav-link border text-light border-light" })
     </div>
-    <div class="text-right order-2 order-md-1 col-12 col-md-4 mt-2 mt-md-0">
+    <div class="text-right order-2 order-lg-1 col-12 col-lg-4 mt-2 mt-lg-0">
         <form action="">
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -27,8 +27,8 @@
             </div>
         </form>
     </div>
-    <div class="order-3 col-12 col-md-4 mt-4 mt-md-0">
-        <ul class="nav justify-content-between justify-content-md-end">
+    <div class="order-3 col-12 col-lg-4 mt-4 mt-lg-0">
+        <ul class="nav justify-content-between justify-content-lg-end">
             <li class="nav-item">
                 <a href="#" class="nav-link p-1 text-light"><i class="fas fa-shopping-cart pr-2 small-icon"></i></a>
             </li>
@@ -36,25 +36,25 @@
                 <a href="#" class="nav-link p-1 text-light"><i class="fas fa-heart px-2 small-icon"></i></a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link p-1 text-light"><i class="fas fa-user-alt px-2 pl-md-2 px-md-0 small-icon"></i></a>
+                <a href="#" class="nav-link p-1 text-light"><i class="fas fa-user-alt px-2 pl-lg-2 px-lg-0 small-icon"></i></a>
             </li>
-            <li class="nav-item d-md-none ml-md-0 text-center">
-                <a href="#" class="nav-link p-1 text-light" data-toggle="collapse" data-target="#navbarShopNavigation"><i class="fas fa-bars pl-2 pl-md-0 small-icon"></i></a>
+            <li class="nav-item d-lg-none ml-lg-0 text-center">
+                <a href="#" class="nav-link p-1 text-light" data-toggle="collapse" data-target="#navbarShopNavigation"><i class="fas fa-bars pl-2 pl-lg-0 small-icon"></i></a>
             </li>
         </ul>
     </div>
 </nav>
 
-<nav class="container-fluid flex-row navbar navbar-expand-md navbar-dark py-0 py-md-3">
+<nav class="container-fluid flex-row navbar navbar-expand-lg navbar-dark bg-primary py-0 py-lg-3">
     <div class="collapse navbar-collapse" id="navbarShopNavigation">
-        <ul id="shopMenu" class="navbar-nav text-left mr-auto py-3 py-md-0">
-            <li class="nav-item dropdown menu-area">
+        <ul id="shopMenu" class="navbar-nav text-left mr-auto py-3 py-lg-0">
+            <li class="nav-item dropdown menu-area mr-lg-1">
                 <a class="nav-link dropdown-toggle" id="mega-bikes" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     Rowery
                 </a>
                 <div class="dropdown-menu mega-area dropdown-menu-squared" aria-labelledby="mega-bikes">
-                    <div class="row px-md-5">
-                        <div class="col-md-4">
+                    <div class="row px-lg-5">
+                        <div class="col-lg-4">
                             <h5 class="dropdown-header">Rowery według przeznaczenia</h5>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">MTB <i class="fas fa-chevron-right"></i></a>
@@ -67,7 +67,7 @@
                             <a class="dropdown-item" href="#">Szosowe <i class="fas fa-chevron-right"></i></a>
                             <a class="dropdown-item" href="#">Dziecięce <i class="fas fa-chevron-right"></i></a>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-lg-4">
                             <h5 class="dropdown-header">Rowery według marek</h5>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Giant <i class="fas fa-chevron-right"></i></a>
@@ -81,7 +81,7 @@
                             <a class="dropdown-item" href="#">Kellys <i class="fas fa-chevron-right"></i></a>
                             <a class="dropdown-item" href="#">Specialized <i class="fas fa-chevron-right"></i></a>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-lg-4">
                             <h5 class="dropdown-header">Rowery według wielkości kół</h5>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">15" <i class="fas fa-chevron-right"></i></a>
@@ -104,7 +104,7 @@
                 </div> -->
             </li>
 
-            <li class="nav-item dropdown menu-area">
+            <li class="nav-item dropdown menu-area mr-lg-1">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="mega-parts" role="button" aria-haspopup="true" aria-expanded="false">
                     Części
                 </a>
@@ -112,8 +112,8 @@
                     <div class="col">
                         <h3 class="dropdown-header text-center">Części rowerowe</h3>
                         <div class="dropdown-divider"></div>
-                        <div class="row px-md-5">
-                            <div class="col-md-4">
+                        <div class="row px-lg-5">
+                            <div class="col-lg-4">
                                 <a class="dropdown-item" href="#">Kierownice <i class="fas fa-chevron-right"></i></a>
                                 <a class="dropdown-item" href="#">Mostki <i class="fas fa-chevron-right"></i></a>
                                 <a class="dropdown-item" href="#">Hamulce <i class="fas fa-chevron-right"></i></a>
@@ -124,7 +124,7 @@
                                 <a class="dropdown-item" href="#">Szprychy <i class="fas fa-chevron-right"></i></a>
                                 <a class="dropdown-item" href="#">Siodła <i class="fas fa-chevron-right"></i></a>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-lg-4">
                                 <a class="dropdown-item" href="#">Zaciski hamulców <i class="fas fa-chevron-right"></i></a>
                                 <a class="dropdown-item" href="#">Zaciski siodła <i class="fas fa-chevron-right"></i></a>
                                 <a class="dropdown-item" href="#">Zębatki <i class="fas fa-chevron-right"></i></a>
@@ -135,7 +135,7 @@
                                 <a class="dropdown-item" href="#">Nyple <i class="fas fa-chevron-right"></i></a>
                                 <a class="dropdown-item" href="#">Obręcze <i class="fas fa-chevron-right"></i></a>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-lg-4">
                                 <a class="dropdown-item" href="#">Dętki <i class="fas fa-chevron-right"></i></a>
                                 <a class="dropdown-item" href="#">Opony <i class="fas fa-chevron-right"></i></a>
                                 <a class="dropdown-item" href="#">Ramy <i class="fas fa-chevron-right"></i></a>
@@ -146,7 +146,7 @@
                 </div>
             </li>
 
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown mr-lg-1">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="mega-accessories" role="button" aria-haspopup="true" aria-expanded="false">
                     Akcesoria
                 </a>
@@ -154,16 +154,16 @@
                     <div class="col">
                         <h3 class="dropdown-header text-center">Akcesoria rowerowe</h3>
                         <div class="dropdown-divider"></div>
-                        <div class="row px-md-5">
-                            <div class="col-md-4">
+                        <div class="row px-lg-5">
+                            <div class="col-lg-4">
                                 <a class="dropdown-item" href="#">Lampki <i class="fas fa-chevron-right"></i></a>
                                 <a class="dropdown-item" href="#">Odblaski <i class="fas fa-chevron-right"></i></a>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-lg-4">
                                 <a class="dropdown-item" href="#">Bagażniki rowerowe <i class="fas fa-chevron-right"></i></a>
                                 <a class="dropdown-item" href="#">Wózki i foteliki <i class="fas fa-chevron-right"></i></a>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-lg-4">
                                 <a class="dropdown-item" href="#">Dętki <i class="fas fa-chevron-right"></i></a>
                                 <a class="dropdown-item" href="#">Opony <i class="fas fa-chevron-right"></i></a>
                             </div>
@@ -172,7 +172,7 @@
                 </div>
             </li>
 
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown mr-lg-1">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     Odzież
                 </a>
@@ -185,7 +185,7 @@
                 </div>
             </li>
 
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown mr-lg-1">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     Narzędzia
                 </a>
@@ -198,15 +198,15 @@
                 </div>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item mr-lg-1">
                 @Html.ActionLink("Nowości", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item mr-lg-1">
                 @Html.ActionLink("Promocje", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })
             </li>
 
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown mr-lg-1">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     Strefa marek
                 </a>
@@ -224,7 +224,7 @@
 
 @RenderBody()
 
-<section>
+<section class="bg-white">
     <p> Newsletter </p>
 </section>
 
