@@ -5,7 +5,7 @@
 }
 
 .bg-semi-light {
-    background-color: #eee !important;
+    background-color: #f0f0f0 !important;
 }
 
 .small-icon {
@@ -170,11 +170,11 @@ div#helpImage {
 
 h1#helpHeader {
     position: absolute;
-    top: 67%;
+    top: 60%;
     left: 50%;
     transform: translate( -50%, -50% );
     text-align: center;
-    color: #090909 !important;
+    text-shadow: 4px 4px 8px black;
 }
 
 /* For Bootstrap 4 'default' and 'sm'  breakpoint */
@@ -594,6 +594,11 @@ h1#helpHeader {
 
 /* For Bootstrap 4 'lg' breakpoint */
 @media (min-width: 992px) {
+    .hover-bg:hover {
+        background-color: white;
+        color: black !important;
+    }
+
     .right-column {
         width: 75%;
     }
@@ -627,3 +632,47 @@ h1#helpHeader {
 .shop-gallery__subimage:first-child {
     margin-left: 0;
 }
+
+.image-background-index {
+    background-color: rgba(0,0,0,0.3);
+    background-blend-mode: multiply;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    transition: all .35s ease 0s;
+}
+
+    .image-background-index:hover {
+        background-color: rgba(0,0,0,0.75);
+        background-blend-mode: multiply;
+        transform: scale(1.1);
+        transition: all .35s ease 0s;
+    }
+
+a#service-link {
+    /*background: linear-gradient( rgba(0, 0, 0, 0.7) 100%, rgba(0, 0, 0, 0.7)100%),url('Images/Service/service_07 (cropped).jpg');*/
+    background-image: url('Images/Service/service_07 (cropped).jpg');
+    transition: all .35s ease 0s;
+    z-index: 1;
+}
+
+    a#service-link:hover {
+        /*background: linear-gradient( rgba(0, 0, 0, 0.5) 100%, rgba(0, 0, 0, 0.5)100%),url('Images/Service/service_04.jpg');*/
+        background-image: url('Images/Service/service_04.jpg');
+        transition: all .35s ease 0s;
+        z-index: 2;
+    }
+
+a#shop-link {
+    /*background: linear-gradient( rgba(0, 0, 0, 0.7) 100%, rgba(0, 0, 0, 0.7)100%),url('Images/Service/service_07 (cropped).jpg');*/
+    background-image: url('Images/Shop/shop_04.jpg');
+    transition: all .35s ease 0s;
+    z-index: 1;
+}
+
+    a#shop-link:hover {
+        /*background: linear-gradient( rgba(0, 0, 0, 0.5) 100%, rgba(0, 0, 0, 0.5)100%),url('Images/Service/service_04.jpg');*/
+        background-image: url('Images/Shop/shop_06.jpg');
+        transition: all .35s ease 0s;
+        z-index: 2;
+    }

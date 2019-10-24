@@ -9,24 +9,24 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarMainNavigation">
-        <ul class="navbar-nav text-left mr-auto">
-            <li class="nav-item mr-lg-1">
-                @Html.ActionLink("Strona główna", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
+        <ul class="navbar-nav nav-pils text-left mr-auto">
+            <li class="nav-item active mr-lg-1">
+                @Html.ActionLink("Strona główna", "Index", "Home", new { area = "" }, new { @class = "nav-link hover-bg" })
             </li>
             <li class="nav-item mr-lg-1">
-                @Html.ActionLink("Serwis", "Service", "Home", new { area = "" }, new { @class = "nav-link" })
+                @Html.ActionLink("Serwis", "Service", "Home", new { area = "" }, new { @class = "nav-link hover-bg" })
             </li>
             <li class="nav-item mr-lg-1">
-                @Html.ActionLink("Sklep", "Shop", "Home", new { area = "" }, new { @class = "nav-link" })
+                @Html.ActionLink("Sklep", "Shop", "Home", new { area = "" }, new { @class = "nav-link hover-bg" })
             </li>
             <li class="nav-item mr-lg-1">
-                @Html.ActionLink("O nas", "About", "Home", new { area = "" }, new { @class = "nav-link" })
+                @Html.ActionLink("O nas", "About", "Home", new { area = "" }, new { @class = "nav-link hover-bg" })
             </li>
             <li class="nav-item mr-lg-1">
-                @Html.ActionLink("Pomoc", "Help", "Home", new { area = "" }, new { @class = "nav-link" })
+                @Html.ActionLink("Pomoc", "Help", "Home", new { area = "" }, new { @class = "nav-link hover-bg" })
             </li>
             <li class="nav-item mr-lg-1">
-                @Html.ActionLink("Kontakt", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })
+                @Html.ActionLink("Kontakt", "Contact", "Home", new { area = "" }, new { @class = "nav-link hover-bg" })
             </li>
             <li class="nav-item d-lg-none">
                 @Html.ActionLink("Zaloguj", "Login", "Home", new { area = "" }, new { @class = "nav-link" })
@@ -40,11 +40,11 @@
             <li class="dropdown order-1">
                 <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-info dropdown-toggle"><i class="fas fa-user small-icon mr-1"></i> Twoje konto <span class="caret"></span></button>
                 <ul class="dropdown-menu dropdown-menu-right bg-dark mt-2">
-                    <li class="nav-item">
-                        @Html.Raw(Html.ActionLink("ToReplace", "Signup", "Home", new { area = "" }, new { @class = "nav-link" }).ToHtmlString().Replace("ToReplace", "<span><i class=\"fas fa-user-circle small-icon mr-1\"></i> Zarejestruj się </span>"))
+                    <li class="nav-item mr-0">
+                        @Html.Raw(Html.ActionLink("ToReplace", "Signup", "Home", new { area = "" }, new { @class = "nav-link hover-bg" }).ToHtmlString().Replace("ToReplace", "<span><i class=\"fas fa-user-circle small-icon mr-1\"></i> Zarejestruj się </span>"))
                     </li>
-                    <li class="nav-item">
-                        @Html.Raw(Html.ActionLink("ToReplace", "Login", "Home", new { area = "" }, new { @class = "nav-link" }).ToHtmlString().Replace("ToReplace", "<span><i class=\"fas fa-sign-in-alt small-icon mr-1\"></i> Zaloguj </span>"))
+                    <li class="nav-item mr-0">
+                        @Html.Raw(Html.ActionLink("ToReplace", "Login", "Home", new { area = "" }, new { @class = "nav-link hover-bg" }).ToHtmlString().Replace("ToReplace", "<span><i class=\"fas fa-sign-in-alt small-icon mr-1\"></i> Zaloguj </span>"))
                     </li>
                 </ul>
             </li>

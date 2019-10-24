@@ -4,9 +4,9 @@
 }
 
 <section class="d-flex flex-fill flex-column flex-md-row">
-    <div class="d-flex flex-column bg-grey fill-even px-3 py-3 align-items-center justify-content-around">
+    <div class="d-flex flex-column bg-semi-light fill-even px-3 py-3 align-items-center justify-content-around">
         <div class="flex-row my-2">
-            <h3 class="text-uppercase text-center text-white">
+            <h3 class="text-uppercase text-center text-primary">
                 Skontaktuj się z Nami
             </h3>
         </div>
@@ -19,39 +19,39 @@
 
         <div class="d-flex flex-row flex-wrap align-content-around">
             <div class="d-flex fill-even flex-column align-items-center mx-3">
-                <i class="fas fa-phone big-icon pb-3"></i>
-                <h5 class="text-white text-nowrap">
+                <i class="fas fa-phone big-icon text-info pb-3"></i>
+                <h5 class="text-primary text-nowrap">
                     Zadzwoń do nas
                 </h5>
-                <p class="text-nowrap">
+                <p class="text-secondary text-nowrap">
                     +48 XXX-XXX-XXX<br />
                     +48 XXX-XXX-XXX
                 </p>
             </div>
             <div class="d-flex fill-even flex-column align-items-center mx-3">
-                <i class="fas fa-map-marker-alt big-icon pb-3"></i>
-                <h5 class=" text-white text-nowrap">
+                <i class="fas fa-map-marker-alt big-icon text-info pb-3"></i>
+                <h5 class="text-primary text-nowrap">
                     Odwiedź nas
                 </h5>
-                <p class="text-center text-nowrap">
+                <p class="text-secondary text-nowrap">
                     Al. Niewiadomska X/Y,<br />Niewiadów XX-YYY
                 </p>
             </div>
             <div class="d-flex fill-even flex-column align-items-center mx-3">
-                <i class="fas fa-envelope big-icon pb-3"></i>
-                <h5 class="text-white text-nowrap">
+                <i class="fas fa-envelope big-icon text-info pb-3"></i>
+                <h5 class="text-primary text-nowrap">
                     Napisz do nas
                 </h5>
-                <p class="text-nowrap">
+                <p class="text-secondary text-nowrap">
                     abcdef&#64;bikevision.com
                 </p>
             </div>
         </div>
     </div>
 
-    <div class="d-flex flex-column bg-darkgrey fill-even px-0 align-items-center justify-content-around">
+    <div class="d-flex flex-column bg-light fill-even px-0 align-items-center justify-content-around">
         <div class="fill-even pt-3">
-            <h3 class="text-uppercase mt-5 text-center  text-white">
+            <h3 class="text-uppercase mt-5 text-center text-primary">
                 Formularz kontaktowy
             </h3>
         </div>
@@ -60,7 +60,7 @@
             <div class="d-flex flex-column flex-xl-row fill-even">
                 <div class="d-flex flex-column fill-even">
                     <div class="d-flex flex-column justify-content-start form-group fill-even px-2">
-                        <label for="name">Imię:</label>
+                        <label for="name" class="text-primary">Imię:</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <div class="input-group-text border-0"><i class="fas fa-user small-icon"></i></div>
@@ -71,7 +71,7 @@
                     </div>
 
                     <div class="d-flex flex-column justify-content-around form-group fill-even px-2">
-                        <label for="email">Adres e-mail:</label>
+                        <label for="email" class="text-primary">Adres e-mail:</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <div class="input-group-text border-0"><i class="fas fa-envelope small-icon"></i></div>
@@ -81,7 +81,7 @@
                     </div>
 
                     <div class="d-flex flex-column justify-content-end form-group fill-even px-2">
-                        <label for="subject">Temat wiadomości:</label>
+                        <label for="subject" class="text-primary">Temat wiadomości:</label>
                         <select data-validation="required" id="subject" class="form-control">
                             <option value="" selected>Wybierz temat wiadomości...</option>
                             <option value="Pomoc">Pomoc</option>
@@ -90,7 +90,7 @@
                 </div>
 
                 <div class="d-flex flex-column justify-content-around form-group fill-even px-2">
-                    <label for="message">Treść wiadomości:</label>
+                    <label for="message" class="text-primary">Treść wiadomości:</label>
                     <textarea data-validation="required length" data-validation-length="10-2000" class="flex-grow-1 form-control" id="message" rows="9"></textarea>
                     <span>Pozostało <span id="max-length-element">2000</span> znaków</span>
                 </div>
