@@ -24,9 +24,9 @@
                 <div id="accordion" role="tablist" aria-multiselectable="true">
                     <div class="card">
                         <h5 class="card-header" role="tab" id="headingOne">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="collapsed d-block">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="collapsed d-block collapsedTab">
                                 <span>1. Kim jesteśmy?</span>
-                                <i class="fas fa-chevron-down float-right"></i>
+                                <i class="fas fa-chevron-down float-right rotate"></i>
                             </a>
                         </h5>
 
@@ -45,9 +45,9 @@
                     </div>
                     <div class="card">
                         <h5 class="card-header" role="tab" id="headingTwo">
-                            <a class="collapsed d-block" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <a class="collapsed d-block collapsedTab" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                 <span>2. Co to za sklep?</span>
-                                <i class="fas fa-chevron-down float-right"></i>
+                                <i class="fas fa-chevron-down float-right rotate"></i>
                             </a>
                         </h5>
                         <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
@@ -65,9 +65,9 @@
                     </div>
                     <div class="card">
                         <h5 class="card-header" role="tab" id="headingThree">
-                            <a class="collapsed d-block" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            <a class="collapsed d-block collapsedTab" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                 <span>3. Czego tutaj szukam?</span>
-                                <i class="fas fa-chevron-down float-right"></i>
+                                <i class="fas fa-chevron-down float-right rotate"></i>
                             </a>
                         </h5>
                         <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
@@ -89,3 +89,7 @@
     </div>
 </section>
 
+@section scripts
+{
+    @Scripts.Render("~/Scripts/Help/rotate-chevron.js")
+}

@@ -4,6 +4,18 @@
     height: 100%;
 }
 
+.rotate {
+    -moz-transition: all .25s linear;
+    -webkit-transition: all .25s linear;
+    transition: all .25s linear;
+}
+
+    .rotate.down {
+        -moz-transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+
 .bg-semi-light {
     background-color: #f0f0f0 !important;
 }
