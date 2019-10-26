@@ -606,13 +606,17 @@ h1#helpHeader {
 
 /* For Bootstrap 4 'lg' breakpoint */
 @media (min-width: 992px) {
+    .right-column {
+        width: 65%;
+    }
+
+    .left-column {
+        width: 35%;
+    }
     .hover-bg:hover {
         background-color: white;
         color: black !important;
-    }
-
-    .right-column {
-        width: 75%;
+        transition: all .25s ease;
     }
 
     .shopping-item {
@@ -625,10 +629,18 @@ h1#helpHeader {
 
 /* For Bootstrap 4 'xl' breakpoint */
 @media (min-width: 1200px) {
+    .right-column {
+        width: 75%;
+    }
+
+    .left-column {
+        width: 25%;
+    }
 }
 
 /* For width bigger than 1600 */
 @media (min-width: 1600px) {
+
 }
 
 .shop-gallery__main-image {
