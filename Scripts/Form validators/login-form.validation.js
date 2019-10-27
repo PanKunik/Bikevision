@@ -50,17 +50,15 @@ $(function () {
             if (errorMessage != "")
                 $("#validation-errors-container").removeClass("d-none")
 
-            var errorElement = $("<li></li>").text(errorMessage).attr("id", $input.attr("id") + "ErrorListElement")
-
             if (errorMessage) {
-                if ($("#errorList").children("li[id^='" + $input.attr("id") + "']").length == 0) {
-                    $("#errorList").append(errorElement);
+                if ($("#errorList").children("li[id^='" + $input.attr("id") + "']").length != 0) {
+                    $("#errorList").children("li[id^='" + $input.attr("id") + "']").removeClass("d-none").text(errorMessage);
                 }
             }
             else {
-                $("li").remove("#" + $input.attr("id") + "ErrorListElement");
+                $("li[id^='" + $input.attr("id") + "ErrorListElement']").addClass("d-none");
 
-                if ($("li[id*='ErrorListElement']").length == 0)
+                if ($("li[id*='ErrorListElement']:visible").length == 0)
                     $("#validation-errors-container").addClass("d-none")
             }
 
