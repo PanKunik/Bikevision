@@ -556,7 +556,33 @@ h1#helpHeader {
     position: fixed;
     left: calc(50% - 100px);
     bottom: 10px;
+    z-index: 5;
+    padding: 15px 5px;
+    border-radius: 25px;
+    background-color: #000;
+    color: lightgray;
+    font-size: 16px;
+    transition: .2s ease;
+    border: none;
 }
+
+    .floating-button:hover {
+        background-color: #303030;
+        color: white;
+        transition: .2s ease;
+        border-radius: 25px;
+    }
+
+    .floating-button:active {
+        background-color: #303030;
+        color: gray;
+        transition: .2s ease;
+        border-radius: 25px;
+    }
+
+    .floating-button:focus {
+        outline: none;
+    }
 
 
 .shopping-item > div > img {
@@ -617,6 +643,7 @@ h1#helpHeader {
     .left-column {
         width: 35%;
     }
+
     .hover-bg:hover {
         background-color: white;
         color: black !important;

@@ -4,7 +4,9 @@
     Layout = "~/Views/Shared/_ShopLayout.cshtml";
 }
 
-    <div class="container container--big d-flex flex-column"> <!-- content <-- own BEM class -->
+<div class="container-fluid bg-semi-light m-0 p-0">
+    <div class="container container--big d-flex flex-column">
+        <!-- content <-- own BEM class -->
         <nav class="py-2" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -18,8 +20,8 @@
             <h5 class="ml-2 align-self-baseline">Liczba produktow</h5>
         </div>
 
-        <div class="d-flex flex-row">
-            <div class="d-none d-lg-flex flex-column left-column">
+        <div class="d-flex flex-row my-1">
+            <div class=" d-lg-flex d-none flex-column left-column">
                 <div class="card">
                     <article class="card-group-item">
                         <header class="card-header"><h6 class="title">Similar category </h6></header>
@@ -205,78 +207,14 @@
                                         <button class="shopping-card__additional-button btn btn-outline-primary p-0 align-text-bottom"><span class="fas fa-retweet text-size-very-small"></span><span class="text-size-very-small"> Porównaj</span></button>
                                     </div>
                                 </div>
-                                <button class="d-lg-none d-block btn btn-info shopping-card__hidden-button">
+                                <button class="d-lg-none d-block btn btn-sm shopping-card__hidden-button">
                                     Wybierz inny
                                 </button>
                             </div>
                             <div class="d-none d-lg-block shopping-card__gallery-column">
-                                Gallery
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="shopping-card">
-                        <div class="shopping-card__content shopping-card__content--wider">
-                            <div class="shopping-card__main-column">
-                                <div class="shopping-card__main-content">
-                                    <div class="shopping-card__banner">
-                                        Promocja
-                                    </div>
-                                    <img class="shopping-card__image" src="~/Content/Images/Shop/siodelko_1.jpg" />
-                                    <h6 class="shopping-card__subtitle"> DT Swiss </h6>
-                                    <h4 class="shopping-card__title"> Siodełko </h4>
-                                    <hr class="shopping-card__underline" />
-                                    <div class="shopping-card__footer">
-                                        <h4 class="shopping-card__price text-size-small"> 1000 zł </h4>
-                                        <h5 class="shopping-card__discount"> 1250 zł </h5>
-                                    </div>
-                                </div>
-                                <div class="d-none d-lg-block shopping-card__hidden-content">
-                                    <button class="shopping-card__cart-button"> Do koszyka </button>
-                                    <div class="shopping-card__additional-buttons">
-                                        <button class="shopping-card__additional-button"> Ulubiony </button>
-                                        <button class="shopping-card__additional-button"> Porównaj </button>
-                                    </div>
-                                </div>
-                                <button class="d-lg-none d-block btn btn-info shopping-card__hidden-button">
-                                    Wybierz inny
-                                </button>
-                            </div>
-                            <div class="d-none d-lg-block shopping-card__gallery-column">
-                                Gallery
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="shopping-card">
-                        <div class="shopping-card__content shopping-card__content--wider">
-                            <div class="shopping-card__main-column">
-                                <div class="shopping-card__main-content">
-                                    <div class="shopping-card__banner">
-                                        Promocja
-                                    </div>
-                                    <img class="shopping-card__image" src="~/Content/Images/Shop/siodelko_1.jpg" />
-                                    <h6 class="shopping-card__subtitle"> DT Swiss </h6>
-                                    <h4 class="shopping-card__title"> Siodełko </h4>
-                                    <hr class="shopping-card__underline" />
-                                    <div class="shopping-card__footer">
-                                        <h4 class="shopping-card__price text-size-small"> 1000 zł </h4>
-                                        <h5 class="shopping-card__discount"> 1250 zł </h5>
-                                    </div>
-                                </div>
-                                <div class="d-none d-lg-block shopping-card__hidden-content">
-                                    <button class="shopping-card__cart-button"> Do koszyka </button>
-                                    <div class="shopping-card__additional-buttons">
-                                        <button class="shopping-card__additional-button"> Ulubiony </button>
-                                        <button class="shopping-card__additional-button"> Porównaj </button>
-                                    </div>
-                                </div>
-                                <button class="d-lg-none d-block btn btn-info shopping-card__hidden-button">
-                                    Wybierz inny
-                                </button>
-                            </div>
-                            <div class="d-none d-lg-block shopping-card__gallery-column">
-                                Gallery
+                                <img class="shopping-card__gallery-image" src="~/Content/Images/Shop/siodelko_2.jpg" />
+                                <img class="shopping-card__gallery-image" src="~/Content/Images/Shop/siodelko_1.jpg" />
+                                <img class="shopping-card__gallery-image" src="~/Content/Images/Shop/siodelko_2.jpg" />
                             </div>
                         </div>
                     </div>
@@ -285,26 +223,26 @@
                         <div class="shopping-card__content">
                             <div class="shopping-card__main-column">
                                 <div class="shopping-card__main-content">
-                                    <div class="shopping-card__banner">
+                                    <div class="shopping-card__banner badge-pill badge-info px-2 py-1">
                                         Promocja
                                     </div>
                                     <img class="shopping-card__image" src="~/Content/Images/Shop/siodelko_1.jpg" />
-                                    <h6 class="shopping-card__subtitle"> DT Swiss </h6>
-                                    <h4 class="shopping-card__title"> Siodełko </h4>
+                                    <p class="shopping-card__title mb-0"> Siodełko </p>
+                                    <p class="shopping-card__subtitle mb-0"> DT Swiss Carrera Czarne </p>
                                     <hr class="shopping-card__underline" />
                                     <div class="shopping-card__footer">
-                                        <h4 class="shopping-card__price text-size-small"> 1000 zł </h4>
-                                        <h5 class="shopping-card__discount"> 1250 zł </h5>
+                                        <h3 class="shopping-card__price"> 1000,00 zł </h3>
+                                        <h5 class="shopping-card__discount"> 1250,00 zł </h5>
                                     </div>
                                 </div>
                                 <div class="d-none d-lg-block shopping-card__hidden-content">
-                                    <button class="shopping-card__cart-button"> Do koszyka </button>
+                                    <button class="shopping-card__cart-button btn btn-info p-0 align-text-bottom"><span class="fas fa-shopping-cart small-icon"></span><span class="small-icon"> Do koszyka </span></button>
                                     <div class="shopping-card__additional-buttons">
-                                        <button class="shopping-card__additional-button"> Ulubiony </button>
-                                        <button class="shopping-card__additional-button"> Porównaj </button>
+                                        <button class="shopping-card__additional-button btn btn-outline-primary p-0 align-text-bottom"><span class="fas fa-heart text-size-very-small"></span><span class="text-size-very-small"> Ulubiony</span></button>
+                                        <button class="shopping-card__additional-button btn btn-outline-primary p-0 align-text-bottom"><span class="fas fa-retweet text-size-very-small"></span><span class="text-size-very-small"> Porównaj</span></button>
                                     </div>
                                 </div>
-                                <button class="d-lg-none d-block btn btn-info shopping-card__hidden-button">
+                                <button class="d-lg-none d-block btn btn-sm shopping-card__hidden-button">
                                     Wybierz inny
                                 </button>
                             </div>
@@ -315,64 +253,33 @@
                         <div class="shopping-card__content shopping-card__content--wider">
                             <div class="shopping-card__main-column">
                                 <div class="shopping-card__main-content">
-                                    <div class="shopping-card__banner">
+                                    <div class="shopping-card__banner badge-pill badge-info px-2 py-1">
                                         Promocja
                                     </div>
                                     <img class="shopping-card__image" src="~/Content/Images/Shop/siodelko_1.jpg" />
-                                    <h6 class="shopping-card__subtitle"> DT Swiss </h6>
-                                    <h4 class="shopping-card__title"> Siodełko </h4>
+                                    <p class="shopping-card__title mb-0"> Siodełko </p>
+                                    <p class="shopping-card__subtitle mb-0"> DT Swiss Carrera Czarne </p>
                                     <hr class="shopping-card__underline" />
                                     <div class="shopping-card__footer">
-                                        <h4 class="shopping-card__price text-size-small"> 1000 zł </h4>
-                                        <h5 class="shopping-card__discount"> 1250 zł </h5>
+                                        <h3 class="shopping-card__price"> 1000,00 zł </h3>
+                                        <h5 class="shopping-card__discount"> 1250,00 zł </h5>
                                     </div>
                                 </div>
                                 <div class="d-none d-lg-block shopping-card__hidden-content">
-                                    <button class="shopping-card__cart-button"> Do koszyka </button>
+                                    <button class="shopping-card__cart-button btn btn-info p-0 align-text-bottom"><span class="fas fa-shopping-cart small-icon"></span><span class="small-icon"> Do koszyka </span></button>
                                     <div class="shopping-card__additional-buttons">
-                                        <button class="shopping-card__additional-button"> Ulubiony </button>
-                                        <button class="shopping-card__additional-button"> Porównaj </button>
+                                        <button class="shopping-card__additional-button btn btn-outline-primary p-0 align-text-bottom"><span class="fas fa-heart text-size-very-small"></span><span class="text-size-very-small"> Ulubiony</span></button>
+                                        <button class="shopping-card__additional-button btn btn-outline-primary p-0 align-text-bottom"><span class="fas fa-retweet text-size-very-small"></span><span class="text-size-very-small"> Porównaj</span></button>
                                     </div>
                                 </div>
-                                <button class="d-lg-none d-block btn btn-info shopping-card__hidden-button">
+                                <button class="d-lg-none d-block btn btn-sm shopping-card__hidden-button">
                                     Wybierz inny
                                 </button>
                             </div>
                             <div class="d-none d-lg-block shopping-card__gallery-column">
-                                Gallery
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="shopping-card">
-                        <div class="shopping-card__content shopping-card__content--wider">
-                            <div class="shopping-card__main-column">
-                                <div class="shopping-card__main-content">
-                                    <div class="shopping-card__banner">
-                                        Promocja
-                                    </div>
-                                    <img class="shopping-card__image" src="~/Content/Images/Shop/siodelko_1.jpg" />
-                                    <h6 class="shopping-card__subtitle"> DT Swiss </h6>
-                                    <h4 class="shopping-card__title"> Siodełko </h4>
-                                    <hr class="shopping-card__underline" />
-                                    <div class="shopping-card__footer">
-                                        <h4 class="shopping-card__price text-size-small"> 1000 zł </h4>
-                                        <h5 class="shopping-card__discount"> 1250 zł </h5>
-                                    </div>
-                                </div>
-                                <div class="d-none d-lg-block shopping-card__hidden-content">
-                                    <button class="shopping-card__cart-button"> Do koszyka </button>
-                                    <div class="shopping-card__additional-buttons">
-                                        <button class="shopping-card__additional-button"> Ulubiony </button>
-                                        <button class="shopping-card__additional-button"> Porównaj </button>
-                                    </div>
-                                </div>
-                                <button class="d-lg-none d-block btn btn-info shopping-card__hidden-button">
-                                    Wybierz inny
-                                </button>
-                            </div>
-                            <div class="d-none d-lg-block shopping-card__gallery-column">
-                                Gallery
+                                <img class="shopping-card__gallery-image" src="~/Content/Images/Shop/siodelko_2.jpg" />
+                                <img class="shopping-card__gallery-image" src="~/Content/Images/Shop/siodelko_1.jpg" />
+                                <img class="shopping-card__gallery-image" src="~/Content/Images/Shop/siodelko_2.jpg" />
                             </div>
                         </div>
                     </div>
@@ -381,26 +288,26 @@
                         <div class="shopping-card__content">
                             <div class="shopping-card__main-column">
                                 <div class="shopping-card__main-content">
-                                    <div class="shopping-card__banner">
+                                    <div class="shopping-card__banner badge-pill badge-info px-2 py-1">
                                         Promocja
                                     </div>
                                     <img class="shopping-card__image" src="~/Content/Images/Shop/siodelko_1.jpg" />
-                                    <h6 class="shopping-card__subtitle"> DT Swiss </h6>
-                                    <h4 class="shopping-card__title"> Siodełko </h4>
+                                    <p class="shopping-card__title mb-0"> Siodełko </p>
+                                    <p class="shopping-card__subtitle mb-0"> DT Swiss Carrera Czarne </p>
                                     <hr class="shopping-card__underline" />
                                     <div class="shopping-card__footer">
-                                        <h4 class="shopping-card__price text-size-small"> 1000 zł </h4>
-                                        <h5 class="shopping-card__discount"> 1250 zł </h5>
+                                        <h3 class="shopping-card__price"> 1000,00 zł </h3>
+                                        <h5 class="shopping-card__discount"> 1250,00 zł </h5>
                                     </div>
                                 </div>
                                 <div class="d-none d-lg-block shopping-card__hidden-content">
-                                    <button class="shopping-card__cart-button"> Do koszyka </button>
+                                    <button class="shopping-card__cart-button btn btn-info p-0 align-text-bottom"><span class="fas fa-shopping-cart small-icon"></span><span class="small-icon"> Do koszyka </span></button>
                                     <div class="shopping-card__additional-buttons">
-                                        <button class="shopping-card__additional-button"> Ulubiony </button>
-                                        <button class="shopping-card__additional-button"> Porównaj </button>
+                                        <button class="shopping-card__additional-button btn btn-outline-primary p-0 align-text-bottom"><span class="fas fa-heart text-size-very-small"></span><span class="text-size-very-small"> Ulubiony</span></button>
+                                        <button class="shopping-card__additional-button btn btn-outline-primary p-0 align-text-bottom"><span class="fas fa-retweet text-size-very-small"></span><span class="text-size-very-small"> Porównaj</span></button>
                                     </div>
                                 </div>
-                                <button class="d-lg-none d-block btn btn-info shopping-card__hidden-button">
+                                <button class="d-lg-none d-block btn btn-sm shopping-card__hidden-button">
                                     Wybierz inny
                                 </button>
                             </div>
@@ -411,26 +318,121 @@
                         <div class="shopping-card__content">
                             <div class="shopping-card__main-column">
                                 <div class="shopping-card__main-content">
-                                    <div class="shopping-card__banner">
+                                    <div class="shopping-card__banner badge-pill badge-info px-2 py-1">
                                         Promocja
                                     </div>
                                     <img class="shopping-card__image" src="~/Content/Images/Shop/siodelko_1.jpg" />
-                                    <h6 class="shopping-card__subtitle"> DT Swiss </h6>
-                                    <h4 class="shopping-card__title"> Siodełko </h4>
+                                    <p class="shopping-card__title mb-0"> Siodełko </p>
+                                    <p class="shopping-card__subtitle mb-0"> DT Swiss Carrera Czarne </p>
                                     <hr class="shopping-card__underline" />
                                     <div class="shopping-card__footer">
-                                        <h4 class="shopping-card__price text-size-small"> 1000 zł </h4>
-                                        <h5 class="shopping-card__discount"> 1250 zł </h5>
+                                        <h3 class="shopping-card__price"> 1000,00 zł </h3>
+                                        <h5 class="shopping-card__discount"> 1250,00 zł </h5>
                                     </div>
                                 </div>
                                 <div class="d-none d-lg-block shopping-card__hidden-content">
-                                    <button class="shopping-card__cart-button"> Do koszyka </button>
+                                    <button class="shopping-card__cart-button btn btn-info p-0 align-text-bottom"><span class="fas fa-shopping-cart small-icon"></span><span class="small-icon"> Do koszyka </span></button>
                                     <div class="shopping-card__additional-buttons">
-                                        <button class="shopping-card__additional-button"> Ulubiony </button>
-                                        <button class="shopping-card__additional-button"> Porównaj </button>
+                                        <button class="shopping-card__additional-button btn btn-outline-primary p-0 align-text-bottom"><span class="fas fa-heart text-size-very-small"></span><span class="text-size-very-small"> Ulubiony</span></button>
+                                        <button class="shopping-card__additional-button btn btn-outline-primary p-0 align-text-bottom"><span class="fas fa-retweet text-size-very-small"></span><span class="text-size-very-small"> Porównaj</span></button>
                                     </div>
                                 </div>
-                                <button class="d-lg-none d-block btn btn-info shopping-card__hidden-button">
+                                <button class="d-lg-none d-block btn btn-sm shopping-card__hidden-button">
+                                    Wybierz inny
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="shopping-card">
+                        <div class="shopping-card__content shopping-card__content--wider">
+                            <div class="shopping-card__main-column">
+                                <div class="shopping-card__main-content">
+                                    <div class="shopping-card__banner badge-pill badge-info px-2 py-1">
+                                        Promocja
+                                    </div>
+                                    <img class="shopping-card__image" src="~/Content/Images/Shop/siodelko_1.jpg" />
+                                    <p class="shopping-card__title mb-0"> Siodełko </p>
+                                    <p class="shopping-card__subtitle mb-0"> DT Swiss Carrera Czarne </p>
+                                    <hr class="shopping-card__underline" />
+                                    <div class="shopping-card__footer">
+                                        <h3 class="shopping-card__price"> 1000,00 zł </h3>
+                                        <h5 class="shopping-card__discount"> 1250,00 zł </h5>
+                                    </div>
+                                </div>
+                                <div class="d-none d-lg-block shopping-card__hidden-content">
+                                    <button class="shopping-card__cart-button btn btn-info p-0 align-text-bottom"><span class="fas fa-shopping-cart small-icon"></span><span class="small-icon"> Do koszyka </span></button>
+                                    <div class="shopping-card__additional-buttons">
+                                        <button class="shopping-card__additional-button btn btn-outline-primary p-0 align-text-bottom"><span class="fas fa-heart text-size-very-small"></span><span class="text-size-very-small"> Ulubiony</span></button>
+                                        <button class="shopping-card__additional-button btn btn-outline-primary p-0 align-text-bottom"><span class="fas fa-retweet text-size-very-small"></span><span class="text-size-very-small"> Porównaj</span></button>
+                                    </div>
+                                </div>
+                                <button class="d-lg-none d-block btn btn-sm shopping-card__hidden-button">
+                                    Wybierz inny
+                                </button>
+                            </div>
+                            <div class="d-none d-lg-block shopping-card__gallery-column">
+                                <img class="shopping-card__gallery-image" src="~/Content/Images/Shop/siodelko_2.jpg" />
+                                <img class="shopping-card__gallery-image" src="~/Content/Images/Shop/siodelko_1.jpg" />
+                                <img class="shopping-card__gallery-image" src="~/Content/Images/Shop/siodelko_2.jpg" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="shopping-card">
+                        <div class="shopping-card__content">
+                            <div class="shopping-card__main-column">
+                                <div class="shopping-card__main-content">
+                                    <div class="shopping-card__banner badge-pill badge-info px-2 py-1">
+                                        Promocja
+                                    </div>
+                                    <img class="shopping-card__image" src="~/Content/Images/Shop/siodelko_1.jpg" />
+                                    <p class="shopping-card__title mb-0"> Siodełko </p>
+                                    <p class="shopping-card__subtitle mb-0"> DT Swiss Carrera Czarne </p>
+                                    <hr class="shopping-card__underline" />
+                                    <div class="shopping-card__footer">
+                                        <h3 class="shopping-card__price"> 1000,00 zł </h3>
+                                        <h5 class="shopping-card__discount"> 1250,00 zł </h5>
+                                    </div>
+                                </div>
+                                <div class="d-none d-lg-block shopping-card__hidden-content">
+                                    <button class="shopping-card__cart-button btn btn-info p-0 align-text-bottom"><span class="fas fa-shopping-cart small-icon"></span><span class="small-icon"> Do koszyka </span></button>
+                                    <div class="shopping-card__additional-buttons">
+                                        <button class="shopping-card__additional-button btn btn-outline-primary p-0 align-text-bottom"><span class="fas fa-heart text-size-very-small"></span><span class="text-size-very-small"> Ulubiony</span></button>
+                                        <button class="shopping-card__additional-button btn btn-outline-primary p-0 align-text-bottom"><span class="fas fa-retweet text-size-very-small"></span><span class="text-size-very-small"> Porównaj</span></button>
+                                    </div>
+                                </div>
+                                <button class="d-lg-none d-block btn btn-sm shopping-card__hidden-button">
+                                    Wybierz inny
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="shopping-card">
+                        <div class="shopping-card__content">
+                            <div class="shopping-card__main-column">
+                                <div class="shopping-card__main-content">
+                                    <div class="shopping-card__banner badge-pill badge-info px-2 py-1">
+                                        Promocja
+                                    </div>
+                                    <img class="shopping-card__image" src="~/Content/Images/Shop/siodelko_1.jpg" />
+                                    <p class="shopping-card__title mb-0"> Siodełko </p>
+                                    <p class="shopping-card__subtitle mb-0"> DT Swiss Carrera Czarne </p>
+                                    <hr class="shopping-card__underline" />
+                                    <div class="shopping-card__footer">
+                                        <h3 class="shopping-card__price"> 1000,00 zł </h3>
+                                        <h5 class="shopping-card__discount"> 1250,00 zł </h5>
+                                    </div>
+                                </div>
+                                <div class="d-none d-lg-block shopping-card__hidden-content">
+                                    <button class="shopping-card__cart-button btn btn-info p-0 align-text-bottom"><span class="fas fa-shopping-cart small-icon"></span><span class="small-icon"> Do koszyka </span></button>
+                                    <div class="shopping-card__additional-buttons">
+                                        <button class="shopping-card__additional-button btn btn-outline-primary p-0 align-text-bottom"><span class="fas fa-heart text-size-very-small"></span><span class="text-size-very-small"> Ulubiony</span></button>
+                                        <button class="shopping-card__additional-button btn btn-outline-primary p-0 align-text-bottom"><span class="fas fa-retweet text-size-very-small"></span><span class="text-size-very-small"> Porównaj</span></button>
+                                    </div>
+                                </div>
+                                <button class="d-lg-none d-block btn btn-sm btn-outline-primary border-0 shopping-card__hidden-button">
                                     Wybierz inny
                                 </button>
                             </div>
@@ -466,6 +468,11 @@
             </div>
         </div>
 
-        <button class="d-block d-md-none floating-button btn btn-info"> Filtruj </button>
+        <button class="d-block d-lg-none floating-button align-text-bottom" onclick="showFilters()"> <i class="fas fa-filter"></i> Filtruj </button>
     </div>
+</div>
 
+@section scripts
+{
+    @Scripts.Render("~/Scripts/Shop/hidden-filters.js")
+}

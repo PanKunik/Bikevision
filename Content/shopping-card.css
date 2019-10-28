@@ -90,9 +90,10 @@
 
 .shopping-card__hidden-button {
     position: absolute;
-    top: 60%;
+    bottom: 40%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    width: 150px;
+    transform: translateX(-50%);
 }
 
 /* For Bootstrap 4 'default' and 'sm'  breakpoint */
@@ -205,10 +206,15 @@
         top: 5px;
     }
 
-    .shopping-card:hover .shopping-card__gallery-column {
-        left: calc(100% - 100px);
-        transition: .5s ease;
-    }
+        .shopping-card:hover .shopping-card__gallery-column {
+            left: calc(100% - 100px);
+            transition: .5s ease;
+        }
+
+        .shopping-card__gallery-image {
+            width: 100%;
+            height: auto;
+        }
 }
 
 /* For Bootstrap 4 'xl' breakpoint */
