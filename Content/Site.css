@@ -130,6 +130,10 @@ select.error, select.valid {
     font-size: 64px;
 }
 
+.text-size-very-small {
+    font-size: 10px;
+}
+
 .text-size-small {
     font-size: 16px;
 }
