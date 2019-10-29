@@ -2,6 +2,8 @@
     var itemsMainDiv = ('.MultiCarousel');
     var itemsDiv = ('.MultiCarousel-inner');
     var itemWidth = "";
+
+    var cardMargins = 10;
  
     $('.leftLst, .rightLst').click(function () {
         var condition = $(this).hasClass("leftLst");
@@ -24,7 +26,7 @@
     function ResCarouselSize() {
         var incno = 0;
         var dataItems = ("data-items");
-        var itemClass = ('.item');
+        var itemClass = ('.shopping-card');
         var id = 0;
         var btnParentSb = '';
         var itemsSplit = '';
@@ -32,29 +34,39 @@
         var bodyWidth = $('body').width();
         $(itemsDiv).each(function () {
             id = id + 1;
-            var itemNumbers = $(this).find(itemClass).length;
-            btnParentSb = $(this).parent().attr(dataItems);
+
+            var shopping_cards = $(this).find(itemClass);
+            var itemNumbers = shopping_cards.length;
+
+            $(shopping_cards).each(function () {
+                $(this).css({ 'padding-bottom': 'calc(calc(100% / ' + itemNumbers + ') + 60px)', 'margin': '0px', 'margin-right': (cardMargins / 2) + 'px', 'margin-left': (cardMargins / 2) + 'px' });
+            });
+
+            $(".shopping-card:last-child").css({ 'margin-right': '0px' });
+            $(".shopping-card:first-child").css({ 'margin-left': '0px' });
+
+            btnParentSb = $(this).parent().parent().attr(dataItems);
             itemsSplit = btnParentSb.split(',');
-            $(this).parent().attr("id", "MultiCarousel" + id);
+            $(this).parent().parent().attr("id", "MultiCarousel" + id);
  
  
             if (bodyWidth >= 1200) {
                 incno = itemsSplit[3];
-                itemWidth = sampwidth / incno;
+                itemWidth = (sampwidth / incno) - 7.5;
             }
             else if (bodyWidth >= 992) {
                 incno = itemsSplit[2];
-                itemWidth = sampwidth / incno;
+                itemWidth = (sampwidth / incno) - 7.5;
             }
             else if (bodyWidth >= 768) {
                 incno = itemsSplit[1];
-                itemWidth = sampwidth / incno;
+                itemWidth = (sampwidth / incno) - 7.5;
             }
             else {
                 incno = itemsSplit[0];
-                itemWidth = sampwidth / incno;
+                itemWidth = (sampwidth / incno) - 7.5;
             }
-            $(this).css({ 'transform': 'translateX(0px)', 'width': itemWidth * itemNumbers });
+            $(this).css({ 'transform': 'translateX(0px)', 'width': ((itemWidth * itemNumbers) + ((itemNumbers - 1) * cardMargins)) });
             $(this).find(itemClass).each(function () {
                 $(this).outerWidth(itemWidth);
             });
@@ -85,7 +97,7 @@
         }
         else if (e == 1) {
             var itemsCondition = $(el).find(itemsDiv).width() - $(el).width();
-            translateXval = xds + itemWidth * s;
+            translateXval = cardMargins + xds + itemWidth * s;
             $(el + ' ' + leftBtn).removeClass("over");
  
             if (translateXval >= itemsCondition - itemWidth / 2) {

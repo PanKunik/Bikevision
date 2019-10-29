@@ -1,9 +1,44 @@
-﻿html, body {
+﻿/*  Single property classes  */
+.bg-semi-light { background-color: #f0f0f0 !important;}
+
+.small-icon { font-size: 16px !important;}
+
+.big-icon {font-size: 64px !important;}
+
+.form-control#name, .form-control#email {padding-right: 27px;}
+
+.form-control {border: 2px solid #444;}
+
+.fill-even {flex: 1 1 0;}
+
+.text-size-very-small {font-size: 10px;}
+
+.text-size-small {font-size: 16px;}
+
+.text-size-medium {font-size: 32px;}
+
+.text-size-big {font-size: 64px;}
+
+.fill-even {flex: 1 1 0;}
+
+.text-size-very-small {font-size: 10px;}
+
+.text-size-small {font-size: 16px;}
+
+.text-size-medium {font-size: 32px;}
+
+.text-size-big {font-size: 64px;}
+/*  End single property classes  */
+
+/*  Main HTML elements  */
+html, body {
     padding: 0;
     margin: 0;
     height: 100%;
 }
+/*  End main HTML elements  */
 
+/*    */
 .rotate {
     -moz-transition: all .25s linear;
     -webkit-transition: all .25s linear;
@@ -16,64 +51,15 @@
         transform: rotate(180deg);
     }
 
-.bg-semi-light {
-    background-color: #f0f0f0 !important;
-}
-
-.small-icon {
-    font-size: 16px !important;
-}
-
-.medium-icon {
-    font-size: 32px !important;
-}
-
-.big-icon {
-    font-size: 64px !important;
-}
-
 .social-icon {
     position: absolute;
     right: 0px;
     top: -50px;
 }
 
-.shop-icon-border {
-    border: solid 1px rgba(255, 255, 255, 0.6);
-    border-radius: 8px;
-}
-
-.form-control#name, .form-control#email {
-    padding-right: 27px;
-}
-
-.card-header .material-icons {
-    transition: .3s transform ease-in-out;
-}
-
-.card-header .collapsed .material-icons {
-    transform: rotate(90deg);
-}
-
-.form-control {
-    border: 2px solid #444;
-}
-
 select.error, select.valid {
     background-position: right 15px center;
     background-repeat: no-repeat;
-}
-
-.input-group-addon {
-    padding: 6px 12px;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1;
-    color: #555;
-    text-align: center;
-    background-color: #eee;
-    border: 1px solid #ccc;
-    border-radius: 4px;
 }
 
 .max-height-500 {
@@ -85,67 +71,6 @@ select.error, select.valid {
     width: auto;
     height: auto;
 }
-
-.min-height-500 {
-    min-height: 500px;
-}
-
-.font-weight-600 {
-    font-weight: 600 !important;
-}
-
-.font-weight-900 {
-    font-weight: 900 !important;
-}
-
-.bg-red {
-    background-color: #ff0000;
-}
-
-.bg-black {
-    background-color: #000000;
-}
-
-.bg-grey {
-    background-color: #404040;
-}
-
-.bg-darkgrey {
-    background-color: #202020;
-}
-
-.bg-darkred {
-    background-color: #4a0404;
-}
-
-.fill-even {
-    flex: 1 1 0;
-}
-
-.font-raleway {
-    font-family: 'Raleway', sans-serif;
-}
-
-.font-size-big {
-    font-size: 64px;
-}
-
-.text-size-very-small {
-    font-size: 10px;
-}
-
-.text-size-small {
-    font-size: 16px;
-}
-
-.text-size-medium {
-    font-size: 32px;
-}
-
-.text-size-big {
-    font-size: 64px;
-}
-
 .dropdown-menu-squared {
     border: none;
     border-radius: 0;
@@ -163,15 +88,10 @@ select.error, select.valid {
     right: 0;
     padding: 15px;
 }
+/*    */
 
-.text-over-img {
-    position: absolute;
-    top: 75%;
-    left: 35%;
-    transform: translate(-15%, -75%);
-}
 
-/* Elements with IDs */
+/*  Elements with IDs  */
 div#loginImage {
     background-image: url('Images/wallpaper_rocks_bike(low-res).jpg');
     background-repeat: no-repeat;
@@ -193,60 +113,207 @@ h1#helpHeader {
     text-shadow: 4px 4px 8px black;
 }
 
-/* For Bootstrap 4 'default' and 'sm'  breakpoint */
-@media (min-width: 0px) {
-    ul #shopMenu > li {
-        border-bottom: 1px solid #303030;
+a#service-link {
+    background-image: url('Images/Service/service_07 (cropped).jpg');
+    transition: all .35s ease 0s;
+    z-index: 1;
+}
+
+    a#service-link:hover {
+        background-image: url('Images/Service/service_04.jpg');
+        transition: all .35s ease 0s;
+        z-index: 2;
     }
 
-        ul#shopMenu > li:last-child {
+a#shop-link {
+    background-image: url('Images/Shop/shop_04.jpg');
+    transition: all .35s ease 0s;
+    z-index: 1;
+}
+
+    a#shop-link:hover {
+        background-image: url('Images/Shop/shop_06.jpg');
+        transition: all .35s ease 0s;
+        z-index: 2;
+    }
+
+/*  End elements with IDs  */
+
+
+/*  Media queries  */
+
+    /*  For Bootstrap 4 'default' and 'sm'  breakpoint  */
+    @media (min-width: 0px) {
+        ul#shopMenu > li {
+            border-bottom: 1px solid #303030;
+        }
+
+            ul#shopMenu > li:last-child {
+                border-bottom: none;
+            }
+    }
+
+    /*  For Bootstrap 4 'default' breakpoint  */
+    @media (max-width: 575.98px) {
+        .right-column {
+            width: 100%;
+        }
+
+        .shopping-item {
+            background-color: white;
+            color: black;
+            width: calc(calc(100% / 3) - 10px);
+            margin: 5px;
+        }
+
+        .hidden-x {
+            overflow-x: hidden;
+        }
+
+        .left-column {
+            position: fixed;
+            top: 0px;
+            right: -250px;
+            z-index: 5;
+            width: 40%;
+            min-width: 250px;
+            height: 100%;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            transition: .3s ease;
+        }
+
+            .left-column.show-menu {
+                right: 0px;
+                transition: .3s ease;
+            }
+
+        .show-overlay::after {
+            content: "";
+            z-index: 4;
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            transition: .3s ease;
+        }
+    }
+
+    /*  For Bootstrap 4 'sm' breakpoint  */
+    @media (min-width: 576px) {
+        .right-column {
+            width: 100%;
+        }
+
+        .shopping-item {
+            background-color: white;
+            color: black;
+            width: calc(calc(100% / 3) - 10px);
+            margin: 5px;
+        }
+
+        .hidden-x {
+            overflow-x: hidden;
+        }
+
+        .left-column {
+            position: fixed;
+            top: 0px;
+            right: -45%;
+            z-index: 5;
+            min-width: 250px;
+            width: 40%;
+            height: 100%;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            transition: .3s ease;
+        }
+
+            .left-column.show-menu {
+                right: 0px;
+                transition: .3s ease;
+            }
+
+        .show-overlay::after {
+            content: "";
+            z-index: 4;
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            transition: .3s ease;
+        }
+    }
+
+    /*  For Bootstrap 4 'md' breakpoint  */ 
+    @media (min-width: 768px) {
+        .text-size-md-big {
+            font-size: 64px;
+        }
+
+        ul#shopMenu > li {
             border-bottom: none;
         }
-}
-
-/* For Bootstrap 4 'default' breakpoint */
-@media (max-width: 575.98px) {
-
-}
-
-
-/* For Bootstrap 4 'sm' breakpoint */
-@media (min-width: 576px) {
-
-}
-
-/* For Bootstrap 4 'md' breakpoint */ 
-@media (min-width: 768px) {
-    .text-size-md-big {
-        font-size: 64px;
     }
 
-    ul#shopMenu > li {
-        border-bottom: none;
+    /*  For Bootstrap 4 'lg' breakpoint  */ 
+    @media (min-width: 992px) {
+        .right-column {
+            width: 65%;
+        }
+
+        .left-column {
+            width: 35%;
+            position: unset;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .hover-bg:hover {
+            background-color: white;
+            color: black !important;
+            transition: all .25s ease;
+        }
+
+        .shopping-item {
+            background-color: white;
+            color: black;
+            width: calc(calc(100% / 4) - 10px);
+            margin: 5px;
+        }
     }
-}
 
-/* For Bootstrap 4 'lg' breakpoint */ 
-@media (min-width: 992px) {
-    
-}
+    /*  For Bootstrap 4 'xl' breakpoint  */ 
+    @media (min-width: 1200px) {
+        .right-column {
+            width: 75%;
+        }
 
-/* For Bootstrap 4 'xl' breakpoint */ 
-@media (min-width: 1200px) {
-
-}
-
-/* For width bigger than 1600 */ 
-@media (min-width: 1600px) {
-    .container--big {
-        max-width: 1540px;
-        margin: 0 auto;
+        .left-column {
+            width: 25%;
+        }
     }
-}
 
-/*                                */
+    /*  For width bigger than 1600  */ 
+    @media (min-width: 1600px) {
+        .container--big {
+            max-width: 1540px;
+            margin: 0 auto;
+        }
+    }
 
-.product-image5 .pic-1, .product-image5 .pic-2 {
+/*  End media queries  */
+
+
+/*  S  */
+
+/*.product-image5 .pic-1, .product-image5 .pic-2 {
     backface-visibility: hidden;
     transition: all .5s ease 0s
 }
@@ -441,7 +508,7 @@ h1#helpHeader {
     .product-grid5 {
         margin-bottom: 30px
     }
-}
+}*/
 
 
 /*                                */
@@ -507,29 +574,33 @@ h1#helpHeader {
     }
 }
 
-
-
 .MultiCarousel {
     float: left;
-    overflow: hidden;
-    padding: 15px;
+    overflow-x: visible;
+    overflow-y: visible;
     width: 100%;
     position: relative;
+    height: auto;
 }
+
+    .MultiCarousel > div.hide-content {
+        overflow-x: hidden;
+        overflow-y: visible;
+    }
 
     .MultiCarousel .MultiCarousel-inner {
         transition: 1s ease all;
         float: left;
     }
 
-        .MultiCarousel .MultiCarousel-inner .item {
+        /*.MultiCarousel .MultiCarousel-inner .item {
             float: left;
         }
 
             .MultiCarousel .MultiCarousel-inner .item > div {
                 text-align: center;
-                margin: 0px 15px;
-            }
+                margin: 0px 0px;
+            }*/
 
     .MultiCarousel .leftLst, .MultiCarousel .rightLst {
         position: absolute;
@@ -539,10 +610,12 @@ h1#helpHeader {
 
     .MultiCarousel .leftLst {
         left: 0;
+        transform: translateX(-50%);
     }
 
     .MultiCarousel .rightLst {
         right: 0;
+        transform: translateX(50%);
     }
 
         .MultiCarousel .leftLst.over, .MultiCarousel .rightLst.over {
@@ -602,151 +675,6 @@ h1#helpHeader {
     width: 25%;
 }
 
-/* For Bootstrap 4 'default' breakpoint */
-@media (max-width: 575.98px) {
-    .right-column {
-        width: 100%;
-    }
-
-    .shopping-item {
-        background-color: white;
-        color: black;
-        width: calc(calc(100% / 3) - 10px);
-        margin: 5px;
-    }
-
-    .hidden-x {
-        overflow-x: hidden;
-    }
-
-    .left-column {
-        position: fixed;
-        top: 0px;
-        right: -250px;
-        z-index: 5;
-        width: 40%;
-        min-width: 250px;
-        height: 100%;
-        overflow-y: scroll;
-        overflow-x: hidden;
-        transition: .3s ease;
-    }
-
-        .left-column.show-menu {
-            right: 0px;
-            transition: .3s ease;
-        }
-
-    .show-overlay::after {
-        content: "";
-        z-index: 4;
-        display: block;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.5);
-        transition: .3s ease;
-    }
-}
-
-/* For Bootstrap 4 'sm' breakpoint */
-@media (min-width: 576px) {
-    .right-column {
-        width: 100%;
-    }
-
-    .shopping-item {
-        background-color: white;
-        color: black;
-        width: calc(calc(100% / 3) - 10px);
-        margin: 5px;
-    }
-
-    .hidden-x {
-        overflow-x: hidden;
-    }
-
-    .left-column {
-        position: fixed;
-        top: 0px;
-        right: -45%;
-        z-index: 5;
-        min-width: 250px;
-        width: 40%;
-        height: 100%;
-        overflow-y: scroll;
-        overflow-x: hidden;
-        transition: .3s ease;
-    }
-
-        .left-column.show-menu {
-            right: 0px;
-            transition: .3s ease;
-        }
-
-    .show-overlay::after {
-        content: "";
-        z-index: 4;
-        display: block;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.5);
-        transition: .3s ease;
-    }
-}
-
-/* For Bootstrap 4 'md' breakpoint */
-@media (min-width: 768px) {
-}
-
-/* For Bootstrap 4 'lg' breakpoint */
-@media (min-width: 992px) {
-    .right-column {
-        width: 65%;
-    }
-
-    .left-column {
-        width: 35%;
-        position: unset;
-        overflow: hidden;
-        z-index: 0;
-    }
-
-    .hover-bg:hover {
-        background-color: white;
-        color: black !important;
-        transition: all .25s ease;
-    }
-
-    .shopping-item {
-        background-color: white;
-        color: black;
-        width: calc(calc(100% / 4) - 10px);
-        margin: 5px;
-    }
-}
-
-/* For Bootstrap 4 'xl' breakpoint */
-@media (min-width: 1200px) {
-    .right-column {
-        width: 75%;
-    }
-
-    .left-column {
-        width: 25%;
-    }
-}
-
-/* For width bigger than 1600 */
-@media (min-width: 1600px) {
-
-}
-
 .shop-gallery__main-image {
     width: 100%;
 }
@@ -775,32 +703,4 @@ h1#helpHeader {
         background-blend-mode: multiply;
         transform: scale(1.1);
         transition: all .35s ease 0s;
-    }
-
-a#service-link {
-    /*background: linear-gradient( rgba(0, 0, 0, 0.7) 100%, rgba(0, 0, 0, 0.7)100%),url('Images/Service/service_07 (cropped).jpg');*/
-    background-image: url('Images/Service/service_07 (cropped).jpg');
-    transition: all .35s ease 0s;
-    z-index: 1;
-}
-
-    a#service-link:hover {
-        /*background: linear-gradient( rgba(0, 0, 0, 0.5) 100%, rgba(0, 0, 0, 0.5)100%),url('Images/Service/service_04.jpg');*/
-        background-image: url('Images/Service/service_04.jpg');
-        transition: all .35s ease 0s;
-        z-index: 2;
-    }
-
-a#shop-link {
-    /*background: linear-gradient( rgba(0, 0, 0, 0.7) 100%, rgba(0, 0, 0, 0.7)100%),url('Images/Service/service_07 (cropped).jpg');*/
-    background-image: url('Images/Shop/shop_04.jpg');
-    transition: all .35s ease 0s;
-    z-index: 1;
-}
-
-    a#shop-link:hover {
-        /*background: linear-gradient( rgba(0, 0, 0, 0.5) 100%, rgba(0, 0, 0, 0.5)100%),url('Images/Service/service_04.jpg');*/
-        background-image: url('Images/Shop/shop_06.jpg');
-        transition: all .35s ease 0s;
-        z-index: 2;
     }
