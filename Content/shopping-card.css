@@ -24,6 +24,7 @@
     clear: both;
     overflow: hidden;
     border: 1px solid gray;
+    z-index: 1;
 }
 
 .shopping-card__main-content {
@@ -146,6 +147,7 @@
 
             .shopping-card:hover > .shopping-card__content--wider {
                 width: calc(100% + 100px);
+                transform: translateX(-25%);
                 transition: .5s ease;
             }
 

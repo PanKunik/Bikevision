@@ -614,6 +614,40 @@ h1#helpHeader {
         width: calc(calc(100% / 3) - 10px);
         margin: 5px;
     }
+
+    .hidden-x {
+        overflow-x: hidden;
+    }
+
+    .left-column {
+        position: fixed;
+        top: 0px;
+        right: -250px;
+        z-index: 5;
+        width: 250px;
+        height: 100%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        transition: .3s ease;
+    }
+
+        .left-column.show-menu {
+            right: 0px;
+            transition: .3s ease;
+        }
+
+    .show-overlay::after {
+        content: "";
+        z-index: 4;
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        transition: .3s ease;
+    }
 }
 
 /* For Bootstrap 4 'sm' breakpoint */
@@ -627,6 +661,40 @@ h1#helpHeader {
         color: black;
         width: calc(calc(100% / 3) - 10px);
         margin: 5px;
+    }
+
+    .hidden-x {
+        overflow-x: hidden;
+    }
+
+    .left-column {
+        position: fixed;
+        top: 0px;
+        right: -250px;
+        z-index: 5;
+        width: 250px;
+        height: 100%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        transition: .3s ease;
+    }
+
+        .left-column.show-menu {
+            right: 0px;
+            transition: .3s ease;
+        }
+
+    .show-overlay::after {
+        content: "";
+        z-index: 4;
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        transition: .3s ease;
     }
 }
 
@@ -642,6 +710,9 @@ h1#helpHeader {
 
     .left-column {
         width: 35%;
+        position: unset;
+        overflow: hidden;
+        z-index: 0;
     }
 
     .hover-bg:hover {
