@@ -604,7 +604,9 @@ a#shop-link {
     .MultiCarousel > div.hide-content {
         overflow-x: hidden;
         overflow-y: visible;
-        padding: 0px 25px 120px 0px;
+        padding-bottom: 120px;
+        margin-left: 10px;
+        margin-right: 10px;
     }
 
     .MultiCarousel .MultiCarousel-inner {

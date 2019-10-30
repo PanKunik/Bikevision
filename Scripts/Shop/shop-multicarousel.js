@@ -30,7 +30,7 @@
         var id = 0;
         var btnParentSb = '';
         var itemsSplit = '';
-        var sampwidth = $(itemsMainDiv).width();
+        var sampwidth = $(itemsMainDiv).width() - 20;
         var bodyWidth = $('body').width();
         $(itemsDiv).each(function () {
             id = id + 1;
@@ -42,8 +42,8 @@
                 $(this).css({ 'padding-bottom': 'calc(calc(100% / ' + itemNumbers + ') + 60px)', 'margin': '0px', 'margin-right': (cardMargins / 2) + 'px', 'margin-left': (cardMargins / 2) + 'px' });
             });
 
-            $(".shopping-card:last-child").css({ 'margin-right': '0px' });
-            $(".shopping-card:first-child").css({ 'margin-left': '0px' });
+            //$(".shopping-card:last-child").css({ 'margin-right': (cardMargins/2) + 'px' });
+            //$(".shopping-card:first-child").css({ 'margin-left': (cardMargins/2) + 'px' });
 
             btnParentSb = $(this).parent().parent().attr(dataItems);
             itemsSplit = btnParentSb.split(',');
@@ -52,21 +52,21 @@
  
             if (bodyWidth >= 1200) {
                 incno = itemsSplit[3];
-                itemWidth = (sampwidth / incno) - 7.5;
+                itemWidth = (sampwidth / incno) - cardMargins;
             }
             else if (bodyWidth >= 992) {
                 incno = itemsSplit[2];
-                itemWidth = (sampwidth / incno) - 7.5;
+                itemWidth = (sampwidth / incno) - cardMargins;
             }
             else if (bodyWidth >= 768) {
                 incno = itemsSplit[1];
-                itemWidth = (sampwidth / incno) - 7.5;
+                itemWidth = (sampwidth / incno) - cardMargins;
             }
             else {
                 incno = itemsSplit[0];
-                itemWidth = (sampwidth / incno) - 7.5;
+                itemWidth = (sampwidth / incno) - cardMargins;
             }
-            $(this).css({ 'transform': 'translateX(0px)', 'width': ((itemWidth * itemNumbers) + ((itemNumbers - 1) * cardMargins)) });
+            $(this).css({ 'transform': 'translateX(0px)', 'width': ((itemWidth * itemNumbers) + (itemNumbers * cardMargins)) });
             $(this).find(itemClass).each(function () {
                 $(this).outerWidth(itemWidth);
             });
@@ -87,17 +87,17 @@
         var values = divStyle.match(/-?[\d\.]+/g);
         var xds = Math.abs(values[4]);
         if (e == 0) {
-            translateXval = xds - itemWidth * s;
+            translateXval = xds - (itemWidth + cardMargins) * s;
             $(el + ' ' + rightBtn).removeClass("over");
  
-            if (translateXval <= itemWidth / 2) {
+            if (translateXval < 0) {
                 var itemsCondition = $(el).find(itemsDiv).width() - $(el).width();
-                translateXval = itemsCondition;
+                translateXval = itemsCondition + (2 * cardMargins);
             }
         }
         else if (e == 1) {
             var itemsCondition = $(el).find(itemsDiv).width() - $(el).width();
-            translateXval = cardMargins + xds + itemWidth * s;
+            translateXval = xds + (itemWidth + cardMargins) * s;
             $(el + ' ' + leftBtn).removeClass("over");
  
             if (translateXval >= itemsCondition - itemWidth / 2) {
