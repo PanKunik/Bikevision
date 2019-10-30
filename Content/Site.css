@@ -151,6 +151,16 @@ a#shop-link {
             ul#shopMenu > li:last-child {
                 border-bottom: none;
             }
+
+        .MultiCarousel .leftLst {
+            left: 0;
+            top: 50%;
+        }
+
+        .MultiCarousel .rightLst {
+            right: 0;
+            top: 25%;
+        }
     }
 
     /*  For Bootstrap 4 'default' breakpoint  */
@@ -264,6 +274,14 @@ a#shop-link {
 
     /*  For Bootstrap 4 'lg' breakpoint  */ 
     @media (min-width: 992px) {
+        .MultiCarousel .leftLst {
+            left: 0;
+        }
+
+        .MultiCarousel .rightLst {
+            right: 0;
+        }
+
         .right-column {
             width: 65%;
         }
@@ -586,6 +604,7 @@ a#shop-link {
     .MultiCarousel > div.hide-content {
         overflow-x: hidden;
         overflow-y: visible;
+        padding: 0px 25px 120px 0px;
     }
 
     .MultiCarousel .MultiCarousel-inner {
@@ -605,17 +624,15 @@ a#shop-link {
     .MultiCarousel .leftLst, .MultiCarousel .rightLst {
         position: absolute;
         border-radius: 50%;
-        top: calc(50% - 20px);
+        top: calc(30% - 20px);
     }
 
     .MultiCarousel .leftLst {
         left: 0;
-        transform: translateX(-50%);
     }
 
     .MultiCarousel .rightLst {
         right: 0;
-        transform: translateX(50%);
     }
 
         .MultiCarousel .leftLst.over, .MultiCarousel .rightLst.over {
