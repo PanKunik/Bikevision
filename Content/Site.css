@@ -1,4 +1,5 @@
 ﻿/*  Single property classes  */
+
 .bg-semi-light { background-color: #f0f0f0 !important;}
 
 .small-icon { font-size: 16px !important;}
@@ -28,17 +29,22 @@
 .text-size-medium {font-size: 32px;}
 
 .text-size-big {font-size: 64px;}
+
 /*  End single property classes  */
 
+
 /*  Main HTML elements  */
+
 html, body {
     padding: 0;
     margin: 0;
     height: 100%;
 }
+
 /*  End main HTML elements  */
 
-/*    */
+
+/*  Random classes  */
 .rotate {
     -moz-transition: all .25s linear;
     -webkit-transition: all .25s linear;
@@ -88,10 +94,11 @@ select.error, select.valid {
     right: 0;
     padding: 15px;
 }
-/*    */
+/*  End random classes  */
 
 
 /*  Elements with IDs  */
+
 div#loginImage {
     background-image: url('Images/wallpaper_rocks_bike(low-res).jpg');
     background-repeat: no-repeat;
@@ -144,58 +151,20 @@ a#shop-link {
 
     /*  For Bootstrap 4 'default' and 'sm'  breakpoint  */
     @media (min-width: 0px) {
+        .hidden-x {
+            overflow-x: hidden;
+        }
+
+        .right-column {
+            width: 100%;
+        }
+
         ul#shopMenu > li {
             border-bottom: 1px solid #303030;
         }
 
             ul#shopMenu > li:last-child {
                 border-bottom: none;
-            }
-
-        .MultiCarousel .leftLst {
-            left: 0;
-            top: 50%;
-        }
-
-        .MultiCarousel .rightLst {
-            right: 0;
-            top: 25%;
-        }
-    }
-
-    /*  For Bootstrap 4 'default' breakpoint  */
-    @media (max-width: 575.98px) {
-        .right-column {
-            width: 100%;
-        }
-
-        .shopping-item {
-            background-color: white;
-            color: black;
-            width: calc(calc(100% / 3) - 10px);
-            margin: 5px;
-        }
-
-        .hidden-x {
-            overflow-x: hidden;
-        }
-
-        .left-column {
-            position: fixed;
-            top: 0px;
-            right: -250px;
-            z-index: 5;
-            width: 40%;
-            min-width: 250px;
-            height: 100%;
-            overflow-y: scroll;
-            overflow-x: hidden;
-            transition: .3s ease;
-        }
-
-            .left-column.show-menu {
-                right: 0px;
-                transition: .3s ease;
             }
 
         .show-overlay::after {
@@ -209,24 +178,6 @@ a#shop-link {
             bottom: 0;
             background: rgba(0, 0, 0, 0.5);
             transition: .3s ease;
-        }
-    }
-
-    /*  For Bootstrap 4 'sm' breakpoint  */
-    @media (min-width: 576px) {
-        .right-column {
-            width: 100%;
-        }
-
-        .shopping-item {
-            background-color: white;
-            color: black;
-            width: calc(calc(100% / 3) - 10px);
-            margin: 5px;
-        }
-
-        .hidden-x {
-            overflow-x: hidden;
         }
 
         .left-column {
@@ -246,19 +197,14 @@ a#shop-link {
                 right: 0px;
                 transition: .3s ease;
             }
+    }
 
-        .show-overlay::after {
-            content: "";
-            z-index: 4;
-            display: block;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            transition: .3s ease;
-        }
+    /*  For Bootstrap 4 'default' breakpoint  */
+    @media (max-width: 575.98px) {
+    }
+
+    /*  For Bootstrap 4 'sm' breakpoint  */
+    @media (min-width: 576px) {
     }
 
     /*  For Bootstrap 4 'md' breakpoint  */ 
@@ -274,14 +220,6 @@ a#shop-link {
 
     /*  For Bootstrap 4 'lg' breakpoint  */ 
     @media (min-width: 992px) {
-        .MultiCarousel .leftLst {
-            left: 0;
-        }
-
-        .MultiCarousel .rightLst {
-            right: 0;
-        }
-
         .right-column {
             width: 65%;
         }
@@ -297,13 +235,6 @@ a#shop-link {
             background-color: white;
             color: black !important;
             transition: all .25s ease;
-        }
-
-        .shopping-item {
-            background-color: white;
-            color: black;
-            width: calc(calc(100% / 4) - 10px);
-            margin: 5px;
         }
     }
 
@@ -329,268 +260,7 @@ a#shop-link {
 /*  End media queries  */
 
 
-/*  S  */
-
-/*.product-image5 .pic-1, .product-image5 .pic-2 {
-    backface-visibility: hidden;
-    transition: all .5s ease 0s
-}
-
-.product-grid5 {
-    font-family: Poppins,sans-serif;
-    position: relative
-}
-    .product-grid5:hover {
-        background-color: #eee;
-        box-shadow: 0 0 10px rgba(0, 0, 0, .75);
-        transition: all .5s ease 0s;
-    }
-        
-
-        .product-grid5 .product-image5 {
-            overflow: hidden;
-            position: relative
-        }
-
-        .product-grid5 .product-image5 a {
-            display: block
-        }
-
-        .product-grid5 .product-image5 img {
-            width: 100%;
-            height: auto
-        }
-
-    .product-grid5:hover .product-image5 img {
-        transform: scale(1.1)
-    }
-
-.product-image5 .pic-1 {
-    opacity: 1
-}
-
-.product-grid5:hover .product-image5 .pic-1 {
-    opacity: 0
-}
-
-.product-image5 .pic-2 {
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    left: 0
-}
-
-.product-grid5:hover .product-image5 .pic-2 {
-    opacity: 1
-}
-
-.product-grid5 .social {
-    padding: 0;
-    margin: 0;
-    position: absolute;
-    top: 10px;
-    right: 10px
-}
-
-    .product-grid5 .social li {
-        display: block;
-        margin: 0 0 10px;
-        transition: all .5s
-    }
-
-        .product-grid5 .social li:nth-child(2) {
-            opacity: 0;
-            transform: translateY(-50px)
-        }
-
-.product-grid5:hover .social li:nth-child(2) {
-    opacity: 1;
-    transform: translateY(0)
-}
-
-.product-grid5 .social li:nth-child(3) {
-    opacity: 0;
-    transform: translateY(-50px)
-}
-
-.product-grid5:hover .social li:nth-child(3) {
-    opacity: 1;
-    transform: translateY(0);
-    transition-delay: .2s
-}
-
-.product-grid5 .social li a {
-    color: #888;
-    background: #fff;
-    font-size: 14px;
-    text-align: center;
-    line-height: 40px;
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-    display: block;
-    transition: .5s ease 0s
-}
-
-    .product-grid5 .social li a:hover {
-        color: #fff;
-        background: #0081c2
-    }
-
-.product-grid5 .select-options {
-    color: #777;
-    background-color: #fff;
-    font-size: 13px;
-    font-weight: 400;
-    text-align: center;
-    text-transform: uppercase;
-    padding: 15px 5px;
-    margin: 0 auto;
-    opacity: 0;
-    display: block;
-    position: absolute;
-    width: 92%;
-    left: 0;
-    bottom: -100px;
-    right: 0;
-    transition: .5s ease 0s
-}
-
-    .product-grid5 .select-options:hover {
-        color: #fff;
-        background-color: #0081c2;
-        text-decoration: none
-    }
-
-.product-grid5:hover .select-options {
-    opacity: 1;
-    bottom: 10px
-}
-
-.product-grid5 .product-content {
-    padding: 20px 10px
-}
-
-.product-grid5 .title {
-    font-size: 15px;
-    font-weight: 600;
-    text-transform: capitalize;
-    margin: 0 0 10px;
-    transition: all .3s ease 0s
-}
-
-.product-grid5:hover .product-content .title a {
-    color: black !important;
-    transition: all .5s ease 0s;
-}
-
-.product-grid5 .price {
-    color: #0081c2;
-    font-size: 17px;
-    font-weight: 700;
-    margin: 0 2px 15px 0;
-    display: block
-}
-
-    .product-grid5 .price span {
-        color: #909090;
-        font-size: 13px;
-        font-weight: 400;
-        letter-spacing: 0;
-        text-decoration: line-through;
-        text-align: left;
-        vertical-align: middle;
-        display: inline-block
-    }
-
-.product-grid5 .product-discount-label {
-    display: block;
-    padding: 4px 30px 4px 15px;
-    color: #fff;
-    background-color: #0081c2;
-    position: absolute;
-    top: 10px;
-    left: 0;
-    -webkit-clip-path: polygon(0 0,65% 0,100% 100%,0 100%);
-    clip-path: polygon(0 0,65% 0,100% 100%,0 100%)
-}
-
-
-
-
-
-
-@media only screen and (max-width:990px) {
-    .product-grid5 {
-        margin-bottom: 30px
-    }
-}*/
-
-
-/*                                */
-
-
-
-/* Rename classes \\// */
-
-
-@media screen and (min-width: 768px) {
-    .carousel-inner .active,
-    .carousel-inner .active + .carousel-item {
-        display: block;
-    }
-
-    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left),
-    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item {
-        -webkit-transition: none;
-        transition: none;
-    }
-
-    .carousel-inner .carousel-item-next,
-    .carousel-inner .carousel-item-prev {
-        position: relative;
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-    }
-
-    .carousel-inner .active.carousel-item + .carousel-item + .carousel-item + .carousel-item {
-        position: absolute;
-        top: 0;
-        right: -50%;
-        z-index: -1;
-        display: block;
-        visibility: visible;
-    }
-    /* left or forward direction */
-    .active.carousel-item-left + .carousel-item-next.carousel-item-left,
-    .carousel-item-next.carousel-item-left + .carousel-item {
-        position: relative;
-        -webkit-transform: translate3d(-100%, 0, 0);
-        transform: translate3d(-100%, 0, 0);
-        visibility: visible;
-    }
-    /* farthest right hidden item must be abso position for animations */
-    .carousel-inner .carousel-item-prev.carousel-item-right {
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: -1;
-        display: block;
-        visibility: visible;
-    }
-    /* right or prev direction */
-    .active.carousel-item-right + .carousel-item-prev.carousel-item-right,
-    .carousel-item-prev.carousel-item-right + .carousel-item {
-        position: relative;
-        -webkit-transform: translate3d(100%, 0, 0);
-        transform: translate3d(100%, 0, 0);
-        visibility: visible;
-        display: block;
-        visibility: visible;
-    }
-}
+/*  Multi carousel classes (Shop)  */
 
 .MultiCarousel {
     float: left;
@@ -614,15 +284,6 @@ a#shop-link {
         float: left;
     }
 
-        /*.MultiCarousel .MultiCarousel-inner .item {
-            float: left;
-        }
-
-            .MultiCarousel .MultiCarousel-inner .item > div {
-                text-align: center;
-                margin: 0px 0px;
-            }*/
-
     .MultiCarousel .leftLst, .MultiCarousel .rightLst {
         position: absolute;
         border-radius: 50%;
@@ -642,6 +303,10 @@ a#shop-link {
             background: #ccc;
         }
 
+/*  End Multicarousel classes  */
+
+
+/*  Shop classes  */
 
 .floating-button {
     width: 200px;
@@ -676,37 +341,10 @@ a#shop-link {
         outline: none;
     }
 
+/*  End shop classes  */
 
-.shopping-item > div > img {
-    width: 100%;
-}
 
-.filtering-card {
-    width: calc(100% - 10px);
-    height: 150px;
-    color: black;
-    background-color: darkgray;
-    padding: 5px;
-    margin: 5px;
-}
-
-.left-column {
-    width: 25%;
-}
-
-.shop-gallery__main-image {
-    width: 100%;
-}
-
-.shop-gallery__subimage {
-    margin-left: 5px;
-    margin-top: 5px;
-    width: calc(calc(100% - 15px) / 4);
-}
-
-.shop-gallery__subimage:first-child {
-    margin-left: 0;
-}
+/*  Index page classes  */
 
 .image-background-index {
     background-color: rgba(0,0,0,0.3);
@@ -723,3 +361,5 @@ a#shop-link {
         transform: scale(1.1);
         transition: all .35s ease 0s;
     }
+
+/*  End Index page classes  */
