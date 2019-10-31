@@ -45,6 +45,7 @@ html, body {
 
 
 /*  Random classes  */
+
 .rotate {
     -moz-transition: all .25s linear;
     -webkit-transition: all .25s linear;
@@ -94,6 +95,7 @@ select.error, select.valid {
     right: 0;
     padding: 15px;
 }
+
 /*  End random classes  */
 
 

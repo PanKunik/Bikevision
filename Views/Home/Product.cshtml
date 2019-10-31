@@ -4,14 +4,80 @@
     Layout = "~/Views/Shared/_ShopLayout.cshtml";
 
 }
-<section class="container-fluid d-flex p-0 m-0">
-    <div class="d-flex flex-column container-fluid p-0 m-0">
-        <nav class="container container--big" aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Shop</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Kategoria</li>
-            </ol>
-        </nav>
+<nav class="container container--big" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Shop</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Kategoria</li>
+    </ol>
+</nav>
+
+<div class="d-flex flex-column container container--big">
+    <h2> Nazwa produktu </h2>
+    <div class="d-flex flex-lg-row flex-column">
+        <div class="d-flex flex-column fill-even">
+            <img src="" class="" alt="Main img" />
+
+            <div class="d-md-flex flex-md-row d-none">
+                <img src="" class="" alt="subimg" />
+                <img src="" class="" alt="subimg" />
+                <img src="" class="" alt="subimg" />
+            </div>
+        </div>
+        <div class="d-flex flex-column fill-even">
+            <div class="">
+                <div class="badge badge-warning"> -20% </div> <span class="text-muted"> 600,00 zł </span>
+            </div>
+            <span class="text-size-big">
+                600,00 zł
+            </span>
+            <div class="d-flex flex-row">
+                <div class="d-flex flex-column">
+                    <span class="font-weight-bold">Kolor: </span>
+                    <span>czarno-czer </span>
+                </div>
+                <div class="btn btn-info btn-sm">
+                    Czer
+                </div>
+                <div class="btn btn-info btn-sm">
+                    Czar
+                </div>
+                <div class="btn btn-info btn-sm">
+                    Ziel
+                </div>
+            </div>
+
+            <div class="d-flex flex-row">
+                <span class="font-weight-bold">Rozmiar: </span>
+                <div class="btn btn-info btn-sm">
+                    120 cm
+                </div>
+                <div class="btn btn-info btn-sm">
+                    140 cm
+                </div>
+                <div class="btn btn-info btn-sm">
+                    160 cm
+                </div>
+            </div>
+
+            <hr class="w-100 text-primary" />
+
+            <div class="d-flex flex-column flex-fill flex-md-row">
+                <div class="order-1 order-md-0 fill-even">
+                    Opcje
+                </div>
+                <div class=" fill-even">
+                    Ilosc
+                </div>
+            </div>
+
+            <div class="">
+                    Cena: X Porownaj
+            </div>
+        </div>
     </div>
-</section>
+
+    <div class="">Opis</div>
+    <div class="">Specyfikacja</div>
+    <div class="">Opinie</div>
+</div>
