@@ -262,6 +262,7 @@
     <Content Include="Content\Images\Shop\siodelko_1.jpg" />
     <Content Include="Content\Images\Shop\siodelko_2.jpg" />
     <Content Include="Content\Images\wallpaper_rocks_bike%28low-res%29.jpg" />
+    <Content Include="Content\product.css" />
     <Content Include="Content\shopping-card.css" />
     <Content Include="Content\theme-default.css" />
     <Content Include="favicon.ico" />
@@ -346,6 +347,7 @@
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\Shop\hidden-filters.js" />
+    <Content Include="Scripts\Shop\product-accortion-tabs.js" />
     <Content Include="Scripts\Shop\shop-multicarousel.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />

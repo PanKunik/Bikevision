@@ -1,0 +1,187 @@
+﻿.product__main-image {
+    width: 100%;
+    height: 100%;
+}
+
+.product__sub-image {
+    width: calc(calc(100% - 30px) / 4);
+    height: auto;
+    outline: 2px solid black;
+    margin: 10px 0px 0px 10px;
+    transition: .15s ease;
+}
+
+    .product__sub-image:hover {
+        outline: 2px solid darkgray;
+        transition: .15s ease;
+    }
+
+    .product__sub-image--active {
+        outline: 3px solid grey !important;
+    }
+
+.product__sub-image:first-child {
+    margin-left: 0px;
+}
+
+.product__badge-discount {
+    display: block;
+    width: 70px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.product__old-price {
+    text-decoration: line-through;
+    font-size: 30px;
+    display: block;
+    margin-left: 10px;
+}
+
+.product__actual-price {
+    padding: 0px;
+    font-weight: bold;
+}
+
+.product__option {
+    font-weight: bold;
+    color: black;
+}
+
+    .product__option--green-text {
+        color: green !important;
+    }
+
+    .product__option--orange-text {
+        color: darkorange !important;
+    }
+
+    .product__option--red-text {
+        color: red !important;
+    }
+
+.product__option-text {
+    color: black;
+}
+
+.product__option-choice-color {
+    border: 1px solid #404040;
+    border-radius: 30px;
+    width: 30px;
+    height: 30px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.product__option-choice-color--active::before {
+    background: url('Images/Icons/g933.png'),rgba(0,0,0,1) !important;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto;
+}
+
+.product__option-choice-color--disabled {
+    background: url('Images/Shop/siodelko_1.jpg'),linear-gradient(to right, #00FF00 0% 50%, #00FF00 50% 100%);
+    background-blend-mode: multiply;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.product__option-choice-size {
+    border: 1px dashed darkslategray;
+    border-radius: 5px;
+    padding: 2.5px 5px 0px 5px;
+    min-width: 50px;
+    min-height: 25px;
+    line-height: 27.5px;
+    background: white;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+    color: darkslategray;
+}
+
+.product__option-choice-size--active {
+    border: none;
+    background: #191919;
+    color: white;
+    min-width: 52px;
+    font-weight: bold;
+}
+
+.product__option-summary {
+    list-style: none;
+    padding-left: 5px;
+}
+
+.product__option-summary > li {
+    color: black;
+}
+
+.product__final-price {
+    color: black;
+    font-weight: bold;
+    padding-left: 5px;
+    font-size: 16px;
+}
+
+.product__menu > li > a {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.product__menu  .active-tab {
+    border-bottom: 5px solid;
+    padding-bottom: 0px;
+}
+
+/*  Tabs to accordion  */
+
+.product__tabs {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+    .product__tabs label {
+        order: 1;
+        padding: 1rem 2rem;
+        margin-right: 0.2rem;
+        cursor: pointer;
+        background: #90CAF9;
+        font-weight: bold;
+        transition: background ease 0.2s;
+    }
+
+    .product__tabs .product__single-tab {
+        order: 99;
+        width: 100%;
+        display: none;
+        padding: 1rem;
+        background: #fff;
+    }
+
+    .product__tabs input[type="radio"] {
+        display: none;
+    }
+
+        .product__tabs input[type="radio"]:checked + label {
+            background: #fff;
+        }
+        
+@media (max-width: 45em) {
+    .product__tabs .product__single-tab,
+    .product__tabs label {
+        order: initial;
+    }
+
+    .product__tabs label {
+        width: 100%;
+        margin-right: 0;
+        margin-top: 0.2rem;
+    }
+}

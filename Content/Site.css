@@ -199,6 +199,14 @@ a#shop-link {
                 right: 0px;
                 transition: .3s ease;
             }
+
+        .product-left-column {
+            width: 100%;
+        }
+
+        .product-right-column {
+            width: 100%;
+        }
     }
 
     /*  For Bootstrap 4 'default' breakpoint  */
@@ -237,6 +245,15 @@ a#shop-link {
             background-color: white;
             color: black !important;
             transition: all .25s ease;
+        }
+
+        .product-left-column {
+            width: 60%;
+            margin-right: 15px;
+        }
+
+        .product-right-column {
+            width: 40%;
         }
     }
 
