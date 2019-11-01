@@ -117,25 +117,31 @@
         </div>
     </div>
 
-    <div class="container-fluid p-0 m-0 bg-semi-light">
-        <div class="container product__tabs">
-            <input type="radio" name="tabs" id="details" checked="checked">
-            <label for="details"> Opis </label>
-            <div data-id="details" class="product__single-tab">
-                <p> Opis produktu (od producenta) </p>
-            </div>
 
-            <input type="radio" name="tabs" id="specification">
-            <label for="specification"> Specyfikacja </label>
-            <div data-id="specification" class="product__single-tab">
-                <p> Specyfikacja od producenta </p>
-            </div>
+    <div class="container-fluid d-none d-lg-block py-3 mt-3 bg-semi-light">
+        <div class="container">
+            <ul class="nav product__menu" id="productDetails" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link" id="details-tab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="true">Opis</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="specification-tab" data-toggle="tab" href="#specification" role="tab" aria-controls="specification" aria-selected="false">Specyfikacja</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="opinions-tab" data-toggle="tab" href="#opinions" role="tab" aria-controls="opinions" aria-selected="false">Opinie</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 
-            <input type="radio" name="tabs" id="opinions">
-            <label for="opinions"> Opinie </label>
-            <div data-id="opinions" class="product__single-tab">
-                <p> Opinie od uzytkownikow </p>
-            </div>
+    <div class="container mb-3">
+        <div class="tab-content" id="productDetailsContent">
+            <div class="product__menu-card" data-id="details"> Opis <i class="fas fa-chevron-down rotate"></i></div>
+            <div class="tab-pane fade py-2" id="details" role="tabpanel" aria-labelledby="details-tab"> Cursus turpis massa tincidunt dui ut ornare. Ullamcorper morbi tincidunt ornare massa eget egestas purus viverra accumsan. Feugiat nisl pretium fusce id velit ut. Sollicitudin ac orci phasellus egestas tellus rutrum tellus pellentesque eu. Bibendum est ultricies integer quis auctor elit sed vulputate. Porttitor leo a diam sollicitudin. Ut enim blandit volutpat maecenas volutpat. Leo a diam sollicitudin tempor id eu. Donec enim diam vulputate ut pharetra. Interdum consectetur libero id faucibus nisl tincidunt eget nullam non. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus. Id eu nisl nunc mi. Quis enim lobortis scelerisque fermentum. Auctor urna nunc id cursus metus. A scelerisque purus semper eget. Rutrum quisque non tellus orci ac auctor augue mauris augue. Et malesuada fames ac turpis. Justo eget magna fermentum iaculis eu non. Arcu cursus euismod quis viverra nibh cras pulvinar mattis.  Cursus turpis massa tincidunt dui ut ornare. Ullamcorper morbi tincidunt ornare massa eget egestas purus viverra accumsan. Feugiat nisl pretium fusce id velit ut. Sollicitudin ac orci phasellus egestas tellus rutrum tellus pellentesque eu. Bibendum est ultricies integer quis auctor elit sed vulputate. Porttitor leo a diam sollicitudin. Ut enim blandit volutpat maecenas volutpat. Leo a diam sollicitudin tempor id eu. Donec enim diam vulputate ut pharetra. Interdum consectetur libero id faucibus nisl tincidunt eget nullam non. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus. Id eu nisl nunc mi. Quis enim lobortis scelerisque fermentum. Auctor urna nunc id cursus metus. A scelerisque purus semper eget. Rutrum quisque non tellus orci ac auctor augue mauris augue. Et malesuada fames ac turpis. Justo eget magna fermentum iaculis eu non. Arcu cursus euismod quis viverra nibh cras pulvinar mattis.  Cursus turpis massa tincidunt dui ut ornare. Ullamcorper morbi tincidunt ornare massa eget egestas purus viverra accumsan. Feugiat nisl pretium fusce id velit ut. Sollicitudin ac orci phasellus egestas tellus rutrum tellus pellentesque eu. Bibendum est ultricies integer quis auctor elit sed vulputate. Porttitor leo a diam sollicitudin. Ut enim blandit volutpat maecenas volutpat. Leo a diam sollicitudin tempor id eu. Donec enim diam vulputate ut pharetra. Interdum consectetur libero id faucibus nisl tincidunt eget nullam non. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus. Id eu nisl nunc mi. Quis enim lobortis scelerisque fermentum. Auctor urna nunc id cursus metus. A scelerisque purus semper eget. Rutrum quisque non tellus orci ac auctor augue mauris augue. Et malesuada fames ac turpis. Justo eget magna fermentum iaculis eu non. Arcu cursus euismod quis viverra nibh cras pulvinar mattis.  Cursus turpis massa tincidunt dui ut ornare. Ullamcorper morbi tincidunt ornare massa eget egestas purus viverra accumsan. Feugiat nisl pretium fusce id velit ut. Sollicitudin ac orci phasellus egestas tellus rutrum tellus pellentesque eu. Bibendum est ultricies integer quis auctor elit sed vulputate. Porttitor leo a diam sollicitudin. Ut enim blandit volutpat maecenas volutpat. Leo a diam sollicitudin tempor id eu. Donec enim diam vulputate ut pharetra. Interdum consectetur libero id faucibus nisl tincidunt eget nullam non. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus. Id eu nisl nunc mi. Quis enim lobortis scelerisque fermentum. Auctor urna nunc id cursus metus. A scelerisque purus semper eget. Rutrum quisque non tellus orci ac auctor augue mauris augue. Et malesuada fames ac turpis. Justo eget magna fermentum iaculis eu non. Arcu cursus euismod quis viverra nibh cras pulvinar mattis. </div>
+            <div class="product__menu-card" data-id="specification"> Specyfikacja <i class="fas fa-chevron-down rotate"></i></div>
+            <div class="tab-pane fade py-2" id="specification" role="tabpanel" aria-labelledby="specification-tab"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim praesent elementum facilisis leo. Id aliquet lectus proin nibh nisl. Suspendisse ultrices gravida dictum fusce ut placerat orci. Morbi leo urna molestie at elementum eu facilisis. Lacus luctus accumsan tortor posuere ac. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim. Elit eget gravida cum sociis natoque. Fringilla phasellus faucibus scelerisque eleifend donec. Sit amet luctus venenatis lectus magna fringilla. Sit amet commodo nulla facilisi nullam vehicula. In hendrerit gravida rutrum quisque non tellus orci ac. Egestas egestas fringilla phasellus faucibus.  Cursus turpis massa tincidunt dui ut ornare. Ullamcorper morbi tincidunt ornare massa eget egestas purus viverra accumsan. Feugiat nisl pretium fusce id velit ut. Sollicitudin ac orci phasellus egestas tellus rutrum tellus pellentesque eu. Bibendum est ultricies integer quis auctor elit sed vulputate. Porttitor leo a diam sollicitudin. Ut enim blandit volutpat maecenas volutpat. Leo a diam sollicitudin tempor id eu. Donec enim diam vulputate ut pharetra. Interdum consectetur libero id faucibus nisl tincidunt eget nullam non. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus. Id eu nisl nunc mi. Quis enim lobortis scelerisque fermentum. Auctor urna nunc id cursus metus. A scelerisque purus semper eget. Rutrum quisque non tellus orci ac auctor augue mauris augue. Et malesuada fames ac turpis. Justo eget magna fermentum iaculis eu non. Arcu cursus euismod quis viverra nibh cras pulvinar mattis. </div>
+            <div class="product__menu-card" data-id="opinions"> Opinie <i class="fas fa-chevron-down rotate"></i></div>
+            <div class="tab-pane fade py-2" id="opinions" role="tabpanel" aria-labelledby="opinions-tab"> Egestas sed sed risus pretium quam vulputate dignissim suspendisse in. Massa ultricies mi quis hendrerit dolor. Non odio euismod lacinia at quis risus sed vulputate odio. Tempor orci eu lobortis elementum nibh tellus molestie nunc. Porta nibh venenatis cras sed felis. Quis blandit turpis cursus in hac. Convallis aenean et tortor at risus viverra. Est sit amet facilisis magna etiam tempor orci eu. Eget mauris pharetra et ultrices neque ornare aenean euismod elementum. Vestibulum rhoncus est pellentesque elit ullamcorper dignissim. Urna molestie at elementum eu facilisis sed odio. Mauris rhoncus aenean vel elit.  Cursus turpis massa tincidunt dui ut ornare. Ullamcorper morbi tincidunt ornare massa eget egestas purus viverra accumsan. Feugiat nisl pretium fusce id velit ut. Sollicitudin ac orci phasellus egestas tellus rutrum tellus pellentesque eu. Bibendum est ultricies integer quis auctor elit sed vulputate. Porttitor leo a diam sollicitudin. Ut enim blandit volutpat maecenas volutpat. Leo a diam sollicitudin tempor id eu. Donec enim diam vulputate ut pharetra. Interdum consectetur libero id faucibus nisl tincidunt eget nullam non. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus. Id eu nisl nunc mi. Quis enim lobortis scelerisque fermentum. Auctor urna nunc id cursus metus. A scelerisque purus semper eget. Rutrum quisque non tellus orci ac auctor augue mauris augue. Et malesuada fames ac turpis. Justo eget magna fermentum iaculis eu non. Arcu cursus euismod quis viverra nibh cras pulvinar mattis. </div>
         </div>
     </div>
 </div>

@@ -135,53 +135,48 @@
     font-weight: bold;
 }
 
-.product__menu  .active-tab {
+.product__menu  .active {
     border-bottom: 5px solid;
     padding-bottom: 0px;
 }
 
 /*  Tabs to accordion  */
 
-.product__tabs {
-    display: flex;
-    flex-wrap: wrap;
+.product__menu-card {
+    display: none;
 }
-
-    .product__tabs label {
-        order: 1;
-        padding: 1rem 2rem;
-        margin-right: 0.2rem;
-        cursor: pointer;
-        background: #90CAF9;
-        font-weight: bold;
-        transition: background ease 0.2s;
-    }
-
-    .product__tabs .product__single-tab {
-        order: 99;
-        width: 100%;
-        display: none;
-        padding: 1rem;
-        background: #fff;
-    }
-
-    .product__tabs input[type="radio"] {
-        display: none;
-    }
-
-        .product__tabs input[type="radio"]:checked + label {
-            background: #fff;
-        }
         
-@media (max-width: 45em) {
-    .product__tabs .product__single-tab,
-    .product__tabs label {
-        order: initial;
+@media (max-width: 991.98px) {
+    .product__menu-card:first-child {
+        border: none;
     }
 
-    .product__tabs label {
+    .product__menu-card {
+        display: block;
         width: 100%;
-        margin-right: 0;
-        margin-top: 0.2rem;
+        border-top: 2px solid black;
+        color: black;
+        font-weight: bold;
+        font-size: 24px;
+        transition: all .25s ease;
     }
+
+        .product__menu-card:hover {
+            color: dimgrey;
+            border-color: dimgrey;
+            cursor: pointer;
+            transition: all .25s ease;
+        }
+
+        .product__menu-card:active {
+            color: white !important;
+            background-color: black;
+            transition: all .25s ease;
+        }
+
+        .product__menu-card:hover {
+            text-decoration: none;
+            color: dimgray;
+            transition: all .25s ease;
+        }
 }
