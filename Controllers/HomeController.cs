@@ -17,22 +17,7 @@ namespace bikevision.Controllers
         {
             return View();
         }
-
-        public ActionResult Shop()
-        {
-            return View();
-        }
-
-        public ActionResult ProductList()
-        {
-            return View();
-        }
-
-        public ActionResult Product()
-        {
-            return View();
-        }
-
+        
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
