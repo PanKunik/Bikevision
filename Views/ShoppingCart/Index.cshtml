@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "ShoppingCart";
+    Layout = "~/Views/Shared/_ShopLayout.cshtml";
+}
+
+
+<section class="container my-3 text-primary">
+    <nav class="px-0" aria-label="breadcrumb">
+        <ol class="breadcrumb px-0">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Shop</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Kategoria</li>
+        </ol>
+    </nav>
+
+    <h2 class="px-0"> Twój koszyk </h2>
+
+    <header class="row py-2 font-weight-bold d-none d-md-flex">
+        <div class="col-5 col-lg-1">Produkt</div>
+        <div class="d-none d-lg-block col-lg-4">Nazwa</div>
+        <div class="col-2">Cena</div>
+        <div class="col-2 text-center">Ilość</div>
+        <div class="col-2">Razem</div>
+        <div class="col-1">Usuń</div>
+    </header>
+
+    <article class="row py-2 flex-wrap align-content-stretch align-items-center">
+        <div class="col-12 col-lg-1"><img src="" alt="obrazek" /></div>
+        <h6 class="col-12 col-md-5 col-lg-4">Rama rowerowa Dartmoor Hornet 2016</h6>
+        <div class="col-4 col-md-2">1107.00 zł</div>
+        <div class="col-4 col-md-2 text-center">
+            <button class="m-auto">+</button>
+            <p class="m-0 text-center">x<span>1</span></p>
+            <button>-</button>
+        </div>
+        <div class="col-4 col-md-2">1107.02 zł</div>
+        <div class="col-12 col-md-1"><button>D</button></div>
+    </article>
+
+    <section class="row pt-3">
+        <div class="col-6">
+            Kod rabatowy
+        </div>
+        <div class="col-6">
+            <div class="row">
+                <p class="col-12 col-lg-6"> Razem (brutto) </p>
+                <p class="col-12 col-lg-6"> 151512 zł </p>
+            </div>
+            <div class="row">
+                <p class="col-12 col-lg-6"> Razem  </p>
+                <p class="col-12 col-lg-6"> 12215454 zł  </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="row pt-3">
+        <div class="col-12 col-md-6">
+            <p>Wybierz sposób dostawy:</p>
+            <p>Poczta Polska</p>
+            <p>Kurier DPD</p>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="row">
+                <p class="col-6">Produkty: </p>
+                <p class="col-6">12215454 zł </p>
+            </div>
+            <div class="row">
+                <p class="col-6">Koszt dostawy: </p>
+                <p class="col-6">10.99 zł </p>
+            </div>
+            <div class="row">
+                <p class="col-6">Razem do zapłaty</p>
+                <p class="col-6">12215464.99 zł</p>
+            </div>
+        </div>
+    </section>
+
+    <a class="float-lg-right text-light btn btn-primary pt-1">Przejdź dalej</a>
+</section>

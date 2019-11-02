@@ -147,6 +147,7 @@
     <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Controllers\ServiceTypesController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
+    <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -457,7 +458,7 @@
     <Content Include="Views\ServiceTypes\Details.cshtml" />
     <Content Include="Views\ServiceTypes\Edit.cshtml" />
     <Content Include="Views\ServiceTypes\Index.cshtml" />
-    <Content Include="Views\Shop\ShoppingCart.cshtml" />
+    <Content Include="Views\ShoppingCart\Index.cshtml" />
     <Content Include="Views\Shop\Favorites.cshtml" />
     <Content Include="Views\Shop\Account.cshtml" />
   </ItemGroup>
