@@ -96,11 +96,11 @@
             }
         }
         else if (e == 1) {
-            var itemsCondition = $(el).find(itemsDiv).width() - $(el).width();
+            var itemsCondition = $(el).find(itemsDiv).width() - $(el).width() + 20;
             translateXval = xds + (itemWidth + cardMargins) * s;
             $(el + ' ' + leftBtn).removeClass("over");
  
-            if (translateXval >= itemsCondition - itemWidth / 2) {
+            if (translateXval > itemsCondition) {
                 translateXval = 0;
             }
         }
