@@ -170,8 +170,9 @@
 
             <div class="d-flex flex-column right-column">
                 <div class="d-flex flex-row justify-content-between">
-                    <div class="p-1">
-                        Lista / Siatka
+                    <div class="btn-group ml-1" role="group" aria-label="Basic example">
+                        <button type="button" id="gridButton" class="btn btn-primary active"><i class="fas fa-th-large mr-2"></i>Siatka</button>
+                        <button type="button" id="listButton" class="btn btn-primary"><i class="fas fa-list mr-2"></i>Lista</button>
                     </div>
                     <div class="p-1">
                         <span> Sortuj: </span>
@@ -194,11 +195,11 @@
                                         <a href="@Url.Action("Product", "Shop")" class="shopping-card__banner badge-pill badge-info px-2 py-1">
                                             Promocja
                                         </a>
-                                        <a href="@Url.Action("Product", "Shop")"><img class="shopping-card__image" src="~/Content/Images/Shop/siodelko_1.jpg" /></a>
-                                        <h1 class="shopping-card__subtitle mb-0"> @Html.DisplayFor(modelItem => product.Category.category1) </h1>
-                                        <a href="@Url.Action("Product", "Shop")"><h3 class="shopping-card__title mb-0">@Html.DisplayFor(modelItem => product.itemName)</h3></a>
-                                        <hr class="shopping-card__underline" />
-                                        <div class="shopping-card__footer">
+                                        <a href="@Url.Action("Product", "Shop")" class="wrapRow"><img class="shopping-card__image" src="~/Content/Images/Shop/siodelko_1.jpg" /></a>
+                                        <h1 class="shopping-card__subtitle mb-0 wrapColumn wrapRow"> @Html.DisplayFor(modelItem => product.Category.category1) </h1>
+                                        <a href="@Url.Action("Product", "Shop")" class="wrapColumn wrapRow"><h3 class="shopping-card__title mb-0">@Html.DisplayFor(modelItem => product.itemName)</h3></a>
+                                        <hr class="shopping-card__underline wrapColumn wrapRow" />
+                                        <div class="shopping-card__footer wrapColumn wrapRow">
                                             <h3 class="shopping-card__price">@Html.DisplayFor(modelItem => product.price) zł</h3>
                                             <h5 class="shopping-card__discount"> @(product.price * 1.25M) zł </h5>
                                         </div>
@@ -266,4 +267,5 @@
 @section scripts
 {
     @Scripts.Render("~/Scripts/Shop/hidden-filters.js")
+    @Scripts.Render("~/Scripts/Shop/list-grid-view.js")
 }

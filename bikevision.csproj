@@ -263,6 +263,7 @@
     <Content Include="Content\Images\wallpaper_rocks_bike%28low-res%29.jpg" />
     <Content Include="Content\product.css" />
     <Content Include="Content\shopping-card.css" />
+    <Content Include="Content\shopping-list.css" />
     <Content Include="Content\theme-default.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -346,6 +347,7 @@
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\Shop\hidden-filters.js" />
+    <Content Include="Scripts\Shop\list-grid-view.js" />
     <Content Include="Scripts\Shop\product-accortion-tabs.js" />
     <Content Include="Scripts\Shop\shop-multicarousel.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
@@ -455,6 +457,9 @@
     <Content Include="Views\ServiceTypes\Details.cshtml" />
     <Content Include="Views\ServiceTypes\Edit.cshtml" />
     <Content Include="Views\ServiceTypes\Index.cshtml" />
+    <Content Include="Views\Shop\ShoppingCart.cshtml" />
+    <Content Include="Views\Shop\Favorites.cshtml" />
+    <Content Include="Views\Shop\Account.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

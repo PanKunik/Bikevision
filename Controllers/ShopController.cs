@@ -32,5 +32,17 @@ namespace bikevision.Controllers
 
             return View(query);
         }
+        public ActionResult ShoppingCart()
+        {
+            return View();
+        }
+        public ActionResult Favorites()
+        {
+            return View();
+        }
+        public ActionResult Account()
+        {
+            return View();
+        }
     }
 }

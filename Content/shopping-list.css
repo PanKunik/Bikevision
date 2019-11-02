@@ -1,0 +1,127 @@
+﻿/*  Shopping lists  */
+
+.shopping-list {
+    width: calc(100% - 10px);
+    /*height: 200px;*/
+    margin: 5px 5px;
+    padding: 5px;
+    background-color: white;
+    border: 2px solid lightgray;
+    border-radius: 5px;
+}
+
+.shopping-list .shopping-card__content,
+.shopping-list .shopping-card__main-column {
+    width: 100%;
+    height: auto;
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+
+.shopping-list .shopping-card__banner {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+    .shopping-list a:link {
+        text-decoration: none;
+    }
+
+.shopping-list .shopping-card__subtitle,
+.shopping-list .shopping-card__title,
+.shopping-list .shopping-card__image {
+    float: left;
+}
+
+.shopping-list .shopping-card__image {
+    max-height: 250px;
+    height: auto;
+    width: auto;
+    /*position: absolute;
+    top: 10px;
+    right: 10px;*/
+}
+
+.shopping-list .shopping-card__subtitle,
+.shopping-list .shopping-card__title {
+    float: left;
+    color: black;
+    text-transform: none;
+    letter-spacing: 0px;
+}
+
+.shopping-list .shopping-card__title {
+    font-weight: 900;
+    font-size: 18px;
+}
+
+.shopping-list .shopping-card__subtitle {
+    font-weight: normal;
+    font-size: 14px;
+}
+
+.shopping-list .shopping-card__underline {
+    width: 100%;
+    border: 1px solid black;
+    margin: 0 auto;
+}
+
+.shopping-list .shopping-list__description,
+.shopping-list .shopping-card__hidden-content {
+    display: block;
+}
+
+.shopping-list .shopping-card__price,
+.shopping-list .shopping-card__discount {
+    width: 100%;
+    letter-spacing: -.75px;
+    line-height: 1.5;
+    text-transform: lowercase;
+    font-weight: 900;
+}
+
+.shopping-list .shopping-card__price {
+    font-size: 24px;
+    color: #0066bb;
+}
+
+.shopping-list .shopping-card__discount {
+    font-size: 16px;
+    text-decoration: line-through;
+    color: gray;
+}
+
+.shopping-list .shopping-card__gallery-column,
+.shopping-list .shopping-card__hidden-button {
+    display: none !important;
+}
+
+.shopping-list .shopping-card__hidden-button {
+}
+
+.shopping-list .shopping-card__hidden-content {
+    width: 100%;
+    height: 100px;
+}
+
+    .shopping-list .shopping-card__cart-button {
+        width: calc(100% - 4px);
+        height: calc(50% - 4px);
+        margin: 2px;
+    }
+
+    .shopping-list .shopping-card__additional-buttons {
+        width: 100%;
+        height: 50%;
+        padding: 2px;
+    }
+
+    .shopping-list .shopping-card__additional-button {
+        float: left;
+        width: calc(50% - 1px);
+        height: 100%;
+    }
+
+/*  End shopping lists  */

@@ -30,8 +30,9 @@
 
 .text-size-big {font-size: 64px;}
 
-/*  End single property classes  */
+.max-width-60 {max-width: 60%;}
 
+/*  End single property classes  */
 
 /*  Main HTML elements  */
 
@@ -185,7 +186,7 @@ a#shop-link {
         .left-column {
             position: fixed;
             top: 0px;
-            right: -45%;
+            right: -100%;
             z-index: 5;
             min-width: 250px;
             width: 40%;
