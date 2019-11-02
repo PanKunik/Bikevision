@@ -23,6 +23,7 @@
     position: absolute;
     top: 5px;
     left: 5px;
+    z-index: 4;
 }
 
     .shopping-list a:link {
@@ -35,14 +36,19 @@
     float: left;
 }
 
-.shopping-list .shopping-card__image {
-    max-height: 250px;
-    height: auto;
-    width: auto;
-    /*position: absolute;
-    top: 10px;
-    right: 10px;*/
-}
+    .shopping-list .shopping-card__image {
+        max-height: 250px;
+        width: 100%;
+        height: auto;
+        position: relative;
+        top: 10px;
+    }
+
+    .shopping-list .wrappedRow > a {
+        max-width: 25%;
+        width: auto;
+        overflow: hidden;
+    }
 
 .shopping-list .shopping-card__subtitle,
 .shopping-list .shopping-card__title {
