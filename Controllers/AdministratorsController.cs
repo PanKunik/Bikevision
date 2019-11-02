@@ -12,12 +12,12 @@ namespace bikevision.Controllers
 {
     public class AdministratorsController : Controller
     {
-        private BikeVisionDBEntities2 db = new BikeVisionDBEntities2();
+        private bikewayDBEntities db = new bikewayDBEntities();
 
         // GET: Administrators
         public ActionResult Index()
         {
-            return View(db.Administrator.ToList());
+            return View(db.Administrators.ToList());
         }
 
         // GET: Administrators/Details/5
@@ -27,7 +27,7 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Administrator administrator = db.Administrator.Find(id);
+            Administrator administrator = db.Administrators.Find(id);
             if (administrator == null)
             {
                 return HttpNotFound();
@@ -50,7 +50,7 @@ namespace bikevision.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Administrator.Add(administrator);
+                db.Administrators.Add(administrator);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Administrator administrator = db.Administrator.Find(id);
+            Administrator administrator = db.Administrators.Find(id);
             if (administrator == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Administrator administrator = db.Administrator.Find(id);
+            Administrator administrator = db.Administrators.Find(id);
             if (administrator == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace bikevision.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Administrator administrator = db.Administrator.Find(id);
-            db.Administrator.Remove(administrator);
+            Administrator administrator = db.Administrators.Find(id);
+            db.Administrators.Remove(administrator);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

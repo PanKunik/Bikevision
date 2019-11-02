@@ -17,9 +17,9 @@ namespace bikevision.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Employee()
         {
-            this.EmployeeInThePosition = new HashSet<EmployeeInThePosition>();
-            this.Sale = new HashSet<Sale>();
-            this.Service = new HashSet<Service>();
+            this.EmployeeInThePositions = new HashSet<EmployeeInThePosition>();
+            this.Sales = new HashSet<Sale>();
+            this.Services = new HashSet<Service>();
         }
     
         public int idEmployee { get; set; }
@@ -29,10 +29,10 @@ namespace bikevision.Models
         public string hash { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EmployeeInThePosition> EmployeeInThePosition { get; set; }
+        public virtual ICollection<EmployeeInThePosition> EmployeeInThePositions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sale> Sale { get; set; }
+        public virtual ICollection<Sale> Sales { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Service> Service { get; set; }
+        public virtual ICollection<Service> Services { get; set; }
     }
 }

@@ -10,25 +10,25 @@ using bikevision.Models;
 
 namespace bikevision.Controllers
 {
-    public class EmployeeInThePositionsController : Controller
+    public class EmployeesInThePositionController : Controller
     {
-        private BikeVisionDBEntities2 db = new BikeVisionDBEntities2();
+        private bikewayDBEntities db = new bikewayDBEntities();
 
-        // GET: EmployeeInThePositions
+        // GET: EmployeesInThePosition
         public ActionResult Index()
         {
-            var employeeInThePosition = db.EmployeeInThePosition.Include(e => e.Employee).Include(e => e.Position);
-            return View(employeeInThePosition.ToList());
+            var employeeInThePositions = db.EmployeeInThePositions.Include(e => e.Employee).Include(e => e.Position);
+            return View(employeeInThePositions.ToList());
         }
 
-        // GET: EmployeeInThePositions/Details/5
+        // GET: EmployeesInThePosition/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EmployeeInThePosition employeeInThePosition = db.EmployeeInThePosition.Find(id);
+            EmployeeInThePosition employeeInThePosition = db.EmployeeInThePositions.Find(id);
             if (employeeInThePosition == null)
             {
                 return HttpNotFound();
@@ -36,15 +36,15 @@ namespace bikevision.Controllers
             return View(employeeInThePosition);
         }
 
-        // GET: EmployeeInThePositions/Create
+        // GET: EmployeesInThePosition/Create
         public ActionResult Create()
         {
-            ViewBag.Employee_idEmployee = new SelectList(db.Employee, "idEmployee", "name");
-            ViewBag.Position_idPosition = new SelectList(db.Position, "idPosition", "name");
+            ViewBag.Employee_idEmployee = new SelectList(db.Employees, "idEmployee", "name");
+            ViewBag.Position_idPosition = new SelectList(db.Positions, "idPosition", "name");
             return View();
         }
 
-        // POST: EmployeeInThePositions/Create
+        // POST: EmployeesInThePosition/Create
         // Aby zapewnić ochronę przed atakami polegającymi na przesyłaniu dodatkowych danych, włącz określone właściwości, z którymi chcesz utworzyć powiązania.
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -53,34 +53,34 @@ namespace bikevision.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.EmployeeInThePosition.Add(employeeInThePosition);
+                db.EmployeeInThePositions.Add(employeeInThePosition);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Employee_idEmployee = new SelectList(db.Employee, "idEmployee", "name", employeeInThePosition.Employee_idEmployee);
-            ViewBag.Position_idPosition = new SelectList(db.Position, "idPosition", "name", employeeInThePosition.Position_idPosition);
+            ViewBag.Employee_idEmployee = new SelectList(db.Employees, "idEmployee", "name", employeeInThePosition.Employee_idEmployee);
+            ViewBag.Position_idPosition = new SelectList(db.Positions, "idPosition", "name", employeeInThePosition.Position_idPosition);
             return View(employeeInThePosition);
         }
 
-        // GET: EmployeeInThePositions/Edit/5
+        // GET: EmployeesInThePosition/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EmployeeInThePosition employeeInThePosition = db.EmployeeInThePosition.Find(id);
+            EmployeeInThePosition employeeInThePosition = db.EmployeeInThePositions.Find(id);
             if (employeeInThePosition == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Employee_idEmployee = new SelectList(db.Employee, "idEmployee", "name", employeeInThePosition.Employee_idEmployee);
-            ViewBag.Position_idPosition = new SelectList(db.Position, "idPosition", "name", employeeInThePosition.Position_idPosition);
+            ViewBag.Employee_idEmployee = new SelectList(db.Employees, "idEmployee", "name", employeeInThePosition.Employee_idEmployee);
+            ViewBag.Position_idPosition = new SelectList(db.Positions, "idPosition", "name", employeeInThePosition.Position_idPosition);
             return View(employeeInThePosition);
         }
 
-        // POST: EmployeeInThePositions/Edit/5
+        // POST: EmployeesInThePosition/Edit/5
         // Aby zapewnić ochronę przed atakami polegającymi na przesyłaniu dodatkowych danych, włącz określone właściwości, z którymi chcesz utworzyć powiązania.
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -93,19 +93,19 @@ namespace bikevision.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Employee_idEmployee = new SelectList(db.Employee, "idEmployee", "name", employeeInThePosition.Employee_idEmployee);
-            ViewBag.Position_idPosition = new SelectList(db.Position, "idPosition", "name", employeeInThePosition.Position_idPosition);
+            ViewBag.Employee_idEmployee = new SelectList(db.Employees, "idEmployee", "name", employeeInThePosition.Employee_idEmployee);
+            ViewBag.Position_idPosition = new SelectList(db.Positions, "idPosition", "name", employeeInThePosition.Position_idPosition);
             return View(employeeInThePosition);
         }
 
-        // GET: EmployeeInThePositions/Delete/5
+        // GET: EmployeesInThePosition/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EmployeeInThePosition employeeInThePosition = db.EmployeeInThePosition.Find(id);
+            EmployeeInThePosition employeeInThePosition = db.EmployeeInThePositions.Find(id);
             if (employeeInThePosition == null)
             {
                 return HttpNotFound();
@@ -113,13 +113,13 @@ namespace bikevision.Controllers
             return View(employeeInThePosition);
         }
 
-        // POST: EmployeeInThePositions/Delete/5
+        // POST: EmployeesInThePosition/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            EmployeeInThePosition employeeInThePosition = db.EmployeeInThePosition.Find(id);
-            db.EmployeeInThePosition.Remove(employeeInThePosition);
+            EmployeeInThePosition employeeInThePosition = db.EmployeeInThePositions.Find(id);
+            db.EmployeeInThePositions.Remove(employeeInThePosition);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

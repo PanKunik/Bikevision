@@ -12,12 +12,12 @@ namespace bikevision.Controllers
 {
     public class CategoriesController : Controller
     {
-        private BikeVisionDBEntities2 db = new BikeVisionDBEntities2();
+        private bikewayDBEntities db = new bikewayDBEntities();
 
         // GET: Categories
         public ActionResult Index()
         {
-            return View(db.Category.ToList());
+            return View(db.Categories.ToList());
         }
 
         // GET: Categories/Details/5
@@ -27,7 +27,7 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Category.Find(id);
+            Category category = db.Categories.Find(id);
             if (category == null)
             {
                 return HttpNotFound();
@@ -50,7 +50,7 @@ namespace bikevision.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Category.Add(category);
+                db.Categories.Add(category);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Category.Find(id);
+            Category category = db.Categories.Find(id);
             if (category == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Category.Find(id);
+            Category category = db.Categories.Find(id);
             if (category == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace bikevision.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Category category = db.Category.Find(id);
-            db.Category.Remove(category);
+            Category category = db.Categories.Find(id);
+            db.Categories.Remove(category);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

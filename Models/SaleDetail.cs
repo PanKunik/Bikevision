@@ -12,7 +12,7 @@ namespace bikevision.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class SaleDetails
+    public partial class SaleDetail
     {
         public decimal value { get; set; }
         public int Sale_idSale { get; set; }

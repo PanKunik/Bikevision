@@ -12,13 +12,13 @@ namespace bikevision.Controllers
 {
     public class CustomersController : Controller
     {
-        private BikeVisionDBEntities2 db = new BikeVisionDBEntities2();
+        private bikewayDBEntities db = new bikewayDBEntities();
 
         // GET: Customers
         public ActionResult Index()
         {
-            var customer = db.Customer.Include(c => c.Locality);
-            return View(customer.ToList());
+            var customers = db.Customers.Include(c => c.Locality);
+            return View(customers.ToList());
         }
 
         // GET: Customers/Details/5
@@ -28,7 +28,7 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customer.Find(id);
+            Customer customer = db.Customers.Find(id);
             if (customer == null)
             {
                 return HttpNotFound();
@@ -39,7 +39,7 @@ namespace bikevision.Controllers
         // GET: Customers/Create
         public ActionResult Create()
         {
-            ViewBag.Locality_idLocality = new SelectList(db.Locality, "idLocality", "locality1");
+            ViewBag.Locality_idLocality = new SelectList(db.Localities, "idLocality", "locality1");
             return View();
         }
 
@@ -52,12 +52,12 @@ namespace bikevision.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Customer.Add(customer);
+                db.Customers.Add(customer);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Locality_idLocality = new SelectList(db.Locality, "idLocality", "locality1", customer.Locality_idLocality);
+            ViewBag.Locality_idLocality = new SelectList(db.Localities, "idLocality", "locality1", customer.Locality_idLocality);
             return View(customer);
         }
 
@@ -68,12 +68,12 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customer.Find(id);
+            Customer customer = db.Customers.Find(id);
             if (customer == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Locality_idLocality = new SelectList(db.Locality, "idLocality", "locality1", customer.Locality_idLocality);
+            ViewBag.Locality_idLocality = new SelectList(db.Localities, "idLocality", "locality1", customer.Locality_idLocality);
             return View(customer);
         }
 
@@ -90,7 +90,7 @@ namespace bikevision.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Locality_idLocality = new SelectList(db.Locality, "idLocality", "locality1", customer.Locality_idLocality);
+            ViewBag.Locality_idLocality = new SelectList(db.Localities, "idLocality", "locality1", customer.Locality_idLocality);
             return View(customer);
         }
 
@@ -101,7 +101,7 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customer.Find(id);
+            Customer customer = db.Customers.Find(id);
             if (customer == null)
             {
                 return HttpNotFound();
@@ -114,8 +114,8 @@ namespace bikevision.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Customer customer = db.Customer.Find(id);
-            db.Customer.Remove(customer);
+            Customer customer = db.Customers.Find(id);
+            db.Customers.Remove(customer);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

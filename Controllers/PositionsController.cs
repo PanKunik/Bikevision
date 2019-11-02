@@ -12,12 +12,12 @@ namespace bikevision.Controllers
 {
     public class PositionsController : Controller
     {
-        private BikeVisionDBEntities2 db = new BikeVisionDBEntities2();
+        private bikewayDBEntities db = new bikewayDBEntities();
 
         // GET: Positions
         public ActionResult Index()
         {
-            return View(db.Position.ToList());
+            return View(db.Positions.ToList());
         }
 
         // GET: Positions/Details/5
@@ -27,7 +27,7 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Position position = db.Position.Find(id);
+            Position position = db.Positions.Find(id);
             if (position == null)
             {
                 return HttpNotFound();
@@ -50,7 +50,7 @@ namespace bikevision.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Position.Add(position);
+                db.Positions.Add(position);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Position position = db.Position.Find(id);
+            Position position = db.Positions.Find(id);
             if (position == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Position position = db.Position.Find(id);
+            Position position = db.Positions.Find(id);
             if (position == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace bikevision.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Position position = db.Position.Find(id);
-            db.Position.Remove(position);
+            Position position = db.Positions.Find(id);
+            db.Positions.Remove(position);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

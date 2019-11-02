@@ -17,13 +17,13 @@ namespace bikevision.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SaleType()
         {
-            this.Sale = new HashSet<Sale>();
+            this.Sales = new HashSet<Sale>();
         }
     
         public int idSaleType { get; set; }
         public string type { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sale> Sale { get; set; }
+        public virtual ICollection<Sale> Sales { get; set; }
     }
 }

@@ -12,13 +12,13 @@ namespace bikevision.Controllers
 {
     public class ItemsController : Controller
     {
-        private BikeVisionDBEntities2 db = new BikeVisionDBEntities2();
+        private bikewayDBEntities db = new bikewayDBEntities();
 
         // GET: Items
         public ActionResult Index()
         {
-            var item = db.Item.Include(i => i.Category).Include(i => i.ItemType);
-            return View(item.ToList());
+            var items = db.Items.Include(i => i.Category).Include(i => i.ItemType);
+            return View(items.ToList());
         }
 
         // GET: Items/Details/5
@@ -28,7 +28,7 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Item item = db.Item.Find(id);
+            Item item = db.Items.Find(id);
             if (item == null)
             {
                 return HttpNotFound();
@@ -39,8 +39,8 @@ namespace bikevision.Controllers
         // GET: Items/Create
         public ActionResult Create()
         {
-            ViewBag.Category_idCategory = new SelectList(db.Category, "idCategory", "category1");
-            ViewBag.ItemType_idItemType = new SelectList(db.ItemType, "idItemType", "type");
+            ViewBag.Category_idCategory = new SelectList(db.Categories, "idCategory", "category1");
+            ViewBag.ItemType_idItemType = new SelectList(db.ItemTypes, "idItemType", "type");
             return View();
         }
 
@@ -53,13 +53,13 @@ namespace bikevision.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Item.Add(item);
+                db.Items.Add(item);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Category_idCategory = new SelectList(db.Category, "idCategory", "category1", item.Category_idCategory);
-            ViewBag.ItemType_idItemType = new SelectList(db.ItemType, "idItemType", "type", item.ItemType_idItemType);
+            ViewBag.Category_idCategory = new SelectList(db.Categories, "idCategory", "category1", item.Category_idCategory);
+            ViewBag.ItemType_idItemType = new SelectList(db.ItemTypes, "idItemType", "type", item.ItemType_idItemType);
             return View(item);
         }
 
@@ -70,13 +70,13 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Item item = db.Item.Find(id);
+            Item item = db.Items.Find(id);
             if (item == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Category_idCategory = new SelectList(db.Category, "idCategory", "category1", item.Category_idCategory);
-            ViewBag.ItemType_idItemType = new SelectList(db.ItemType, "idItemType", "type", item.ItemType_idItemType);
+            ViewBag.Category_idCategory = new SelectList(db.Categories, "idCategory", "category1", item.Category_idCategory);
+            ViewBag.ItemType_idItemType = new SelectList(db.ItemTypes, "idItemType", "type", item.ItemType_idItemType);
             return View(item);
         }
 
@@ -93,8 +93,8 @@ namespace bikevision.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Category_idCategory = new SelectList(db.Category, "idCategory", "category1", item.Category_idCategory);
-            ViewBag.ItemType_idItemType = new SelectList(db.ItemType, "idItemType", "type", item.ItemType_idItemType);
+            ViewBag.Category_idCategory = new SelectList(db.Categories, "idCategory", "category1", item.Category_idCategory);
+            ViewBag.ItemType_idItemType = new SelectList(db.ItemTypes, "idItemType", "type", item.ItemType_idItemType);
             return View(item);
         }
 
@@ -105,7 +105,7 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Item item = db.Item.Find(id);
+            Item item = db.Items.Find(id);
             if (item == null)
             {
                 return HttpNotFound();
@@ -118,8 +118,8 @@ namespace bikevision.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Item item = db.Item.Find(id);
-            db.Item.Remove(item);
+            Item item = db.Items.Find(id);
+            db.Items.Remove(item);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

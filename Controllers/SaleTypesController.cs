@@ -12,12 +12,12 @@ namespace bikevision.Controllers
 {
     public class SaleTypesController : Controller
     {
-        private BikeVisionDBEntities2 db = new BikeVisionDBEntities2();
+        private bikewayDBEntities db = new bikewayDBEntities();
 
         // GET: SaleTypes
         public ActionResult Index()
         {
-            return View(db.SaleType.ToList());
+            return View(db.SaleTypes.ToList());
         }
 
         // GET: SaleTypes/Details/5
@@ -27,7 +27,7 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SaleType saleType = db.SaleType.Find(id);
+            SaleType saleType = db.SaleTypes.Find(id);
             if (saleType == null)
             {
                 return HttpNotFound();
@@ -50,7 +50,7 @@ namespace bikevision.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.SaleType.Add(saleType);
+                db.SaleTypes.Add(saleType);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SaleType saleType = db.SaleType.Find(id);
+            SaleType saleType = db.SaleTypes.Find(id);
             if (saleType == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SaleType saleType = db.SaleType.Find(id);
+            SaleType saleType = db.SaleTypes.Find(id);
             if (saleType == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace bikevision.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            SaleType saleType = db.SaleType.Find(id);
-            db.SaleType.Remove(saleType);
+            SaleType saleType = db.SaleTypes.Find(id);
+            db.SaleTypes.Remove(saleType);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

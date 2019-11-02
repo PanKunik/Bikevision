@@ -12,12 +12,12 @@ namespace bikevision.Controllers
 {
     public class ServiceTypesController : Controller
     {
-        private BikeVisionDBEntities2 db = new BikeVisionDBEntities2();
+        private bikewayDBEntities db = new bikewayDBEntities();
 
         // GET: ServiceTypes
         public ActionResult Index()
         {
-            return View(db.ServiceType.ToList());
+            return View(db.ServiceTypes.ToList());
         }
 
         // GET: ServiceTypes/Details/5
@@ -27,7 +27,7 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ServiceType serviceType = db.ServiceType.Find(id);
+            ServiceType serviceType = db.ServiceTypes.Find(id);
             if (serviceType == null)
             {
                 return HttpNotFound();
@@ -50,7 +50,7 @@ namespace bikevision.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.ServiceType.Add(serviceType);
+                db.ServiceTypes.Add(serviceType);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ServiceType serviceType = db.ServiceType.Find(id);
+            ServiceType serviceType = db.ServiceTypes.Find(id);
             if (serviceType == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ServiceType serviceType = db.ServiceType.Find(id);
+            ServiceType serviceType = db.ServiceTypes.Find(id);
             if (serviceType == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace bikevision.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ServiceType serviceType = db.ServiceType.Find(id);
-            db.ServiceType.Remove(serviceType);
+            ServiceType serviceType = db.ServiceTypes.Find(id);
+            db.ServiceTypes.Remove(serviceType);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

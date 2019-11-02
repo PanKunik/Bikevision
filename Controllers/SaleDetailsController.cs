@@ -12,7 +12,7 @@ namespace bikevision.Controllers
 {
     public class SaleDetailsController : Controller
     {
-        private BikeVisionDBEntities2 db = new BikeVisionDBEntities2();
+        private bikewayDBEntities db = new bikewayDBEntities();
 
         // GET: SaleDetails
         public ActionResult Index()
@@ -28,19 +28,19 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SaleDetails saleDetails = db.SaleDetails.Find(id);
-            if (saleDetails == null)
+            SaleDetail saleDetail = db.SaleDetails.Find(id);
+            if (saleDetail == null)
             {
                 return HttpNotFound();
             }
-            return View(saleDetails);
+            return View(saleDetail);
         }
 
         // GET: SaleDetails/Create
         public ActionResult Create()
         {
-            ViewBag.Item_idItem = new SelectList(db.Item, "idItem", "itemName");
-            ViewBag.Sale_idSale = new SelectList(db.Sale, "idSale", "idSale");
+            ViewBag.Item_idItem = new SelectList(db.Items, "idItem", "itemName");
+            ViewBag.Sale_idSale = new SelectList(db.Sales, "idSale", "idSale");
             return View();
         }
 
@@ -49,18 +49,18 @@ namespace bikevision.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "value,Sale_idSale,Item_idItem")] SaleDetails saleDetails)
+        public ActionResult Create([Bind(Include = "value,Sale_idSale,Item_idItem")] SaleDetail saleDetail)
         {
             if (ModelState.IsValid)
             {
-                db.SaleDetails.Add(saleDetails);
+                db.SaleDetails.Add(saleDetail);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Item_idItem = new SelectList(db.Item, "idItem", "itemName", saleDetails.Item_idItem);
-            ViewBag.Sale_idSale = new SelectList(db.Sale, "idSale", "idSale", saleDetails.Sale_idSale);
-            return View(saleDetails);
+            ViewBag.Item_idItem = new SelectList(db.Items, "idItem", "itemName", saleDetail.Item_idItem);
+            ViewBag.Sale_idSale = new SelectList(db.Sales, "idSale", "idSale", saleDetail.Sale_idSale);
+            return View(saleDetail);
         }
 
         // GET: SaleDetails/Edit/5
@@ -70,14 +70,14 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SaleDetails saleDetails = db.SaleDetails.Find(id);
-            if (saleDetails == null)
+            SaleDetail saleDetail = db.SaleDetails.Find(id);
+            if (saleDetail == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Item_idItem = new SelectList(db.Item, "idItem", "itemName", saleDetails.Item_idItem);
-            ViewBag.Sale_idSale = new SelectList(db.Sale, "idSale", "idSale", saleDetails.Sale_idSale);
-            return View(saleDetails);
+            ViewBag.Item_idItem = new SelectList(db.Items, "idItem", "itemName", saleDetail.Item_idItem);
+            ViewBag.Sale_idSale = new SelectList(db.Sales, "idSale", "idSale", saleDetail.Sale_idSale);
+            return View(saleDetail);
         }
 
         // POST: SaleDetails/Edit/5
@@ -85,17 +85,17 @@ namespace bikevision.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "value,Sale_idSale,Item_idItem")] SaleDetails saleDetails)
+        public ActionResult Edit([Bind(Include = "value,Sale_idSale,Item_idItem")] SaleDetail saleDetail)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(saleDetails).State = EntityState.Modified;
+                db.Entry(saleDetail).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Item_idItem = new SelectList(db.Item, "idItem", "itemName", saleDetails.Item_idItem);
-            ViewBag.Sale_idSale = new SelectList(db.Sale, "idSale", "idSale", saleDetails.Sale_idSale);
-            return View(saleDetails);
+            ViewBag.Item_idItem = new SelectList(db.Items, "idItem", "itemName", saleDetail.Item_idItem);
+            ViewBag.Sale_idSale = new SelectList(db.Sales, "idSale", "idSale", saleDetail.Sale_idSale);
+            return View(saleDetail);
         }
 
         // GET: SaleDetails/Delete/5
@@ -105,12 +105,12 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SaleDetails saleDetails = db.SaleDetails.Find(id);
-            if (saleDetails == null)
+            SaleDetail saleDetail = db.SaleDetails.Find(id);
+            if (saleDetail == null)
             {
                 return HttpNotFound();
             }
-            return View(saleDetails);
+            return View(saleDetail);
         }
 
         // POST: SaleDetails/Delete/5
@@ -118,8 +118,8 @@ namespace bikevision.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            SaleDetails saleDetails = db.SaleDetails.Find(id);
-            db.SaleDetails.Remove(saleDetails);
+            SaleDetail saleDetail = db.SaleDetails.Find(id);
+            db.SaleDetails.Remove(saleDetail);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

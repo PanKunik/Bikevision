@@ -13,10 +13,10 @@ namespace bikevision.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class BikeVisionDBEntities2 : DbContext
+    public partial class bikewayDBEntities : DbContext
     {
-        public BikeVisionDBEntities2()
-            : base("name=BikeVisionDBEntities2")
+        public bikewayDBEntities()
+            : base("name=bikewayDBEntities")
         {
         }
     
@@ -25,20 +25,19 @@ namespace bikevision.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Administrator> Administrator { get; set; }
-        public virtual DbSet<Category> Category { get; set; }
-        public virtual DbSet<Customer> Customer { get; set; }
-        public virtual DbSet<Employee> Employee { get; set; }
-        public virtual DbSet<EmployeeInThePosition> EmployeeInThePosition { get; set; }
-        public virtual DbSet<Item> Item { get; set; }
-        public virtual DbSet<ItemType> ItemType { get; set; }
-        public virtual DbSet<Locality> Locality { get; set; }
-        public virtual DbSet<Position> Position { get; set; }
-        public virtual DbSet<Sale> Sale { get; set; }
-        public virtual DbSet<SaleDetails> SaleDetails { get; set; }
-        public virtual DbSet<SaleType> SaleType { get; set; }
-        public virtual DbSet<Service> Service { get; set; }
-        public virtual DbSet<ServiceType> ServiceType { get; set; }
-        public virtual DbSet<database_firewall_rules> database_firewall_rules { get; set; }
+        public virtual DbSet<Administrator> Administrators { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<EmployeeInThePosition> EmployeeInThePositions { get; set; }
+        public virtual DbSet<Item> Items { get; set; }
+        public virtual DbSet<ItemType> ItemTypes { get; set; }
+        public virtual DbSet<Locality> Localities { get; set; }
+        public virtual DbSet<Position> Positions { get; set; }
+        public virtual DbSet<Sale> Sales { get; set; }
+        public virtual DbSet<SaleDetail> SaleDetails { get; set; }
+        public virtual DbSet<SaleType> SaleTypes { get; set; }
+        public virtual DbSet<Service> Services { get; set; }
+        public virtual DbSet<ServiceType> ServiceTypes { get; set; }
     }
 }

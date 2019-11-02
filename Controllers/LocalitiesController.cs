@@ -12,12 +12,12 @@ namespace bikevision.Controllers
 {
     public class LocalitiesController : Controller
     {
-        private BikeVisionDBEntities2 db = new BikeVisionDBEntities2();
+        private bikewayDBEntities db = new bikewayDBEntities();
 
         // GET: Localities
         public ActionResult Index()
         {
-            return View(db.Locality.ToList());
+            return View(db.Localities.ToList());
         }
 
         // GET: Localities/Details/5
@@ -27,7 +27,7 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Locality locality = db.Locality.Find(id);
+            Locality locality = db.Localities.Find(id);
             if (locality == null)
             {
                 return HttpNotFound();
@@ -50,7 +50,7 @@ namespace bikevision.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Locality.Add(locality);
+                db.Localities.Add(locality);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Locality locality = db.Locality.Find(id);
+            Locality locality = db.Localities.Find(id);
             if (locality == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Locality locality = db.Locality.Find(id);
+            Locality locality = db.Localities.Find(id);
             if (locality == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace bikevision.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Locality locality = db.Locality.Find(id);
-            db.Locality.Remove(locality);
+            Locality locality = db.Localities.Find(id);
+            db.Localities.Remove(locality);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

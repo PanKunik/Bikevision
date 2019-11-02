@@ -17,13 +17,13 @@ namespace bikevision.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Position()
         {
-            this.EmployeeInThePosition = new HashSet<EmployeeInThePosition>();
+            this.EmployeeInThePositions = new HashSet<EmployeeInThePosition>();
         }
     
         public int idPosition { get; set; }
         public string name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EmployeeInThePosition> EmployeeInThePosition { get; set; }
+        public virtual ICollection<EmployeeInThePosition> EmployeeInThePositions { get; set; }
     }
 }

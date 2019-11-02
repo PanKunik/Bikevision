@@ -12,13 +12,13 @@ namespace bikevision.Controllers
 {
     public class SalesController : Controller
     {
-        private BikeVisionDBEntities2 db = new BikeVisionDBEntities2();
+        private bikewayDBEntities db = new bikewayDBEntities();
 
         // GET: Sales
         public ActionResult Index()
         {
-            var sale = db.Sale.Include(s => s.Customer).Include(s => s.Employee).Include(s => s.SaleType);
-            return View(sale.ToList());
+            var sales = db.Sales.Include(s => s.Customer).Include(s => s.Employee).Include(s => s.SaleType);
+            return View(sales.ToList());
         }
 
         // GET: Sales/Details/5
@@ -28,7 +28,7 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Sale sale = db.Sale.Find(id);
+            Sale sale = db.Sales.Find(id);
             if (sale == null)
             {
                 return HttpNotFound();
@@ -39,9 +39,9 @@ namespace bikevision.Controllers
         // GET: Sales/Create
         public ActionResult Create()
         {
-            ViewBag.Customer_idCustomer = new SelectList(db.Customer, "idCustomer", "name");
-            ViewBag.Employee_idEmployee = new SelectList(db.Employee, "idEmployee", "name");
-            ViewBag.SaleType_idSaleType = new SelectList(db.SaleType, "idSaleType", "type");
+            ViewBag.Customer_idCustomer = new SelectList(db.Customers, "idCustomer", "name");
+            ViewBag.Employee_idEmployee = new SelectList(db.Employees, "idEmployee", "name");
+            ViewBag.SaleType_idSaleType = new SelectList(db.SaleTypes, "idSaleType", "type");
             return View();
         }
 
@@ -54,14 +54,14 @@ namespace bikevision.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Sale.Add(sale);
+                db.Sales.Add(sale);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Customer_idCustomer = new SelectList(db.Customer, "idCustomer", "name", sale.Customer_idCustomer);
-            ViewBag.Employee_idEmployee = new SelectList(db.Employee, "idEmployee", "name", sale.Employee_idEmployee);
-            ViewBag.SaleType_idSaleType = new SelectList(db.SaleType, "idSaleType", "type", sale.SaleType_idSaleType);
+            ViewBag.Customer_idCustomer = new SelectList(db.Customers, "idCustomer", "name", sale.Customer_idCustomer);
+            ViewBag.Employee_idEmployee = new SelectList(db.Employees, "idEmployee", "name", sale.Employee_idEmployee);
+            ViewBag.SaleType_idSaleType = new SelectList(db.SaleTypes, "idSaleType", "type", sale.SaleType_idSaleType);
             return View(sale);
         }
 
@@ -72,14 +72,14 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Sale sale = db.Sale.Find(id);
+            Sale sale = db.Sales.Find(id);
             if (sale == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Customer_idCustomer = new SelectList(db.Customer, "idCustomer", "name", sale.Customer_idCustomer);
-            ViewBag.Employee_idEmployee = new SelectList(db.Employee, "idEmployee", "name", sale.Employee_idEmployee);
-            ViewBag.SaleType_idSaleType = new SelectList(db.SaleType, "idSaleType", "type", sale.SaleType_idSaleType);
+            ViewBag.Customer_idCustomer = new SelectList(db.Customers, "idCustomer", "name", sale.Customer_idCustomer);
+            ViewBag.Employee_idEmployee = new SelectList(db.Employees, "idEmployee", "name", sale.Employee_idEmployee);
+            ViewBag.SaleType_idSaleType = new SelectList(db.SaleTypes, "idSaleType", "type", sale.SaleType_idSaleType);
             return View(sale);
         }
 
@@ -96,9 +96,9 @@ namespace bikevision.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Customer_idCustomer = new SelectList(db.Customer, "idCustomer", "name", sale.Customer_idCustomer);
-            ViewBag.Employee_idEmployee = new SelectList(db.Employee, "idEmployee", "name", sale.Employee_idEmployee);
-            ViewBag.SaleType_idSaleType = new SelectList(db.SaleType, "idSaleType", "type", sale.SaleType_idSaleType);
+            ViewBag.Customer_idCustomer = new SelectList(db.Customers, "idCustomer", "name", sale.Customer_idCustomer);
+            ViewBag.Employee_idEmployee = new SelectList(db.Employees, "idEmployee", "name", sale.Employee_idEmployee);
+            ViewBag.SaleType_idSaleType = new SelectList(db.SaleTypes, "idSaleType", "type", sale.SaleType_idSaleType);
             return View(sale);
         }
 
@@ -109,7 +109,7 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Sale sale = db.Sale.Find(id);
+            Sale sale = db.Sales.Find(id);
             if (sale == null)
             {
                 return HttpNotFound();
@@ -122,8 +122,8 @@ namespace bikevision.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Sale sale = db.Sale.Find(id);
-            db.Sale.Remove(sale);
+            Sale sale = db.Sales.Find(id);
+            db.Sales.Remove(sale);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

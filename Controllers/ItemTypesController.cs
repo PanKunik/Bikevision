@@ -12,12 +12,12 @@ namespace bikevision.Controllers
 {
     public class ItemTypesController : Controller
     {
-        private BikeVisionDBEntities2 db = new BikeVisionDBEntities2();
+        private bikewayDBEntities db = new bikewayDBEntities();
 
         // GET: ItemTypes
         public ActionResult Index()
         {
-            return View(db.ItemType.ToList());
+            return View(db.ItemTypes.ToList());
         }
 
         // GET: ItemTypes/Details/5
@@ -27,7 +27,7 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ItemType itemType = db.ItemType.Find(id);
+            ItemType itemType = db.ItemTypes.Find(id);
             if (itemType == null)
             {
                 return HttpNotFound();
@@ -50,7 +50,7 @@ namespace bikevision.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.ItemType.Add(itemType);
+                db.ItemTypes.Add(itemType);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ItemType itemType = db.ItemType.Find(id);
+            ItemType itemType = db.ItemTypes.Find(id);
             if (itemType == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ItemType itemType = db.ItemType.Find(id);
+            ItemType itemType = db.ItemTypes.Find(id);
             if (itemType == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace bikevision.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ItemType itemType = db.ItemType.Find(id);
-            db.ItemType.Remove(itemType);
+            ItemType itemType = db.ItemTypes.Find(id);
+            db.ItemTypes.Remove(itemType);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

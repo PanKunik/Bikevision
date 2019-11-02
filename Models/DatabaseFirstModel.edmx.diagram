@@ -4,35 +4,34 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="52aeb121a7194902b867d21cef2faad2" Name="Diagram1">
-        <EntityTypeShape EntityType="BikeVisionDBModel.Administrator" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="BikeVisionDBModel.Category" Width="1.5" PointX="3.75" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BikeVisionDBModel.Customer" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BikeVisionDBModel.Employee" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BikeVisionDBModel.EmployeeInThePosition" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="BikeVisionDBModel.Item" Width="1.5" PointX="6" PointY="12.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BikeVisionDBModel.ItemType" Width="1.5" PointX="3.75" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BikeVisionDBModel.Locality" Width="1.5" PointX="1.5" PointY="13.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BikeVisionDBModel.Position" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BikeVisionDBModel.Sale" Width="1.5" PointX="6" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BikeVisionDBModel.SaleDetails" Width="1.5" PointX="8.25" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="BikeVisionDBModel.SaleType" Width="1.5" PointX="3.75" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BikeVisionDBModel.Service" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BikeVisionDBModel.ServiceType" Width="1.5" PointX="0.75" PointY="17" IsExpanded="true" />
-        <EntityTypeShape EntityType="BikeVisionDBModel.database_firewall_rules" Width="1.5" PointX="7.75" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="BikeVisionDBModel.fk_Item_Category1" ManuallyRouted="false" />
-        <AssociationConnector Association="BikeVisionDBModel.fk_Customer_Locality1" ManuallyRouted="false" />
-        <AssociationConnector Association="BikeVisionDBModel.fk_Sale_Customer1" ManuallyRouted="false" />
-        <AssociationConnector Association="BikeVisionDBModel.fk_Service_Customer1" ManuallyRouted="false" />
-        <AssociationConnector Association="BikeVisionDBModel.fk_EmployeeInThePosition_Employee1" ManuallyRouted="false" />
-        <AssociationConnector Association="BikeVisionDBModel.fk_Sale_Employee1" ManuallyRouted="false" />
-        <AssociationConnector Association="BikeVisionDBModel.fk_Service_Employee1" ManuallyRouted="false" />
-        <AssociationConnector Association="BikeVisionDBModel.fk_EmployeeInThePosition_Position1" ManuallyRouted="false" />
-        <AssociationConnector Association="BikeVisionDBModel.fk_Item_ItemType1" ManuallyRouted="false" />
-        <AssociationConnector Association="BikeVisionDBModel.fk_SaleDetails_Item1" ManuallyRouted="false" />
-        <AssociationConnector Association="BikeVisionDBModel.fk_Sale_SaleType1" ManuallyRouted="false" />
-        <AssociationConnector Association="BikeVisionDBModel.fk_SaleDetails_Sale1" ManuallyRouted="false" />
-        <AssociationConnector Association="BikeVisionDBModel.fk_Service_ServiceType1" ManuallyRouted="false" />
+      <Diagram DiagramId="df86a9a81e3a4999a6dfafa8f1b1d984" Name="Diagram1">
+        <EntityTypeShape EntityType="bikewayDBModel.Administrator" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="bikewayDBModel.Category" Width="1.5" PointX="3.75" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="bikewayDBModel.Customer" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="bikewayDBModel.Employee" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="bikewayDBModel.EmployeeInThePosition" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="bikewayDBModel.Item" Width="1.5" PointX="6" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="bikewayDBModel.ItemType" Width="1.5" PointX="3.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bikewayDBModel.Locality" Width="1.5" PointX="1.5" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="bikewayDBModel.Position" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="bikewayDBModel.Sale" Width="1.5" PointX="6" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="bikewayDBModel.SaleDetail" Width="1.5" PointX="8.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="bikewayDBModel.SaleType" Width="1.5" PointX="3.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="bikewayDBModel.Service" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bikewayDBModel.ServiceType" Width="1.5" PointX="0.75" PointY="17" IsExpanded="true" />
+        <AssociationConnector Association="bikewayDBModel.fk_Item_Category1" ManuallyRouted="false" />
+        <AssociationConnector Association="bikewayDBModel.fk_Customer_Locality1" ManuallyRouted="false" />
+        <AssociationConnector Association="bikewayDBModel.fk_Sale_Customer1" ManuallyRouted="false" />
+        <AssociationConnector Association="bikewayDBModel.fk_Service_Customer1" ManuallyRouted="false" />
+        <AssociationConnector Association="bikewayDBModel.fk_EmployeeInThePosition_Employee1" ManuallyRouted="false" />
+        <AssociationConnector Association="bikewayDBModel.fk_Sale_Employee1" ManuallyRouted="false" />
+        <AssociationConnector Association="bikewayDBModel.fk_Service_Employee1" ManuallyRouted="false" />
+        <AssociationConnector Association="bikewayDBModel.fk_EmployeeInThePosition_Position1" ManuallyRouted="false" />
+        <AssociationConnector Association="bikewayDBModel.fk_Item_ItemType1" ManuallyRouted="false" />
+        <AssociationConnector Association="bikewayDBModel.fk_SaleDetails_Item1" ManuallyRouted="false" />
+        <AssociationConnector Association="bikewayDBModel.fk_Sale_SaleType1" ManuallyRouted="false" />
+        <AssociationConnector Association="bikewayDBModel.fk_SaleDetails_Sale1" ManuallyRouted="false" />
+        <AssociationConnector Association="bikewayDBModel.fk_Service_ServiceType1" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

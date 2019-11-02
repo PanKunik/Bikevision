@@ -12,13 +12,13 @@ namespace bikevision.Controllers
 {
     public class ServicesController : Controller
     {
-        private BikeVisionDBEntities2 db = new BikeVisionDBEntities2();
+        private bikewayDBEntities db = new bikewayDBEntities();
 
         // GET: Services
         public ActionResult Index()
         {
-            var service = db.Service.Include(s => s.Customer).Include(s => s.Employee).Include(s => s.ServiceType);
-            return View(service.ToList());
+            var services = db.Services.Include(s => s.Customer).Include(s => s.Employee).Include(s => s.ServiceType);
+            return View(services.ToList());
         }
 
         // GET: Services/Details/5
@@ -28,7 +28,7 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Service service = db.Service.Find(id);
+            Service service = db.Services.Find(id);
             if (service == null)
             {
                 return HttpNotFound();
@@ -39,9 +39,9 @@ namespace bikevision.Controllers
         // GET: Services/Create
         public ActionResult Create()
         {
-            ViewBag.Customer_idCustomer = new SelectList(db.Customer, "idCustomer", "name");
-            ViewBag.Employee_idEmployee = new SelectList(db.Employee, "idEmployee", "name");
-            ViewBag.ServiceType_idServiceType = new SelectList(db.ServiceType, "idServiceType", "type");
+            ViewBag.Customer_idCustomer = new SelectList(db.Customers, "idCustomer", "name");
+            ViewBag.Employee_idEmployee = new SelectList(db.Employees, "idEmployee", "name");
+            ViewBag.ServiceType_idServiceType = new SelectList(db.ServiceTypes, "idServiceType", "type");
             return View();
         }
 
@@ -54,14 +54,14 @@ namespace bikevision.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Service.Add(service);
+                db.Services.Add(service);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Customer_idCustomer = new SelectList(db.Customer, "idCustomer", "name", service.Customer_idCustomer);
-            ViewBag.Employee_idEmployee = new SelectList(db.Employee, "idEmployee", "name", service.Employee_idEmployee);
-            ViewBag.ServiceType_idServiceType = new SelectList(db.ServiceType, "idServiceType", "type", service.ServiceType_idServiceType);
+            ViewBag.Customer_idCustomer = new SelectList(db.Customers, "idCustomer", "name", service.Customer_idCustomer);
+            ViewBag.Employee_idEmployee = new SelectList(db.Employees, "idEmployee", "name", service.Employee_idEmployee);
+            ViewBag.ServiceType_idServiceType = new SelectList(db.ServiceTypes, "idServiceType", "type", service.ServiceType_idServiceType);
             return View(service);
         }
 
@@ -72,14 +72,14 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Service service = db.Service.Find(id);
+            Service service = db.Services.Find(id);
             if (service == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Customer_idCustomer = new SelectList(db.Customer, "idCustomer", "name", service.Customer_idCustomer);
-            ViewBag.Employee_idEmployee = new SelectList(db.Employee, "idEmployee", "name", service.Employee_idEmployee);
-            ViewBag.ServiceType_idServiceType = new SelectList(db.ServiceType, "idServiceType", "type", service.ServiceType_idServiceType);
+            ViewBag.Customer_idCustomer = new SelectList(db.Customers, "idCustomer", "name", service.Customer_idCustomer);
+            ViewBag.Employee_idEmployee = new SelectList(db.Employees, "idEmployee", "name", service.Employee_idEmployee);
+            ViewBag.ServiceType_idServiceType = new SelectList(db.ServiceTypes, "idServiceType", "type", service.ServiceType_idServiceType);
             return View(service);
         }
 
@@ -96,9 +96,9 @@ namespace bikevision.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Customer_idCustomer = new SelectList(db.Customer, "idCustomer", "name", service.Customer_idCustomer);
-            ViewBag.Employee_idEmployee = new SelectList(db.Employee, "idEmployee", "name", service.Employee_idEmployee);
-            ViewBag.ServiceType_idServiceType = new SelectList(db.ServiceType, "idServiceType", "type", service.ServiceType_idServiceType);
+            ViewBag.Customer_idCustomer = new SelectList(db.Customers, "idCustomer", "name", service.Customer_idCustomer);
+            ViewBag.Employee_idEmployee = new SelectList(db.Employees, "idEmployee", "name", service.Employee_idEmployee);
+            ViewBag.ServiceType_idServiceType = new SelectList(db.ServiceTypes, "idServiceType", "type", service.ServiceType_idServiceType);
             return View(service);
         }
 
@@ -109,7 +109,7 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Service service = db.Service.Find(id);
+            Service service = db.Services.Find(id);
             if (service == null)
             {
                 return HttpNotFound();
@@ -122,8 +122,8 @@ namespace bikevision.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Service service = db.Service.Find(id);
-            db.Service.Remove(service);
+            Service service = db.Services.Find(id);
+            db.Services.Remove(service);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

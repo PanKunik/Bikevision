@@ -17,7 +17,7 @@ namespace bikevision.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Sale()
         {
-            this.SaleDetails = new HashSet<SaleDetails>();
+            this.SaleDetails = new HashSet<SaleDetail>();
         }
     
         public int idSale { get; set; }
@@ -31,6 +31,6 @@ namespace bikevision.Models
         public virtual Employee Employee { get; set; }
         public virtual SaleType SaleType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SaleDetails> SaleDetails { get; set; }
+        public virtual ICollection<SaleDetail> SaleDetails { get; set; }
     }
 }
