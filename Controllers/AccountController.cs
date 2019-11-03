@@ -29,7 +29,8 @@ namespace bikevision.Controllers
         public async Task<string> AddUser()
         {
             ApplicationUser user;
-            ApplicationUserStore Store = new ApplicationUserStore(new ApplicationDbContext());
+            ApplicationDbContext context = new ApplicationDbContext();
+            ApplicationUserStore Store = new ApplicationUserStore(context);
             ApplicationUserManager userManager = new ApplicationUserManager(Store);
             user = new ApplicationUser
             {
