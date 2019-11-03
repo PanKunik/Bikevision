@@ -30,7 +30,7 @@
 
 .text-size-big {font-size: 64px;}
 
-.max-width-60 {max-width: 60%;}
+.border-bottom--black {border-bottom: 1px solid black;}
 
 /*  End single property classes  */
 
@@ -154,6 +154,10 @@ a#shop-link {
 
     /*  For Bootstrap 4 'default' and 'sm'  breakpoint  */
     @media (min-width: 0px) {
+        .border-top--black {
+            border-top: 1px solid black;
+        }
+
         .hidden-x {
             overflow-x: hidden;
         }
@@ -220,6 +224,9 @@ a#shop-link {
 
     /*  For Bootstrap 4 'md' breakpoint  */ 
     @media (min-width: 768px) {
+        .border-top--black {
+            border-top: none;
+        }
         .text-size-md-big {
             font-size: 64px;
         }
@@ -383,3 +390,73 @@ a#shop-link {
     }
 
 /*  End Index page classes  */
+
+/*  Shopping cart elements  */
+
+.shopping-cart__product-image {
+    width: 100%;
+    max-width: 100px;
+    max-height: 100px;
+    height: auto;
+}
+
+.shopping-cart__trash-button {
+    border-radius: 5px;
+    border: none;
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+    padding: 3px;
+    line-height: 15px;
+    font-weight: bold;
+    color: white;
+    background-color: black;
+}
+
+    .shopping-cart__trash-button:hover {
+        background-color: #303030;
+    }
+
+    .shopping-cart__trash-button:active {
+        background-color: white;
+        color: black;
+    }
+
+.shopping-cart__quantity-button {
+    border-radius: 20px;
+    border: none;
+    max-width: 23px;
+    max-height: 23px;
+    font-size: 18px;
+    padding: 3px;
+    line-height: 15px;
+    font-weight: bold;
+    color: white;
+}
+
+
+.shopping-cart__quantity-button--green {
+    background-color: #199623;
+}
+
+    .shopping-cart__quantity-button--green:hover {
+        background-color: #1ca327;
+    }
+
+    .shopping-cart__quantity-button--green:active {
+        background-color: #126919;
+    }
+
+.shopping-cart__quantity-button--red {
+    background-color: #ac2500;
+}
+
+    .shopping-cart__quantity-button--red:hover {
+        background-color: #b72700;
+    }
+
+    .shopping-cart__quantity-button--red:active {
+        background-color: #581300;
+    }
+
+/*  End shopping cart elements  */

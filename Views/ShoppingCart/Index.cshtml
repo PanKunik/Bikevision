@@ -16,7 +16,7 @@
 
     <h2 class="px-0"> Twój koszyk </h2>
 
-    <header class="row py-2 font-weight-bold d-none d-md-flex">
+    <header class="border-bottom--black row py-2 font-weight-bold d-none d-md-flex">
         <div class="col-5 col-lg-1">Produkt</div>
         <div class="d-none d-lg-block col-lg-4">Nazwa</div>
         <div class="col-2">Cena</div>
@@ -25,38 +25,42 @@
         <div class="col-1">Usuń</div>
     </header>
 
-    <article class="row py-2 flex-wrap align-content-stretch align-items-center">
-        <div class="col-12 col-lg-1"><img src="" alt="obrazek" /></div>
+    <article class="border-top--black border-bottom--black row py-2 flex-wrap align-content-stretch align-items-center">
+        <div class="col-12 col-lg-1"><img src="~/Content/Images/Shop/siodelko_1.jpg" class="shopping-cart__product-image" alt="obrazek" /></div>
         <h6 class="col-12 col-md-5 col-lg-4">Rama rowerowa Dartmoor Hornet 2016</h6>
         <div class="col-4 col-md-2">1107.00 zł</div>
-        <div class="col-4 col-md-2 text-center">
-            <button class="m-auto">+</button>
-            <p class="m-0 text-center">x<span>1</span></p>
-            <button>-</button>
+        <div class="row mx-0 col-4 col-md-2 text-center">
+            <button class="col-4 col-md-12 order-3 order-md-1 m-auto shopping-cart__quantity-button shopping-cart__quantity-button--green">+</button>
+            <p class="col-4 col-md-12 order-2 m-0 order-md-2 text-center font-weight-bold">1</p>
+            <button class="col-4 col-md-12 order-1 order-md-3 m-auto shopping-cart__quantity-button shopping-cart__quantity-button--red">-</button>
         </div>
         <div class="col-4 col-md-2">1107.02 zł</div>
-        <div class="col-12 col-md-1"><button>D</button></div>
+        <div class="col-12 col-md-1"><button class="shopping-cart__trash-button"><i class="fas fa-trash"></i></button></div>
     </article>
 
-    <section class="row pt-3">
-        <div class="col-6">
+    <section class="border-bottom--black row py-2">
+        <div class="col-6 font-weight-bold text-size-small">
             Kod rabatowy
         </div>
         <div class="col-6">
             <div class="row">
-                <p class="col-12 col-lg-6"> Razem (brutto) </p>
-                <p class="col-12 col-lg-6"> 151512 zł </p>
+                <p class="col-12 col-md-6 font-weight-bold"> Razem (brutto): </p>
+                <p class="col-12 col-md-6 "> 151512 zł </p>
             </div>
             <div class="row">
-                <p class="col-12 col-lg-6"> Razem  </p>
-                <p class="col-12 col-lg-6"> 12215454 zł  </p>
+                <p class="col-12 col-md-6 text-size-small font-weight-bold"> Rabat:  </p>
+                <p class="col-12 col-md-6 text-size-small"> -0,00 zł  </p>
+            </div>
+            <div class="row">
+                <p class="col-12 col-md-6 text-size-small font-weight-bold"> Razem:  </p>
+                <p class="col-12 col-md-6 text-size-small"> 12215454 zł  </p>
             </div>
         </div>
     </section>
 
-    <section class="row pt-3">
+    <section class="border-bottom--black row py-2">
         <div class="col-12 col-md-6">
-            <p>Wybierz sposób dostawy:</p>
+            <p class="font-weight-bold text-size-small">Wybierz sposób dostawy:</p>
             <p>Poczta Polska</p>
             <p>Kurier DPD</p>
         </div>
@@ -70,11 +74,11 @@
                 <p class="col-6">10.99 zł </p>
             </div>
             <div class="row">
-                <p class="col-6">Razem do zapłaty</p>
-                <p class="col-6">12215464.99 zł</p>
+                <p class="col-6 font-weight-bold text-size-small">Razem do zapłaty:</p>
+                <p class="col-6 font-weight-bold text-size-small">12215464.99 zł</p>
             </div>
         </div>
     </section>
 
-    <a class="float-lg-right text-light btn btn-primary pt-1">Przejdź dalej</a>
+    <a class="mt-2 float-lg-right text-light btn btn-primary pt-1">Przejdź dalej</a>
 </section>
