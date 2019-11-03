@@ -1,0 +1,21 @@
+﻿using bikevision.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
+
+namespace bikevision
+{
+    public class ApplicationUserStore : UserStore<ApplicationUser>
+    {
+        public ApplicationUserStore(ApplicationDbContext context) : base(context)
+        {
+
+        }
+    }
+    public class ApplicationUserManager : UserManager<ApplicationUser>
+    {
+        public ApplicationUserManager(IUserStore<ApplicationUser> store) : base(store)
+        {
+
+        }
+    }
+}
