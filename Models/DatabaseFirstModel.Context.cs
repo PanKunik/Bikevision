@@ -25,7 +25,6 @@ namespace bikevision.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Administrator> Administrators { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
@@ -39,5 +38,11 @@ namespace bikevision.Models
         public virtual DbSet<SaleType> SaleTypes { get; set; }
         public virtual DbSet<Service> Services { get; set; }
         public virtual DbSet<ServiceType> ServiceTypes { get; set; }
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<Administrator> Administrators { get; set; }
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
     }
 }

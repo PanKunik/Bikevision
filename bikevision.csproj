@@ -185,10 +185,25 @@
     <Compile Include="Models\Administrator.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AspNetRole.cs">
+      <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUser.cs">
+      <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserClaim.cs">
+      <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserLogin.cs">
+      <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Category.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs">
+      <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DatabaseFirstModel.Context.cs">

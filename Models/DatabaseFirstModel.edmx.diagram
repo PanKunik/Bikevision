@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="df86a9a81e3a4999a6dfafa8f1b1d984" Name="Diagram1">
-        <EntityTypeShape EntityType="bikewayDBModel.Administrator" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="bikewayDBModel.Category" Width="1.5" PointX="3.75" PointY="12.5" IsExpanded="true" />
         <EntityTypeShape EntityType="bikewayDBModel.Customer" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
         <EntityTypeShape EntityType="bikewayDBModel.Employee" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
@@ -32,6 +31,15 @@
         <AssociationConnector Association="bikewayDBModel.fk_Sale_SaleType1" ManuallyRouted="false" />
         <AssociationConnector Association="bikewayDBModel.fk_SaleDetails_Sale1" ManuallyRouted="false" />
         <AssociationConnector Association="bikewayDBModel.fk_Service_ServiceType1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="bikewayDBModel.C__MigrationHistory" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="bikewayDBModel.Administrator" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="bikewayDBModel.AspNetRole" Width="1.5" PointX="9.5" PointY="10" />
+        <EntityTypeShape EntityType="bikewayDBModel.AspNetUserClaim" Width="1.5" PointX="14" PointY="8.5" />
+        <EntityTypeShape EntityType="bikewayDBModel.AspNetUserLogin" Width="1.5" PointX="14" PointY="11.25" />
+        <EntityTypeShape EntityType="bikewayDBModel.AspNetUser" Width="1.5" PointX="11.75" PointY="8.875" />
+        <AssociationConnector Association="bikewayDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="bikewayDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="bikewayDBModel.AspNetUserRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
