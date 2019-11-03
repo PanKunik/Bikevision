@@ -21,20 +21,6 @@ namespace bikevision.Controllers
         }
 
         // GET: /Account/Login
-        public ActionResult Logined()
-        {
-            return View();
-        }
-
-        // GET: /Account/SignUp
-        public ActionResult SignUp()
-        {
-            return View();
-        }
-
-        //New 
-
-        // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -71,9 +57,10 @@ namespace bikevision.Controllers
                     return View(model);
             }
         }
+
         // GET: /Account/Register
         [AllowAnonymous]
-        public ActionResult Register()
+        public ActionResult SignUp()
         {
             return View();
         }
@@ -82,7 +69,7 @@ namespace bikevision.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> SignUp(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +77,7 @@ namespace bikevision.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
@@ -123,26 +110,6 @@ namespace bikevision.Controllers
             }
         }
 
-        public async Task<string> AddUser()
-        {
-            ApplicationUser user;
-            ApplicationDbContext context = new ApplicationDbContext();
-            ApplicationUserStore Store = new ApplicationUserStore(context);
-            ApplicationUserManager userManager = new ApplicationUserManager(Store);
-            user = new ApplicationUser
-            {
-                UserName = "NowyUser",
-                Email = "NowyUser@test.com"
-            };
-
-            var result = await userManager.CreateAsync(user);
-            if (!result.Succeeded)
-            {
-                return result.Errors.First();
-            }
-
-            return "User Added";
-        }
         private ActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))

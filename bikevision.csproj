@@ -430,7 +430,7 @@
     <Content Include="Views\Home\Service.cshtml" />
     <Content Include="Views\Shop\Index.cshtml" />
     <Content Include="Views\Home\Help.cshtml" />
-    <Content Include="Views\Account\Logined.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Signup.cshtml" />
     <Content Include="Views\Shared\_AccountLayout.cshtml" />
     <Content Include="Views\Shared\_ShopLayout.cshtml" />
@@ -510,10 +510,8 @@
     <Content Include="Views\Shop\Favorites.cshtml" />
     <Content Include="Views\Shop\Account.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\_LoginPartialSmallerDevices.cshtml" />
   </ItemGroup>
   <ItemGroup>

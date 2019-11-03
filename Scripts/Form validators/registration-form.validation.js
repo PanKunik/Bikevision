@@ -74,4 +74,5 @@ $(function () {
 });
 
     $('#message').restrictLength($('#max-length-element'));
+
 });

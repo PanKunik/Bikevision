@@ -1,39 +1,45 @@
-﻿@{
+﻿@model bikevision.Models.RegisterViewModel
+@{
     ViewBag.Title = "Zarejestruj się";
     Layout = "~/Views/Shared/_AccountLayout.cshtml";
 }
-
     <div class="card bg-transparent border-0">
         <header class="card-header bg-transparent border-light p-3">
             <h2> Rejestracja </h2>
         </header>
 
         <section class="card-body bg-transparent p-3">
-            <form method="post" class="d-flex flex-column">
+            @*<form method="post" class="d-flex flex-column">*@
+            @using (Html.BeginForm("SignUp", "Account", FormMethod.Post, new { @class = "d-flex flex-column", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
                 <div class="d-flex flex-column form-group mb-0">
                     <div class="input-group py-2">
                         <div class="input-group-prepend">
                             <label for="email" class="input-group-text border-0"><i class="fas fa-envelope"></i></label>
                         </div>
-                        <input data-validation-field-name="E-mail" data-validation="required email length" data-validation-error-msg="Nie wpisałeś poprawnego adresu e-mail" data-validation-length="5-50" type="email" class="form-control mw-100" name="email" id="email" placeholder="E-Mail">
+                        @*<input data-validation-field-name="E-mail" data-validation="required email length" data-validation-error-msg="Nie wpisałeś poprawnego adresu e-mail" data-validation-length="5-50" type="email" class="form-control mw-100" name="email" id="email" placeholder="E-Mail"><br />*@
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control mw-100", @data_validation_length = "5-50", @type = "email", @id = "email", @name = "email", @placeholder = "E-mail", @data_validation_field_name = "E-mail", @data_validation = "required email length", @data_validation_error_msg = "Nie wpisałeś poprawnego adresu e-mail" })
                     </div>
                 </div>
 
-                <div class="d-flex flex-column form-group mb-0">
+                @*<div class="d-flex flex-column form-group mb-0">
                     <div class="input-group py-2">
                         <div class="input-group-prepend">
                             <label for="login" class="input-group-text border-0"><i class="fas fa-user"></i></label>
                         </div>
                         <input data-validation-field-name="Login" data-validation="length" data-validation-optional-if-answered="email" data-validation-length="5-50" type="text" class="form-control mw-100" id="login" placeholder="Login">
                     </div>
-                </div>
+                </div>*@
 
                 <div class="d-flex flex-column form-group mb-0">
                     <div class="input-group py-2">
                         <div class="input-group-prepend">
                             <label for="password" class="input-group-text border-0"><i class="fas fa-key"></i></label>
                         </div>
-                        <input data-validation-field-name="Hasło" data-validation="required length" data-validation-length="8-50" type="password" class="form-control mw-100" id="password" placeholder="Hasło">
+                        @*<input data-validation-field-name="Hasło" data-validation="required length" data-validation-length="8-50" type="password" class="form-control mw-100" id="password" placeholder="Hasło">*@
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control mw-100", @data_validation_field_name = "Hasło", @data_validation = "required length", @data_validation_length = "8-50", @type = "password", @id = "password", @placeholder = "Hasło" })
+
                     </div>
                 </div>
 
@@ -42,7 +48,9 @@
                         <div class="input-group-prepend">
                             <label for="repeatPassword" class="input-group-text border-0"><i class="fas fa-key"></i></label>
                         </div>
-                        <input data-validation="required length" data-validation-length="8-50" type="password" class="form-control mw-100" id="repeatPassword" placeholder="Powtórz hasło">
+                        @*<input data-validation="required length" data-validation-length="8-50" type="password" class="form-control mw-100" id="repeatPassword" placeholder="Powtórz hasło">*@
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control mw-100", @data_validation = "required", @type = "password", @id = "repeatPassword", @placeholder = "Powtórz hasło" })
+
                     </div>
                 </div>
 
@@ -57,18 +65,21 @@
                 <div class="input-group pt-1 justify-content-end">
                     <button type="submit" id="submit" class="btn btn-primary"> Załóż konto </button>
                 </div>
-            </form>
+            }
+            @*</form>*@
         </section>
 
-        @Html.ActionLink("Zarejestruj się", "AddUser", "Account", new { area = "" }, new { @class = "nav-link" })
+        @*@Html.ActionLink("Zarejestruj się", "AddUser", "Account", new { area = "" }, new { @class = "nav-link" })*@
 
         <footer class="card-footer bg-transparent border-light p-3"></footer>
+
+        @Html.ValidationSummary("", new { @class = "text-danger" })
 
         <div id="validation-errors-container" class="form-error alert alert-danger d-none">
             <strong> Nieprawidłowe dane w formularzu! </strong>
             <ul id="errorList">
                 <li class="d-none" id="emailErrorListElement"> Bledny email </li>
-                <li class="d-none" id="loginErrorListElement"> Bledny login </li>
+                @*<li class="d-none" id="loginErrorListElement"> Bledny login </li>*@
                 <li class="d-none" id="passwordErrorListElement"> Bledne haslo </li>
                 <li class="d-none" id="repeatPasswordErrorListElement"> Bledne powtorne haslo </li>
                 <li class="d-none" id="termsErrorListElement"> Zaznacz ragulamin </li>
