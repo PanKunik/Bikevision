@@ -12,20 +12,16 @@ namespace bikevision.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Service
+    public partial class Opinion
     {
-        public int idService { get; set; }
-        public string title { get; set; }
-        public decimal price { get; set; }
-        public System.DateTime dateOfEmployment { get; set; }
-        public string description { get; set; }
-        public Nullable<System.DateTime> dateOfCompletion { get; set; }
+        public int idOpinion { get; set; }
+        public string points { get; set; }
+        public System.DateTime date { get; set; }
+        public string opinion1 { get; set; }
         public int Customer_idCustomer { get; set; }
-        public int ServiceType_idServiceType { get; set; }
-        public int Employee_idEmployee { get; set; }
+        public int Item_idItem { get; set; }
     
-        public virtual Employee Employee { get; set; }
-        public virtual ServiceType ServiceType { get; set; }
         public virtual Customer Customer { get; set; }
+        public virtual Item Item { get; set; }
     }
 }

@@ -26,14 +26,11 @@ namespace bikevision.Models
         }
     
         public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<EmployeeInThePosition> EmployeeInThePositions { get; set; }
-        public virtual DbSet<Item> Items { get; set; }
         public virtual DbSet<ItemType> ItemTypes { get; set; }
         public virtual DbSet<Locality> Localities { get; set; }
         public virtual DbSet<Position> Positions { get; set; }
-        public virtual DbSet<Sale> Sales { get; set; }
         public virtual DbSet<SaleDetail> SaleDetails { get; set; }
         public virtual DbSet<SaleType> SaleTypes { get; set; }
         public virtual DbSet<Service> Services { get; set; }
@@ -44,5 +41,13 @@ namespace bikevision.Models
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<Brand> Brands { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<Feature> Features { get; set; }
+        public virtual DbSet<FeatureValue> FeatureValues { get; set; }
+        public virtual DbSet<FeatureValueOfItem> FeatureValueOfItems { get; set; }
+        public virtual DbSet<Item> Items { get; set; }
+        public virtual DbSet<Opinion> Opinions { get; set; }
+        public virtual DbSet<Sale> Sales { get; set; }
     }
 }

@@ -17,8 +17,9 @@ namespace bikevision.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Customer()
         {
-            this.Sales = new HashSet<Sale>();
+            this.Opinions = new HashSet<Opinion>();
             this.Services = new HashSet<Service>();
+            this.Sales = new HashSet<Sale>();
         }
     
         public int idCustomer { get; set; }
@@ -31,11 +32,15 @@ namespace bikevision.Models
         public string addressOfResidence { get; set; }
         public string zipCode { get; set; }
         public int Locality_idLocality { get; set; }
+        public string AspNetUser_idAspNetUser { get; set; }
     
+        public virtual AspNetUser AspNetUser { get; set; }
         public virtual Locality Locality { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sale> Sales { get; set; }
+        public virtual ICollection<Opinion> Opinions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Service> Services { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Sale> Sales { get; set; }
     }
 }

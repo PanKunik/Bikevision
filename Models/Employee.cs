@@ -18,8 +18,8 @@ namespace bikevision.Models
         public Employee()
         {
             this.EmployeeInThePositions = new HashSet<EmployeeInThePosition>();
-            this.Sales = new HashSet<Sale>();
             this.Services = new HashSet<Service>();
+            this.Sales = new HashSet<Sale>();
         }
     
         public int idEmployee { get; set; }
@@ -31,8 +31,8 @@ namespace bikevision.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EmployeeInThePosition> EmployeeInThePositions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sale> Sales { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Service> Services { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Sale> Sales { get; set; }
     }
 }

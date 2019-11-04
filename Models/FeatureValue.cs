@@ -12,24 +12,18 @@ namespace bikevision.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Sale
+    public partial class FeatureValue
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Sale()
+        public FeatureValue()
         {
-            this.SaleDetails = new HashSet<SaleDetail>();
+            this.FeatureValueOfItems = new HashSet<FeatureValueOfItem>();
         }
     
-        public int idSale { get; set; }
-        public System.DateTime date { get; set; }
-        public int Customer_idCustomer { get; set; }
-        public int SaleType_idSaleType { get; set; }
-        public int Employee_idEmployee { get; set; }
+        public int idFeatureValue { get; set; }
+        public string featureValue1 { get; set; }
     
-        public virtual Customer Customer { get; set; }
-        public virtual Employee Employee { get; set; }
-        public virtual SaleType SaleType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SaleDetail> SaleDetails { get; set; }
+        public virtual ICollection<FeatureValueOfItem> FeatureValueOfItems { get; set; }
     }
 }

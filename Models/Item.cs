@@ -17,20 +17,31 @@ namespace bikevision.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Item()
         {
+            this.FeatureValueOfItems = new HashSet<FeatureValueOfItem>();
+            this.Opinions = new HashSet<Opinion>();
             this.SaleDetails = new HashSet<SaleDetail>();
         }
     
         public int idItem { get; set; }
         public string itemName { get; set; }
         public string itemDescription { get; set; }
+        public int avability { get; set; }
         public decimal price { get; set; }
+        public Nullable<int> discount { get; set; }
+        public Nullable<short> outlet { get; set; }
         public Nullable<double> weight { get; set; }
         public string dimensions { get; set; }
         public int ItemType_idItemType { get; set; }
         public int Category_idCategory { get; set; }
+        public int Brand_idBrand { get; set; }
     
+        public virtual Brand Brand { get; set; }
         public virtual Category Category { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FeatureValueOfItem> FeatureValueOfItems { get; set; }
         public virtual ItemType ItemType { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Opinion> Opinions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SaleDetail> SaleDetails { get; set; }
     }

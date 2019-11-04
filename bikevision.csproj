@@ -162,14 +162,19 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdministratorsController.cs" />
+    <Compile Include="Controllers\BrandsController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\EmployeesInThePositionController.cs" />
+    <Compile Include="Controllers\FeaturesController.cs" />
+    <Compile Include="Controllers\FeatureValueOfItemsController.cs" />
+    <Compile Include="Controllers\FeatureValuesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\ItemTypesController.cs" />
     <Compile Include="Controllers\LocalitiesController.cs" />
+    <Compile Include="Controllers\OpinionsController.cs" />
     <Compile Include="Controllers\PositionsController.cs" />
     <Compile Include="Controllers\SaleDetailsController.cs" />
     <Compile Include="Controllers\SalesController.cs" />
@@ -195,6 +200,9 @@
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetUserLogin.cs">
+      <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Brand.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Cart.cs" />
@@ -228,6 +236,15 @@
     <Compile Include="Models\EmployeeInThePosition.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Feature.cs">
+      <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FeatureValue.cs">
+      <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FeatureValueOfItem.cs">
+      <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Item.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
@@ -236,6 +253,9 @@
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Locality.cs">
+      <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Opinion.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Position.cs">
@@ -349,6 +369,7 @@
     <Content Include="Models\DatabaseFirstModel.edmx.diagram">
       <DependentUpon>DatabaseFirstModel.edmx</DependentUpon>
     </Content>
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Properties\PublishProfiles\bikevision - Web Deploy.pubxml" />
     <Content Include="Models\DatabaseFirstModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -516,6 +537,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Brands\" />
+    <Folder Include="Views\Features\" />
+    <Folder Include="Views\FeatureValueOfItems\" />
+    <Folder Include="Views\FeatureValues\" />
+    <Folder Include="Views\Opinions\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
