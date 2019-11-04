@@ -17,7 +17,7 @@ namespace bikevision.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-            var customers = db.Customers.Include(c => c.Locality);
+            var customers = db.Customers.Include(c => c.AspNetUser).Include(c => c.Locality);
             return View(customers.ToList());
         }
 
@@ -39,6 +39,7 @@ namespace bikevision.Controllers
         // GET: Customers/Create
         public ActionResult Create()
         {
+            ViewBag.AspNetUser_idAspNetUser = new SelectList(db.AspNetUsers, "Id", "Email");
             ViewBag.Locality_idLocality = new SelectList(db.Localities, "idLocality", "locality1");
             return View();
         }
@@ -48,7 +49,7 @@ namespace bikevision.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idCustomer,name,surname,login,hash,telephoneNumber,emailAddress,addressOfResidence,zipCode,Locality_idLocality")] Customer customer)
+        public ActionResult Create([Bind(Include = "idCustomer,name,surname,login,hash,telephoneNumber,emailAddress,addressOfResidence,zipCode,Locality_idLocality,AspNetUser_idAspNetUser")] Customer customer)
         {
             if (ModelState.IsValid)
             {
@@ -57,6 +58,7 @@ namespace bikevision.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.AspNetUser_idAspNetUser = new SelectList(db.AspNetUsers, "Id", "Email", customer.AspNetUser_idAspNetUser);
             ViewBag.Locality_idLocality = new SelectList(db.Localities, "idLocality", "locality1", customer.Locality_idLocality);
             return View(customer);
         }
@@ -73,6 +75,7 @@ namespace bikevision.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.AspNetUser_idAspNetUser = new SelectList(db.AspNetUsers, "Id", "Email", customer.AspNetUser_idAspNetUser);
             ViewBag.Locality_idLocality = new SelectList(db.Localities, "idLocality", "locality1", customer.Locality_idLocality);
             return View(customer);
         }
@@ -82,7 +85,7 @@ namespace bikevision.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idCustomer,name,surname,login,hash,telephoneNumber,emailAddress,addressOfResidence,zipCode,Locality_idLocality")] Customer customer)
+        public ActionResult Edit([Bind(Include = "idCustomer,name,surname,login,hash,telephoneNumber,emailAddress,addressOfResidence,zipCode,Locality_idLocality,AspNetUser_idAspNetUser")] Customer customer)
         {
             if (ModelState.IsValid)
             {
@@ -90,6 +93,7 @@ namespace bikevision.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.AspNetUser_idAspNetUser = new SelectList(db.AspNetUsers, "Id", "Email", customer.AspNetUser_idAspNetUser);
             ViewBag.Locality_idLocality = new SelectList(db.Localities, "idLocality", "locality1", customer.Locality_idLocality);
             return View(customer);
         }

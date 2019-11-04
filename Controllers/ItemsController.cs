@@ -17,7 +17,7 @@ namespace bikevision.Controllers
         // GET: Items
         public ActionResult Index()
         {
-            var items = db.Items.Include(i => i.Category).Include(i => i.ItemType);
+            var items = db.Items.Include(i => i.Brand).Include(i => i.Category).Include(i => i.ItemType);
             return View(items.ToList());
         }
 
@@ -39,6 +39,7 @@ namespace bikevision.Controllers
         // GET: Items/Create
         public ActionResult Create()
         {
+            ViewBag.Brand_idBrand = new SelectList(db.Brands, "idBrand", "Brand1");
             ViewBag.Category_idCategory = new SelectList(db.Categories, "idCategory", "category1");
             ViewBag.ItemType_idItemType = new SelectList(db.ItemTypes, "idItemType", "type");
             return View();
@@ -49,7 +50,7 @@ namespace bikevision.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idItem,itemName,itemDescription,price,weight,dimensions,ItemType_idItemType,Category_idCategory")] Item item)
+        public ActionResult Create([Bind(Include = "idItem,itemName,itemDescription,avability,price,discount,outlet,weight,dimensions,ItemType_idItemType,Category_idCategory,Brand_idBrand")] Item item)
         {
             if (ModelState.IsValid)
             {
@@ -58,6 +59,7 @@ namespace bikevision.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.Brand_idBrand = new SelectList(db.Brands, "idBrand", "Brand1", item.Brand_idBrand);
             ViewBag.Category_idCategory = new SelectList(db.Categories, "idCategory", "category1", item.Category_idCategory);
             ViewBag.ItemType_idItemType = new SelectList(db.ItemTypes, "idItemType", "type", item.ItemType_idItemType);
             return View(item);
@@ -75,6 +77,7 @@ namespace bikevision.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Brand_idBrand = new SelectList(db.Brands, "idBrand", "Brand1", item.Brand_idBrand);
             ViewBag.Category_idCategory = new SelectList(db.Categories, "idCategory", "category1", item.Category_idCategory);
             ViewBag.ItemType_idItemType = new SelectList(db.ItemTypes, "idItemType", "type", item.ItemType_idItemType);
             return View(item);
@@ -85,7 +88,7 @@ namespace bikevision.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idItem,itemName,itemDescription,price,weight,dimensions,ItemType_idItemType,Category_idCategory")] Item item)
+        public ActionResult Edit([Bind(Include = "idItem,itemName,itemDescription,avability,price,discount,outlet,weight,dimensions,ItemType_idItemType,Category_idCategory,Brand_idBrand")] Item item)
         {
             if (ModelState.IsValid)
             {
@@ -93,6 +96,7 @@ namespace bikevision.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.Brand_idBrand = new SelectList(db.Brands, "idBrand", "Brand1", item.Brand_idBrand);
             ViewBag.Category_idCategory = new SelectList(db.Categories, "idCategory", "category1", item.Category_idCategory);
             ViewBag.ItemType_idItemType = new SelectList(db.ItemTypes, "idItemType", "type", item.ItemType_idItemType);
             return View(item);

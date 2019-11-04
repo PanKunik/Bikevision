@@ -10,18 +10,18 @@ using bikevision.Models;
 
 namespace bikevision.Controllers
 {
-    public class EmployeesInThePositionController : Controller
+    public class EmployeeInThePositionsController : Controller
     {
         private bikewayDBEntities db = new bikewayDBEntities();
 
-        // GET: EmployeesInThePosition
+        // GET: EmployeeInThePositions
         public ActionResult Index()
         {
             var employeeInThePositions = db.EmployeeInThePositions.Include(e => e.Employee).Include(e => e.Position);
             return View(employeeInThePositions.ToList());
         }
 
-        // GET: EmployeesInThePosition/Details/5
+        // GET: EmployeeInThePositions/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,7 +36,7 @@ namespace bikevision.Controllers
             return View(employeeInThePosition);
         }
 
-        // GET: EmployeesInThePosition/Create
+        // GET: EmployeeInThePositions/Create
         public ActionResult Create()
         {
             ViewBag.Employee_idEmployee = new SelectList(db.Employees, "idEmployee", "name");
@@ -44,7 +44,7 @@ namespace bikevision.Controllers
             return View();
         }
 
-        // POST: EmployeesInThePosition/Create
+        // POST: EmployeeInThePositions/Create
         // Aby zapewnić ochronę przed atakami polegającymi na przesyłaniu dodatkowych danych, włącz określone właściwości, z którymi chcesz utworzyć powiązania.
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -63,7 +63,7 @@ namespace bikevision.Controllers
             return View(employeeInThePosition);
         }
 
-        // GET: EmployeesInThePosition/Edit/5
+        // GET: EmployeeInThePositions/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -80,7 +80,7 @@ namespace bikevision.Controllers
             return View(employeeInThePosition);
         }
 
-        // POST: EmployeesInThePosition/Edit/5
+        // POST: EmployeeInThePositions/Edit/5
         // Aby zapewnić ochronę przed atakami polegającymi na przesyłaniu dodatkowych danych, włącz określone właściwości, z którymi chcesz utworzyć powiązania.
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -98,7 +98,7 @@ namespace bikevision.Controllers
             return View(employeeInThePosition);
         }
 
-        // GET: EmployeesInThePosition/Delete/5
+        // GET: EmployeeInThePositions/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -113,7 +113,7 @@ namespace bikevision.Controllers
             return View(employeeInThePosition);
         }
 
-        // POST: EmployeesInThePosition/Delete/5
+        // POST: EmployeeInThePositions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

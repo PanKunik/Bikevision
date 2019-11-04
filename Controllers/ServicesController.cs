@@ -17,7 +17,7 @@ namespace bikevision.Controllers
         // GET: Services
         public ActionResult Index()
         {
-            var services = db.Services.Include(s => s.Customer).Include(s => s.Employee).Include(s => s.ServiceType);
+            var services = db.Services.Include(s => s.Employee).Include(s => s.ServiceType).Include(s => s.Customer);
             return View(services.ToList());
         }
 
@@ -39,9 +39,9 @@ namespace bikevision.Controllers
         // GET: Services/Create
         public ActionResult Create()
         {
-            ViewBag.Customer_idCustomer = new SelectList(db.Customers, "idCustomer", "name");
             ViewBag.Employee_idEmployee = new SelectList(db.Employees, "idEmployee", "name");
             ViewBag.ServiceType_idServiceType = new SelectList(db.ServiceTypes, "idServiceType", "type");
+            ViewBag.Customer_idCustomer = new SelectList(db.Customers, "idCustomer", "name");
             return View();
         }
 
@@ -59,9 +59,9 @@ namespace bikevision.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Customer_idCustomer = new SelectList(db.Customers, "idCustomer", "name", service.Customer_idCustomer);
             ViewBag.Employee_idEmployee = new SelectList(db.Employees, "idEmployee", "name", service.Employee_idEmployee);
             ViewBag.ServiceType_idServiceType = new SelectList(db.ServiceTypes, "idServiceType", "type", service.ServiceType_idServiceType);
+            ViewBag.Customer_idCustomer = new SelectList(db.Customers, "idCustomer", "name", service.Customer_idCustomer);
             return View(service);
         }
 
@@ -77,9 +77,9 @@ namespace bikevision.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Customer_idCustomer = new SelectList(db.Customers, "idCustomer", "name", service.Customer_idCustomer);
             ViewBag.Employee_idEmployee = new SelectList(db.Employees, "idEmployee", "name", service.Employee_idEmployee);
             ViewBag.ServiceType_idServiceType = new SelectList(db.ServiceTypes, "idServiceType", "type", service.ServiceType_idServiceType);
+            ViewBag.Customer_idCustomer = new SelectList(db.Customers, "idCustomer", "name", service.Customer_idCustomer);
             return View(service);
         }
 
@@ -96,9 +96,9 @@ namespace bikevision.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Customer_idCustomer = new SelectList(db.Customers, "idCustomer", "name", service.Customer_idCustomer);
             ViewBag.Employee_idEmployee = new SelectList(db.Employees, "idEmployee", "name", service.Employee_idEmployee);
             ViewBag.ServiceType_idServiceType = new SelectList(db.ServiceTypes, "idServiceType", "type", service.ServiceType_idServiceType);
+            ViewBag.Customer_idCustomer = new SelectList(db.Customers, "idCustomer", "name", service.Customer_idCustomer);
             return View(service);
         }
 

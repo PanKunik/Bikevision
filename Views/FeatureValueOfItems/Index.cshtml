@@ -1,7 +1,8 @@
-﻿@model IEnumerable<bikevision.Models.EmployeeInThePosition>
+﻿@model IEnumerable<bikevision.Models.FeatureValueOfItem>
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_HeadingLayout.cshtml";
 }
 
 <h2>Index</h2>
@@ -12,13 +13,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.dateOfEmployment)
+            @Html.DisplayNameFor(model => model.Feature.feature1)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Employee.name)
+            @Html.DisplayNameFor(model => model.FeatureValue.featureValue1)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Position.name)
+            @Html.DisplayNameFor(model => model.Item.itemName)
         </th>
         <th></th>
     </tr>
@@ -26,13 +27,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.dateOfEmployment)
+            @Html.DisplayFor(modelItem => item.Feature.feature1)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Employee.name)
+            @Html.DisplayFor(modelItem => item.FeatureValue.featureValue1)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Position.name)
+            @Html.DisplayFor(modelItem => item.Item.itemName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

@@ -50,7 +50,7 @@ namespace bikevision.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idSale,date,value,Customer_idCustomer,SaleType_idSaleType,Employee_idEmployee")] Sale sale)
+        public ActionResult Create([Bind(Include = "idSale,date,Customer_idCustomer,SaleType_idSaleType,Employee_idEmployee")] Sale sale)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +88,7 @@ namespace bikevision.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idSale,date,value,Customer_idCustomer,SaleType_idSaleType,Employee_idEmployee")] Sale sale)
+        public ActionResult Edit([Bind(Include = "idSale,date,Customer_idCustomer,SaleType_idSaleType,Employee_idEmployee")] Sale sale)
         {
             if (ModelState.IsValid)
             {

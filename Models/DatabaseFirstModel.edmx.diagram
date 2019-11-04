@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="df86a9a81e3a4999a6dfafa8f1b1d984" Name="Diagram1" ZoomLevel="63">
+      <Diagram DiagramId="df86a9a81e3a4999a6dfafa8f1b1d984" Name="Diagram1" ZoomLevel="106">
         <EntityTypeShape EntityType="bikewayDBModel.Category" Width="1.5" PointX="5.375" PointY="12.625" IsExpanded="true" />
         <EntityTypeShape EntityType="bikewayDBModel.Employee" Width="1.5" PointX="2.375" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="bikewayDBModel.EmployeeInThePosition" Width="1.5" PointX="4.625" PointY="5.5" IsExpanded="true" />

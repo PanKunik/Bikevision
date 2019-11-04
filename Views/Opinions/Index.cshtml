@@ -1,0 +1,58 @@
+﻿@model IEnumerable<bikevision.Models.Opinion>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_HeadingLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.points)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.opinion1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Item.itemName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.points)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.opinion1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Item.itemName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idOpinion }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idOpinion }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idOpinion })
+        </td>
+    </tr>
+}
+
+</table>
