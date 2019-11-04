@@ -197,6 +197,7 @@
     <Compile Include="Models\AspNetUserLogin.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Category.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
@@ -510,9 +511,8 @@
     <Content Include="Views\Shop\Favorites.cshtml" />
     <Content Include="Views\Shop\Account.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Shared\_LoginPartialSmallerDevices.cshtml" />
+    <Content Include="Views\Account\_LoginPartial.cshtml" />
+    <Content Include="Views\Account\_LoginPartialSmallerDevices.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

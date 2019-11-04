@@ -1,84 +1,99 @@
-﻿
+﻿@using bikevision.Models;
 @{
     ViewBag.Title = "ShoppingCart";
     Layout = "~/Views/Shared/_ShopLayout.cshtml";
 }
 
+    <section class="container my-3 text-primary">
+        <nav class="px-0" aria-label="breadcrumb">
+            <ol class="breadcrumb px-0">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Kategoria</li>
+            </ol>
+        </nav>
 
-<section class="container my-3 text-primary">
-    <nav class="px-0" aria-label="breadcrumb">
-        <ol class="breadcrumb px-0">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Shop</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Kategoria</li>
-        </ol>
-    </nav>
+        @if (Session["Cart"] != null)
+        {
+            List<Cart> temp = (List<Cart>)Session["Cart"];
+            var total = temp.Sum(x => x.Quantity * x.Item.price);
 
-    <h2 class="px-0"> Twój koszyk </h2>
+            <h2 class="px-0"> Twój koszyk </h2>
 
-    <header class="border-bottom--black row py-2 font-weight-bold d-none d-md-flex">
-        <div class="col-5 col-lg-1">Produkt</div>
-        <div class="d-none d-lg-block col-lg-4">Nazwa</div>
-        <div class="col-2">Cena</div>
-        <div class="col-2 text-center">Ilość</div>
-        <div class="col-2">Razem</div>
-        <div class="col-1">Usuń</div>
-    </header>
+            <header class="border-bottom--black row py-2 font-weight-bold d-none d-md-flex">
+                <div class="col-5 col-lg-1">Produkt</div>
+                <div class="d-none d-lg-block col-lg-4">Nazwa</div>
+                <div class="col-2">Cena</div>
+                <div class="col-2 text-center">Ilość</div>
+                <div class="col-2">Razem</div>
+                <div class="col-1">Usuń</div>
+            </header>
 
-    <article class="border-top--black border-bottom--black row py-2 flex-wrap align-content-stretch align-items-center">
-        <div class="col-12 col-lg-1"><img src="~/Content/Images/Shop/siodelko_1.jpg" class="shopping-cart__product-image" alt="obrazek" /></div>
-        <h6 class="col-12 col-md-5 col-lg-4">Rama rowerowa Dartmoor Hornet 2016</h6>
-        <div class="col-4 col-md-2">1107.00 zł</div>
-        <div class="row mx-0 col-4 col-md-2 text-center">
-            <button class="col-4 col-md-12 order-3 order-md-1 m-auto shopping-cart__quantity-button shopping-cart__quantity-button--green">+</button>
-            <p class="col-4 col-md-12 order-2 m-0 order-md-2 text-center font-weight-bold">1</p>
-            <button class="col-4 col-md-12 order-1 order-md-3 m-auto shopping-cart__quantity-button shopping-cart__quantity-button--red">-</button>
-        </div>
-        <div class="col-4 col-md-2">1107.02 zł</div>
-        <div class="col-12 col-md-1"><button class="shopping-cart__trash-button"><i class="fas fa-trash"></i></button></div>
-    </article>
+            foreach (var productInCart in (List<Cart>)Session["Cart"])
+            {
+                <article class="border-top--black border-bottom--black row py-2 flex-wrap align-content-stretch align-items-center">
+                    <div class="col-12 col-lg-1"><img src="~/Content/Images/Shop/siodelko_1.jpg" class="shopping-cart__product-image" alt="obrazek" /></div>
+                    <h6 class="col-12 col-md-5 col-lg-4"> @productInCart.Item.itemName </h6>
+                    <div class="col-4 col-md-2"> @productInCart.Item.price</div>
+                    <div class="row mx-0 col-4 col-md-2 text-center">
+                        @Html.Raw(Html.ActionLink("ToReplace", "AddQuantity", "ShoppingCart", new { id = productInCart.Item.idItem, area = "" }, new { @class = "col-4 col-md-12 order-3 order-md-1 m-auto shopping-cart__quantity-button shopping-cart__quantity-button--green" }).ToHtmlString().Replace("ToReplace", "+"))
+                        @*<button class="col-4 col-md-12 order-3 order-md-1 m-auto shopping-cart__quantity-button shopping-cart__quantity-button--green">+</button>*@
+                        <p class="col-4 col-md-12 order-2 m-0 order-md-2 text-center font-weight-bold">@productInCart.Quantity</p>
+                        @Html.Raw(Html.ActionLink("ToReplace", "DecrementQuantity", "ShoppingCart", new { id = productInCart.Item.idItem, area = "" }, new { @class = "col-4 col-md-12 order-3 order-md-1 m-auto shopping-cart__quantity-button shopping-cart__quantity-button--red" }).ToHtmlString().Replace("ToReplace", "-"))
+                    </div>
+                    <div class="col-4 col-md-2">@(productInCart.Quantity * productInCart.Item.price)</div>
+                    @Html.Raw(Html.ActionLink("ToReplace", "Delete", "ShoppingCart", new { id = productInCart.Item.idItem, area = "" }, new { @class = "shopping-cart__trash-button", @onclick = "return confirm('Na pewno chcesz usunąć ten przedmiot z koszyka?');" }).ToHtmlString().Replace("ToReplace", "<i class=\"fas fa-trash\"></i>"))
+                </article>
+            }
 
-    <section class="border-bottom--black row py-2">
-        <div class="col-6 font-weight-bold text-size-small">
-            Kod rabatowy
-        </div>
-        <div class="col-6">
-            <div class="row">
-                <p class="col-12 col-md-6 font-weight-bold"> Razem (brutto): </p>
-                <p class="col-12 col-md-6 "> 151512 zł </p>
-            </div>
-            <div class="row">
-                <p class="col-12 col-md-6 text-size-small font-weight-bold"> Rabat:  </p>
-                <p class="col-12 col-md-6 text-size-small"> -0,00 zł  </p>
-            </div>
-            <div class="row">
-                <p class="col-12 col-md-6 text-size-small font-weight-bold"> Razem:  </p>
-                <p class="col-12 col-md-6 text-size-small"> 12215454 zł  </p>
-            </div>
-        </div>
+            <section class="border-bottom--black row py-2">
+                <div class="col-6 font-weight-bold text-size-small">
+                    Kod rabatowy
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        <p class="col-12 col-md-6 font-weight-bold"> Razem (brutto): </p>
+                        <p class="col-12 col-md-6 ">
+                            @total zł
+                        </p>
+                    </div>
+                    <div class="row">
+                        <p class="col-12 col-md-6 text-size-small font-weight-bold"> Rabat:  </p>
+                        <p class="col-12 col-md-6 text-size-small"> -0,00 zł  </p>
+                    </div>
+                    <div class="row">
+                        <p class="col-12 col-md-6 text-size-small font-weight-bold"> Razem:  </p>
+                        <p class="col-12 col-md-6 text-size-small"> 12215454 zł  </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="border-bottom--black row py-2">
+                <div class="col-12 col-md-6">
+                    <p class="font-weight-bold text-size-small">Wybierz sposób dostawy:</p>
+                    <p>Poczta Polska</p>
+                    <p>Kurier DPD</p>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="row">
+                        <p class="col-6">Produkty: </p>
+                        <p class="col-6">12215454 zł </p>
+                    </div>
+                    <div class="row">
+                        <p class="col-6">Koszt dostawy: </p>
+                        <p class="col-6">10.99 zł </p>
+                    </div>
+                    <div class="row">
+                        <p class="col-6 font-weight-bold text-size-small">Razem do zapłaty:</p>
+                        <p class="col-6 font-weight-bold text-size-small">12215464.99 zł</p>
+                    </div>
+                </div>
+            </section>
+
+            <a class="mt-2 float-lg-right text-light btn btn-primary pt-1">Przejdź dalej</a>
+        }
+        else
+        {
+            <h4> Twój koszyk jest pusty! </h4>
+        }
     </section>
-
-    <section class="border-bottom--black row py-2">
-        <div class="col-12 col-md-6">
-            <p class="font-weight-bold text-size-small">Wybierz sposób dostawy:</p>
-            <p>Poczta Polska</p>
-            <p>Kurier DPD</p>
-        </div>
-        <div class="col-12 col-md-6">
-            <div class="row">
-                <p class="col-6">Produkty: </p>
-                <p class="col-6">12215454 zł </p>
-            </div>
-            <div class="row">
-                <p class="col-6">Koszt dostawy: </p>
-                <p class="col-6">10.99 zł </p>
-            </div>
-            <div class="row">
-                <p class="col-6 font-weight-bold text-size-small">Razem do zapłaty:</p>
-                <p class="col-6 font-weight-bold text-size-small">12215464.99 zł</p>
-            </div>
-        </div>
-    </section>
-
-    <a class="mt-2 float-lg-right text-light btn btn-primary pt-1">Przejdź dalej</a>
-</section>

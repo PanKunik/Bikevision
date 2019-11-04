@@ -24,10 +24,10 @@ else
             <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-info dropdown-toggle"><i class="fas fa-user small-icon mr-1"></i> Twoje konto <span class="caret"></span></button>
             <ul class="dropdown-menu dropdown-menu-right bg-dark mt-2">
                 <li class="nav-item mr-0">
-                    @Html.Raw(Html.ActionLink("ToReplace", "SignUp"/*SignUp*/, "Account", new { area = "" }, new { @class = "nav-link hover-bg" }).ToHtmlString().Replace("ToReplace", "<span><i class=\"fas fa-user-circle small-icon mr-1\"></i> Zarejestruj się </span>"))
+                    @Html.Raw(Html.ActionLink("ToReplace", "SignUp", "Account", new { area = "" }, new { @class = "nav-link hover-bg" }).ToHtmlString().Replace("ToReplace", "<span><i class=\"fas fa-user-circle small-icon mr-1\"></i> Zarejestruj się </span>"))
                 </li>
                 <li class="nav-item mr-0">
-                    @Html.Raw(Html.ActionLink("ToReplace", "Login"/*Logined*/, "Account", new { area = "" }, new { @class = "nav-link hover-bg" }).ToHtmlString().Replace("ToReplace", "<span><i class=\"fas fa-sign-in-alt small-icon mr-1\"></i> Zaloguj </span>"))
+                    @Html.Raw(Html.ActionLink("ToReplace", "Login", "Account", new { area = "" }, new { @class = "nav-link hover-bg" }).ToHtmlString().Replace("ToReplace", "<span><i class=\"fas fa-sign-in-alt small-icon mr-1\"></i> Zaloguj </span>"))
                 </li>
             </ul>
         </li>
