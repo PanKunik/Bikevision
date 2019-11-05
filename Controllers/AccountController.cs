@@ -24,6 +24,11 @@ namespace bikevision.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Account");
+            }
+
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -62,6 +67,11 @@ namespace bikevision.Controllers
         [AllowAnonymous]
         public ActionResult SignUp()
         {
+            if(User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Account");
+            }
+
             return View();
         }
 
