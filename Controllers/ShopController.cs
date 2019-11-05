@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Net;
 using System.Web.Mvc;
 using bikevision.Models;
 
@@ -20,9 +21,20 @@ namespace bikevision.Controllers
 
             return View(query);
         }
-        public ActionResult Product()
+
+        public ActionResult Product(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Item item = (from items in db.Items
+                         join categories in db.Categories on items.Category_idCategory equals categories.idCategory
+                         where items.idItem == id
+                         select items).First();
+
+            return View(item);
         }
         public ActionResult ProductList()
         {
@@ -32,6 +44,7 @@ namespace bikevision.Controllers
 
             return View(query);
         }
+
         public ActionResult Favorites()
         {
             return View();

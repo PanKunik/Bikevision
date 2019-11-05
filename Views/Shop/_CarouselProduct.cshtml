@@ -1,0 +1,9 @@
+﻿@model bikevision.Models.Item
+
+    <div class="shopping-card">
+        <div class="shopping-card__content">
+            <div class="shopping-card__main-column">
+                @Html.Partial("_CardContent", (bikevision.Models.Item)Model)
+            </div>
+        </div>
+    </div>
