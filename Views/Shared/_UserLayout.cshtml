@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "_UserLayout";
+    Layout = "~/Views/Shared/_ShopLayout.cshtml";
+}
+
+<h2>UserLayout</h2>
+
+    @Html.ActionLink("Dane osobowe", "PersonalData", "Account")
+    @Html.ActionLink("Zamówienia", "Orders", "Account")
+    @Html.ActionLink("Adresy", "Addresses", "Account")
+
+    @if(this.User.IsInRole("Administrator")) 
+    {
+        @Html.ActionLink("Zamówienia", "Orders", "Account")
+    }
+
+@RenderBody()

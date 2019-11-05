@@ -20,6 +20,24 @@ namespace bikevision.Controllers
             return View();
         }
 
+        // GET: /Account/PersonalData
+        public ActionResult PersonalData()
+        {
+            return View();
+        }
+
+        // GET: /Account/Addresses
+        public ActionResult Addresses()
+        {
+            return View();
+        }
+
+        // GET: /Account/Orders
+        public ActionResult Orders()
+        {
+            return View();
+        }
+
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)

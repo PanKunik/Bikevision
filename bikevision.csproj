@@ -368,7 +368,6 @@
     <Content Include="Models\DatabaseFirstModel.edmx.diagram">
       <DependentUpon>DatabaseFirstModel.edmx</DependentUpon>
     </Content>
-    <Content Include="ClassDiagram1.cd" />
     <None Include="Properties\PublishProfiles\bikevision - Web Deploy.pubxml" />
     <Content Include="Models\DatabaseFirstModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -560,6 +559,11 @@
     <Content Include="Views\Shared\_ProductCard.cshtml" />
     <Content Include="Views\Shop\_CarouselProduct.cshtml" />
     <Content Include="Views\Shop\_CardContent.cshtml" />
+    <Content Include="Views\Shared\_UserLayout.cshtml" />
+    <Content Include="Views\Account\Addresses.cshtml" />
+    <Content Include="Views\Account\PersonalData.cshtml" />
+    <Content Include="Views\Account\Orders.cshtml" />
+    <Content Include="Views\ShoppingCart\Order.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

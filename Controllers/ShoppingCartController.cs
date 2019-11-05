@@ -18,6 +18,16 @@ namespace bikevision.Controllers
         {
             return View();
         }
+        // GET: ShoppingCart/Order
+        public ActionResult Order()
+        {
+            return View();
+        }
+        // GET: ShoppingCart/Final
+        public ActionResult Final()
+        {
+            return View();
+        }
         public ActionResult OrderNow(int? id)
         {
             if(id == null)
@@ -114,14 +124,6 @@ namespace bikevision.Controllers
                 Session[sessionCartString] = null;
 
             return RedirectToAction("Index");
-        }
-        public ActionResult Order()
-        {
-            return View();
-        }
-        public ActionResult Final()
-        {
-            return View();
         }
     }
 }
