@@ -10,7 +10,7 @@ namespace bikevision.Models
     public class RegisterViewModel
     {
         [Required]
-        [EmailAddress(ErrorMessage = "Material cost is required")]
+        [EmailAddress(ErrorMessage = "Podany adres Email jest nieprawidłowy.")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 

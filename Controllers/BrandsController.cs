@@ -15,12 +15,15 @@ namespace bikevision.Controllers
         private bikewayDBEntities db = new bikewayDBEntities();
 
         // GET: Brands
+        [Authorize(Roles = "Administrator")]
         public ActionResult Index()
         {
             return View(db.Brands.ToList());
         }
 
+
         // GET: Brands/Details/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -35,6 +38,7 @@ namespace bikevision.Controllers
             return View(brand);
         }
 
+        [Authorize(Roles = "Administrator")]
         // GET: Brands/Create
         public ActionResult Create()
         {
@@ -46,6 +50,7 @@ namespace bikevision.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create([Bind(Include = "idBrand,Brand1")] Brand brand)
         {
             if (ModelState.IsValid)
@@ -58,6 +63,7 @@ namespace bikevision.Controllers
             return View(brand);
         }
 
+        [Authorize(Roles = "Administrator")]
         // GET: Brands/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -78,6 +84,7 @@ namespace bikevision.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit([Bind(Include = "idBrand,Brand1")] Brand brand)
         {
             if (ModelState.IsValid)
@@ -90,6 +97,7 @@ namespace bikevision.Controllers
         }
 
         // GET: Brands/Delete/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -106,6 +114,7 @@ namespace bikevision.Controllers
 
         // POST: Brands/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Administrator")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
@@ -115,6 +124,7 @@ namespace bikevision.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Administrator")]
         protected override void Dispose(bool disposing)
         {
             if (disposing)

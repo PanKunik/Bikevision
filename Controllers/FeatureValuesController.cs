@@ -15,12 +15,14 @@ namespace bikevision.Controllers
         private bikewayDBEntities db = new bikewayDBEntities();
 
         // GET: FeatureValues
+        [Authorize(Roles = "Administrator")]
         public ActionResult Index()
         {
             return View(db.FeatureValues.ToList());
         }
 
         // GET: FeatureValues/Details/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,6 +38,7 @@ namespace bikevision.Controllers
         }
 
         // GET: FeatureValues/Create
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create()
         {
             return View();
@@ -46,6 +49,7 @@ namespace bikevision.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create([Bind(Include = "idFeatureValue,featureValue1")] FeatureValue featureValue)
         {
             if (ModelState.IsValid)
@@ -59,6 +63,7 @@ namespace bikevision.Controllers
         }
 
         // GET: FeatureValues/Edit/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,6 +83,7 @@ namespace bikevision.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit([Bind(Include = "idFeatureValue,featureValue1")] FeatureValue featureValue)
         {
             if (ModelState.IsValid)
@@ -90,6 +96,7 @@ namespace bikevision.Controllers
         }
 
         // GET: FeatureValues/Delete/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -107,6 +114,7 @@ namespace bikevision.Controllers
         // POST: FeatureValues/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult DeleteConfirmed(int id)
         {
             FeatureValue featureValue = db.FeatureValues.Find(id);
@@ -115,6 +123,7 @@ namespace bikevision.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Administrator")]
         protected override void Dispose(bool disposing)
         {
             if (disposing)

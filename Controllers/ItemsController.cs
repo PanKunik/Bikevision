@@ -15,6 +15,7 @@ namespace bikevision.Controllers
         private bikewayDBEntities db = new bikewayDBEntities();
 
         // GET: Items
+        [Authorize(Roles = "Administrator")]
         public ActionResult Index()
         {
             var items = db.Items.Include(i => i.Brand).Include(i => i.Category).Include(i => i.ItemType);
@@ -22,6 +23,7 @@ namespace bikevision.Controllers
         }
 
         // GET: Items/Details/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +39,7 @@ namespace bikevision.Controllers
         }
 
         // GET: Items/Create
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create()
         {
             ViewBag.Brand_idBrand = new SelectList(db.Brands, "idBrand", "Brand1");
@@ -50,6 +53,7 @@ namespace bikevision.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create([Bind(Include = "idItem,itemName,itemDescription,avability,price,discount,outlet,weight,dimensions,ItemType_idItemType,Category_idCategory,Brand_idBrand")] Item item)
         {
             if (ModelState.IsValid)
@@ -66,6 +70,7 @@ namespace bikevision.Controllers
         }
 
         // GET: Items/Edit/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -88,6 +93,7 @@ namespace bikevision.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit([Bind(Include = "idItem,itemName,itemDescription,avability,price,discount,outlet,weight,dimensions,ItemType_idItemType,Category_idCategory,Brand_idBrand")] Item item)
         {
             if (ModelState.IsValid)
@@ -103,6 +109,7 @@ namespace bikevision.Controllers
         }
 
         // GET: Items/Delete/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -120,6 +127,7 @@ namespace bikevision.Controllers
         // POST: Items/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult DeleteConfirmed(int id)
         {
             Item item = db.Items.Find(id);
@@ -128,6 +136,7 @@ namespace bikevision.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Administrator")]
         protected override void Dispose(bool disposing)
         {
             if (disposing)

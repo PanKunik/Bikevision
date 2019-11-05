@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Owin;
 using Microsoft.Owin;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security.Cookies;
 
@@ -22,6 +23,5 @@ namespace bikevision
             // Aby uzyskać więcej informacji o sposobie konfigurowania aplikacji, odwiedź stronę https://go.microsoft.com/fwlink/?LinkID=316888
 
         }
-
     }
 }
