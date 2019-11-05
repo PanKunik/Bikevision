@@ -286,7 +286,6 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\EntranceStyle.css" />
     <Content Include="Content\Font Awesome 5.10.2\css\all.css" />
     <Content Include="Content\Font Awesome 5.10.2\css\all.min.css" />
     <Content Include="Content\Font Awesome 5.10.2\css\brands.css" />
@@ -462,8 +461,7 @@
     <Content Include="Views\Shop\Favorites.cshtml" />
     <Content Include="Views\Shop\Account.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Shared\_LoginPartialSmallerDevices.cshtml" />
+    <Content Include="Views\Shared\_NavbarPartial.cshtml" />
     <Content Include="Views\Administrators\Create.cshtml" />
     <Content Include="Views\Administrators\Delete.cshtml" />
     <Content Include="Views\Administrators\Details.cshtml" />

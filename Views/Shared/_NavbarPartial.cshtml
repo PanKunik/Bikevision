@@ -1,0 +1,99 @@
+﻿@* // Plik, ktory sprawdza czy jestesmy zalogowani. Jesli tak wyswietla nazwe. Jesli nie - odnosniki do logowania i rejestracji *@
+
+<div class="collapse navbar-collapse" id="navbarMainNavigation">
+    <ul class="navbar-nav nav-pils text-left mr-auto">
+        <li class="nav-item active mr-lg-1">
+            @Html.ActionLink("Strona główna", "Index", "Home", new { area = "" }, new { @class = "nav-link hover-bg" })
+        </li>
+        <li class="nav-item mr-lg-1">
+            @Html.ActionLink("Serwis", "Service", "Home", new { area = "" }, new { @class = "nav-link hover-bg" })
+        </li>
+        <li class="nav-item mr-lg-1">
+            @Html.ActionLink("Sklep", "Index", "Shop", new { area = "" }, new { @class = "nav-link hover-bg" })
+        </li>
+        <li class="nav-item mr-lg-1">
+            @Html.ActionLink("O nas", "About", "Home", new { area = "" }, new { @class = "nav-link hover-bg" })
+        </li>
+        <li class="nav-item mr-lg-1">
+            @Html.ActionLink("Pomoc", "Help", "Home", new { area = "" }, new { @class = "nav-link hover-bg" })
+        </li>
+        <li class="nav-item mr-lg-1">
+            @Html.ActionLink("Kontakt", "Contact", "Home", new { area = "" }, new { @class = "nav-link hover-bg" })
+        </li>
+
+        @using Microsoft.AspNet.Identity
+        @if (Request.IsAuthenticated)
+        {
+            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+            {
+                @Html.AntiForgeryToken()
+                <li class="nav-item d-lg-none">
+                    @Html.ActionLink("Moje zamówienia", "Orders", "Account", new { area = "" }, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item d-lg-none">
+                    @Html.ActionLink("Moje dane", "PersonalInformations", "Account", new { area = "" }, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item d-lg-none">
+                    @Html.ActionLink("Moje adresy", "Addresses", "Account", new { area = "" }, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item d-lg-none">
+                    <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Wyloguj</a>
+                </li>
+            }
+        }
+        else
+        {
+            <li class="nav-item d-lg-none">
+                @Html.ActionLink("Zaloguj", "Login", "Account", new { area = "" }, new { @class = "nav-link" })
+            </li>
+            <li class="nav-item d-lg-none">
+                @Html.ActionLink("Zarejestruj się", "SignUp", "Account", new { area = "" }, new { @class = "nav-link" })
+            </li>
+        }
+    </ul>
+
+    <ul class="d-none d-lg-block nav navbar-nav ml-auto">
+        <li class="dropdown order-1">
+            <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-info dropdown-toggle"><i class="fas fa-user small-icon mr-1"></i> @if (Request.IsAuthenticated) { <span> @String.Format("Witaj, {0}",User.Identity.GetUserName()) </span>} else { <span>Twoje konto</span> } <span class="caret"></span></button>
+            <ul class="dropdown-menu dropdown-menu-right bg-dark mt-2">
+                @if (Request.IsAuthenticated)
+                {
+                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        @*<ul class="nav navbar-nav navbar-right">
+                    <li>
+                        @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                    </li>
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                </ul>*@
+                        <li class="nav-item mr-0">
+                            @Html.Raw(Html.ActionLink("ToReplace", "Orders", "Account", new { area = "" }, new { @class = "nav-link hover-bg" }).ToHtmlString().Replace("ToReplace", "<span><i class=\"fas fa-folder-open small-icon mr-1\"></i> Moje zamówienia </span>"))
+                        </li>
+                        <li class="nav-item mr-0">
+                            @Html.Raw(Html.ActionLink("ToReplace", "PersonalInformations", "Account", new { area = "" }, new { @class = "nav-link hover-bg" }).ToHtmlString().Replace("ToReplace", "<span><i class=\"fas fa-id-badge small-icon mr-1\"></i> Moje dane </span>"))
+                        </li>
+                        <li class="nav-item mr-0">
+                            @Html.Raw(Html.ActionLink("ToReplace", "Adresses", "Account", new { area = "" }, new { @class = "nav-link hover-bg" }).ToHtmlString().Replace("ToReplace", "<span><i class=\"fas fa-address-card small-icon mr-1\"></i> Moje adresy </span>"))
+                        </li>
+                        <li class="nav-item mr-0">
+                            <a class="nav-link hover-bg" href="javascript:document.getElementById('logoutForm').submit()">
+                                <span><i class="fas fa-sign-out-alt small-icon mr-1"></i> Wyloguj </span>
+                            </a>
+                        </li>
+                    }
+                }
+                else
+                {
+                    <li class="nav-item mr-0">
+                        @Html.Raw(Html.ActionLink("ToReplace", "SignUp", "Account", new { area = "" }, new { @class = "nav-link hover-bg" }).ToHtmlString().Replace("ToReplace", "<span><i class=\"fas fa-user-circle small-icon mr-1\"></i> Zarejestruj się </span>"))
+                    </li>
+                    <li class="nav-item mr-0">
+                        @Html.Raw(Html.ActionLink("ToReplace", "Login", "Account", new { area = "" }, new { @class = "nav-link hover-bg" }).ToHtmlString().Replace("ToReplace", "<span><i class=\"fas fa-sign-in-alt small-icon mr-1\"></i> Zaloguj </span>"))
+                    </li>
+                }
+            </ul>
+        </li>
+    </ul>
+</div>
