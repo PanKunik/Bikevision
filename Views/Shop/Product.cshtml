@@ -29,11 +29,11 @@
                 {
                     <div class="d-flex flex-row">
                         <div class="product__badge-discount bg-dark text-white align-self-center"> @String.Format("-{0}%", Model.discount) </div>
-                        <div class="text-muted product__old-price align-self-center"> @String.Format("{0:C2}", Model.price) </div>
+                        <div class="text-muted product__old-price align-self-center"> @String.Format("{0:F2} zł", Model.price) </div>
                     </div>
                 }
                 <span class="text-size-big text-primary product__actual-price">
-                    @String.Format("{0:C2}", ((Model.price) - ((Model.price * Model.discount) / 100)))
+                    @String.Format("{0:F2} zł", ((Model.price) - ((Model.price * Model.discount) / 100)))
                 </span>
                 <div class="d-flex flex-row mb-2">
                     <div class="d-flex flex-column mr-1">

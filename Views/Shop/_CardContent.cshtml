@@ -13,11 +13,11 @@
     <a href="@Url.Action("Product", "Shop", new { id = Model.idItem })" class="wrapColumn wrapRow"><h3 class="shopping-card__title mb-0">@Html.DisplayFor(modelItem => Model.itemName)</h3></a>
     <hr class="shopping-card__underline wrapColumn wrapRow" />
     <div class="shopping-card__footer wrapColumn wrapRow">
-        <h3 class="shopping-card__price">@String.Format("{0:C2}", Model.price - ((Model.price * Model.discount) / 100))</h3>
+        <h3 class="shopping-card__price">@String.Format("{0:F2} zł", Model.price - ((Model.price * Model.discount) / 100))</h3>
 
         @if (Model.discount != 0)
         {
-            <h5 class="shopping-card__discount">@String.Format("{0:C2}", Model.price)</h5>
+            <h5 class="shopping-card__discount">@String.Format("{0:F2} zł", Model.price)</h5>
         }
     </div>
 </div>

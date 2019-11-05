@@ -22,7 +22,7 @@ namespace bikevision.Controllers
         {
             if(id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index", "Shop");
             }
 
             if(Session[sessionCartString] == null)
@@ -64,7 +64,7 @@ namespace bikevision.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index", "Shop");
             }
 
             List<Cart> lsCart = (List<Cart>)Session[sessionCartString];
@@ -96,14 +96,14 @@ namespace bikevision.Controllers
                     Delete(lsCart[indexOfItem].Item.idItem);
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Shop");
         }
 
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index", "Shop");
             }
             
             int indexOfItem = doseItemExistInCart(id);
