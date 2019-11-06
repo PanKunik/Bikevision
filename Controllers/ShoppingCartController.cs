@@ -33,6 +33,23 @@ namespace bikevision.Controllers
             
             return View();
         }
+
+        //Get: ShoppingCart/Order
+        //[HttpGet]
+        //public ActionResult Order()
+        //{
+        //    RedirectToAction("Shop", "Index");
+        //    return View();
+        //}
+
+        //// Get: ShoppingCart/Final
+        //[HttpGet]
+        //public ActionResult Final()
+        //{
+        //    RedirectToAction("Shop", "Index");
+        //    return View();
+        //}
+
         public ActionResult OrderNow(int? id)
         {
             if(id == null)

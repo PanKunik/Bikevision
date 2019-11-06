@@ -564,6 +564,7 @@
     <Content Include="Views\Account\PersonalData.cshtml" />
     <Content Include="Views\Account\Orders.cshtml" />
     <Content Include="Views\ShoppingCart\Order.cshtml" />
+    <Content Include="Views\ShoppingCart\Final.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

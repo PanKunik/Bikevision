@@ -6,14 +6,32 @@
 
 <h2>Order</h2>
 
-@if(Request.IsAuthenticated)
+@if (Request.IsAuthenticated)
 {
-    <p> Additional data form </p>
-    <button> Finish order </button>
+    using (Html.BeginForm("Final", "ShoppingCart", null, FormMethod.Post, new { @class = "d-flex flex-column", role = "form" }))
+    {
+        <p> Additional data form </p>
+        <button> Finish order </button>
+    }
 }
 else
 {
-    <p> Login form </p>
-    <p> Register form </p>
-    <button> Continue without account </button>
+    using (Html.BeginForm("Login", "Account", null, FormMethod.Post, new { @class = "d-flex flex-column", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <p> Login form </p>
+        <button> Login </button>
+    }
+
+    using (Html.BeginForm("SignUp", "Account", null, FormMethod.Post, new { @class = "d-flex flex-column", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <p> Register form </p>
+        <button> Register </button>
+    }
+    using (Html.BeginForm("Final", "ShoppingCart", null, FormMethod.Post, new { @class = "d-flex flex-column", role = "form" }))
+    {
+        <button> Continue without account</button>
+    }
+}
 }
