@@ -1,0 +1,43 @@
+﻿@model bikevision.Models.FeatureValueOfItem
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_HeadingLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>FeatureValueOfItem</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Feature.feature1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Feature.feature1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FeatureValue.featureValue1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FeatureValue.featureValue1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Item.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

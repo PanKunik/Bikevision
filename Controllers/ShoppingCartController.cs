@@ -61,7 +61,7 @@ namespace bikevision.Controllers
             {
                 List<Cart> lsCart = new List<Cart>
                 {
-                    //new Cart(db.Items.Find(id), 1)
+                    new Cart(db.Items.Find(id), 1)
                 };
 
                 Session[sessionCartString] = lsCart;
@@ -71,10 +71,10 @@ namespace bikevision.Controllers
                 List<Cart> lsCart = (List<Cart>)Session[sessionCartString];
                 int indexOfItem = doseItemExistInCart(id);
 
-                //if (indexOfItem == -1)
-                //    //lsCart.Add(new Cart(db.Items.Find(id), 1));
-                //else
-                //    lsCart[indexOfItem].Quantity++;
+                if (indexOfItem == -1)
+                    lsCart.Add(new Cart(db.Items.Find(id), 1));
+                else
+                            lsCart[indexOfItem].Quantity++;
 
                 Session[sessionCartString] = lsCart;
             }
@@ -84,11 +84,11 @@ namespace bikevision.Controllers
         private int doseItemExistInCart(int? id)
         {
             List<Cart> lsCart = (List<Cart>)Session[sessionCartString];
-            //for(int i = 0; i < lsCart.Count; i++)
-            //{
-            //    if (lsCart[i].Item.idItem == id)
-            //        return i;
-            //}
+            for (int i = 0; i < lsCart.Count; i++)
+            {
+                if (lsCart[i].Item.idItem == id)
+                    return i;
+            }
             return -1;
         }
 
@@ -102,10 +102,10 @@ namespace bikevision.Controllers
             List<Cart> lsCart = (List<Cart>)Session[sessionCartString];
             int indexOfItem = doseItemExistInCart(id);
 
-            //if (indexOfItem == -1)
-            //    lsCart.Add(new Cart(db.Items.Find(id), 1));
-            //else
-            //    lsCart[indexOfItem].Quantity++;
+            if (indexOfItem == -1)
+                lsCart.Add(new Cart(db.Items.Find(id), 1));
+            else
+                lsCart[indexOfItem].Quantity++;
 
             Session[sessionCartString] = lsCart;
 
@@ -115,20 +115,20 @@ namespace bikevision.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index", "Shop");
             }
 
             List<Cart> lsCart = (List<Cart>)Session[sessionCartString];
             int indexOfItem = doseItemExistInCart(id);
 
-            //if (indexOfItem != -1)
-            //{
-            //    lsCart[indexOfItem].Quantity--;
-            //    if (lsCart[indexOfItem].Quantity == 0)
-            //        Delete(lsCart[indexOfItem].Item.idItem);
-            //}
+            if (indexOfItem != -1)
+            {
+                lsCart[indexOfItem].Quantity--;
+                if (lsCart[indexOfItem].Quantity == 0)
+                    Delete(lsCart[indexOfItem].Item.idItem);
+            }
 
-            return RedirectToAction("Index", "Shop");
+            return RedirectToAction("Index");
         }
 
         public ActionResult Delete(int? id)

@@ -1,4 +1,5 @@
-﻿
+﻿@model bikevision.Models.RegisterViewModel
+
 @{
     ViewBag.Title = "Order";
     Layout = "~/Views/Shared/_ShopLayout.cshtml";
@@ -16,22 +17,19 @@
 }
 else
 {
-    using (Html.BeginForm("Login", "Account", null, FormMethod.Post, new { @class = "d-flex flex-column", role = "form" }))
+    using (Html.BeginForm("LoginForOrder", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "d-flex flex-column", role = "form" }))
     {
         @Html.AntiForgeryToken()
-        <p> Login form </p>
-        <button> Login </button>
+        @Html.Partial("_LoginForm", Model)
     }
 
-    using (Html.BeginForm("SignUp", "Account", null, FormMethod.Post, new { @class = "d-flex flex-column", role = "form" }))
+    using (Html.BeginForm("SignUp", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "d-flex flex-column", role = "form" }))
     {
         @Html.AntiForgeryToken()
-        <p> Register form </p>
-        <button> Register </button>
+        @Html.Partial("_RegistrationForm", Model)
     }
     using (Html.BeginForm("Final", "ShoppingCart", null, FormMethod.Post, new { @class = "d-flex flex-column", role = "form" }))
     {
         <button> Continue without account</button>
     }
-}
 }

@@ -8,13 +8,13 @@ namespace bikevision.Models
     public class Cart
     {
         // \\//  Add Product model
-        //public Item Item { get; set; }
-        //public int Quantity { get; set; }
+        public Item Item { get; set; }
+        public int Quantity { get; set; }
 
-        //public Cart(Item item, int quantity)
-        //{
-        //    Item = item;
-        //    Quantity = quantity;
-        //}
+        public Cart(Item item, int quantity)
+        {
+            Item = item;
+            Quantity = quantity;
+        }
     }
 }

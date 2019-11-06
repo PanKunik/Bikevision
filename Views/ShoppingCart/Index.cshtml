@@ -33,7 +33,7 @@
             {
                 <article class="border-top--black border-bottom--black row py-2 flex-wrap align-content-stretch align-items-center">
                     <div class="col-12 col-lg-1"><img src="~/Content/Images/Shop/siodelko_1.jpg" class="shopping-cart__product-image" alt="obrazek" /></div>
-                    <h6 class="col-12 col-md-5 col-lg-4"> @productInCart.Item.itemName </h6>
+                    <h6 class="col-12 col-md-5 col-lg-4"> @productInCart.Item.name </h6>
                     <div class="col-4 col-md-2"> @productInCart.Item.price</div>
                     <div class="row mx-0 col-4 col-md-2 text-center">
                         @Html.Raw(Html.ActionLink("ToReplace", "AddQuantity", "ShoppingCart", new { id = productInCart.Item.idItem, area = "" }, new { @class = "col-4 col-md-12 order-3 order-md-1 m-auto shopping-cart__quantity-button shopping-cart__quantity-button--green" }).ToHtmlString().Replace("ToReplace", "+"))

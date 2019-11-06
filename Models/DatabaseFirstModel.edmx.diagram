@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="df86a9a81e3a4999a6dfafa8f1b1d984" Name="Diagram1" ZoomLevel="80">
+      <Diagram DiagramId="df86a9a81e3a4999a6dfafa8f1b1d984" Name="Diagram1" ZoomLevel="52">
         <EntityTypeShape EntityType="bikewayDBModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="6.75" />
         <EntityTypeShape EntityType="bikewayDBModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" />
         <EntityTypeShape EntityType="bikewayDBModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="3.625" />
@@ -13,6 +13,45 @@
         <AssociationConnector Association="bikewayDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="bikewayDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="bikewayDBModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="bikewayDBModel.Brand" Width="1.5" PointX="3.375" PointY="7.375" />
+        <EntityTypeShape EntityType="bikewayDBModel.Category" Width="1.5" PointX="3.375" PointY="10.5" />
+        <EntityTypeShape EntityType="bikewayDBModel.Customer" Width="1.5" PointX="5.625" PointY="16.5" />
+        <EntityTypeShape EntityType="bikewayDBModel.Employee" Width="1.5" PointX="3.375" PointY="21.875" />
+        <EntityTypeShape EntityType="bikewayDBModel.EmployeeInThePosition" Width="1.5" PointX="8.625" PointY="23.125" />
+        <EntityTypeShape EntityType="bikewayDBModel.Feature" Width="1.5" PointX="5.625" PointY="6.375" />
+        <EntityTypeShape EntityType="bikewayDBModel.FeatureValue" Width="1.5" PointX="5.625" PointY="26.75" />
+        <EntityTypeShape EntityType="bikewayDBModel.FeatureValueOfItem" Width="1.5" PointX="7.875" PointY="13.25" />
+        <EntityTypeShape EntityType="bikewayDBModel.Item" Width="1.5" PointX="5.625" PointY="9.125" />
+        <EntityTypeShape EntityType="bikewayDBModel.ItemType" Width="1.5" PointX="3.375" PointY="13.75" />
+        <EntityTypeShape EntityType="bikewayDBModel.Locality" Width="1.5" PointX="3.375" PointY="17.5" />
+        <EntityTypeShape EntityType="bikewayDBModel.Opinion" Width="1.5" PointX="7.875" PointY="7" />
+        <EntityTypeShape EntityType="bikewayDBModel.Position" Width="1.5" PointX="6.375" PointY="32.375" />
+        <EntityTypeShape EntityType="bikewayDBModel.Sale" Width="1.5" PointX="5.625" PointY="23" />
+        <EntityTypeShape EntityType="bikewayDBModel.SaleDetail" Width="1.5" PointX="7.875" PointY="10.375" />
+        <EntityTypeShape EntityType="bikewayDBModel.SaleType" Width="1.5" PointX="3.375" PointY="25.25" />
+        <EntityTypeShape EntityType="bikewayDBModel.Service" Width="1.5" PointX="7.875" PointY="18.75" />
+        <EntityTypeShape EntityType="bikewayDBModel.ServiceType" Width="1.5" PointX="5.625" PointY="29.625" />
+        <AssociationConnector Association="bikewayDBModel.fk_Customer_AspNetUsers1" />
+        <AssociationConnector Association="bikewayDBModel.fk_Employee_AspNetUsers1" />
+        <AssociationConnector Association="bikewayDBModel.fk_Item_Brand1" />
+        <AssociationConnector Association="bikewayDBModel.fk_Item_Category1" />
+        <AssociationConnector Association="bikewayDBModel.fk_Customer_Locality1" />
+        <AssociationConnector Association="bikewayDBModel.fk_Opinion_Customer1" />
+        <AssociationConnector Association="bikewayDBModel.fk_Sale_Customer1" />
+        <AssociationConnector Association="bikewayDBModel.fk_Service_Customer1" />
+        <AssociationConnector Association="bikewayDBModel.fk_EmployeeInThePosition_Employee1" />
+        <AssociationConnector Association="bikewayDBModel.fk_Sale_Employee1" />
+        <AssociationConnector Association="bikewayDBModel.fk_Service_Employee1" />
+        <AssociationConnector Association="bikewayDBModel.fk_EmployeeInThePosition_Position1" />
+        <AssociationConnector Association="bikewayDBModel.fk_FeatureOfItem_Feature1" />
+        <AssociationConnector Association="bikewayDBModel.fk_FeatureOfItem_FeatureValue1" />
+        <AssociationConnector Association="bikewayDBModel.fk_FeatureOfItem_Item1" />
+        <AssociationConnector Association="bikewayDBModel.fk_Item_ItemType1" />
+        <AssociationConnector Association="bikewayDBModel.fk_Opinion_Item1" />
+        <AssociationConnector Association="bikewayDBModel.fk_SaleDetails_Item1" />
+        <AssociationConnector Association="bikewayDBModel.fk_Sale_SaleType1" />
+        <AssociationConnector Association="bikewayDBModel.fk_SaleDetails_Sale1" />
+        <AssociationConnector Association="bikewayDBModel.fk_Service_ServiceType1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
