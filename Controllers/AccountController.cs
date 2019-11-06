@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using System.Data.Entity;
 using System.Web.Mvc;
 using bikevision.Models;
 using Microsoft.Owin.Security;
@@ -15,26 +16,34 @@ namespace bikevision.Controllers
     public class AccountController : Controller
     {
         // GET: /Account
+        [Authorize(Roles = "Administrator, Uzytkownik, Moderator, Pracownik sklepu, Pracownik serwisu")]
         public ActionResult Index()
         {
+
             return View();
         }
 
         // GET: /Account/PersonalData
+        [Authorize(Roles = "Administrator, Uzytkownik, Moderator, Pracownik sklepu, Pracownik serwisu")]
         public ActionResult PersonalData()
         {
+
             return View();
         }
 
         // GET: /Account/Addresses
+        [Authorize(Roles = "Administrator, Uzytkownik, Moderator, Pracownik sklepu, Pracownik serwisu")]
         public ActionResult Addresses()
         {
+
             return View();
         }
 
         // GET: /Account/Orders
+        [Authorize(Roles = "Administrator, Uzytkownik, Moderator, Pracownik sklepu, Pracownik serwisu")]
         public ActionResult Orders()
         {
+
             return View();
         }
 

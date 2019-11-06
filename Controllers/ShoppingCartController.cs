@@ -18,14 +18,19 @@ namespace bikevision.Controllers
         {
             return View();
         }
-        // GET: ShoppingCart/Order
+
+        [HttpPost]
         public ActionResult Order()
         {
+            
             return View();
         }
-        // GET: ShoppingCart/Final
+
+        // Post: ShoppingCart/Final
+        [HttpPost]
         public ActionResult Final()
         {
+            
             return View();
         }
         public ActionResult OrderNow(int? id)

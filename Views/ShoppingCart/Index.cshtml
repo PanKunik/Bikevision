@@ -90,7 +90,14 @@
                 </div>
             </section>
 
-            <a class="mt-2 float-lg-right text-light btn btn-primary pt-1">Przejdź dalej</a>
+            using(Html.BeginForm("Order", "ShoppingCart", null, FormMethod.Post, new { @class = "d-flex flex-column", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="input-group pt-1 justify-content-end">
+                    <button type="submit" id="submit" class="btn btn-primary"> Przejdz dalej </button>
+                </div>
+            }
+            @*<a class="mt-2 float-lg-right text-light btn btn-primary pt-1">Przejdź dalej</a>*@
         }
         else
         {

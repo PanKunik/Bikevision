@@ -6,4 +6,14 @@
 
 <h2>Order</h2>
 
-
+@if(Request.IsAuthenticated)
+{
+    <p> Additional data form </p>
+    <button> Finish order </button>
+}
+else
+{
+    <p> Login form </p>
+    <p> Register form </p>
+    <button> Continue without account </button>
+}
