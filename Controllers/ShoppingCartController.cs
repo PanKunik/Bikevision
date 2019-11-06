@@ -5,6 +5,7 @@ using System.Web;
 using System.Net;
 using System.Web.Mvc;
 using bikevision.Models;
+using System.Threading.Tasks;
 
 namespace bikevision.Controllers
 {
@@ -22,7 +23,6 @@ namespace bikevision.Controllers
         [HttpPost]
         public ActionResult Order()
         {
-            
             return View();
         }
 
@@ -30,8 +30,8 @@ namespace bikevision.Controllers
         [HttpPost]
         public ActionResult Final()
         {
-            
             return View();
+
         }
 
         //Get: ShoppingCart/Order

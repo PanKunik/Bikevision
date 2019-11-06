@@ -17,7 +17,7 @@
 }
 else
 {
-    using (Html.BeginForm("LoginForOrder", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "d-flex flex-column", role = "form" }))
+    using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "d-flex flex-column", role = "form" }))
     {
         @Html.AntiForgeryToken()
         @Html.Partial("_LoginForm", Model)
