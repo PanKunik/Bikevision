@@ -178,6 +178,7 @@
     <Compile Include="Controllers\SaleDetailsController.cs" />
     <Compile Include="Controllers\SalesController.cs" />
     <Compile Include="Controllers\SaleTypesController.cs" />
+    <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Controllers\ServiceTypesController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
@@ -444,7 +445,6 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\_EntranceLayout.cshtml" />
-    <Content Include="Views\Home\Service.cshtml" />
     <Content Include="Views\Shop\Index.cshtml" />
     <Content Include="Views\Home\Help.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
@@ -560,6 +560,11 @@
     <Content Include="Views\Shared\_RegistrationForm.cshtml" />
     <Content Include="Views\Shared\_LoginForm.cshtml" />
     <Content Include="Views\Shared\_CheckData.cshtml" />
+    <Content Include="Views\Service\Index.cshtml" />
+    <Content Include="Views\Shared\_ServiceLayout.cshtml" />
+    <Content Include="Views\Service\NewServiceOrder.cshtml" />
+    <Content Include="Views\Service\CheckStatus.cshtml" />
+    <Content Include="Views\Service\Prices.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

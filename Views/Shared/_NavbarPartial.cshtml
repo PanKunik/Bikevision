@@ -6,7 +6,7 @@
             @Html.ActionLink("Strona główna", "Index", "Home", new { area = "" }, new { @class = "nav-link hover-bg" })
         </li>
         <li class="nav-item mr-lg-1">
-            @Html.ActionLink("Serwis", "Service", "Home", new { area = "" }, new { @class = "nav-link hover-bg" })
+            @Html.ActionLink("Serwis", "Index", "Service", new { area = "" }, new { @class = "nav-link hover-bg" })
         </li>
         <li class="nav-item mr-lg-1">
             @Html.ActionLink("Sklep", "Index", "Shop", new { area = "" }, new { @class = "nav-link hover-bg" })
@@ -54,7 +54,8 @@
 
     <ul class="d-none d-lg-block nav navbar-nav ml-auto">
         <li class="dropdown order-1">
-            <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-info dropdown-toggle"><i class="fas fa-user small-icon mr-1"></i> @if (Request.IsAuthenticated) { <span> @String.Format("Witaj, {0}",User.Identity.GetUserName()) </span>} else { <span>Twoje konto</span> } <span class="caret"></span></button>
+            <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-info dropdown-toggle"><i class="fas fa-user small-icon mr-1"></i> 
+            @if (Request.IsAuthenticated) { <span> @String.Format("Witaj, {0}",User.Identity.GetUserName()) </span>} else { <span>Twoje konto</span> } <span class="caret"></span></button>
             <ul class="dropdown-menu dropdown-menu-right bg-dark mt-2">
                 @if (Request.IsAuthenticated)
                 {

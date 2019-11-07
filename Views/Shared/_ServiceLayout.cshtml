@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "_ServiceLayout";
+    Layout = "~/Views/Shared/_HeadingLayout.cshtml";
+}
+
+
+<nav class="bg-primary navbar navbar-dark px-0 pb-0">
+    <div class="text-center col-12">
+        @Html.ActionLink("BIKEVISION", "Index", "Home", new { area = "" }, new { @class = "p-2 navbar-brand nav-link border text-light border-light mx-0" })
+    </div>
+
+    <ul class="nav nav-pills nav-fill col-12 p-0 m-0 mt-2">
+        <li class="nav-item m-0">
+            @Html.ActionLink("Umów wizytę", "NewServiceOrder", "Service", new { area = "" }, new { @class = "nav-link hover-bg text-white py-3" })
+        </li>
+        <li class="nav-item m-0">
+            @Html.ActionLink("Sprawdź status", "CheckStatus", "Service", new { area = "" }, new { @class = "nav-link hover-bg text-white py-3" })
+        </li>
+        <li class="nav-item m-0">
+            @Html.ActionLink("Cennik usług", "Prices", "Service", new { area = "" }, new { @class = "nav-link hover-bg text-white py-3" })
+        </li>
+        <li class="nav-item m-0">
+            @Html.ActionLink("Panel użytkownika", "UserPanel", "Service", new { area = "" }, new { @class = "nav-link hover-bg text-white py-3" })
+        </li>
+    </ul>
+</nav>
+
+@RenderBody()
+
+<footer class="flex-row bg-dark text-light text-center">
+    <p> Footer </p>
+</footer>
+
+@section scripts
+{
+    @RenderSection("scripts", required: false)
+}

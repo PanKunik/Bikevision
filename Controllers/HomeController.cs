@@ -12,11 +12,6 @@ namespace bikevision.Controllers
         {
             return View();
         }
-
-        public ActionResult Service()
-        {
-            return View();
-        }
         
         public ActionResult About()
         {
