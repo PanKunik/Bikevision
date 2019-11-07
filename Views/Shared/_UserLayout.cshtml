@@ -21,6 +21,16 @@
                 @Html.ActionLink("Panel zarządzania", "ManagementPanel", "Account", new { area = "" }, new { @class = "nav-link hover-bg text-white py-3" })
             </li>
         }
+        <li class="nav-item m-0">
+            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "p-0 m-0" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <a class="nav-link hover-bg text-white py-3" href="javascript:document.getElementById('logoutForm').submit()">
+                    <span><i class="fas fa-sign-out-alt small-icon mr-1"></i> Wyloguj </span>
+                </a>
+            }
+        </li>
     </ul>
 </nav>
 
