@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "ManagementPanel";
+    Layout = "~/Views/Shared/_ManagementLayout.cshtml";
+}
+    <section class="container d-flex flex-column">
+        @if (User.IsInRole("Moderator") || User.IsInRole("Administrator"))
+        {
+            @Html.ActionLink("Tabela marek", "Index", "Brands", new { area = "" }, new { @class = "btn btn-info hover-bg" })
+            @Html.ActionLink("Tabela kategorii", "Index", "Categories", new { area = "" }, new { @class = "btn btn-info hover-bg" })
+            @Html.ActionLink("Tabela cech", "Index", "Features", new { area = "" }, new { @class = "btn btn-info hover-bg" })
+            @Html.ActionLink("Tabela wartości cech", "Index", "FeatureValues", new { area = "" }, new { @class = "btn btn-info hover-bg" })
+            @Html.ActionLink("Tabela wartości cech dla przedmiotów", "Index", "FeatureValueOfItems", new { area = "" }, new { @class = "btn btn-info hover-bg" })
+            @Html.ActionLink("Tabela typów przedmiotów", "Index", "ItemTypes", new { area = "" }, new { @class = "btn btn-info hover-bg" })
+            @Html.ActionLink("Tabela opinii", "Index", "Opinions", new { area = "" }, new { @class = "btn btn-info hover-bg" })
+        }
+
+        @if (User.IsInRole("Administrator"))
+        {
+            @Html.ActionLink("Tabela klientów", "Index", "Customers", new { area = "" }, new { @class = "btn btn-info hover-bg" })
+            @Html.ActionLink("Tabela pracowników", "Index", "Employees", new { area = "" }, new { @class = "btn btn-info hover-bg" })
+            @Html.ActionLink("Tabela pracowników na pozycji", "Index", "EmployeeInThePositions", new { area = "" }, new { @class = "btn btn-info hover-bg" })
+            @Html.ActionLink("Tabela lokalizacji", "Index", "Localities", new { area = "" }, new { @class = "btn btn-info hover-bg" })
+            @Html.ActionLink("Tabela pozycji pracowników", "Index", "Positions", new { area = "" }, new { @class = "btn btn-info hover-bg" })
+            @Html.ActionLink("Tabela typów sprzedaży", "Index", "SaleTypes", new { area = "" }, new { @class = "btn btn-info hover-bg" })
+            @Html.ActionLink("Tabela typów zleceń serwisowych", "Index", "ServiceTypes", new { area = "" }, new { @class = "btn btn-info hover-bg" })
+        }
+
+        @if (User.IsInRole("Moderator") || User.IsInRole("Administrator") || User.IsInRole("Pracownik sklepu"))
+        {
+            @Html.ActionLink("Tabela przedmiotów", "Index", "Items", new { area = "" }, new { @class = "btn btn-info hover-bg" })
+        }
+
+        @if (User.IsInRole("Administrator") || User.IsInRole("Pracownik sklepu"))
+        {
+            @Html.ActionLink("Tabela szczegółów zamówień", "Index", "SaleDetails", new { area = "" }, new { @class = "btn btn-info hover-bg" })
+            @Html.ActionLink("Tabela zamówień", "Index", "Sales", new { area = "" }, new { @class = "btn btn-info hover-bg" })
+        }
+
+        @if (User.IsInRole("Administrator") || User.IsInRole("Pracownik serwisu"))
+        {
+            @Html.ActionLink("Tabela zleceń serwisowych", "Index", "Services", new { area = "" }, new { @class = "btn btn-info hover-bg" })
+        }
+    </section>
+

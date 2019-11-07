@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "_ManagementLayout";
+    Layout = "~/Views/Shared/_HeadingLayout.cshtml";
+}
+    <section class="container-fluid">
+        <h2>Panel zarządzania</h2>
+
+        @Html.ActionLink("Powrót do strony głownej", "Index", "Home", new { area = "" }, new { @class = "btn btn-primary m-1" })
+        @Html.ActionLink("Powrót do panelu zarządzania", "ManagementPanel", "Account", new { area = "" }, new { @class = "btn btn-primary m-1" })
+
+        @RenderBody()
+    </section>
+

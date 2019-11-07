@@ -22,7 +22,7 @@ namespace bikevision.Controllers
         public ActionResult CheckStatus()
         {
             if (User.Identity.IsAuthenticated)
-                return View();
+                return RedirectToAction("ServiceOrders", "Account");
             else
                 return RedirectToAction("Login", "Account");
         }

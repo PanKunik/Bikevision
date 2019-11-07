@@ -32,19 +32,25 @@ namespace bikevision.Controllers
             return View();
         }
 
-        // GET: /Account/Addresses
-        [Authorize(Roles = "Administrator, Uzytkownik, Moderator, Pracownik sklepu, Pracownik serwisu")]
-        public ActionResult Addresses()
-        {
-
-            return View();
-        }
 
         // GET: /Account/Orders
         [Authorize(Roles = "Administrator, Uzytkownik, Moderator, Pracownik sklepu, Pracownik serwisu")]
         public ActionResult Orders()
         {
 
+            return View();
+        }
+        // GET: /Account/Orders
+        [Authorize(Roles = "Administrator, Uzytkownik, Moderator, Pracownik sklepu, Pracownik serwisu")]
+        public ActionResult ServiceOrders()
+        {
+
+            return View();
+        }
+
+        [Authorize(Roles = "Administrator, Uzytkownik, Moderator, Pracownik sklepu, Pracownik serwisu")]
+        public ActionResult ManagementPanel()
+        {
             return View();
         }
 

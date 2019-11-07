@@ -31,11 +31,17 @@
                     @Html.ActionLink("Moje zamówienia", "Orders", "Account", new { area = "" }, new { @class = "nav-link" })
                 </li>
                 <li class="nav-item d-lg-none">
-                    @Html.ActionLink("Moje dane", "PersonalInformations", "Account", new { area = "" }, new { @class = "nav-link" })
+                    @Html.ActionLink("Moje zlecenia", "ServiceOrders", "Account", new { area = "" }, new { @class = "nav-link" })
                 </li>
                 <li class="nav-item d-lg-none">
-                    @Html.ActionLink("Moje adresy", "Addresses", "Account", new { area = "" }, new { @class = "nav-link" })
+                    @Html.ActionLink("Moje dane", "PersonalData", "Account", new { area = "" }, new { @class = "nav-link" })
                 </li>
+                if (User.IsInRole("Administrator") || User.IsInRole("Moderator") || User.IsInRole("Pracownik sklepu") || User.IsInRole("Pracownik serwisu"))
+                {
+                    <li class="nav-item d-lg-none">
+                        @Html.ActionLink("Panel zarządzania", "ManagementPanel", "Account", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                }
                 <li class="nav-item d-lg-none">
                     <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Wyloguj</a>
                 </li>
@@ -73,11 +79,15 @@
                             @Html.Raw(Html.ActionLink("ToReplace", "Orders", "Account", new { area = "" }, new { @class = "nav-link hover-bg" }).ToHtmlString().Replace("ToReplace", "<span><i class=\"fas fa-folder-open small-icon mr-1\"></i> Moje zamówienia </span>"))
                         </li>
                         <li class="nav-item mr-0">
-                            @Html.Raw(Html.ActionLink("ToReplace", "PersonalInformations", "Account", new { area = "" }, new { @class = "nav-link hover-bg" }).ToHtmlString().Replace("ToReplace", "<span><i class=\"fas fa-id-badge small-icon mr-1\"></i> Moje dane </span>"))
+                            @Html.Raw(Html.ActionLink("ToReplace", "ServiceOrders", "Account", new { area = "" }, new { @class = "nav-link hover-bg" }).ToHtmlString().Replace("ToReplace", "<span><i class=\"fas fa-cog small-icon mr-1\"></i> Moje zlecenia </span>"))
                         </li>
                         <li class="nav-item mr-0">
-                            @Html.Raw(Html.ActionLink("ToReplace", "Adresses", "Account", new { area = "" }, new { @class = "nav-link hover-bg" }).ToHtmlString().Replace("ToReplace", "<span><i class=\"fas fa-address-card small-icon mr-1\"></i> Moje adresy </span>"))
+                            @Html.Raw(Html.ActionLink("ToReplace", "PersonalData", "Account", new { area = "" }, new { @class = "nav-link hover-bg" }).ToHtmlString().Replace("ToReplace", "<span><i class=\"fas fa-address-card small-icon mr-1\"></i> Moje dane </span>"))
                         </li>
+                        if (User.IsInRole("Administrator") || User.IsInRole("Moderator") || User.IsInRole("Pracownik sklepu") || User.IsInRole("Pracownik serwisu"))
+                        {
+                            @Html.Raw(Html.ActionLink("ToReplace", "ManagementPanel", "Account", new { area = "" }, new { @class = "nav-link hover-bg" }).ToHtmlString().Replace("ToReplace", "<span><i class=\"fas fa-archive small-icon mr-1\"></i> Panel zarządzania </span>"))
+                        }
                         <li class="nav-item mr-0">
                             <a class="nav-link hover-bg" href="javascript:document.getElementById('logoutForm').submit()">
                                 <span><i class="fas fa-sign-out-alt small-icon mr-1"></i> Wyloguj </span>

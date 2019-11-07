@@ -4,7 +4,22 @@
     Layout = "~/Views/Shared/_ShopLayout.cshtml";
 }
 
-<h2>UserLayout</h2>
+<nav class="bg-primary navbar navbar-dark px-0 pb-0">
+    <ul class="nav nav-pills nav-fill col-12 p-0 m-0 mt-2">
+        <li class="nav-item m-0">
+            @Html.ActionLink("Dane osobowe", "PersonalData", "Account", new { area = "" }, new { @class = "nav-link hover-bg text-white py-3" })
+        </li>
+        <li class="nav-item m-0">
+            @Html.ActionLink("Zamówienia", "Orders", "Account", new { area = "" }, new { @class = "nav-link hover-bg text-white py-3" })
+        </li>
+        <li class="nav-item m-0">
+            @Html.ActionLink("Zlecenia serwisowe", "Prices", "Account", new { area = "" }, new { @class = "nav-link hover-bg text-white py-3" })
+        </li>
+        <li class="nav-item m-0">
+            @Html.ActionLink("Adresy", "UserPanel", "Account", new { area = "" }, new { @class = "nav-link hover-bg text-white py-3" })
+        </li>
+    </ul>
+</nav>
 
     @Html.ActionLink("Dane osobowe", "PersonalData", "Account")
     @Html.ActionLink("Zamówienia", "Orders", "Account")
