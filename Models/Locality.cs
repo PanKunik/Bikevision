@@ -11,7 +11,8 @@ namespace bikevision.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Locality
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,6 +22,8 @@ namespace bikevision.Models
         }
     
         public int idLocality { get; set; }
+        [Display(Name = "Miejscowoœæ:")]
+        [Required(ErrorMessage = "Miejscowoœæ jest wymagana.")]
         public string locality1 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

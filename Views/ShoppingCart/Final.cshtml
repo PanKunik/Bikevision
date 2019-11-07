@@ -1,9 +1,98 @@
-﻿
+﻿@model List<bikevision.Models.SaleDetail>
 @{
     ViewBag.Title = "Final";
     Layout = "~/Views/Shared/_ShopLayout.cshtml";
 }
 
-<h2>Final</h2>
+<section class="container p-0 text-primary">
+    <h2> Szczegóły twojego zamówienia </h2>
 
-<p> Zamowione! </p>
+    <div class="row m-0 p-0">
+        <article class="col-12 col-lg-6 p-0">
+            <header class="col-12 border-bottom--black">
+                Dane do wysyłki
+            </header>
+            <div class="col-12 row m-0">
+                <div class="col-6">
+                    @Html.LabelFor(model => model.First().Sale.Customer.name)
+                </div>
+                <div class="col-6">
+                    @Html.DisplayTextFor(model => model.First().Sale.Customer.name)
+                </div>
+            </div>
+            <div class="col-12 row m-0">
+                <div class="col-6">
+                    @Html.LabelFor(model => model.First().Sale.Customer.surname)
+                </div>
+                <div class="col-6">
+                    @Html.DisplayTextFor(model => model.First().Sale.Customer.surname)
+                </div>
+            </div>
+            <div class="col-12 row m-0">
+                <div class="col-6">
+                    @Html.LabelFor(model => model.First().Sale.Customer.emailAddress)
+                </div>
+                <div class="col-6">
+                    @Html.DisplayTextFor(model => model.First().Sale.Customer.emailAddress)
+                </div>
+            </div>
+            <div class="col-12 row m-0">
+                <div class="col-6">
+                    @Html.LabelFor(model => model.First().Sale.Customer.telephoneNumber)
+                </div>
+                <div class="col-6">
+                    @Html.DisplayTextFor(model => model.First().Sale.Customer.telephoneNumber)
+                </div>
+            </div>
+            <div class="col-12 row m-0">
+                <div class="col-6">
+                    @Html.LabelFor(model => model.First().Sale.Customer.Locality.locality1)
+                </div>
+                <div class="col-6">
+                    @Html.DisplayTextFor(model => model.First().Sale.Customer.Locality.locality1)
+                </div>
+            </div>
+            <div class="col-12 row m-0">
+                <div class="col-6">
+                    @Html.LabelFor(model => model.First().Sale.Customer.addressOfResidence)
+                </div>
+                <div class="col-6">
+                    @Html.DisplayTextFor(model => model.First().Sale.Customer.addressOfResidence)
+                </div>
+            </div>
+            <div class="col-12 row m-0">
+                <div class="col-6">
+                    @Html.LabelFor(model => model.First().Sale.Customer.zipCode)
+                </div>
+                <div class="col-6">
+                    @Html.DisplayTextFor(model => model.First().Sale.Customer.zipCode)
+                </div>
+            </div>
+        </article>
+
+        <article class="col-12 col-lg-6 p-0">
+            <header class="col-12 border-bottom--black">
+                Nagłowek przedmiotów
+            </header>
+
+                <div class="row m-0 p-0">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-8">
+                            @item.Item.name
+                        </div>
+                        <div class="col-2">
+                            @item.Item.price
+                        </div>
+                        <div class="col-2">
+                        </div>
+                    }
+                </div>
+        </article>
+    </div>
+
+    @using(Html.BeginForm())
+    {
+        <input type="submit" value="Wróć do sklepu" class="btn btn-primary"/>
+    }
+</section>

@@ -254,6 +254,7 @@
     <Compile Include="Models\Opinion.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Position.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
@@ -558,6 +559,7 @@
     <Content Include="Views\ServiceTypes\Index.cshtml" />
     <Content Include="Views\Shared\_RegistrationForm.cshtml" />
     <Content Include="Views\Shared\_LoginForm.cshtml" />
+    <Content Include="Views\Shared\_CheckData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

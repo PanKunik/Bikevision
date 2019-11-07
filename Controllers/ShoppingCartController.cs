@@ -5,6 +5,7 @@ using System.Web;
 using System.Net;
 using System.Web.Mvc;
 using bikevision.Models;
+using System.Data.Entity;
 using System.Threading.Tasks;
 
 namespace bikevision.Controllers
@@ -19,36 +20,177 @@ namespace bikevision.Controllers
         {
             return View();
         }
-
         [HttpPost]
-        public ActionResult Order()
+        public ActionResult Index(int? id)
         {
-            return View();
+            // NoError -> move to next step of ordering
+            if (Session[sessionCartString] != null)
+                return RedirectToAction("Order");
+            else
+                return View();
         }
 
-        // Post: ShoppingCart/Final
+        public ActionResult Order()
+        {
+            if (Session[sessionCartString] != null)
+            {
+                ViewBag.Locality_idLocality = new SelectList(db.Localities, "idLocality", "locality1");
+
+                if (User.Identity.IsAuthenticated)
+                {
+                    IQueryable<Customer> existingCustomer = db.Customers.Where(cust => cust.AspNetUser.UserName == User.Identity.Name);
+
+                    if (existingCustomer.Count() > 0)
+                        return View(existingCustomer.First());
+                    else
+                        return View();
+                }
+                else
+                    return View();
+            }
+            else
+                return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Order([Bind(Include = "name,surname,telephoneNumber,emailAddress,addressOfResidence,zipCode,Locality_idLocality")] Customer customer)
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Customers.Add(customer);
+                    db.SaveChanges();
+
+                    Sale sale = new Sale();
+
+                    sale.Customer_idCustomer = customer.idCustomer;
+                    sale.date = DateTime.Now.Date;
+
+                    SaleType saleTypeId = db.SaleTypes.Where(i => i.type == "Internetowa").First();
+                    sale.SaleType_idSaleType = saleTypeId.idSaleType;
+
+                    Employee employeeId = db.Employees.Where(i => i.name == "Internetowy").First();
+                    sale.Employee_idEmployee = employeeId.idEmployee;
+
+                    db.Sales.Add(sale);
+                    db.SaveChanges();
+
+                    List<Cart> lsCart = new List<Cart>();
+                    lsCart = (List<Cart>)Session[sessionCartString];
+
+                    int lastSaleDetails = 0;
+
+                    foreach (var item in lsCart)
+                    {
+                        SaleDetail detailOfSale = new SaleDetail();
+
+                        detailOfSale.Item_idItem = item.Item.idItem;
+                        detailOfSale.Sale_idSale = db.Entry(sale).Entity.idSale;
+                        lastSaleDetails = detailOfSale.Sale_idSale;
+                        detailOfSale.value = item.Item.price * item.Quantity;
+
+                        db.SaleDetails.Add(detailOfSale);
+                        db.SaveChanges();
+
+                    }
+
+                    Session[sessionCartString] = null;
+
+                    return RedirectToAction("Final", new { idOfSale = lastSaleDetails });
+                }
+
+                ViewBag.Locality_idLocality = new SelectList(db.Localities, "idLocality", "locality1", customer.Locality_idLocality);
+
+                return View(customer);
+            }
+            else
+            {
+                ViewBag.Locality_idLocality = new SelectList(db.Localities, "idLocality", "locality1", customer.Locality_idLocality);
+
+                if (ModelState.IsValid)
+                {
+                    IQueryable<Customer> Customers = db.Customers.Where(cust => cust.AspNetUser.UserName == User.Identity.Name);
+
+                    if(Customers.Count() > 0)
+                    {
+                        customer = Customers.First();
+                        db.Entry(customer).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        customer.AspNetUsers_idAspNetUsers = db.AspNetUsers.Where(user => user.UserName == User.Identity.Name).First().Id;
+                        db.Customers.Add(customer);
+                        db.SaveChanges();
+                    }
+
+                    Sale sale = new Sale();
+
+                    sale.Customer_idCustomer = customer.idCustomer;
+                    sale.date = DateTime.Now.Date;
+
+                    SaleType saleTypeId = db.SaleTypes.Where(i => i.type == "Internetowa").First();
+                    sale.SaleType_idSaleType = saleTypeId.idSaleType;
+
+                    Employee employeeId = db.Employees.Where(i => i.name == "Internetowy").First();
+                    sale.Employee_idEmployee = employeeId.idEmployee;
+
+                    db.Sales.Add(sale);
+                    db.SaveChanges();
+
+                    List<Cart> lsCart = new List<Cart>();
+                    lsCart = (List<Cart>)Session[sessionCartString];
+
+                    int lastSaleDetails = 0;
+
+                    foreach (var item in lsCart)
+                    {
+                        SaleDetail detailOfSale = new SaleDetail();
+
+                        detailOfSale.Item_idItem = item.Item.idItem;
+                        detailOfSale.Sale_idSale = db.Entry(sale).Entity.idSale;
+                        lastSaleDetails = detailOfSale.Sale_idSale;
+                        detailOfSale.value = item.Item.price * item.Quantity;
+
+                        db.SaleDetails.Add(detailOfSale);
+                        db.SaveChanges();
+
+                    }
+
+                    Session[sessionCartString] = null;
+
+                    return RedirectToAction("Final", new { idOfSale = lastSaleDetails });
+                }
+
+                return View();
+            }
+        }
+
+        // GET: ShoppingCart/Final
+        public ActionResult Final(int? idOfSale)
+        {
+            if (idOfSale != null)
+            {
+                //IQueryable details = new IQueryable();
+
+                IQueryable<SaleDetail> details = db.SaleDetails.Where(i => i.Sale_idSale == idOfSale);
+
+                List<SaleDetail> saleDetail = details.ToList();
+                
+                return View(saleDetail);
+            }
+            else
+                return RedirectToAction("Index");
+        }
+
+        // POST: ShoppingCart/Final
         [HttpPost]
         public ActionResult Final()
         {
-            return View();
-
+            return RedirectToAction("Index", "Shop");
         }
-
-        //Get: ShoppingCart/Order
-        //[HttpGet]
-        //public ActionResult Order()
-        //{
-        //    RedirectToAction("Shop", "Index");
-        //    return View();
-        //}
-
-        //// Get: ShoppingCart/Final
-        //[HttpGet]
-        //public ActionResult Final()
-        //{
-        //    RedirectToAction("Shop", "Index");
-        //    return View();
-        //}
 
         public ActionResult OrderNow(int? id)
         {
@@ -74,7 +216,7 @@ namespace bikevision.Controllers
                 if (indexOfItem == -1)
                     lsCart.Add(new Cart(db.Items.Find(id), 1));
                 else
-                            lsCart[indexOfItem].Quantity++;
+                    lsCart[indexOfItem].Quantity++;
 
                 Session[sessionCartString] = lsCart;
             }

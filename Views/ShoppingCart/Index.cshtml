@@ -90,7 +90,7 @@
                 </div>
             </section>
 
-            using(Html.BeginForm("Order", "ShoppingCart", null, FormMethod.Post, new { @class = "d-flex flex-column", role = "form" }))
+            using(Html.BeginForm("Index", "ShoppingCart", null, FormMethod.Post, new { @class = "d-flex flex-column", role = "form" }))
             {
                 @Html.AntiForgeryToken()
                 <div class="input-group pt-1 justify-content-end">
