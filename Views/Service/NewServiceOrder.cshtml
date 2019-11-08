@@ -1,8 +1,49 @@
-﻿
+﻿@model bikevision.Models.Service
+
 @{
-    ViewBag.Title = "NewServiceOrder";
+    ViewBag.Title = "Nowe zlecenie serwisowe";
     Layout = "~/Views/Shared/_ServiceLayout.cshtml";
 }
 
-<h2>NewServiceOrder</h2>
+    <section class="container py-3">
+        <h2>Nowe zlecenie serwisowe</h2>
+        <hr />
 
+        @using (Html.BeginForm("NewServiceOrder", "Service"))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ServiceType_idServiceType, "ServiceType_idServiceType", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("ServiceType_idServiceType", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ServiceType_idServiceType, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Potwierdź" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        }
+    </section>

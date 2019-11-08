@@ -11,13 +11,18 @@ namespace bikevision.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Service
     {
         public int idService { get; set; }
+        [Required(ErrorMessage = "Tytu³ jest wymagany.")]
+        [Display(Name = "Tytu³:")]
         public string title { get; set; }
         public decimal price { get; set; }
         public System.DateTime dateOfEmployment { get; set; }
+        [Display(Name = "Opis usterki:")]
+        [Required(ErrorMessage = "Opis jest wymagany.")]
         public string description { get; set; }
         public Nullable<System.DateTime> dateOfCompletion { get; set; }
         public int Customer_idCustomer { get; set; }

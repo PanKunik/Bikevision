@@ -561,12 +561,13 @@
     <Content Include="Views\Shared\_CheckData.cshtml" />
     <Content Include="Views\Service\Index.cshtml" />
     <Content Include="Views\Shared\_ServiceLayout.cshtml" />
-    <Content Include="Views\Service\NewServiceOrder.cshtml" />
     <Content Include="Views\Service\Prices.cshtml" />
     <Content Include="Views\Account\ManagementPanel.cshtml" />
     <Content Include="Views\Shared\_ManagementLayout.cshtml" />
     <Content Include="Views\Account\ServiceOrders.cshtml" />
     <Content Include="Views\Account\EditPersonalData.cshtml" />
+    <Content Include="Views\Service\NewServiceOrder.cshtml" />
+    <Content Include="Views\Service\AddPersonalData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

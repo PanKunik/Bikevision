@@ -8,5 +8,7 @@
 
 @using (Html.BeginForm("EditPersonalData", "Account"))
 {
+    @Html.AntiForgeryToken()
+
     @Html.Partial("_CheckData", Model)
 }

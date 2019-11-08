@@ -145,6 +145,7 @@ namespace bikevision.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult EditPersonalData(Customer customer)
         {
             if (!User.Identity.IsAuthenticated)
