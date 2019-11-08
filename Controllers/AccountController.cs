@@ -16,6 +16,7 @@ namespace bikevision.Controllers
 {
     public class AccountController : Controller
     {
+        bikewayDBEntities db = new bikewayDBEntities();
         // GET: /Account
         [Authorize(Roles = "Administrator, Uzytkownik, Moderator, Pracownik sklepu, Pracownik serwisu")]
         public ActionResult Index()
@@ -28,8 +29,11 @@ namespace bikevision.Controllers
         [Authorize(Roles = "Administrator, Uzytkownik, Moderator, Pracownik sklepu, Pracownik serwisu")]
         public ActionResult PersonalData()
         {
-
-            return View();
+            if(User.Identity.IsAuthenticated)
+            {
+                return View();
+            }
+            return RedirectToAction("Login", "Account");
         }
 
 
@@ -37,7 +41,24 @@ namespace bikevision.Controllers
         [Authorize(Roles = "Administrator, Uzytkownik, Moderator, Pracownik sklepu, Pracownik serwisu")]
         public ActionResult Orders()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                List<Sale> listOfOrders;
 
+                string idOfUser = db.AspNetUsers.Where(id => id.UserName == User.Identity.Name).First().Id;
+                int customerId = db.Customers.Where(user => user.AspNetUsers_idAspNetUsers == idOfUser).First().idCustomer;
+
+                if(customerId != 0)
+                {
+                    listOfOrders = new List<Sale>(db.Sales.Where(cust => cust.Customer_idCustomer == customerId).ToList());
+
+                    if (listOfOrders.Count() > 0)
+                    {
+                        return View(listOfOrders);
+                    }
+                }
+                return View();
+            }
             return View();
         }
         // GET: /Account/Orders

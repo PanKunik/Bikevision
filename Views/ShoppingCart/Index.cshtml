@@ -95,7 +95,7 @@
             </div>
         </section>
 
-        @using(Html.BeginForm("Index", "ShoppingCart", null, FormMethod.Post, new { @class = "d-flex flex-column", role = "form" }))
+        using(Html.BeginForm("Index", "ShoppingCart", null, FormMethod.Post, new { @class = "d-flex flex-column", role = "form" }))
         {
             <div class="input-group pt-1 justify-content-end">
             <button type = "submit" id="submit" class="btn btn-primary"> Przejdz dalej</button>
