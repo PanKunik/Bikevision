@@ -1,0 +1,12 @@
+﻿@model bikevision.Models.Customer
+@{
+    ViewBag.Title = "EditPersonalData";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2> Dane personalne </h2>
+
+@using (Html.BeginForm("EditPersonalData", "Account"))
+{
+    @Html.Partial("_CheckData", Model)
+}

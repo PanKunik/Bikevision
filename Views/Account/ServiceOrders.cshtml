@@ -1,8 +1,39 @@
-﻿
+﻿@model List<bikevision.Models.Service>
 @{
     ViewBag.Title = "ServiceOrders";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
-<h2>ServiceOrders</h2>
+    <section class="container p-2 my-3">
+        <h2> Twoje zlecenia serwisowe </h2>
+        <hr />
+
+        @if (Model != null)
+        {
+            <div class="col m-0 p-0">
+                <div class="row m-0 p-0 border-bottom--black text-primary">
+                    <p class="col-2">Nr zlecenia</p>
+                    <p class="col-3">Data</p>
+                    <p class="col-3">Tytył</p>
+                    <p class="col-2">Status</p>
+                    <p class="col-2">Akcje</p>
+                </div>
+                @foreach (var serivceOrder in Model)
+                {
+                    <div class="row m-0 p-0 border-bottom--black text-primary">
+                        <p class="col-2">@serivceOrder.idService</p>
+                        <p class="col-3">@serivceOrder.dateOfEmployment</p>
+                        <p class="col-3">@serivceOrder.title</p>
+                        <p class="col-2">(Status)</p>
+                        <a class="col-2" href="#">Szczegóły</a>
+                    </div>
+
+                }
+            </div>
+        }
+        else
+        {
+            <p> Nie masz jeszcze żadnych zleceń serwisowych. </p>
+        }
+    </section>
 

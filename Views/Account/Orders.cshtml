@@ -1,7 +1,8 @@
 ﻿@model List<bikevision.Models.Sale>
-    @{
-        ViewBag.Title = "Orders";
-        Layout = "~/Views/Shared/_UserLayout.cshtml";
+@{
+    ViewBag.Title = "Orders";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    int index = 0;
 }
 
     <section class="container my-2 py-2">
@@ -22,10 +23,11 @@
                     <div class="row m-0 p-0 border-bottom--black text-primary">
                         <p class="col-2">@order.idSale</p>
                         <p class="col-3">@order.date</p>
-                        <p class="col-3">@order.SaleDetails.First().value</p>
+                        <p class="col-3">@ViewBag.OrdersSum[index++]</p>
                         <p class="col-2">(Status)</p>
                         <a class="col-2" href="#">Szczegóły</a>
                     </div>
+
                 }
             </div>
         }

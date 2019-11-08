@@ -566,6 +566,7 @@
     <Content Include="Views\Account\ManagementPanel.cshtml" />
     <Content Include="Views\Shared\_ManagementLayout.cshtml" />
     <Content Include="Views\Account\ServiceOrders.cshtml" />
+    <Content Include="Views\Account\EditPersonalData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

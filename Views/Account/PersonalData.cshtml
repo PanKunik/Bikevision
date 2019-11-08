@@ -1,8 +1,58 @@
-﻿@model List<bikevision.Models.Sale>
+﻿@model bikevision.Models.Customer
 @{
     ViewBag.Title = "PersonalData";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
-<h2>PersonalData</h2>
+    <section class="container p-2 my-3">
+        <h2> Dane osobiste </h2>
+        <hr />
 
+        @if (Model != null)
+        {
+            <div class="col m-0 mb-1 p-0">
+                <div class="row m-0 p-0 text-primary">
+                    <p class="col-6">Imię:</p>
+                    <p class="col-6">@Model.name</p>
+                </div>
+                <div class="row m-0 p-0 text-primary">
+                    <p class="col-6">Nazwisko:</p>
+                    <p class="col-6">@Model.surname</p>
+                </div>
+                <div class="row m-0 p-0 text-primary">
+                    <p class="col-6">Nr telefonu:</p>
+                    <p class="col-6">@Model.telephoneNumber</p>
+                </div>
+                <div class="row m-0 p-0 text-primary">
+                    <p class="col-6">Adres e-mail:</p>
+                    <p class="col-6">@Model.emailAddress</p>
+                </div>
+                <div class="row m-0 p-0 text-primary">
+                    <p class="col-6">Adres zamieszkania:</p>
+                    <p class="col-6">@Model.addressOfResidence</p>
+                </div>
+                <div class="row m-0 p-0 text-primary">
+                    <p class="col-6">Miejscowość:</p>
+                    <p class="col-6">@Model.Locality.locality1</p>
+                </div>
+                <div class="row m-0 p-0 text-primary">
+                    <p class="col-6">Kod pocztowy:</p>
+                    <p class="col-6">@Model.zipCode</p>
+                </div>
+            </div>
+
+            using (Html.BeginForm("EditPersonalData", "Account"))
+            {
+                <input type="submit" class="mt-3 btn btn-primary" value="Edytuj dane" />
+            }
+        }
+        else
+        {
+            <p> Nie posiadasz jeszcze profilu klienta </p>
+
+            using (Html.BeginForm("EditPersonalData", "Account"))
+            {
+                <input type="submit" class="mt-3 btn btn-primary" value="Dodaj profil klienta" />
+            }
+        }
+    </section>

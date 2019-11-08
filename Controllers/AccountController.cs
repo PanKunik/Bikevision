@@ -31,6 +31,22 @@ namespace bikevision.Controllers
         {
             if(User.Identity.IsAuthenticated)
             {
+                Customer customerData = new Customer();
+
+                string idOfUser = db.AspNetUsers.Where(id => id.UserName == User.Identity.Name).First().Id;
+                IQueryable<Customer> customers = db.Customers.Where(user => user.AspNetUsers_idAspNetUsers == idOfUser);
+
+                if (customers.Count() > 0)
+                {
+                    int customerId = customers.First().idCustomer;
+
+                    if (customerId != 0)
+                    {
+                        customerData = db.Customers.Where(user => user.idCustomer == customerId).First();
+                        return View(customerData);
+                    }
+                    return View();
+                }
                 return View();
             }
             return RedirectToAction("Login", "Account");
@@ -46,16 +62,38 @@ namespace bikevision.Controllers
                 List<Sale> listOfOrders;
 
                 string idOfUser = db.AspNetUsers.Where(id => id.UserName == User.Identity.Name).First().Id;
-                int customerId = db.Customers.Where(user => user.AspNetUsers_idAspNetUsers == idOfUser).First().idCustomer;
+                IQueryable<Customer> customers = db.Customers.Where(user => user.AspNetUsers_idAspNetUsers == idOfUser);
 
-                if(customerId != 0)
+                if (customers.Count() > 0)
                 {
-                    listOfOrders = new List<Sale>(db.Sales.Where(cust => cust.Customer_idCustomer == customerId).ToList());
+                    int customerId = customers.First().idCustomer;
 
-                    if (listOfOrders.Count() > 0)
+                    if (customerId != 0)
                     {
-                        return View(listOfOrders);
+                        listOfOrders = new List<Sale>(db.Sales.Where(cust => cust.Customer_idCustomer == customerId).ToList());
+
+                        if (listOfOrders.Count() > 0)
+                        {
+                            decimal[] sum = new decimal[listOfOrders.Count];
+
+                            int index = 0;
+                            foreach (var sale in listOfOrders)
+                            {
+                                foreach (var value in sale.SaleDetails)
+                                {
+                                    sum[index] += value.value;
+                                }
+
+                                index++;
+                            }
+
+                            ViewBag.OrdersSum = sum;
+
+                            return View(listOfOrders);
+                        }
+                        return View();
                     }
+                    return View();
                 }
                 return View();
             }
@@ -65,8 +103,73 @@ namespace bikevision.Controllers
         [Authorize(Roles = "Administrator, Uzytkownik, Moderator, Pracownik sklepu, Pracownik serwisu")]
         public ActionResult ServiceOrders()
         {
+            List<Service> listOfOrders;
 
+            string idOfUser = db.AspNetUsers.Where(id => id.UserName == User.Identity.Name).First().Id;
+            int customerId = db.Customers.Where(user => user.AspNetUsers_idAspNetUsers == idOfUser).First().idCustomer;
+
+            if (customerId != 0)
+            {
+                listOfOrders = new List<Service>(db.Services.Where(cust => cust.Customer_idCustomer == customerId).ToList());
+
+                if (listOfOrders.Count() > 0)
+                {
+                    return View(listOfOrders);
+                }
+            }
             return View();
+        }
+
+        public ActionResult EditPersonalData()
+        {
+            ViewBag.Locality_idLocality = new SelectList(db.Localities, "idLocality", "locality1");
+
+            if (User.Identity.IsAuthenticated)
+            {
+                IQueryable<Customer> existingCustomer = db.Customers.Where(cust => cust.AspNetUser.UserName == User.Identity.Name);
+
+                if (existingCustomer.Count() > 0)
+                    return View(existingCustomer.First());
+                else
+                    return View();
+            }
+            else
+                return RedirectToAction("Login", "Account");
+        }
+
+        [HttpPost]
+        public ActionResult EditPersonalData(Customer customer)
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            else
+            {
+                ViewBag.Locality_idLocality = new SelectList(db.Localities, "idLocality", "locality1", customer.Locality_idLocality);
+
+                if (ModelState.IsValid)
+                {
+                    IQueryable<Customer> Customers = db.Customers.Where(cust => cust.AspNetUser.UserName == User.Identity.Name);
+
+                    if (Customers.Count() > 0)
+                    {
+                        customer = Customers.First();
+                        db.Entry(customer).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        customer.AspNetUsers_idAspNetUsers = db.AspNetUsers.Where(user => user.UserName == User.Identity.Name).First().Id;
+                        db.Customers.Add(customer);
+                        db.SaveChanges();
+                    }
+
+                    return RedirectToAction("PersonalData");
+                }
+
+                return View(customer);
+            }
         }
 
         [Authorize(Roles = "Administrator, Uzytkownik, Moderator, Pracownik sklepu, Pracownik serwisu")]
