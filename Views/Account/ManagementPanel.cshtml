@@ -3,7 +3,7 @@
     ViewBag.Title = "ManagementPanel";
     Layout = "~/Views/Shared/_ManagementLayout.cshtml";
 }
-    <section class="container d-flex flex-column">
+    <section class="d-flex flex-column">
         @if (User.IsInRole("Moderator") || User.IsInRole("Administrator"))
         {
             @Html.ActionLink("Tabela marek", "Index", "Brands", new { area = "" }, new { @class = "btn btn-info hover-bg" })

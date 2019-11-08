@@ -11,6 +11,7 @@ namespace bikevision.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class ServiceType
     {
@@ -19,7 +20,7 @@ namespace bikevision.Models
         {
             this.Services = new HashSet<Service>();
         }
-    
+
         public int idServiceType { get; set; }
         public string type { get; set; }
     

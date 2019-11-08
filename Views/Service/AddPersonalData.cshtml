@@ -1,16 +1,14 @@
 ﻿@model bikevision.Models.Customer
 @{
-    ViewBag.Title = "AddPersonalData";
+    ViewBag.Title = "Dane personalne";
     Layout = "~/Views/Shared/_ServiceLayout.cshtml";
 }
 
-<h2>AddPersonalData</h2>
+<h2>Uzupełnij dane personalne</h2>
 
-@using (Html.BeginForm("AddPersonalData", "Service", new { newOrder = ViewBag.serviceOrder }))
+@using (Html.BeginForm("AddPersonalData", "Service"))
 {
     @Html.AntiForgeryToken()
 
     @Html.Partial("_CheckData", Model)
-
-    @ViewBag.serviceOrder
 }
