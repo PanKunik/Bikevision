@@ -28,9 +28,8 @@
         <EntityTypeShape EntityType="bikewayDBModel.Position" Width="1.5" PointX="6.375" PointY="32.375" />
         <EntityTypeShape EntityType="bikewayDBModel.Sale" Width="1.5" PointX="5.625" PointY="23" />
         <EntityTypeShape EntityType="bikewayDBModel.SaleDetail" Width="1.5" PointX="7.875" PointY="10.375" />
-        <EntityTypeShape EntityType="bikewayDBModel.SaleType" Width="1.5" PointX="3.375" PointY="25.25" />
+        <EntityTypeShape EntityType="bikewayDBModel.SaleType" PointX="7.375" PointY="0.875" Width="1.5" />
         <EntityTypeShape EntityType="bikewayDBModel.Service" Width="1.5" PointX="7.875" PointY="18.75" />
-        <EntityTypeShape EntityType="bikewayDBModel.ServiceType" Width="1.5" PointX="5.625" PointY="29.625" />
         <AssociationConnector Association="bikewayDBModel.fk_Customer_AspNetUsers1" />
         <AssociationConnector Association="bikewayDBModel.fk_Employee_AspNetUsers1" />
         <AssociationConnector Association="bikewayDBModel.fk_Item_Brand1" />
@@ -51,6 +50,7 @@
         <AssociationConnector Association="bikewayDBModel.fk_SaleDetails_Item1" />
         <AssociationConnector Association="bikewayDBModel.fk_Sale_SaleType1" />
         <AssociationConnector Association="bikewayDBModel.fk_SaleDetails_Sale1" />
+        <EntityTypeShape EntityType="bikewayDBModel.ServiceType" Width="1.5" PointX="11.625" PointY="19.375" />
         <AssociationConnector Association="bikewayDBModel.fk_Service_ServiceType1" />
       </Diagram>
     </edmx:Diagrams>

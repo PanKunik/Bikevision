@@ -568,6 +568,8 @@
     <Content Include="Views\Account\EditPersonalData.cshtml" />
     <Content Include="Views\Service\NewServiceOrder.cshtml" />
     <Content Include="Views\Service\AddPersonalData.cshtml" />
+    <Content Include="Views\Service\OrderDetails.cshtml" />
+    <Content Include="Views\Account\OrderDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

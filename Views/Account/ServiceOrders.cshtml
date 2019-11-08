@@ -24,9 +24,8 @@
                 <p class="col-3">@serivceOrder.dateOfEmployment</p>
                 <p class="col-3">@serivceOrder.title</p>
                 <p class="col-2">(Status)</p>
-                <a class="col-2" href="#">Szczegóły</a>
+                @Html.ActionLink("Szczegóły", "OrderDetails", "Service", new { id = serivceOrder.idService}, new { @class = "btn btn-primary" })
             </div>
-
         }
     </div>
 }

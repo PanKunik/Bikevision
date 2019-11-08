@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using bikevision.Models;
@@ -118,7 +119,28 @@ namespace bikevision.Controllers
         // GET: Service/Prices
         public ActionResult Prices()
         {
+            List<ServiceType> types = db.ServiceTypes.ToList();
+
+            if(types != null)
+            {
+                return View(types);
+            }
+
             return View();
+        }
+
+        public ActionResult OrderDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Service service = db.Services.Find(id);
+            if (service == null)
+            {
+                return HttpNotFound();
+            }
+            return View(service);
         }
     }
 }

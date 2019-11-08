@@ -231,6 +231,8 @@
           </Key>
           <Property Name="idServiceType" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="type" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="priceFrom" Type="int" />
+          <Property Name="priceTo" Type="int" />
         </EntityType>
         <Association Name="fk_Customer_AspNetUsers1">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
@@ -705,7 +707,6 @@
           <EntitySet Name="SaleDetails" EntityType="bikewayDBModel.SaleDetail" />
           <EntitySet Name="SaleTypes" EntityType="bikewayDBModel.SaleType" />
           <EntitySet Name="Services" EntityType="bikewayDBModel.Service" />
-          <EntitySet Name="ServiceTypes" EntityType="bikewayDBModel.ServiceType" />
           <AssociationSet Name="fk_Customer_AspNetUsers1" Association="bikewayDBModel.fk_Customer_AspNetUsers1">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="Customer" EntitySet="Customers" />
@@ -779,13 +780,14 @@
             <End Role="SaleDetail" EntitySet="SaleDetails" />
           </AssociationSet>
           <AssociationSet Name="fk_Sale_SaleType1" Association="bikewayDBModel.fk_Sale_SaleType1">
-            <End Role="SaleType" EntitySet="SaleTypes" />
-            <End Role="Sale" EntitySet="Sales" />
+            <End EntitySet="SaleTypes" Role="SaleType" />
+            <End EntitySet="Sales" Role="Sale" />
           </AssociationSet>
           <AssociationSet Name="fk_SaleDetails_Sale1" Association="bikewayDBModel.fk_SaleDetails_Sale1">
             <End Role="Sale" EntitySet="Sales" />
             <End Role="SaleDetail" EntitySet="SaleDetails" />
           </AssociationSet>
+          <EntitySet Name="ServiceTypes" EntityType="bikewayDBModel.ServiceType" />
           <AssociationSet Name="fk_Service_ServiceType1" Association="bikewayDBModel.fk_Service_ServiceType1">
             <End Role="ServiceType" EntitySet="ServiceTypes" />
             <End Role="Service" EntitySet="Services" />
@@ -1061,8 +1063,8 @@
           <Key>
             <PropertyRef Name="idSaleType" />
           </Key>
-          <Property Name="idSaleType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="type" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="idSaleType" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="type" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" Type="String" />
           <NavigationProperty Name="Sales" Relationship="bikewayDBModel.fk_Sale_SaleType1" FromRole="SaleType" ToRole="Sale" />
         </EntityType>
         <EntityType Name="Service">
@@ -1081,14 +1083,6 @@
           <NavigationProperty Name="Customer" Relationship="bikewayDBModel.fk_Service_Customer1" FromRole="Service" ToRole="Customer" />
           <NavigationProperty Name="Employee" Relationship="bikewayDBModel.fk_Service_Employee1" FromRole="Service" ToRole="Employee" />
           <NavigationProperty Name="ServiceType" Relationship="bikewayDBModel.fk_Service_ServiceType1" FromRole="Service" ToRole="ServiceType" />
-        </EntityType>
-        <EntityType Name="ServiceType">
-          <Key>
-            <PropertyRef Name="idServiceType" />
-          </Key>
-          <Property Name="idServiceType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="type" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Services" Relationship="bikewayDBModel.fk_Service_ServiceType1" FromRole="ServiceType" ToRole="Service" />
         </EntityType>
         <Association Name="fk_Customer_AspNetUsers1">
           <End Type="bikewayDBModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
@@ -1307,8 +1301,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_Sale_SaleType1">
-          <End Type="bikewayDBModel.SaleType" Role="SaleType" Multiplicity="1" />
-          <End Type="bikewayDBModel.Sale" Role="Sale" Multiplicity="*" />
+          <End Type="bikewayDBModel.SaleType" Multiplicity="1" Role="SaleType" />
+          <End Type="bikewayDBModel.Sale" Multiplicity="*" Role="Sale" />
           <ReferentialConstraint>
             <Principal Role="SaleType">
               <PropertyRef Name="idSaleType" />
@@ -1330,6 +1324,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ServiceType">
+          <Key>
+            <PropertyRef Name="idServiceType" />
+          </Key>
+          <Property Name="idServiceType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="priceFrom" Type="Int32" />
+          <Property Name="priceTo" Type="Int32" />
+          <NavigationProperty Name="Services" Relationship="bikewayDBModel.fk_Service_ServiceType1" FromRole="ServiceType" ToRole="Service" />
+        </EntityType>
         <Association Name="fk_Service_ServiceType1">
           <End Type="bikewayDBModel.ServiceType" Role="ServiceType" Multiplicity="1" />
           <End Type="bikewayDBModel.Service" Role="Service" Multiplicity="*" />
@@ -1586,6 +1590,8 @@
           <EntitySetMapping Name="ServiceTypes">
             <EntityTypeMapping TypeName="bikewayDBModel.ServiceType">
               <MappingFragment StoreEntitySet="ServiceType">
+                <ScalarProperty Name="priceTo" ColumnName="priceTo" />
+                <ScalarProperty Name="priceFrom" ColumnName="priceFrom" />
                 <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="idServiceType" ColumnName="idServiceType" />
               </MappingFragment>

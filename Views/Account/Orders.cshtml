@@ -5,33 +5,31 @@
     int index = 0;
 }
 
-        <h2> Twoje zamówienia </h2>
+<h2> Twoje zamówienia </h2>
 
-        @if (Model != null)
+@if (Model != null)
+{
+    <div class="col m-0 p-0">
+        <div class="row m-0 p-0 border-bottom--black text-primary">
+            <p class="col-2">Nr zamowienia</p>
+            <p class="col-3">Data</p>
+            <p class="col-3">Wartość</p>
+            <p class="col-2">Status</p>
+            <p class="col-2">Akcje</p>
+        </div>
+        @foreach (var order in Model)
         {
-            <div class="col m-0 p-0">
-                <div class="row m-0 p-0 border-bottom--black text-primary">
-                    <p class="col-2">Nr zamowienia</p>
-                    <p class="col-3">Data</p>
-                    <p class="col-3">Wartość</p>
-                    <p class="col-2">Status</p>
-                    <p class="col-2">Akcje</p>
-                </div>
-                @foreach (var order in Model)
-                {
-                    <div class="row m-0 p-0 border-bottom--black text-primary">
-                        <p class="col-2">@order.idSale</p>
-                        <p class="col-3">@order.date</p>
-                        <p class="col-3">@ViewBag.OrdersSum[index++]</p>
-                        <p class="col-2">(Status)</p>
-                        <a class="col-2" href="#">Szczegóły</a>
-                    </div>
-
-                }
+            <div class="row m-0 p-0 border-bottom--black text-primary">
+                <p class="col-2">@order.idSale</p>
+                <p class="col-3">@order.date</p>
+                <p class="col-3">@ViewBag.OrdersSum[index++]</p>
+                <p class="col-2">(Status)</p>
+                @Html.ActionLink("Szczegóły", "OrderDetails", "Account", new { id = order.idSale }, new { @class = "btn btn-primary" })
             </div>
         }
-        else
-        {
-            <p> Nie masz jeszcze żadnych zamówień. </p>
-        }
-    </section>
+    </div>
+}
+else
+{
+    <p> Nie masz jeszcze żadnych zamówień. </p>
+}

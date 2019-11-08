@@ -11,7 +11,6 @@ namespace bikevision.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class ServiceType
     {
@@ -20,9 +19,11 @@ namespace bikevision.Models
         {
             this.Services = new HashSet<Service>();
         }
-
+    
         public int idServiceType { get; set; }
         public string type { get; set; }
+        public Nullable<int> priceFrom { get; set; }
+        public Nullable<int> priceTo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Service> Services { get; set; }

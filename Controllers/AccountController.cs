@@ -11,6 +11,7 @@ using bikevision.Controllers;
 using bikevision.Models;
 using Microsoft.Owin.Security;
 using Microsoft.AspNet.Identity.Owin;
+using System.Net;
 
 namespace bikevision.Controllers
 {
@@ -270,6 +271,21 @@ namespace bikevision.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+
+        public ActionResult OrderDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Sale sale = db.Sales.Find(id);
+            if (sale == null)
+            {
+                return HttpNotFound();
+            }
+            return View(sale);
+        }
+
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]

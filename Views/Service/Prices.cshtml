@@ -1,4 +1,4 @@
-﻿
+﻿@model List<bikevision.Models.ServiceType>
 @{
     ViewBag.Title = "Cennik usług";
     Layout = "~/Views/Shared/_ServiceLayout.cshtml";
@@ -6,3 +6,19 @@
 
 <h2>@ViewBag.Title</h2>
 
+<div class="col">
+    <div class="row m-0 p-0">
+        <p class="col-6">Usługa</p>
+        <p class="col-3">Cena od</p>
+        <p class="col-3">Cena do</p>
+    </div>
+
+    @foreach (var serviceType in Model)
+    {
+        <div class="row m-0 p-0">
+            <p class="col-6">@serviceType.type</p>
+            <p class="col-3">@serviceType.priceFrom</p>
+            <p class="col-3">@serviceType.priceTo</p>
+        </div>
+    }
+</div>
