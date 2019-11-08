@@ -106,16 +106,23 @@ namespace bikevision.Controllers
             List<Service> listOfOrders;
 
             string idOfUser = db.AspNetUsers.Where(id => id.UserName == User.Identity.Name).First().Id;
-            int customerId = db.Customers.Where(user => user.AspNetUsers_idAspNetUsers == idOfUser).First().idCustomer;
+            IQueryable<Customer> customers = db.Customers.Where(user => user.AspNetUsers_idAspNetUsers == idOfUser);
 
-            if (customerId != 0)
+            if (customers.Count() > 0)
             {
-                listOfOrders = new List<Service>(db.Services.Where(cust => cust.Customer_idCustomer == customerId).ToList());
+                int customerId = customers.First().idCustomer;
 
-                if (listOfOrders.Count() > 0)
+                if (customerId != 0)
                 {
-                    return View(listOfOrders);
+                    listOfOrders = new List<Service>(db.Services.Where(cust => cust.Customer_idCustomer == customerId).ToList());
+
+                    if (listOfOrders.Count() > 0)
+                    {
+                        return View(listOfOrders);
+                    }
+                    return View();
                 }
+                return View();
             }
             return View();
         }
