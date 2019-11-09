@@ -278,12 +278,24 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Sale sale = db.Sales.Find(id);
-            if (sale == null)
+            List<Customer> customer = db.Customers.Where(i => i.AspNetUser.UserName == User.Identity.Name).ToList();
+            if (customer == null || customer.Count() <= 0)
             {
                 return HttpNotFound();
             }
-            return View(sale);
+
+            int idOfCustomer = customer.First().idCustomer;
+            List<SaleDetail> saleDetail = db.SaleDetails.Where(i => i.Sale_idSale == id).ToList();
+            if (saleDetail == null || saleDetail.Count() <= 0)
+            {
+                return HttpNotFound();
+            }
+            if(saleDetail.First().Sale.Customer_idCustomer != idOfCustomer)
+            {
+                return HttpNotFound();
+            }
+
+            return View(saleDetail);
         }
 
         // POST: /Account/LogOff

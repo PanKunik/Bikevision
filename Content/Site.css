@@ -242,6 +242,10 @@ a#shop-link {
             width: 65%;
         }
 
+        .border-right-lg--black {
+            border-right: 1px solid black;
+        }
+
         .left-column {
             width: 35%;
             position: unset;

@@ -135,8 +135,16 @@ namespace bikevision.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            List<Customer> customer = db.Customers.Where(i => i.AspNetUser.UserName == User.Identity.Name).ToList();
+            if (customer == null || customer.Count() <= 0)
+            {
+                return HttpNotFound();
+            }
+
+            int idOfCustomer = customer.First().idCustomer;
             Service service = db.Services.Find(id);
-            if (service == null)
+
+            if (service == null || service.Customer_idCustomer != idOfCustomer)
             {
                 return HttpNotFound();
             }

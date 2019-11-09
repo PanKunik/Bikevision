@@ -178,7 +178,17 @@ namespace bikevision.Controllers
                 IQueryable<SaleDetail> details = db.SaleDetails.Where(i => i.Sale_idSale == idOfSale);
 
                 List<SaleDetail> saleDetail = details.ToList();
-                
+
+                decimal[] sum = new decimal[saleDetail.Count];
+                int index = 0;
+
+                foreach (var quantity in saleDetail)
+                {
+                    sum[index] = quantity.value / quantity.Item.price;
+                    index++;
+                }
+                ViewBag.values = sum;
+
                 return View(saleDetail);
             }
             else
