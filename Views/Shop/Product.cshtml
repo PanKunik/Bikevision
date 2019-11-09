@@ -50,57 +50,73 @@
 
                 <div class="d-flex flex-row">
                     <div class="d-flex flex-column mr-3">
-                                <span class="product__option">@*@Model.FeatureValueOfItems.ElementAt(0).Feature.feature1*@:</span>
-                            </div>
+                        <span class="product__option">@*@Model.FeatureValueOfItems.ElementAt(0).Feature.feature1*@:</span>
+                    </div>
                     @*<div class="d-flex flex-column mr-3">
-                        <span class="product__option"> Rozmiar: </span>
-                    </div>
-
-                    <div class="d-flex flex-row mr-1 flex-wrap">
-                        <div class="product__option-choice-size product__option-choice-size--active">28.5cm</div>
-                        <div class="product__option-choice-size">30cm</div>
-                        <div class="product__option-choice-size">33cm</div>
-                        <div class="product__option-choice-size">35cm</div>
-                        <div class="product__option-choice-size">38cm</div>
-                        <div class="product__option-choice-size">40cm</div>
-                        <div class="product__option-choice-size">42cm</div>
-                    </div>
+                    <span class="product__option"> Rozmiar: </span>
                 </div>
 
-                <div class="d-flex flex-row">
-                    <div class="d-flex flex-column mr-3">
-                        <span class="product__option"> Długość: </span>
-                    </div>
+                <div class="d-flex flex-row mr-1 flex-wrap">
+                    <div class="product__option-choice-size product__option-choice-size--active">28.5cm</div>
+                    <div class="product__option-choice-size">30cm</div>
+                    <div class="product__option-choice-size">33cm</div>
+                    <div class="product__option-choice-size">35cm</div>
+                    <div class="product__option-choice-size">38cm</div>
+                    <div class="product__option-choice-size">40cm</div>
+                    <div class="product__option-choice-size">42cm</div>
+                </div>
+            </div>
 
-                    <div class="d-flex flex-row mr-1 flex-wrap">
-                        <div class="product__option-choice-size product__option-choice-size--active">73.5cm</div>
-                        <div class="product__option-choice-size">80cm</div>
-                        <div class="product__option-choice-size">85cm</div>
-                        <div class="product__option-choice-size">90cm</div>
-                        <div class="product__option-choice-size">100cm</div>
-                        <div class="product__option-choice-size">110cm</div>
-                        <div class="product__option-choice-size">120cm</div>
-                    </div>*@
+            <div class="d-flex flex-row">
+                <div class="d-flex flex-column mr-3">
+                    <span class="product__option"> Długość: </span>
+                </div>
+
+                <div class="d-flex flex-row mr-1 flex-wrap">
+                    <div class="product__option-choice-size product__option-choice-size--active">73.5cm</div>
+                    <div class="product__option-choice-size">80cm</div>
+                    <div class="product__option-choice-size">85cm</div>
+                    <div class="product__option-choice-size">90cm</div>
+                    <div class="product__option-choice-size">100cm</div>
+                    <div class="product__option-choice-size">110cm</div>
+                    <div class="product__option-choice-size">120cm</div>
+                </div>*@
                 </div>
 
                 <hr class="w-100 text-primary" />
 
                 <div class="d-flex flex-column flex-md-row flex-lg-column justify-content-between">
-                    <div class="d-flex fill-even justify-content-between mb-3">
-                        <span class="product__option">Dostępność: </span>
-                        <span class="product__option product__option--green-text">W magazynie (7 sztuk)</span>
-                    </div>
-                    <div class="d-flex fill-even justify-content-between justify-content-md-end justify-content-lg-between mb-3">
-                        <span class="product__option">Ilość: </span>
-                        <form action="">
-                            <select>
-                                <option>1 szt.</option>
-                                <option>2 szt.</option>
-                                <option>3 szt.</option>
-                                <option>4 szt.</option>
-                            </select>
-                        </form>
-                    </div>
+                    @if (Model.product.avability > 0)
+                    {
+                        <div class="d-flex fill-even justify-content-between mb-3">
+                            <span class="product__option">Dostępność: </span>
+                            @if (Model.product.avability == 1)
+                            {
+                                <span class="product__option product__option--orange-text">W magazynie (@Model.product.avability sztuka)</span>
+                            }
+                            @if (Model.product.avability > 1)
+                            {
+                                <span class="product__option product__option--green-text">W magazynie (@Model.product.avability sztuk)</span>
+                            }
+                        </div>
+                        <div class="d-flex fill-even justify-content-between justify-content-md-end justify-content-lg-between mb-3">
+                            <span class="product__option">Ilość: </span>
+                            <form action="" class="">
+                                <select id="itemQuantity" class="">
+                                    @for (int i = 1; i <= Model.product.avability; i++)
+                                    {
+                                        <option>@i szt.</option>
+                                    }
+                                </select>
+                            </form>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="d-flex fill-even justify-content-end mb-3">
+                            <p class="product__option product__option--red-text">Produkt niedostępny</p>
+                        </div>
+                    }
                 </div>
 
                 <div class="d-flex flex-column flex-md-row flex-lg-column justify-content-between">
@@ -119,6 +135,7 @@
                         </form>
                     </div>
                 </div>
+                <button class="btn btn-primary" @if (Model.product.avability <= 0) { @Html.Raw("disabled") }> Do koszyka </button>
             </div>
         </div>
     </div>
@@ -154,9 +171,27 @@
                 {
                     foreach (var opinion in Model.opinions)
                     {
-                    <p>
-                        @opinion.opinion1
-                    </p>
+                        <div class="col py-2 my-2 border border-dark text-dark">
+                            <div class="row p-0 m-0">
+                                <div class="col-1 font-weight-bold text-right">Ocena:</div>
+                                <div class="col-1">@opinion.points/5</div>
+                                <div class="col-1 font-weight-bold text-right">Autor:</div>
+                                <div class="col-1">@opinion.Customer.name</div>
+                                <div class="col-1 font-weight-bold text-right">Data:</div>
+                                <div class="col-3">@opinion.date</div>
+                            </div>
+
+                            <hr />
+
+                            <div class="row p-0 m-0">
+                                <div class="col-12 font-weight-bold">
+                                    Treść:
+                                </div>
+                                <div class="col-12">
+                                    @opinion.opinion1
+                                </div>
+                            </div>
+                        </div>
                     }
                 }
                 else
