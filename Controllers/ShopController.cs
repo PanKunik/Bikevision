@@ -12,14 +12,20 @@ namespace bikevision.Controllers
     {
         private bikewayDBEntities db = new bikewayDBEntities();
         // GET: Shop
-        public ActionResult Index()
+        public ActionResult Index(string keywords)
         {
-            var query = from items in db.Items
-                        join categories in db.Categories on items.Category_idCategory equals categories.idCategory
-                        //where categories.category1 == "Ramy rowerowe"
-                        select items;
+            CarouselItemsViewModel itemList = new CarouselItemsViewModel();
+            
+            itemList.ItemsOnPromotion = db.Items.Where(i => i.discount > 0).Take(15).ToList();
+            itemList.NewestItems = db.Items.OrderByDescending(i => i.idItem).Take(15).ToList();
+            itemList.PopularItems = db.Items.Where(i => i.name.Contains("asdasd")).ToList();
 
-            return View(query);
+            if (itemList != null)
+            {
+                return View(itemList);
+            }
+
+            return View();
         }
 
         public ActionResult Product(int? id)

@@ -23,7 +23,10 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text bg-transparent"><i class="fas fa-search"></i></div>
                 </div>
-                <input type="text" class="form-control border-0 bg-dark" placeholder="Wyszukiwanie frazą">
+                @using (Html.BeginForm("Index", "Shop", new { keywords = "Lkk" }, FormMethod.Post))
+                {
+                    <input type="text" class="form-control border-0 bg-dark" placeholder="Wyszukiwanie frazą">
+                }
             </div>
         </form>
     </div>

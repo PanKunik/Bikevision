@@ -202,6 +202,7 @@
     <Compile Include="Models\Brand.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CarouselItemsViewModel.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Category.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
