@@ -23,10 +23,10 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text bg-transparent"><i class="fas fa-search"></i></div>
                 </div>
-                @using(Html.BeginForm(FormMethod.Get))
+                @using(Html.BeginForm("Index", "Shop", FormMethod.Get))
                 {
                     @Html.TextBox("Searching", null, new { @class="form-control border-0 bg-dark", @placeholder="Wyszukiwanie frazą" })
-                        <input type="submit" value="Szukaj" />
+                        <input type="submit" value="Szukaj" class="btn btn-primary btn-sm"/>
                 }
             </div>
         </form>

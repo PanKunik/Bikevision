@@ -260,6 +260,7 @@
     <Compile Include="Models\Position.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProductDetailsViewModel.cs" />
     <Compile Include="Models\Sale.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>

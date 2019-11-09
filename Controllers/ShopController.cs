@@ -39,12 +39,19 @@ namespace bikevision.Controllers
                 return RedirectToAction("Index", "Shop");
             }
 
-            Item item = (from items in db.Items
-                         join categories in db.Categories on items.Category_idCategory equals categories.idCategory
-                         where items.idItem == id
-                         select items).First();
+            ProductDetailsViewModel productDetails = new ProductDetailsViewModel();
 
-            return View(item);
+            Item product = db.Items.Find(id);
+
+            if(product == null)
+            {
+                return View("Index");
+            }
+
+            productDetails.product = product;
+            productDetails.opinions = db.Opinions.Where(opinion => opinion.Item_idItem == id).ToList();
+
+            return View(productDetails);
         }
         public ActionResult ProductList(string Searching)
         {
