@@ -4,27 +4,27 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
-    <div class="col text-primary">
-        <div class="row p-0 m-0">
-            <h2>@(ViewBag.Title + " nr " + Model.First().Sale_idSale)</h2>
-        </div>
-        <hr />
+<h2>@(ViewBag.Title + " nr " + Model.First().Sale_idSale)</h2>
+<hr />
 
-        <header class="border-bottom--black row p-0 m-0 font-weight-bold">
-            <div class="col-6">Produkt</div>
-            <div class="col-2">Cena</div>
-            <div class="col-2">Ilość</div>
-            <div class="col-2">Razem</div>
-        </header>
-
+<table class="table table-striped text-primary">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Produkt</th>
+            <th scope="col">Cena</th>
+            <th scope="col">Ilość</th>
+            <th scope="col">Razem</th>
+        </tr>
+    </thead>
+    <tbody>
         @foreach (var sale in Model)
         {
-            <div class="row p-0 m-0">
-                <p class="col-6">@sale.Item.name</p>
-                <p class="col-2">@String.Format("{0:F2} zł", sale.Item.price)</p>
-                <p class="col-2">@(sale.value / sale.Item.price)</p>
-                <p class="col-2">@String.Format("{0:F2} zł", sale.value)</p>
-            </div>
+            <tr>
+                <td scope="row">@sale.Item.name</td>
+                <td>@String.Format("{0:F2} zł", sale.Item.price)</td>
+                <td>@(sale.value / sale.Item.price)</td>
+                <td>@String.Format("{0:F2} zł", sale.value)</td>
+            </tr>
         }
-    </div>
-
+    </tbody>
+</table>  
