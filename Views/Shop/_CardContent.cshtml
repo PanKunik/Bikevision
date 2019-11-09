@@ -1,5 +1,14 @@
 ﻿@model bikevision.Models.Item
 
+@{ 
+    string classes = "shopping-card__cart-button btn btn-info";
+
+    if (Model.avability <= 0)
+    {
+        classes += " disabled";
+    }
+}
+
 <div class="shopping-card__main-content">
     @if (Model.discount != 0)
     {
@@ -23,7 +32,7 @@
 </div>
 <div class="d-none d-lg-block shopping-card__hidden-content">
     @*<button class="shopping-card__cart-button btn btn-info p-0"><span class="fas fa-shopping-cart small-icon"></span><span class="small-icon"> Do koszyka </span></button>*@
-    @Html.Raw(Html.ActionLink("ToReplace", "OrderNow", "ShoppingCart", new { id = Model.idItem, area = "" }, new { @class = "shopping-card__cart-button btn btn-info p-0" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-shopping-cart small-icon\"></span><span class=\"small-icon\"> Do koszyka </span>"))
+    @Html.Raw(Html.ActionLink("ToReplace", "OrderNow", "ShoppingCart", new { id = Model.idItem, area = "" }, new { @class = classes }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-shopping-cart small-icon\"></span><span class=\"small-icon\"> Do koszyka </span>"))
     <div class="shopping-card__additional-buttons">
         <button class="shopping-card__additional-button btn btn-outline-primary p-0 align-text-bottom"><span class="fas fa-heart text-size-very-small"></span><span class="text-size-very-small"> Ulubiony</span></button>
         <button class="shopping-card__additional-button btn btn-outline-primary p-0 align-text-bottom"><span class="fas fa-retweet text-size-very-small"></span><span class="text-size-very-small"> Porównaj</span></button>
