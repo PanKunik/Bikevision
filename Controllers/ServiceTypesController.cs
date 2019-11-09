@@ -50,7 +50,7 @@ namespace bikevision.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrator")]
-        public ActionResult Create([Bind(Include = "idServiceType,type")] ServiceType serviceType)
+        public ActionResult Create([Bind(Include = "idServiceType,type,priceFrom,priceTo")] ServiceType serviceType)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +84,7 @@ namespace bikevision.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrator")]
-        public ActionResult Edit([Bind(Include = "idServiceType,type")] ServiceType serviceType)
+        public ActionResult Edit([Bind(Include = "idServiceType,type,priceFrom,priceTo")] ServiceType serviceType)
         {
             if (ModelState.IsValid)
             {
@@ -112,9 +112,9 @@ namespace bikevision.Controllers
         }
 
         // POST: ServiceTypes/Delete/5
+        [Authorize(Roles = "Administrator")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Administrator")]
         public ActionResult DeleteConfirmed(int id)
         {
             ServiceType serviceType = db.ServiceTypes.Find(id);

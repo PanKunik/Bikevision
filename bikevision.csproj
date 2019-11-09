@@ -553,11 +553,6 @@
     <Content Include="Views\Services\Details.cshtml" />
     <Content Include="Views\Services\Edit.cshtml" />
     <Content Include="Views\Services\Index.cshtml" />
-    <Content Include="Views\ServiceTypes\Create.cshtml" />
-    <Content Include="Views\ServiceTypes\Delete.cshtml" />
-    <Content Include="Views\ServiceTypes\Details.cshtml" />
-    <Content Include="Views\ServiceTypes\Edit.cshtml" />
-    <Content Include="Views\ServiceTypes\Index.cshtml" />
     <Content Include="Views\Shared\_RegistrationForm.cshtml" />
     <Content Include="Views\Shared\_LoginForm.cshtml" />
     <Content Include="Views\Shared\_CheckData.cshtml" />
@@ -572,6 +567,11 @@
     <Content Include="Views\Service\AddPersonalData.cshtml" />
     <Content Include="Views\Service\OrderDetails.cshtml" />
     <Content Include="Views\Account\OrderDetails.cshtml" />
+    <Content Include="Views\ServiceTypes\Create.cshtml" />
+    <Content Include="Views\ServiceTypes\Delete.cshtml" />
+    <Content Include="Views\ServiceTypes\Details.cshtml" />
+    <Content Include="Views\ServiceTypes\Edit.cshtml" />
+    <Content Include="Views\ServiceTypes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

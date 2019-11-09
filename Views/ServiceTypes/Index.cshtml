@@ -15,6 +15,12 @@
         <th>
             @Html.DisplayNameFor(model => model.type)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.priceFrom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.priceTo)
+        </th>
         <th></th>
     </tr>
 
@@ -22,6 +28,12 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.priceFrom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.priceTo)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.idServiceType }) |
