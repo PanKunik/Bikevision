@@ -1,4 +1,4 @@
-﻿@model IOrderedQueryable<bikevision.Models.Item>
+﻿@model List<bikevision.Models.Item>
 
 @{
     ViewBag.Title = "ProductList";
@@ -16,8 +16,17 @@
             </ol>
         </nav>
 
-        <div class="d-flex flex-row align-items-stretch">
-            <h3 class="align-self-baseline">Aktualna kategoria</h3>
+        <div class="d-flex flex-row justify-content-between">
+            <h3 class="align-self-baseline">
+                @if (ViewBag.keyword == "" || ViewBag.keyword == null)
+                {
+                    <span>Aktualna kategoria</span>
+                }
+                else
+                {
+                    <span>Produkty zawierające frazę &ldquo;@ViewBag.keyword&rdquo;</span>
+                }
+            </h3>
             <h5 class="ml-2 align-self-baseline">Liczba produktow</h5>
         </div>
 
@@ -187,13 +196,20 @@
                 </div>
 
                 <div class="d-flex flex-row flex-wrap">
-                    @foreach (var product in Model)
+                    @if (Model.Count() > 0)
                     {
-                        @Html.Partial("_ProductCard", product)
+                        foreach (var product in Model)
+                        {
+                            @Html.Partial("_ProductCard", product)
+                        }
+                    }
+                    else
+                    {
+                        <p class="h3 p-2"> Brak produktów spełniających podane wymagania </p>
                     }
                 </div>
 
-                <nav class="d-none d-lg-block flex-row mt-2 mx-auto">
+                <nav class="d-block flex-row mt-2 mx-auto">
                     <ul class="pagination">
                         <li class="page-item disabled">
                             <a class="page-link" href="#">&laquo;</a>
@@ -218,7 +234,6 @@
                         </li>
                     </ul>
                 </nav>
-                <button class="d-block d-lg-none btn btn-info"> Więcej \/ </button>
             </div>
         </div>
 
