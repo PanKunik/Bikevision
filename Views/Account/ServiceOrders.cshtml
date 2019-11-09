@@ -9,25 +9,31 @@
 
 @if (Model != null)
 {
-    <div class="col m-0 p-0">
-        <div class="row m-0 p-0 border-bottom--black text-primary">
-            <p class="col-2">Nr zlecenia</p>
-            <p class="col-3">Data</p>
-            <p class="col-3">Tytył</p>
-            <p class="col-2">Status</p>
-            <p class="col-2">Akcje</p>
-        </div>
-        @foreach (var serivceOrder in Model)
-        {
-            <div class="row m-0 p-0 border-bottom--black text-primary">
-                <p class="col-2">@serivceOrder.idService</p>
-                <p class="col-3">@serivceOrder.dateOfEmployment</p>
-                <p class="col-3">@serivceOrder.title</p>
-                <p class="col-2">(Status)</p>
-                @Html.ActionLink("Szczegóły", "OrderDetails", "Service", new { id = serivceOrder.idService}, new { @class = "btn btn-primary" })
-            </div>
-        }
-    </div>
+    <table class="table table-striped text-primary">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nr</th>
+                <th scope="col">Data</th>
+                <th scope="col">Tytył</th>
+                <th scope="col">Status</th>
+                <th scope="col" class="text-center" >Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var serivceOrder in Model)
+            {
+                <tr>
+                    <th scope="row" class="align-middle text-center">@serivceOrder.idService</th>
+                    <td class="align-middle">@serivceOrder.dateOfEmployment</td>
+                    <td class="align-middle">@serivceOrder.title</td>
+                    <td class="align-middle">(Status)</td>
+                    <td class="text-center align-middle">
+                        @Html.ActionLink("Szczegóły", "OrderDetails", "Service", new { id = serivceOrder.idService }, new { @class = "btn btn-primary" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
 else
 {

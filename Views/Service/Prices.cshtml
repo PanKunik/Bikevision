@@ -5,20 +5,33 @@
 }
 
 <h2>@ViewBag.Title</h2>
+<hr />
 
-<div class="col">
-    <div class="row m-0 p-0">
-        <p class="col-6">Usługa</p>
-        <p class="col-3">Cena od</p>
-        <p class="col-3">Cena do</p>
-    </div>
-
-    @foreach (var serviceType in Model)
-    {
-        <div class="row m-0 p-0">
-            <p class="col-6">@serviceType.type</p>
-            <p class="col-3">@serviceType.priceFrom</p>
-            <p class="col-3">@serviceType.priceTo</p>
-        </div>
-    }
-</div>
+<table class="table table-striped text-primary">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Usługa</th>
+            <th class="text-center" scope="col">Cena od</th>
+            <th class="text-center" scope="col">Cena do</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var serviceType in Model)
+        {
+            <tr>
+                <th scope="row">@serviceType.type</th>
+                <td class="text-center">@serviceType.priceFrom</td>
+                <td class="text-center">
+                @if (serviceType.priceTo != null)
+                {
+                    @serviceType.priceTo
+                }
+                else
+                {
+                    <span>-</span>
+                }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

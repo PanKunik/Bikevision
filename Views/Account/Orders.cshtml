@@ -3,6 +3,7 @@
     ViewBag.Title = "Orders";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
     int index = 0;
+    decimal sumOfOrders = 0;
 }
 
 <h2> Twoje zamówienia </h2>
@@ -10,25 +11,43 @@
 
 @if (Model != null)
 {
-    <div class="col m-0 p-0">
-        <div class="row m-0 p-0 border-bottom--black text-primary">
-            <p class="col-2">Nr zamowienia</p>
-            <p class="col-3">Data</p>
-            <p class="col-3">Wartość</p>
-            <p class="col-2">Status</p>
-            <p class="col-2">Akcje</p>
-        </div>
-        @foreach (var order in Model)
-        {
-            <div class="row m-0 p-0 border-bottom--black text-primary">
-                <p class="col-2">@order.idSale</p>
-                <p class="col-3">@order.date</p>
-                <p class="col-3">@ViewBag.OrdersSum[index++]</p>
-                <p class="col-2">(Status)</p>
-                @Html.ActionLink("Szczegóły", "OrderDetails", "Account", new { id = order.idSale }, new { @class = "btn btn-primary" })
-            </div>
-        }
-    </div>
+    <table class="table table-striped text-primary">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nr</th>
+                <th scope="col">Data</th>
+                <th scope="col">Wartość</th>
+                <th scope="col">Status</th>
+                <th class="text-center" scope="col">Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+                sumOfOrders += ViewBag.OrdersSum[index];
+                <tr>
+                    <th scope="row" class="align-middle">@order.idSale</th>
+                    <td class="align-middle">@order.date</td>
+                    <td class="align-middle">@String.Format("{0:F2} zł", ViewBag.OrdersSum[index++])</td>
+                    <td class="align-middle">(Status)</td>
+                    <td class="text-center align-middle">
+                        @Html.ActionLink("Szczegóły", "OrderDetails", "Account", new { id = order.idSale }, new { @class = "btn btn-primary" })
+                                    </td>
+                </tr>
+            }
+            <tr>
+                <th class="text-right" colspan="2">
+                    Suma zamówień:
+                </th>
+                <td class="text-left" cospan="2">
+                    @String.Format("{0:F2} zł", sumOfOrders)
+                </td>
+                <td>
+
+                </td>
+            </tr>
+        </tbody>
+</table>
 }
 else
 {

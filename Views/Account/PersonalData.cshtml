@@ -9,36 +9,38 @@
 
 @if (Model != null)
 {
-    <div class="col m-0 mb-1 p-0">
-        <div class="row m-0 p-0 text-primary">
-            <p class="col-6">Imię:</p>
-            <p class="col-6">@Model.name</p>
-        </div>
-        <div class="row m-0 p-0 text-primary">
-            <p class="col-6">Nazwisko:</p>
-            <p class="col-6">@Model.surname</p>
-        </div>
-        <div class="row m-0 p-0 text-primary">
-            <p class="col-6">Nr telefonu:</p>
-            <p class="col-6">@Model.telephoneNumber</p>
-        </div>
-        <div class="row m-0 p-0 text-primary">
-            <p class="col-6">Adres e-mail:</p>
-            <p class="col-6">@Model.emailAddress</p>
-        </div>
-        <div class="row m-0 p-0 text-primary">
-            <p class="col-6">Adres zamieszkania:</p>
-            <p class="col-6">@Model.addressOfResidence</p>
-        </div>
-        <div class="row m-0 p-0 text-primary">
-            <p class="col-6">Miejscowość:</p>
-            <p class="col-6">@Model.Locality.locality1</p>
-        </div>
-        <div class="row m-0 p-0 text-primary">
-            <p class="col-6">Kod pocztowy:</p>
-            <p class="col-6">@Model.zipCode</p>
-        </div>
-    </div>
+    <table class="table table-striped text-primary">
+        <tbody>
+            <tr>
+                <th scope="row">Imię:</th>
+                <td>@Model.name</td>
+            </tr>
+            <tr>
+                <th scope="row">Nazwisko:</th>
+                <td>@Model.surname</td>
+            </tr>
+            <tr>
+                <th scope="row">Nr telefonu:</th>
+                <td>@Model.telephoneNumber</td>
+            </tr>
+            <tr>
+                <th scope="row">E-mail:</th>
+                <td>@Model.emailAddress</td>
+            </tr>
+            <tr>
+                <th scope="row">Adres zamieszkania:</th>
+                <td>@Model.addressOfResidence</td>
+            </tr>
+            <tr>
+                <th scope="row">Miejscowość:</th>
+                <td>@Model.Locality.locality1</td>
+            </tr>
+            <tr>
+                <th scope="row">Kod pocztowy:</th>
+                <td>@Model.zipCode</td>
+            </tr>
+        </tbody>
+    </table>
 
     using (Html.BeginForm("EditPersonalData", "Account"))
     {
