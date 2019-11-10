@@ -18,18 +18,16 @@
         @Html.ActionLink("BIKEVISION", "Index", "Home", new { area = "" }, new { @class = "p-2 navbar-brand nav-link border text-light border-light" })
     </div>
     <div class="text-right order-2 order-lg-1 col-12 col-lg-4 mt-2 mt-lg-0">
-        <form action="">
+        @using (Html.BeginForm("Index", "Shop", FormMethod.Get))
+        {
             <div class="input-group">
                 <div class="input-group-prepend">
                     <div class="input-group-text bg-transparent"><i class="fas fa-search"></i></div>
                 </div>
-                @using(Html.BeginForm("Index", "Shop", FormMethod.Get))
-                {
-                    @Html.TextBox("Searching", null, new { @class="form-control border-0 bg-dark", @placeholder="Wyszukiwanie frazą" })
-                        <input type="submit" value="Szukaj" class="btn btn-primary btn-sm"/>
-                }
+                @Html.TextBox("Searching", null, new { @class = "form-control border-0 bg-dark", @placeholder = "Wyszukiwanie frazą" })
+                <input type="submit" value="Szukaj" class="btn btn-primary btn-sm" />
             </div>
-        </form>
+        }
     </div>
     <div class="order-3 col-12 col-lg-4 mt-4 mt-lg-0">
         <ul class="nav justify-content-between justify-content-lg-end">
