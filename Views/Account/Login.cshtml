@@ -31,7 +31,7 @@
 
         <footer class="card-footer bg-transparent border-light p-3">
             <span class="d-flex justify-content-center">Nie masz jeszcze konta? &nbsp; <a href="@Url.Action("SignUp", "Account")" class=""> Zarejestruj się. </a></span>
-            <a href="#" class="d-flex justify-content-center"> Nie pamiętasz hasła? </a>
+            @*<a href="#" class="d-flex justify-content-center"> Nie pamiętasz hasła? </a>*@
         </footer>
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })

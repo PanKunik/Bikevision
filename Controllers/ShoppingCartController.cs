@@ -66,7 +66,7 @@ namespace bikevision.Controllers
                     Sale sale = new Sale();
 
                     sale.Customer_idCustomer = customer.idCustomer;
-                    sale.date = DateTime.Now.Date;
+                    sale.date = DateTime.Now;
 
                     SaleType saleTypeId = db.SaleTypes.Where(i => i.type == "Internetowa").First();
                     sale.SaleType_idSaleType = saleTypeId.idSaleType;
@@ -129,7 +129,7 @@ namespace bikevision.Controllers
                     Sale sale = new Sale();
 
                     sale.Customer_idCustomer = customer.idCustomer;
-                    sale.date = DateTime.Now.Date;
+                    sale.date = DateTime.Now;
 
                     SaleType saleTypeId = db.SaleTypes.Where(i => i.type == "Internetowa").First();
                     sale.SaleType_idSaleType = saleTypeId.idSaleType;

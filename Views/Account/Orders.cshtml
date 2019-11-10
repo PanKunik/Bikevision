@@ -1,6 +1,6 @@
 ﻿@model List<bikevision.Models.Sale>
 @{
-    ViewBag.Title = "Orders";
+    ViewBag.Title = "Twoje zamówienia";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
     int index = 0;
     decimal sumOfOrders = 0;
@@ -27,7 +27,7 @@
                 sumOfOrders += ViewBag.OrdersSum[index];
                 <tr>
                     <th scope="row" class="align-middle">@order.idSale</th>
-                    <td class="align-middle">@order.date</td>
+                    <td class="align-middle">@order.date.TimeOfDay</td>
                     <td class="align-middle">@String.Format("{0:F2} zł", ViewBag.OrdersSum[index++])</td>
                     <td class="align-middle">(Status)</td>
                     <td class="text-center align-middle">
