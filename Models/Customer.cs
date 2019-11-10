@@ -12,7 +12,7 @@ namespace bikevision.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Customer
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -25,7 +25,7 @@ namespace bikevision.Models
     
         public int idCustomer { get; set; }
         [Display(Name = "Imiê:")]
-        [Required(ErrorMessage ="Imiê jest wymagane.")]
+        [Required(ErrorMessage = "Imiê jest wymagane.")]
         public string name { get; set; }
         [Display(Name = "Nazwisko:")]
         [Required(ErrorMessage = "Nazwisko jest wymagane.")]
@@ -33,9 +33,9 @@ namespace bikevision.Models
         [Display(Name = "Numer telefonu:")]
         [Required(ErrorMessage = "Numer telefonu jest wymagany.")]
         public Nullable<long> telephoneNumber { get; set; }
-        [Display(Name = "Adres e-mail:")]
-        [Required(ErrorMessage ="Adres email jest wymagany.")]
-        [EmailAddress(ErrorMessage = "Podany adres Email jest nieprawid³owy.")]
+        [Display(Name = "E-mail:")]
+        [Required(ErrorMessage = "Adres e-mail jest wymagany.")]
+        [EmailAddress(ErrorMessage = "Podany adres e-mail jest nieprawid³owy.")]
         public string emailAddress { get; set; }
         [Display(Name = "Adres zamieszkania:")]
         [Required(ErrorMessage = "Adres zamieszkania jest wymagany.")]
