@@ -38,13 +38,15 @@
                 <h6 class="col-12 col-md-5 col-lg-4"> @productInCart.Item.name </h6>
                 <div class="col-4 col-md-2"> @String.Format("{0:F2} zł", ((productInCart.Item.price) - ((productInCart.Item.price * productInCart.Item.discount)/100)))</div>
                 <div class="row mx-0 col-4 col-md-2 text-center">
-                    @Html.Raw(Html.ActionLink("ToReplace", "AddQuantity", "ShoppingCart", new { id = productInCart.Item.idItem, area = "" }, new { @class = "col-4 col-md-12 order-3 order-md-1 m-auto shopping-cart__quantity-button shopping-cart__quantity-button--green" }).ToHtmlString().Replace("ToReplace", "+"))
+                    @Html.Raw(Html.ActionLink("ToReplace", "AddQuantity", "ShoppingCart", new { id = productInCart.Item.idItem, area = "" }, new { @class = "col-4 col-md-12 order-3 order-md-1 m-auto shopping-cart__quantity-button shopping-cart__quantity-button--green" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-plus\"></span>"))
                     @*<button class="col-4 col-md-12 order-3 order-md-1 m-auto shopping-cart__quantity-button shopping-cart__quantity-button--green">+</button>*@
-                    <p class="col-4 col-md-12 order-2 m-0 order-md-2 text-center font-weight-bold">@productInCart.Quantity</p>
-                    @Html.Raw(Html.ActionLink("ToReplace", "DecrementQuantity", "ShoppingCart", new { id = productInCart.Item.idItem, area = "" }, new { @class = "col-4 col-md-12 order-3 order-md-1 m-auto shopping-cart__quantity-button shopping-cart__quantity-button--red" }).ToHtmlString().Replace("ToReplace", "-"))
+                    <p class="col-4 col-md-12 order-2 m-0 font-weight-bold">@productInCart.Quantity</p>
+                    @Html.Raw(Html.ActionLink("ToReplace", "DecrementQuantity", "ShoppingCart", new { id = productInCart.Item.idItem, area = "" }, new { @class = "col-4 col-md-12 order-1 order-md-3 m-auto shopping-cart__quantity-button shopping-cart__quantity-button--red" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-minus\"></span>"))
                 </div>
                 <div class="col-4 col-md-2">@String.Format("{0:F2} zł", (productInCart.Quantity * productInCart.Item.price))</div>
-                @Html.Raw(Html.ActionLink("ToReplace", "Delete", "ShoppingCart", new { id = productInCart.Item.idItem, area = "" }, new { @class = "shopping-cart__trash-button", @onclick = "return confirm('Na pewno chcesz usunąć ten przedmiot z koszyka?');" }).ToHtmlString().Replace("ToReplace", "<i class=\"fas fa-trash\"></i>"))
+                <div class="col-12 col-md text-center mt-3 mt-md-0">
+                    @Html.Raw(Html.ActionLink("ToReplace", "Delete", "ShoppingCart", new { id = productInCart.Item.idItem, area = "" }, new { @class = "shopping-cart__trash-button m-auto", @onclick = "return confirm('Na pewno chcesz usunąć ten przedmiot z koszyka?');" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-trash\"></span>"))
+                </div>
             </article>
         }
 

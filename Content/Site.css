@@ -406,11 +406,13 @@ a#shop-link {
 
 .shopping-cart__trash-button {
     border-radius: 5px;
+    display: block;
     border: none;
-    width: 30px;
-    height: 30px;
+    width: auto;
+    max-width: 30px;
+    height: auto;
+    padding: 5px 5px;
     font-size: 18px;
-    padding: 3px;
     line-height: 15px;
     font-weight: bold;
     color: white;
@@ -419,6 +421,7 @@ a#shop-link {
 
     .shopping-cart__trash-button:hover {
         background-color: #303030;
+        color: white;
     }
 
     .shopping-cart__trash-button:active {
@@ -429,11 +432,10 @@ a#shop-link {
 .shopping-cart__quantity-button {
     border-radius: 20px;
     border: none;
-    max-width: 23px;
-    max-height: 23px;
-    font-size: 18px;
-    line-height: 15px;
-    font-weight: bold;
+    max-width: 22px;
+    height: auto;
+    padding: 2px 2px;
+    font-size: 12px;
     color: white;
 }
 
@@ -444,6 +446,8 @@ a#shop-link {
 
     .shopping-cart__quantity-button--green:hover {
         background-color: #1ca327;
+        color: white;
+        text-decoration: none;
     }
 
     .shopping-cart__quantity-button--green:active {
@@ -456,6 +460,8 @@ a#shop-link {
 
     .shopping-cart__quantity-button--red:hover {
         background-color: #b72700;
+        color: white;
+        text-decoration: none;
     }
 
     .shopping-cart__quantity-button--red:active {
