@@ -32,7 +32,7 @@ namespace bikevision.Models
         public string description { get; set; }
         [Display(Name = "Dostępność:")]
         [Required(ErrorMessage = "Dostępność jest wymagana.")]
-        public int avability { get; set; }
+        public byte avability { get; set; }
         [Display(Name = "Cena:")]
         [Required(ErrorMessage = "Cena jest wymagana.")]
         public decimal price { get; set; }

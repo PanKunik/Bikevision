@@ -10,107 +10,107 @@ using bikevision.Models;
 
 namespace bikevision.Controllers
 {
-    public class ServiceTypesController : Controller
+    public class SaleStatesController : Controller
     {
         private bikewayDBEntities db = new bikewayDBEntities();
 
-        // GET: ServiceTypes
+        // GET: SaleStates
         public ActionResult Index()
         {
-            return View(db.ServiceTypes.ToList());
+            return View(db.SaleStates.ToList());
         }
 
-        // GET: ServiceTypes/Details/5
+        // GET: SaleStates/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ServiceType serviceType = db.ServiceTypes.Find(id);
-            if (serviceType == null)
+            SaleState saleState = db.SaleStates.Find(id);
+            if (saleState == null)
             {
                 return HttpNotFound();
             }
-            return View(serviceType);
+            return View(saleState);
         }
 
-        // GET: ServiceTypes/Create
+        // GET: SaleStates/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: ServiceTypes/Create
+        // POST: SaleStates/Create
         // Aby zapewnić ochronę przed atakami polegającymi na przesyłaniu dodatkowych danych, włącz określone właściwości, z którymi chcesz utworzyć powiązania.
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idServiceType,type,priceFrom,priceTo")] ServiceType serviceType)
+        public ActionResult Create([Bind(Include = "idSaleState,state")] SaleState saleState)
         {
             if (ModelState.IsValid)
             {
-                db.ServiceTypes.Add(serviceType);
+                db.SaleStates.Add(saleState);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(serviceType);
+            return View(saleState);
         }
 
-        // GET: ServiceTypes/Edit/5
+        // GET: SaleStates/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ServiceType serviceType = db.ServiceTypes.Find(id);
-            if (serviceType == null)
+            SaleState saleState = db.SaleStates.Find(id);
+            if (saleState == null)
             {
                 return HttpNotFound();
             }
-            return View(serviceType);
+            return View(saleState);
         }
 
-        // POST: ServiceTypes/Edit/5
+        // POST: SaleStates/Edit/5
         // Aby zapewnić ochronę przed atakami polegającymi na przesyłaniu dodatkowych danych, włącz określone właściwości, z którymi chcesz utworzyć powiązania.
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idServiceType,type,priceFrom,priceTo")] ServiceType serviceType)
+        public ActionResult Edit([Bind(Include = "idSaleState,state")] SaleState saleState)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(serviceType).State = EntityState.Modified;
+                db.Entry(saleState).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(serviceType);
+            return View(saleState);
         }
 
-        // GET: ServiceTypes/Delete/5
+        // GET: SaleStates/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ServiceType serviceType = db.ServiceTypes.Find(id);
-            if (serviceType == null)
+            SaleState saleState = db.SaleStates.Find(id);
+            if (saleState == null)
             {
                 return HttpNotFound();
             }
-            return View(serviceType);
+            return View(saleState);
         }
 
-        // POST: ServiceTypes/Delete/5
+        // POST: SaleStates/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ServiceType serviceType = db.ServiceTypes.Find(id);
-            db.ServiceTypes.Remove(serviceType);
+            SaleState saleState = db.SaleStates.Find(id);
+            db.SaleStates.Remove(saleState);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

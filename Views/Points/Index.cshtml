@@ -1,0 +1,34 @@
+﻿@model IEnumerable<bikevision.Models.Point>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_ManagementLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.points)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.points)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idPoint }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idPoint }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idPoint })
+        </td>
+    </tr>
+}
+
+</table>

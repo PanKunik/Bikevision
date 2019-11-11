@@ -22,6 +22,9 @@
             @Html.DisplayNameFor(model => model.Employee.name)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.SaleState.state)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.SaleType.type)
         </th>
         <th></th>
@@ -37,6 +40,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Employee.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SaleState.state)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.SaleType.type)

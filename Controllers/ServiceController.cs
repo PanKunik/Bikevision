@@ -37,9 +37,12 @@ namespace bikevision.Controllers
                 Employee employeeId = db.Employees.Where(i => i.name == "Internetowy").First();
                 service.Employee_idEmployee = employeeId.idEmployee;
 
+                ServiceState stateId = db.ServiceStates.Where(i => i.state == "oczekuje na diagnozę").First();
+                service.ServiceState_idServiceState = stateId.idServiceState;
+
                 service.dateOfEmployment = DateTime.Now;
 
-                service.price = 1;
+                service.price = 0;
 
                 IQueryable<Customer> customer = db.Customers.Where(c => c.AspNetUser.UserName == User.Identity.Name);
 

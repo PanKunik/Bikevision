@@ -5,53 +5,59 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="58775e150b6342c5a770fdcb91d71b16" Name="Diagram1">
-        <EntityTypeShape EntityType="bikewayDBModel.AspNetRole" Width="1.5" PointX="1.5" PointY="25.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="bikewayDBModel.AspNetUserClaim" Width="1.5" PointX="3.75" PointY="20.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="bikewayDBModel.AspNetUserLogin" Width="1.5" PointX="3.75" PointY="22.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="bikewayDBModel.AspNetUser" Width="1.5" PointX="1.5" PointY="20.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="bikewayDBModel.Brand" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="bikewayDBModel.Category" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="bikewayDBModel.Customer" Width="1.5" PointX="0.75" PointY="12.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="bikewayDBModel.Employee" Width="1.5" PointX="0.75" PointY="30.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="bikewayDBModel.EmployeeInThePosition" Width="1.5" PointX="3" PointY="30.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="bikewayDBModel.Feature" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="bikewayDBModel.FeatureValue" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="bikewayDBModel.FeatureValueOfItem" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="bikewayDBModel.Item" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="bikewayDBModel.ItemType" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="bikewayDBModel.Locality" Width="1.5" PointX="1.5" PointY="28.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="bikewayDBModel.Note" Width="1.5" PointX="7.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="bikewayDBModel.Opinion" Width="1.5" PointX="8.25" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="bikewayDBModel.Position" Width="1.5" PointX="0.75" PointY="37.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="bikewayDBModel.Sale" Width="1.5" PointX="3" PointY="16" IsExpanded="true" />
-        <EntityTypeShape EntityType="bikewayDBModel.SaleDetail" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="bikewayDBModel.SaleType" Width="1.5" PointX="0.75" PointY="33.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="bikewayDBModel.Service" Width="1.5" PointX="6" PointY="21.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="bikewayDBModel.ServiceType" Width="1.5" PointX="3.75" PointY="25.875" IsExpanded="true" />
-        <AssociationConnector Association="bikewayDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="bikewayDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="bikewayDBModel.fk_Customer_AspNetUsers1" ManuallyRouted="false" />
-        <AssociationConnector Association="bikewayDBModel.fk_Employee_AspNetUsers1" ManuallyRouted="false" />
-        <AssociationConnector Association="bikewayDBModel.fk_Item_Brand1" ManuallyRouted="false" />
-        <AssociationConnector Association="bikewayDBModel.fk_Item_Category1" ManuallyRouted="false" />
-        <AssociationConnector Association="bikewayDBModel.fk_Customer_Locality1" ManuallyRouted="false" />
-        <AssociationConnector Association="bikewayDBModel.fk_Opinion_Customer1" ManuallyRouted="false" />
-        <AssociationConnector Association="bikewayDBModel.fk_Sale_Customer1" ManuallyRouted="false" />
-        <AssociationConnector Association="bikewayDBModel.fk_Service_Customer1" ManuallyRouted="false" />
-        <AssociationConnector Association="bikewayDBModel.fk_EmployeeInThePosition_Employee1" ManuallyRouted="false" />
-        <AssociationConnector Association="bikewayDBModel.fk_Sale_Employee1" ManuallyRouted="false" />
-        <AssociationConnector Association="bikewayDBModel.fk_Service_Employee1" ManuallyRouted="false" />
-        <AssociationConnector Association="bikewayDBModel.fk_EmployeeInThePosition_Position1" ManuallyRouted="false" />
-        <AssociationConnector Association="bikewayDBModel.fk_FeatureOfItem_Feature1" ManuallyRouted="false" />
-        <AssociationConnector Association="bikewayDBModel.fk_FeatureOfItem_FeatureValue1" ManuallyRouted="false" />
-        <AssociationConnector Association="bikewayDBModel.fk_FeatureOfItem_Item1" ManuallyRouted="false" />
-        <AssociationConnector Association="bikewayDBModel.fk_Item_ItemType1" ManuallyRouted="false" />
-        <AssociationConnector Association="bikewayDBModel.fk_Opinion_Item1" ManuallyRouted="false" />
-        <AssociationConnector Association="bikewayDBModel.fk_SaleDetails_Item1" ManuallyRouted="false" />
-        <AssociationConnector Association="bikewayDBModel.fk_Sale_SaleType1" ManuallyRouted="false" />
-        <AssociationConnector Association="bikewayDBModel.fk_SaleDetails_Sale1" ManuallyRouted="false" />
-        <AssociationConnector Association="bikewayDBModel.fk_Service_ServiceType1" ManuallyRouted="false" />
-        <AssociationConnector Association="bikewayDBModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="bikewayDBModel.AspNetRole" Width="1.5" PointX="1.5" PointY="16.125" />
+        <EntityTypeShape EntityType="bikewayDBModel.AspNetUserClaim" Width="1.5" PointX="6" PointY="21.125" />
+        <EntityTypeShape EntityType="bikewayDBModel.AspNetUserLogin" Width="1.5" PointX="6" PointY="18.625" />
+        <EntityTypeShape EntityType="bikewayDBModel.AspNetUser" Width="1.5" PointX="3.75" PointY="14.75" />
+        <EntityTypeShape EntityType="bikewayDBModel.Brand" Width="1.5" PointX="0.75" PointY="7.875" />
+        <EntityTypeShape EntityType="bikewayDBModel.Category" Width="1.5" PointX="0.75" PointY="1.625" />
+        <EntityTypeShape EntityType="bikewayDBModel.Customer" Width="1.5" PointX="6" PointY="13.875" />
+        <EntityTypeShape EntityType="bikewayDBModel.Employee" Width="1.5" PointX="0.75" PointY="24.625" />
+        <EntityTypeShape EntityType="bikewayDBModel.EmployeeInThePosition" Width="1.5" PointX="3" PointY="25.875" />
+        <EntityTypeShape EntityType="bikewayDBModel.Feature" Width="1.5" PointX="3" PointY="0.875" />
+        <EntityTypeShape EntityType="bikewayDBModel.FeatureValue" Width="1.5" PointX="3" PointY="9.25" />
+        <EntityTypeShape EntityType="bikewayDBModel.FeatureValueOfItem" Width="1.5" PointX="5.25" PointY="1.5" />
+        <EntityTypeShape EntityType="bikewayDBModel.Item" Width="1.5" PointX="3" PointY="3.25" />
+        <EntityTypeShape EntityType="bikewayDBModel.ItemType" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="bikewayDBModel.Locality" Width="1.5" PointX="3.75" PointY="12.375" />
+        <EntityTypeShape EntityType="bikewayDBModel.Note" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="bikewayDBModel.Opinion" Width="1.5" PointX="8.25" PointY="4.125" />
+        <EntityTypeShape EntityType="bikewayDBModel.Point" Width="1.5" PointX="6" PointY="8" />
+        <EntityTypeShape EntityType="bikewayDBModel.Position" Width="1.5" PointX="0.75" PointY="28.125" />
+        <EntityTypeShape EntityType="bikewayDBModel.Sale" Width="1.5" PointX="3" PointY="22" />
+        <EntityTypeShape EntityType="bikewayDBModel.SaleDetail" Width="1.5" PointX="5.25" PointY="4.5" />
+        <EntityTypeShape EntityType="bikewayDBModel.SaleState" Width="1.5" PointX="0.75" PointY="19.875" />
+        <EntityTypeShape EntityType="bikewayDBModel.SaleType" Width="1.5" PointX="0.75" PointY="22.25" />
+        <EntityTypeShape EntityType="bikewayDBModel.Service" Width="1.5" PointX="8.25" PointY="18.625" />
+        <EntityTypeShape EntityType="bikewayDBModel.ServiceState" Width="1.5" PointX="6" PointY="27.125" />
+        <EntityTypeShape EntityType="bikewayDBModel.ServiceType" Width="1.5" PointX="6" PointY="24.375" />
+        <AssociationConnector Association="bikewayDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="bikewayDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="bikewayDBModel.fk_Customer_AspNetUsers1" />
+        <AssociationConnector Association="bikewayDBModel.fk_Employee_AspNetUsers1" />
+        <AssociationConnector Association="bikewayDBModel.fk_Item_Brand1" />
+        <AssociationConnector Association="bikewayDBModel.fk_Item_Category1" />
+        <AssociationConnector Association="bikewayDBModel.fk_Customer_Locality1" />
+        <AssociationConnector Association="bikewayDBModel.fk_Opinion_Customer1" />
+        <AssociationConnector Association="bikewayDBModel.fk_Sale_Customer1" />
+        <AssociationConnector Association="bikewayDBModel.fk_Service_Customer1" />
+        <AssociationConnector Association="bikewayDBModel.fk_EmployeeInThePosition_Employee1" />
+        <AssociationConnector Association="bikewayDBModel.fk_Sale_Employee1" />
+        <AssociationConnector Association="bikewayDBModel.fk_Service_Employee1" />
+        <AssociationConnector Association="bikewayDBModel.fk_EmployeeInThePosition_Position1" />
+        <AssociationConnector Association="bikewayDBModel.fk_FeatureOfItem_Feature1" />
+        <AssociationConnector Association="bikewayDBModel.fk_FeatureOfItem_FeatureValue1" />
+        <AssociationConnector Association="bikewayDBModel.fk_FeatureOfItem_Item1" />
+        <AssociationConnector Association="bikewayDBModel.fk_Item_ItemType1" />
+        <AssociationConnector Association="bikewayDBModel.fk_Opinion_Item1" />
+        <AssociationConnector Association="bikewayDBModel.fk_SaleDetails_Item1" />
+        <AssociationConnector Association="bikewayDBModel.FK_Opinion_Points" />
+        <AssociationConnector Association="bikewayDBModel.FK_Sale_SaleState" />
+        <AssociationConnector Association="bikewayDBModel.fk_Sale_SaleType1" />
+        <AssociationConnector Association="bikewayDBModel.fk_SaleDetails_Sale1" />
+        <AssociationConnector Association="bikewayDBModel.FK_Service_ServiceState" />
+        <AssociationConnector Association="bikewayDBModel.fk_Service_ServiceType1" />
+        <AssociationConnector Association="bikewayDBModel.AspNetUserRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

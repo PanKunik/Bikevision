@@ -20,7 +20,10 @@ namespace bikevision.Models
         public decimal value { get; set; }
         public int Sale_idSale { get; set; }
         public int Item_idItem { get; set; }
-    
+        [Display(Name = "Liczba przedmiotów:")]
+        [Required(ErrorMessage = "Liczba przedmiotów jest wymagana.")]
+        public byte quantity { get; set; }
+
         public virtual Item Item { get; set; }
         public virtual Sale Sale { get; set; }
     }

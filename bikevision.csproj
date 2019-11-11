@@ -161,12 +161,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\BrandsController.cs" />
-    <Compile Include="Controllers\CategoriesController.cs" />
-    <Compile Include="Controllers\CustomersController.cs" />
-    <Compile Include="Controllers\EmployeeInThePositionsController.cs" />
-    <Compile Include="Controllers\EmployeesController.cs" />
-    <Compile Include="Controllers\FeaturesController.cs" />
     <Compile Include="Controllers\FeatureValueOfItemsController.cs" />
     <Compile Include="Controllers\FeatureValuesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -175,12 +169,15 @@
     <Compile Include="Controllers\LocalitiesController.cs" />
     <Compile Include="Controllers\NotesController.cs" />
     <Compile Include="Controllers\OpinionsController.cs" />
+    <Compile Include="Controllers\PointsController.cs" />
     <Compile Include="Controllers\PositionsController.cs" />
     <Compile Include="Controllers\SaleDetailsController.cs" />
     <Compile Include="Controllers\SalesController.cs" />
+    <Compile Include="Controllers\SaleStatesController.cs" />
     <Compile Include="Controllers\SaleTypesController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
+    <Compile Include="Controllers\ServiceStatesController.cs" />
     <Compile Include="Controllers\ServiceTypesController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
@@ -203,14 +200,17 @@
     <Compile Include="Models\Brand.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\BrandsController.cs" />
     <Compile Include="Models\CarouselItemsViewModel.cs" />
     <Compile Include="Models\Cart.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Models\Category.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Models\DatabaseFirstModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -232,9 +232,12 @@
     <Compile Include="Models\EmployeeInThePosition.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\EmployeeInThePositionsController.cs" />
+    <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Models\Feature.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\FeaturesController.cs" />
     <Compile Include="Models\FeatureValue.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
@@ -258,6 +261,9 @@
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\Point.cs">
+      <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Position.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
@@ -268,10 +274,16 @@
     <Compile Include="Models\SaleDetail.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SaleState.cs">
+      <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SaleType.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Service.cs">
+      <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ServiceState.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ServiceType.cs">
@@ -547,6 +559,11 @@
     <Content Include="Views\Opinions\Details.cshtml" />
     <Content Include="Views\Opinions\Edit.cshtml" />
     <Content Include="Views\Opinions\Index.cshtml" />
+    <Content Include="Views\Points\Create.cshtml" />
+    <Content Include="Views\Points\Delete.cshtml" />
+    <Content Include="Views\Points\Details.cshtml" />
+    <Content Include="Views\Points\Edit.cshtml" />
+    <Content Include="Views\Points\Index.cshtml" />
     <Content Include="Views\Positions\Create.cshtml" />
     <Content Include="Views\Positions\Delete.cshtml" />
     <Content Include="Views\Positions\Details.cshtml" />
@@ -562,6 +579,11 @@
     <Content Include="Views\SaleDetails\Details.cshtml" />
     <Content Include="Views\SaleDetails\Edit.cshtml" />
     <Content Include="Views\SaleDetails\Index.cshtml" />
+    <Content Include="Views\SaleStates\Create.cshtml" />
+    <Content Include="Views\SaleStates\Delete.cshtml" />
+    <Content Include="Views\SaleStates\Details.cshtml" />
+    <Content Include="Views\SaleStates\Edit.cshtml" />
+    <Content Include="Views\SaleStates\Index.cshtml" />
     <Content Include="Views\SaleTypes\Create.cshtml" />
     <Content Include="Views\SaleTypes\Delete.cshtml" />
     <Content Include="Views\SaleTypes\Details.cshtml" />
@@ -572,6 +594,11 @@
     <Content Include="Views\Services\Details.cshtml" />
     <Content Include="Views\Services\Edit.cshtml" />
     <Content Include="Views\Services\Index.cshtml" />
+    <Content Include="Views\ServiceStates\Create.cshtml" />
+    <Content Include="Views\ServiceStates\Delete.cshtml" />
+    <Content Include="Views\ServiceStates\Details.cshtml" />
+    <Content Include="Views\ServiceStates\Edit.cshtml" />
+    <Content Include="Views\ServiceStates\Index.cshtml" />
     <Content Include="Views\ServiceTypes\Create.cshtml" />
     <Content Include="Views\ServiceTypes\Delete.cshtml" />
     <Content Include="Views\ServiceTypes\Details.cshtml" />

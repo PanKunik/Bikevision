@@ -28,9 +28,11 @@ namespace bikevision.Models
         public int Customer_idCustomer { get; set; }
         public int ServiceType_idServiceType { get; set; }
         public int Employee_idEmployee { get; set; }
-    
+        public int ServiceState_idServiceState { get; set; }
+
         public virtual Customer Customer { get; set; }
         public virtual Employee Employee { get; set; }
+        public virtual ServiceState ServiceState { get; set; }
         public virtual ServiceType ServiceType { get; set; }
     }
 }

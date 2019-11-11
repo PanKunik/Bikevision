@@ -74,6 +74,9 @@ namespace bikevision.Controllers
                     Employee employeeId = db.Employees.Where(i => i.name == "Internetowy").First();
                     sale.Employee_idEmployee = employeeId.idEmployee;
 
+                    SaleState stateId = db.SaleStates.Where(i => i.state == "oczekuje na zatwierdzenie").First();
+                    sale.SaleState_idSaleState = stateId.idSaleState;
+
                     db.Sales.Add(sale);
                     db.SaveChanges();
 
@@ -88,7 +91,10 @@ namespace bikevision.Controllers
 
                         detailOfSale.Item_idItem = item.Item.idItem;
                         detailOfSale.Sale_idSale = db.Entry(sale).Entity.idSale;
+
                         lastSaleDetails = detailOfSale.Sale_idSale;
+
+                        detailOfSale.quantity = (byte)item.Quantity;
                         detailOfSale.value = item.Item.price * item.Quantity;
 
                         db.SaleDetails.Add(detailOfSale);
@@ -141,6 +147,9 @@ namespace bikevision.Controllers
                     Employee employeeId = db.Employees.Where(i => i.name == "Internetowy").First();
                     sale.Employee_idEmployee = employeeId.idEmployee;
 
+                    SaleState stateId = db.SaleStates.Where(i => i.state == "oczekuje na zatwierdzenie").First();
+                    sale.SaleState_idSaleState = stateId.idSaleState;
+
                     db.Sales.Add(sale);
                     db.SaveChanges();
 
@@ -155,7 +164,10 @@ namespace bikevision.Controllers
 
                         detailOfSale.Item_idItem = item.Item.idItem;
                         detailOfSale.Sale_idSale = db.Entry(sale).Entity.idSale;
+
                         lastSaleDetails = detailOfSale.Sale_idSale;
+
+                        detailOfSale.quantity = (byte)item.Quantity;
                         detailOfSale.value = item.Item.price * item.Quantity;
 
                         db.SaleDetails.Add(detailOfSale);

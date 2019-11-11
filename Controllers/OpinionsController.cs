@@ -15,15 +15,13 @@ namespace bikevision.Controllers
         private bikewayDBEntities db = new bikewayDBEntities();
 
         // GET: Opinions
-        [Authorize(Roles = "Administrator, Moderator")]
         public ActionResult Index()
         {
-            var opinions = db.Opinions.Include(o => o.Customer).Include(o => o.Item);
+            var opinions = db.Opinions.Include(o => o.Customer).Include(o => o.Point).Include(o => o.Item);
             return View(opinions.ToList());
         }
 
         // GET: Opinions/Details/5
-        [Authorize(Roles = "Administrator, Moderator")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -39,10 +37,10 @@ namespace bikevision.Controllers
         }
 
         // GET: Opinions/Create
-        [Authorize(Roles = "Administrator, Moderator")]
         public ActionResult Create()
         {
             ViewBag.Customer_idCustomer = new SelectList(db.Customers, "idCustomer", "name");
+            ViewBag.Points_idPoints = new SelectList(db.Points, "idPoint", "idPoint");
             ViewBag.Item_idItem = new SelectList(db.Items, "idItem", "name");
             return View();
         }
@@ -52,8 +50,7 @@ namespace bikevision.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Administrator, Moderator")]
-        public ActionResult Create([Bind(Include = "idOpinion,points,date,opinion1,Customer_idCustomer,Item_idItem")] Opinion opinion)
+        public ActionResult Create([Bind(Include = "idOpinion,date,opinion1,Customer_idCustomer,Item_idItem,Points_idPoints")] Opinion opinion)
         {
             if (ModelState.IsValid)
             {
@@ -63,12 +60,12 @@ namespace bikevision.Controllers
             }
 
             ViewBag.Customer_idCustomer = new SelectList(db.Customers, "idCustomer", "name", opinion.Customer_idCustomer);
+            ViewBag.Points_idPoints = new SelectList(db.Points, "idPoint", "idPoint", opinion.Points_idPoints);
             ViewBag.Item_idItem = new SelectList(db.Items, "idItem", "name", opinion.Item_idItem);
             return View(opinion);
         }
 
         // GET: Opinions/Edit/5
-        [Authorize(Roles = "Administrator, Moderator")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -81,6 +78,7 @@ namespace bikevision.Controllers
                 return HttpNotFound();
             }
             ViewBag.Customer_idCustomer = new SelectList(db.Customers, "idCustomer", "name", opinion.Customer_idCustomer);
+            ViewBag.Points_idPoints = new SelectList(db.Points, "idPoint", "idPoint", opinion.Points_idPoints);
             ViewBag.Item_idItem = new SelectList(db.Items, "idItem", "name", opinion.Item_idItem);
             return View(opinion);
         }
@@ -90,8 +88,7 @@ namespace bikevision.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Administrator, Moderator")]
-        public ActionResult Edit([Bind(Include = "idOpinion,points,date,opinion1,Customer_idCustomer,Item_idItem")] Opinion opinion)
+        public ActionResult Edit([Bind(Include = "idOpinion,date,opinion1,Customer_idCustomer,Item_idItem,Points_idPoints")] Opinion opinion)
         {
             if (ModelState.IsValid)
             {
@@ -100,12 +97,12 @@ namespace bikevision.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.Customer_idCustomer = new SelectList(db.Customers, "idCustomer", "name", opinion.Customer_idCustomer);
+            ViewBag.Points_idPoints = new SelectList(db.Points, "idPoint", "idPoint", opinion.Points_idPoints);
             ViewBag.Item_idItem = new SelectList(db.Items, "idItem", "name", opinion.Item_idItem);
             return View(opinion);
         }
 
         // GET: Opinions/Delete/5
-        [Authorize(Roles = "Administrator, Moderator")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -123,7 +120,6 @@ namespace bikevision.Controllers
         // POST: Opinions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Administrator, Moderator")]
         public ActionResult DeleteConfirmed(int id)
         {
             Opinion opinion = db.Opinions.Find(id);
@@ -132,7 +128,6 @@ namespace bikevision.Controllers
             return RedirectToAction("Index");
         }
 
-        [Authorize(Roles = "Administrator, Moderator")]
         protected override void Dispose(bool disposing)
         {
             if (disposing)

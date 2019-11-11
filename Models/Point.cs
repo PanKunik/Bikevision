@@ -12,26 +12,18 @@ namespace bikevision.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Sale
+    public partial class Point
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Sale()
+        public Point()
         {
-            this.SaleDetails = new HashSet<SaleDetail>();
+            this.Opinions = new HashSet<Opinion>();
         }
     
-        public int idSale { get; set; }
-        public System.DateTime date { get; set; }
-        public int Customer_idCustomer { get; set; }
-        public int SaleType_idSaleType { get; set; }
-        public int Employee_idEmployee { get; set; }
-        public int SaleState_idSaleState { get; set; }
+        public int idPoint { get; set; }
+        public int points { get; set; }
     
-        public virtual Customer Customer { get; set; }
-        public virtual Employee Employee { get; set; }
-        public virtual SaleState SaleState { get; set; }
-        public virtual SaleType SaleType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SaleDetail> SaleDetails { get; set; }
+        public virtual ICollection<Opinion> Opinions { get; set; }
     }
 }

@@ -34,6 +34,9 @@
             @Html.DisplayNameFor(model => model.Employee.name)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.ServiceState.state)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.ServiceType.type)
         </th>
         <th></th>
@@ -61,6 +64,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Employee.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServiceState.state)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ServiceType.type)

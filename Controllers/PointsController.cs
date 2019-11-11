@@ -10,107 +10,107 @@ using bikevision.Models;
 
 namespace bikevision.Controllers
 {
-    public class ServiceTypesController : Controller
+    public class PointsController : Controller
     {
         private bikewayDBEntities db = new bikewayDBEntities();
 
-        // GET: ServiceTypes
+        // GET: Points
         public ActionResult Index()
         {
-            return View(db.ServiceTypes.ToList());
+            return View(db.Points.ToList());
         }
 
-        // GET: ServiceTypes/Details/5
+        // GET: Points/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ServiceType serviceType = db.ServiceTypes.Find(id);
-            if (serviceType == null)
+            Point point = db.Points.Find(id);
+            if (point == null)
             {
                 return HttpNotFound();
             }
-            return View(serviceType);
+            return View(point);
         }
 
-        // GET: ServiceTypes/Create
+        // GET: Points/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: ServiceTypes/Create
+        // POST: Points/Create
         // Aby zapewnić ochronę przed atakami polegającymi na przesyłaniu dodatkowych danych, włącz określone właściwości, z którymi chcesz utworzyć powiązania.
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idServiceType,type,priceFrom,priceTo")] ServiceType serviceType)
+        public ActionResult Create([Bind(Include = "idPoint,points")] Point point)
         {
             if (ModelState.IsValid)
             {
-                db.ServiceTypes.Add(serviceType);
+                db.Points.Add(point);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(serviceType);
+            return View(point);
         }
 
-        // GET: ServiceTypes/Edit/5
+        // GET: Points/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ServiceType serviceType = db.ServiceTypes.Find(id);
-            if (serviceType == null)
+            Point point = db.Points.Find(id);
+            if (point == null)
             {
                 return HttpNotFound();
             }
-            return View(serviceType);
+            return View(point);
         }
 
-        // POST: ServiceTypes/Edit/5
+        // POST: Points/Edit/5
         // Aby zapewnić ochronę przed atakami polegającymi na przesyłaniu dodatkowych danych, włącz określone właściwości, z którymi chcesz utworzyć powiązania.
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idServiceType,type,priceFrom,priceTo")] ServiceType serviceType)
+        public ActionResult Edit([Bind(Include = "idPoint,points")] Point point)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(serviceType).State = EntityState.Modified;
+                db.Entry(point).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(serviceType);
+            return View(point);
         }
 
-        // GET: ServiceTypes/Delete/5
+        // GET: Points/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ServiceType serviceType = db.ServiceTypes.Find(id);
-            if (serviceType == null)
+            Point point = db.Points.Find(id);
+            if (point == null)
             {
                 return HttpNotFound();
             }
-            return View(serviceType);
+            return View(point);
         }
 
-        // POST: ServiceTypes/Delete/5
+        // POST: Points/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ServiceType serviceType = db.ServiceTypes.Find(id);
-            db.ServiceTypes.Remove(serviceType);
+            Point point = db.Points.Find(id);
+            db.Points.Remove(point);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
