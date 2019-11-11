@@ -115,23 +115,26 @@ namespace bikevision.Controllers
             {
                 ViewBag.Locality_idLocality = new SelectList(db.Localities, "idLocality", "locality1", customer.Locality_idLocality);
 
+                ModelState.Remove("idCustomer");
+
                 if (ModelState.IsValid)
                 {
                     IQueryable<Customer> Customers = db.Customers.Where(cust => cust.AspNetUser.UserName == User.Identity.Name);
 
-                    if(Customers.Count() > 0)
+                    customer.AspNetUsers_idAspNetUsers = db.AspNetUsers.Where(user => user.UserName == User.Identity.Name).First().Id;
+
+                    if (Customers.Count() > 0)
                     {
                         //customer = Customers.First();
                         if (EntityState.Modified.ToString() == "Modified")
                         {
-                            customer.AspNetUsers_idAspNetUsers = db.AspNetUsers.Where(user => user.UserName == User.Identity.Name).First().Id;
+                            //customer.idCustomer = Customers.First().idCustomer;
                             db.Entry(customer).State = EntityState.Modified;
                             db.SaveChanges();
                         }
                     }
                     else
                     {
-                        customer.AspNetUsers_idAspNetUsers = db.AspNetUsers.Where(user => user.UserName == User.Identity.Name).First().Id;
                         db.Customers.Add(customer);
                         db.SaveChanges();
                     }
