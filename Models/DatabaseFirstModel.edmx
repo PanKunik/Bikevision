@@ -164,6 +164,16 @@
           <Property Name="idNote" Type="int" Nullable="false" />
           <Property Name="note" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="NoteToService">
+          <Key>
+            <PropertyRef Name="Note_idNote" />
+            <PropertyRef Name="Service_idService" />
+          </Key>
+          <Property Name="Note_idNote" Type="int" Nullable="false" />
+          <Property Name="Service_idService" Type="int" Nullable="false" />
+          <Property Name="date" Type="datetime" Nullable="false" />
+          <Property Name="AspNetUser_idAspNetUser" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
         <EntityType Name="Opinion">
           <Key>
             <PropertyRef Name="idOpinion" />
@@ -443,6 +453,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_NoteToService_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="NoteToService" Type="Self.NoteToService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NoteToService">
+              <PropertyRef Name="AspNetUser_idAspNetUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NoteToService_Note">
+          <End Role="Note" Type="Self.Note" Multiplicity="1" />
+          <End Role="NoteToService" Type="Self.NoteToService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Note">
+              <PropertyRef Name="idNote" />
+            </Principal>
+            <Dependent Role="NoteToService">
+              <PropertyRef Name="Note_idNote" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NoteToService_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="NoteToService" Type="Self.NoteToService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="idService" />
+            </Principal>
+            <Dependent Role="NoteToService">
+              <PropertyRef Name="Service_idService" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_Opinion_Customer1">
           <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
           <End Role="Opinion" Type="Self.Opinion" Multiplicity="*" />
@@ -617,6 +663,7 @@
           <EntitySet Name="ItemType" EntityType="Self.ItemType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Locality" EntityType="Self.Locality" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Note" EntityType="Self.Note" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NoteToService" EntityType="Self.NoteToService" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Opinion" EntityType="Self.Opinion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Points" EntityType="Self.Points" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
@@ -686,6 +733,18 @@
           <AssociationSet Name="fk_Item_ItemType1" Association="Self.fk_Item_ItemType1">
             <End Role="ItemType" EntitySet="ItemType" />
             <End Role="Item" EntitySet="Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NoteToService_AspNetUsers" Association="Self.FK_NoteToService_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="NoteToService" EntitySet="NoteToService" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NoteToService_Note" Association="Self.FK_NoteToService_Note">
+            <End Role="Note" EntitySet="Note" />
+            <End Role="NoteToService" EntitySet="NoteToService" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NoteToService_Service" Association="Self.FK_NoteToService_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="NoteToService" EntitySet="NoteToService" />
           </AssociationSet>
           <AssociationSet Name="fk_Opinion_Customer1" Association="Self.fk_Opinion_Customer1">
             <End Role="Customer" EntitySet="Customer" />
@@ -879,6 +938,19 @@
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="NoteToServices" EntityType="bikewayDBModel.NoteToService" />
+          <AssociationSet Name="FK_NoteToService_AspNetUsers" Association="bikewayDBModel.FK_NoteToService_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="NoteToService" EntitySet="NoteToServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NoteToService_Note" Association="bikewayDBModel.FK_NoteToService_Note">
+            <End Role="Note" EntitySet="Notes" />
+            <End Role="NoteToService" EntitySet="NoteToServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NoteToService_Service" Association="bikewayDBModel.FK_NoteToService_Service">
+            <End Role="Service" EntitySet="Services" />
+            <End Role="NoteToService" EntitySet="NoteToServices" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -930,6 +1002,7 @@
           <NavigationProperty Name="Customers" Relationship="bikewayDBModel.fk_Customer_AspNetUsers1" FromRole="AspNetUser" ToRole="Customer" />
           <NavigationProperty Name="Employees" Relationship="bikewayDBModel.fk_Employee_AspNetUsers1" FromRole="AspNetUser" ToRole="Employee" />
           <NavigationProperty Name="AspNetRoles" Relationship="bikewayDBModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+          <NavigationProperty Name="NoteToServices" Relationship="bikewayDBModel.FK_NoteToService_AspNetUsers" FromRole="AspNetUser" ToRole="NoteToService" />
         </EntityType>
         <EntityType Name="Brand">
           <Key>
@@ -1064,6 +1137,7 @@
           </Key>
           <Property Name="idNote" Type="Int32" Nullable="false" />
           <Property Name="note1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="NoteToServices" Relationship="bikewayDBModel.FK_NoteToService_Note" FromRole="Note" ToRole="NoteToService" />
         </EntityType>
         <EntityType Name="Opinion">
           <Key>
@@ -1157,6 +1231,7 @@
           <NavigationProperty Name="Employee" Relationship="bikewayDBModel.fk_Service_Employee1" FromRole="Service" ToRole="Employee" />
           <NavigationProperty Name="ServiceState" Relationship="bikewayDBModel.FK_Service_ServiceState" FromRole="Service" ToRole="ServiceState" />
           <NavigationProperty Name="ServiceType" Relationship="bikewayDBModel.fk_Service_ServiceType1" FromRole="Service" ToRole="ServiceType" />
+          <NavigationProperty Name="NoteToServices" Relationship="bikewayDBModel.FK_NoteToService_Service" FromRole="Service" ToRole="NoteToService" />
         </EntityType>
         <EntityType Name="ServiceState">
           <Key>
@@ -1496,6 +1571,55 @@
           <End Type="bikewayDBModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="bikewayDBModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
+        <EntityType Name="NoteToService">
+          <Key>
+            <PropertyRef Name="Note_idNote" />
+            <PropertyRef Name="Service_idService" />
+          </Key>
+          <Property Name="Note_idNote" Type="Int32" Nullable="false" />
+          <Property Name="Service_idService" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AspNetUser_idAspNetUser" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="bikewayDBModel.FK_NoteToService_AspNetUsers" FromRole="NoteToService" ToRole="AspNetUser" />
+          <NavigationProperty Name="Note" Relationship="bikewayDBModel.FK_NoteToService_Note" FromRole="NoteToService" ToRole="Note" />
+          <NavigationProperty Name="Service" Relationship="bikewayDBModel.FK_NoteToService_Service" FromRole="NoteToService" ToRole="Service" />
+        </EntityType>
+        <Association Name="FK_NoteToService_AspNetUsers">
+          <End Type="bikewayDBModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="bikewayDBModel.NoteToService" Role="NoteToService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NoteToService">
+              <PropertyRef Name="AspNetUser_idAspNetUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NoteToService_Note">
+          <End Type="bikewayDBModel.Note" Role="Note" Multiplicity="1" />
+          <End Type="bikewayDBModel.NoteToService" Role="NoteToService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Note">
+              <PropertyRef Name="idNote" />
+            </Principal>
+            <Dependent Role="NoteToService">
+              <PropertyRef Name="Note_idNote" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NoteToService_Service">
+          <End Type="bikewayDBModel.Service" Role="Service" Multiplicity="1" />
+          <End Type="bikewayDBModel.NoteToService" Role="NoteToService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="idService" />
+            </Principal>
+            <Dependent Role="NoteToService">
+              <PropertyRef Name="Service_idService" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1772,6 +1896,16 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="NoteToServices">
+            <EntityTypeMapping TypeName="bikewayDBModel.NoteToService">
+              <MappingFragment StoreEntitySet="NoteToService">
+                <ScalarProperty Name="AspNetUser_idAspNetUser" ColumnName="AspNetUser_idAspNetUser" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="Service_idService" ColumnName="Service_idService" />
+                <ScalarProperty Name="Note_idNote" ColumnName="Note_idNote" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

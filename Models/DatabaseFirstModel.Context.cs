@@ -51,5 +51,6 @@ namespace bikevision.Models
         public virtual DbSet<Service> Services { get; set; }
         public virtual DbSet<ServiceState> ServiceStates { get; set; }
         public virtual DbSet<ServiceType> ServiceTypes { get; set; }
+        public virtual DbSet<NoteToService> NoteToServices { get; set; }
     }
 }

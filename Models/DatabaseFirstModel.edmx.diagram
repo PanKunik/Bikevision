@@ -58,6 +58,10 @@
         <AssociationConnector Association="bikewayDBModel.FK_Service_ServiceState" />
         <AssociationConnector Association="bikewayDBModel.fk_Service_ServiceType1" />
         <AssociationConnector Association="bikewayDBModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="bikewayDBModel.NoteToService" Width="1.5" PointX="10.5" PointY="10.5" />
+        <AssociationConnector Association="bikewayDBModel.FK_NoteToService_AspNetUsers" />
+        <AssociationConnector Association="bikewayDBModel.FK_NoteToService_Note" />
+        <AssociationConnector Association="bikewayDBModel.FK_NoteToService_Service" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -15,10 +15,17 @@ namespace bikevision.Models
     
     public partial class Service
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Service()
+        {
+            this.NoteToServices = new HashSet<NoteToService>();
+        }
+    
         public int idService { get; set; }
         [Display(Name = "Tytuł:")]
         [Required(ErrorMessage = "Tytuł jest wymagany.")]
         public string title { get; set; }
+        [Display(Name = "Cena:")]
         public decimal price { get; set; }
         public System.DateTime dateOfEmployment { get; set; }
         [Display(Name = "Opis usterki:")]
@@ -29,10 +36,12 @@ namespace bikevision.Models
         public int ServiceType_idServiceType { get; set; }
         public int Employee_idEmployee { get; set; }
         public int ServiceState_idServiceState { get; set; }
-
+    
         public virtual Customer Customer { get; set; }
         public virtual Employee Employee { get; set; }
         public virtual ServiceState ServiceState { get; set; }
         public virtual ServiceType ServiceType { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NoteToService> NoteToServices { get; set; }
     }
 }

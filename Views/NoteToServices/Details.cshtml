@@ -1,0 +1,51 @@
+﻿@model bikevision.Models.NoteToService
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_ManagementLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>NoteToService</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUser.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Note.note1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Note.note1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Service.title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Service.title)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

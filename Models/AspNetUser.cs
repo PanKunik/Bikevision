@@ -22,6 +22,7 @@ namespace bikevision.Models
             this.Customers = new HashSet<Customer>();
             this.Employees = new HashSet<Employee>();
             this.AspNetRoles = new HashSet<AspNetRole>();
+            this.NoteToServices = new HashSet<NoteToService>();
         }
     
         public string Id { get; set; }
@@ -47,5 +48,7 @@ namespace bikevision.Models
         public virtual ICollection<Employee> Employees { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NoteToService> NoteToServices { get; set; }
     }
 }

@@ -15,9 +15,18 @@ namespace bikevision.Models
     
     public partial class Note
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Note()
+        {
+            this.NoteToServices = new HashSet<NoteToService>();
+        }
+    
         public int idNote { get; set; }
         [Display(Name = "Notatka do zlecenia:")]
         [Required(ErrorMessage = "Notatka jest wymagana.")]
         public string note1 { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NoteToService> NoteToServices { get; set; }
     }
 }
