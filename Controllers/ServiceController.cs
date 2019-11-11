@@ -154,11 +154,22 @@ namespace bikevision.Controllers
             int idOfCustomer = customer.First().idCustomer;
             Service service = db.Services.Find(id);
 
+            ServiceWithNotesViewModel orderWithNotes = new ServiceWithNotesViewModel();
+
             if (service == null || service.Customer_idCustomer != idOfCustomer)
-            {
+            {              
                 return HttpNotFound();
             }
-            return View(service);
+
+            orderWithNotes.serviceOrder = service;
+            List<NoteToService> listOfNotes = db.NoteToServices.Where(note => note.Service_idService == service.idService).ToList();
+
+            if (listOfNotes.Count() > 0)
+            {
+                orderWithNotes.notesToOrder = listOfNotes;
+            }
+
+            return View(orderWithNotes);
         }
     }
 }

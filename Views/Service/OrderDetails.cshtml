@@ -1,10 +1,10 @@
-﻿@model bikevision.Models.Service
+﻿@model bikevision.Models.ServiceWithNotesViewModel
 @{
     ViewBag.Title = "Szczegóły zlecenia";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
-<h2>@(ViewBag.Title + " nr " + Model.idService)</h2>
+<h2>@(ViewBag.Title + " nr " + Model.serviceOrder.idService)</h2>
 <hr />
 
 <table class="table table-striped text-primary">
@@ -14,7 +14,7 @@
                 Przedmiot zlecenia:
             </th>
             <td scope="col">
-                @Model.title
+                @Model.serviceOrder.title
             </td>
         </tr>
         <tr>
@@ -22,7 +22,7 @@
                 Typ zlecenia:
             </th>
             <td>
-                @Model.ServiceType.type
+                @Model.serviceOrder.ServiceType.type
             </td>
         </tr>
         <tr>
@@ -30,7 +30,7 @@
                 Data przyjęcia zalecenia:
             </th>
             <td>
-                @Model.dateOfEmployment
+                @Model.serviceOrder.dateOfEmployment
             </td>
         </tr>
         <tr>
@@ -38,7 +38,7 @@
                 Opis:
             </th>
             <td>
-                @Model.description
+                @Model.serviceOrder.description
             </td>
         </tr>
         <tr>
@@ -46,15 +46,41 @@
                 Cena:
             </th>
             <td>
-                @if (Model.price == 0)
+                @if (Model.serviceOrder.price == 0)
                 {
-                    <span>Oczekuje na wycenę</span> 
+                    <span>Oczekuje na wycenę</span>
                 }
                 else
-                { 
-                    @String.Format("{0:F2} zł", Model.price);
+                {
+                    @String.Format("{0:F2} zł", Model.serviceOrder.price);
                 }
             </td>
         </tr>
     </tbody>
 </table>
+
+<h3> Notatki do zamówienia: </h3>
+<hr />
+@if (Model.notesToOrder.Count() > 0)
+{
+<table class="table">
+    <tbody>
+    @foreach (var models in Model.notesToOrder)
+    {
+        <tr>
+            <th scope="col">Autor: @models.AspNetUser.UserName</th>
+            <th scope="col">Data: @models.date</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <td scope="row" colspan="4">@models.Note.note1</td>
+        </tr>
+    }
+    </tbody>
+</table>
+}
+else
+{
+    <p class="h3"> Nie ma jeszcze żadnych notatek do teog zlecenia. </p>
+}
