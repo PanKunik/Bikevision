@@ -40,7 +40,6 @@ namespace bikevision.Models
         public virtual DbSet<Item> Items { get; set; }
         public virtual DbSet<ItemType> ItemTypes { get; set; }
         public virtual DbSet<Locality> Localities { get; set; }
-        public virtual DbSet<Note> Notes { get; set; }
         public virtual DbSet<Opinion> Opinions { get; set; }
         public virtual DbSet<Point> Points { get; set; }
         public virtual DbSet<Position> Positions { get; set; }
@@ -52,5 +51,6 @@ namespace bikevision.Models
         public virtual DbSet<ServiceState> ServiceStates { get; set; }
         public virtual DbSet<ServiceType> ServiceTypes { get; set; }
         public virtual DbSet<NoteToService> NoteToServices { get; set; }
+        public virtual DbSet<Note> Notes { get; set; }
     }
 }

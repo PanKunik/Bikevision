@@ -139,6 +139,28 @@ namespace bikevision.Controllers
             return View();
         }
 
+        public ActionResult NoteToOrder(int? id)
+        {
+            Note newNote = new Note();
+            NoteToService noteToService = new NoteToService();
+            if (Request["note"] != null)
+            {
+                newNote.note1 = Request["note"];
+                db.Notes.Add(newNote);
+                db.SaveChanges();
+
+                noteToService.date = DateTime.Now;
+                noteToService.Note_idNote = db.Entry(newNote).Entity.idNote;
+                noteToService.Service_idService = (int)id;
+                noteToService.AspNetUser_idAspNetUser = db.AspNetUsers.Where(userName => userName.UserName == User.Identity.Name).First().Id;
+
+                db.NoteToServices.Add(noteToService);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("OrderDetails", new { id = id });
+        }
+
         public ActionResult OrderDetails(int? id)
         {
             if (id == null)
@@ -162,7 +184,7 @@ namespace bikevision.Controllers
             }
 
             orderWithNotes.serviceOrder = service;
-            List<NoteToService> listOfNotes = db.NoteToServices.Where(note => note.Service_idService == service.idService).ToList();
+            List<NoteToService> listOfNotes = db.NoteToServices.Where(note => note.Service_idService == service.idService).OrderByDescending(i => i.Note_idNote).ToList();
 
             if (listOfNotes.Count() > 0)
             {

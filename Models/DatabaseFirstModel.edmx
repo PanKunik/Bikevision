@@ -161,7 +161,7 @@
           <Key>
             <PropertyRef Name="idNote" />
           </Key>
-          <Property Name="idNote" Type="int" Nullable="false" />
+          <Property Name="idNote" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="note" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="NoteToService">
@@ -819,7 +819,6 @@
           <EntitySet Name="Items" EntityType="bikewayDBModel.Item" />
           <EntitySet Name="ItemTypes" EntityType="bikewayDBModel.ItemType" />
           <EntitySet Name="Localities" EntityType="bikewayDBModel.Locality" />
-          <EntitySet Name="Notes" EntityType="bikewayDBModel.Note" />
           <EntitySet Name="Opinions" EntityType="bikewayDBModel.Opinion" />
           <EntitySet Name="Points" EntityType="bikewayDBModel.Point" />
           <EntitySet Name="Positions" EntityType="bikewayDBModel.Position" />
@@ -943,12 +942,13 @@
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="NoteToService" EntitySet="NoteToServices" />
           </AssociationSet>
-          <AssociationSet Name="FK_NoteToService_Note" Association="bikewayDBModel.FK_NoteToService_Note">
-            <End Role="Note" EntitySet="Notes" />
-            <End Role="NoteToService" EntitySet="NoteToServices" />
-          </AssociationSet>
           <AssociationSet Name="FK_NoteToService_Service" Association="bikewayDBModel.FK_NoteToService_Service">
             <End Role="Service" EntitySet="Services" />
+            <End Role="NoteToService" EntitySet="NoteToServices" />
+          </AssociationSet>
+          <EntitySet Name="Notes" EntityType="bikewayDBModel.Note" />
+          <AssociationSet Name="FK_NoteToService_Note" Association="bikewayDBModel.FK_NoteToService_Note">
+            <End Role="Note" EntitySet="Notes" />
             <End Role="NoteToService" EntitySet="NoteToServices" />
           </AssociationSet>
         </EntityContainer>
@@ -1130,14 +1130,6 @@
           <Property Name="idLocality" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="locality1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Customers" Relationship="bikewayDBModel.fk_Customer_Locality1" FromRole="Locality" ToRole="Customer" />
-        </EntityType>
-        <EntityType Name="Note">
-          <Key>
-            <PropertyRef Name="idNote" />
-          </Key>
-          <Property Name="idNote" Type="Int32" Nullable="false" />
-          <Property Name="note1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="NoteToServices" Relationship="bikewayDBModel.FK_NoteToService_Note" FromRole="Note" ToRole="NoteToService" />
         </EntityType>
         <EntityType Name="Opinion">
           <Key>
@@ -1581,8 +1573,8 @@
           <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="AspNetUser_idAspNetUser" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUser" Relationship="bikewayDBModel.FK_NoteToService_AspNetUsers" FromRole="NoteToService" ToRole="AspNetUser" />
-          <NavigationProperty Name="Note" Relationship="bikewayDBModel.FK_NoteToService_Note" FromRole="NoteToService" ToRole="Note" />
           <NavigationProperty Name="Service" Relationship="bikewayDBModel.FK_NoteToService_Service" FromRole="NoteToService" ToRole="Service" />
+          <NavigationProperty Name="Note" Relationship="bikewayDBModel.FK_NoteToService_Note" FromRole="NoteToService" ToRole="Note" />
         </EntityType>
         <Association Name="FK_NoteToService_AspNetUsers">
           <End Type="bikewayDBModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
@@ -1596,18 +1588,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_NoteToService_Note">
-          <End Type="bikewayDBModel.Note" Role="Note" Multiplicity="1" />
-          <End Type="bikewayDBModel.NoteToService" Role="NoteToService" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Note">
-              <PropertyRef Name="idNote" />
-            </Principal>
-            <Dependent Role="NoteToService">
-              <PropertyRef Name="Note_idNote" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_NoteToService_Service">
           <End Type="bikewayDBModel.Service" Role="Service" Multiplicity="1" />
           <End Type="bikewayDBModel.NoteToService" Role="NoteToService" Multiplicity="*" />
@@ -1617,6 +1597,26 @@
             </Principal>
             <Dependent Role="NoteToService">
               <PropertyRef Name="Service_idService" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Note">
+          <Key>
+            <PropertyRef Name="idNote" />
+          </Key>
+          <Property Name="idNote" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="note1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="NoteToServices" Relationship="bikewayDBModel.FK_NoteToService_Note" FromRole="Note" ToRole="NoteToService" />
+        </EntityType>
+        <Association Name="FK_NoteToService_Note">
+          <End Type="bikewayDBModel.Note" Role="Note" Multiplicity="1" />
+          <End Type="bikewayDBModel.NoteToService" Role="NoteToService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Note">
+              <PropertyRef Name="idNote" />
+            </Principal>
+            <Dependent Role="NoteToService">
+              <PropertyRef Name="Note_idNote" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1780,14 +1780,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Notes">
-            <EntityTypeMapping TypeName="bikewayDBModel.Note">
-              <MappingFragment StoreEntitySet="Note">
-                <ScalarProperty Name="note1" ColumnName="note" />
-                <ScalarProperty Name="idNote" ColumnName="idNote" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Opinions">
             <EntityTypeMapping TypeName="bikewayDBModel.Opinion">
               <MappingFragment StoreEntitySet="Opinion">
@@ -1903,6 +1895,14 @@
                 <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="Service_idService" ColumnName="Service_idService" />
                 <ScalarProperty Name="Note_idNote" ColumnName="Note_idNote" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notes">
+            <EntityTypeMapping TypeName="bikewayDBModel.Note">
+              <MappingFragment StoreEntitySet="Note">
+                <ScalarProperty Name="note1" ColumnName="note" />
+                <ScalarProperty Name="idNote" ColumnName="idNote" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

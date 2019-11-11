@@ -61,7 +61,13 @@
 
 <h3> Notatki do zamówienia: </h3>
 <hr />
-@if (Model.notesToOrder.Count() > 0)
+@using (Html.BeginForm("NoteToOrder", "Service", new { id = Model.serviceOrder.idService }))
+{
+    @Html.TextArea("note", new { @class=" form-control" })
+    <input type="submit" class="btn btn-primary btn-sm my-2" value="Wyślij notatkę"/>
+}
+
+@if (Model.notesToOrder != null)
 {
 <table class="table">
     <tbody>
