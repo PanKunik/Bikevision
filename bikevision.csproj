@@ -173,6 +173,7 @@
     <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\ItemTypesController.cs" />
     <Compile Include="Controllers\LocalitiesController.cs" />
+    <Compile Include="Controllers\NotesController.cs" />
     <Compile Include="Controllers\OpinionsController.cs" />
     <Compile Include="Controllers\PositionsController.cs" />
     <Compile Include="Controllers\SaleDetailsController.cs" />
@@ -208,9 +209,6 @@
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs">
-      <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DatabaseFirstModel.Context.cs">
@@ -251,6 +249,9 @@
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Locality.cs">
+      <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Note.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Opinion.cs">
@@ -467,6 +468,20 @@
     <Content Include="Views\Account\Orders.cshtml" />
     <Content Include="Views\ShoppingCart\Order.cshtml" />
     <Content Include="Views\ShoppingCart\Final.cshtml" />
+    <Content Include="Views\Shared\_RegistrationForm.cshtml" />
+    <Content Include="Views\Shared\_LoginForm.cshtml" />
+    <Content Include="Views\Shared\_CheckData.cshtml" />
+    <Content Include="Views\Service\Index.cshtml" />
+    <Content Include="Views\Shared\_ServiceLayout.cshtml" />
+    <Content Include="Views\Service\Prices.cshtml" />
+    <Content Include="Views\Account\ManagementPanel.cshtml" />
+    <Content Include="Views\Shared\_ManagementLayout.cshtml" />
+    <Content Include="Views\Account\ServiceOrders.cshtml" />
+    <Content Include="Views\Account\EditPersonalData.cshtml" />
+    <Content Include="Views\Service\NewServiceOrder.cshtml" />
+    <Content Include="Views\Shared\AddPersonalData.cshtml" />
+    <Content Include="Views\Service\OrderDetails.cshtml" />
+    <Content Include="Views\Account\OrderDetails.cshtml" />
     <Content Include="Views\Brands\Create.cshtml" />
     <Content Include="Views\Brands\Delete.cshtml" />
     <Content Include="Views\Brands\Details.cshtml" />
@@ -522,6 +537,11 @@
     <Content Include="Views\Localities\Details.cshtml" />
     <Content Include="Views\Localities\Edit.cshtml" />
     <Content Include="Views\Localities\Index.cshtml" />
+    <Content Include="Views\Notes\Create.cshtml" />
+    <Content Include="Views\Notes\Delete.cshtml" />
+    <Content Include="Views\Notes\Details.cshtml" />
+    <Content Include="Views\Notes\Edit.cshtml" />
+    <Content Include="Views\Notes\Index.cshtml" />
     <Content Include="Views\Opinions\Create.cshtml" />
     <Content Include="Views\Opinions\Delete.cshtml" />
     <Content Include="Views\Opinions\Details.cshtml" />
@@ -552,20 +572,6 @@
     <Content Include="Views\Services\Details.cshtml" />
     <Content Include="Views\Services\Edit.cshtml" />
     <Content Include="Views\Services\Index.cshtml" />
-    <Content Include="Views\Shared\_RegistrationForm.cshtml" />
-    <Content Include="Views\Shared\_LoginForm.cshtml" />
-    <Content Include="Views\Shared\_CheckData.cshtml" />
-    <Content Include="Views\Service\Index.cshtml" />
-    <Content Include="Views\Shared\_ServiceLayout.cshtml" />
-    <Content Include="Views\Service\Prices.cshtml" />
-    <Content Include="Views\Account\ManagementPanel.cshtml" />
-    <Content Include="Views\Shared\_ManagementLayout.cshtml" />
-    <Content Include="Views\Account\ServiceOrders.cshtml" />
-    <Content Include="Views\Account\EditPersonalData.cshtml" />
-    <Content Include="Views\Service\NewServiceOrder.cshtml" />
-    <Content Include="Views\Service\AddPersonalData.cshtml" />
-    <Content Include="Views\Service\OrderDetails.cshtml" />
-    <Content Include="Views\Account\OrderDetails.cshtml" />
     <Content Include="Views\ServiceTypes\Create.cshtml" />
     <Content Include="Views\ServiceTypes\Delete.cshtml" />
     <Content Include="Views\ServiceTypes\Details.cshtml" />

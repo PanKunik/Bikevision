@@ -112,9 +112,9 @@ namespace bikevision.Controllers
         }
 
         // POST: ServiceTypes/Delete/5
-        [Authorize(Roles = "Administrator")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult DeleteConfirmed(int id)
         {
             ServiceType serviceType = db.ServiceTypes.Find(id);

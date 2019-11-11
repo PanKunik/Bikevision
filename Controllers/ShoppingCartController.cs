@@ -54,7 +54,7 @@ namespace bikevision.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Order([Bind(Include = "name,surname,telephoneNumber,emailAddress,addressOfResidence,zipCode,Locality_idLocality")] Customer customer)
+        public ActionResult Order([Bind(Include = "idCustomer,name,surname,telephoneNumber,emailAddress,addressOfResidence,zipCode,AspNetUsers_idAspNetUsers,Locality_idLocality")] Customer customer)
         {
             if (!User.Identity.IsAuthenticated)
             {
@@ -115,9 +115,13 @@ namespace bikevision.Controllers
 
                     if(Customers.Count() > 0)
                     {
-                        customer = Customers.First();
-                        db.Entry(customer).State = EntityState.Modified;
-                        db.SaveChanges();
+                        //customer = Customers.First();
+                        if (EntityState.Modified.ToString() == "Modified")
+                        {
+                            customer.AspNetUsers_idAspNetUsers = db.AspNetUsers.Where(user => user.UserName == User.Identity.Name).First().Id;
+                            db.Entry(customer).State = EntityState.Modified;
+                            db.SaveChanges();
+                        }
                     }
                     else
                     {
@@ -164,7 +168,7 @@ namespace bikevision.Controllers
                     return RedirectToAction("Final", new { idOfSale = lastSaleDetails });
                 }
 
-                return View();
+                return View(customer);
             }
         }
 

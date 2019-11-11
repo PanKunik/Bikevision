@@ -16,13 +16,13 @@ namespace bikevision.Models
     public partial class Service
     {
         public int idService { get; set; }
-        [Required(ErrorMessage = "Tytuł jest wymagany.")]
         [Display(Name = "Tytuł:")]
+        [Required(ErrorMessage = "Tytuł jest wymagany.")]
         public string title { get; set; }
         public decimal price { get; set; }
         public System.DateTime dateOfEmployment { get; set; }
         [Display(Name = "Opis usterki:")]
-        [Required(ErrorMessage = "Opis jest wymagany.")]
+        [Required(ErrorMessage = "Opis usterki jest wymagany.")]
         public string description { get; set; }
         public Nullable<System.DateTime> dateOfCompletion { get; set; }
         public int Customer_idCustomer { get; set; }

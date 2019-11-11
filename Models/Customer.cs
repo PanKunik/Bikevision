@@ -33,9 +33,9 @@ namespace bikevision.Models
         [Display(Name = "Numer telefonu:")]
         [Required(ErrorMessage = "Numer telefonu jest wymagany.")]
         public Nullable<long> telephoneNumber { get; set; }
-        [Display(Name = "E-mail:")]
-        [Required(ErrorMessage = "Adres e-mail jest wymagany.")]
+        [Display(Name = "Adres e-mail:")]
         [EmailAddress(ErrorMessage = "Podany adres e-mail jest nieprawidłowy.")]
+        [Required(ErrorMessage = "Adres e-mail jest wymagany.")]
         public string emailAddress { get; set; }
         [Display(Name = "Adres zamieszkania:")]
         [Required(ErrorMessage = "Adres zamieszkania jest wymagany.")]

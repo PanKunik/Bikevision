@@ -25,7 +25,6 @@ namespace bikevision.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
@@ -41,6 +40,7 @@ namespace bikevision.Models
         public virtual DbSet<Item> Items { get; set; }
         public virtual DbSet<ItemType> ItemTypes { get; set; }
         public virtual DbSet<Locality> Localities { get; set; }
+        public virtual DbSet<Note> Notes { get; set; }
         public virtual DbSet<Opinion> Opinions { get; set; }
         public virtual DbSet<Position> Positions { get; set; }
         public virtual DbSet<Sale> Sales { get; set; }

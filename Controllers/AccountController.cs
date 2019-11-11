@@ -52,7 +52,15 @@ namespace bikevision.Controllers
             }
             return RedirectToAction("Login", "Account");
         }
-
+        public ActionResult AddPersonalData()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.Locality_idLocality = new SelectList(db.Localities, "idLocality", "locality1");
+                return View();
+            }
+            return RedirectToAction("Index", "Account");
+        }        
 
         // GET: /Account/Orders
         [Authorize(Roles = "Administrator, Uzytkownik, Moderator, Pracownik sklepu, Pracownik serwisu")]
@@ -147,7 +155,7 @@ namespace bikevision.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditPersonalData(Customer customer)
+        public ActionResult EditPersonalData([Bind(Include = "idCustomer,name,surname,telephoneNumber,emailAddress,addressOfResidence,zipCode,AspNetUsers_idAspNetUsers,Locality_idLocality")]Customer customer)
         {
             if (!User.Identity.IsAuthenticated)
             {
@@ -163,7 +171,10 @@ namespace bikevision.Controllers
 
                     if (Customers.Count() > 0)
                     {
-                        customer = Customers.First();
+                        //customer.idCustomer = existingCust.First().idCustomer;
+                        //customer.AspNetUsers_idAspNetUsers = db.AspNetUsers.Where(user => user.UserName == User.Identity.Name).First().Id;
+                        customer.AspNetUsers_idAspNetUsers = db.AspNetUsers.Where(user => user.UserName == User.Identity.Name).First().Id;
+
                         db.Entry(customer).State = EntityState.Modified;
                         db.SaveChanges();
                     }

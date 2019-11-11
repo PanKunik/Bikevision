@@ -84,17 +84,23 @@ namespace bikevision.Controllers
                 db.Customers.Add(customer);
                 db.SaveChanges();
 
-                Service newOrder = (Service)Session["service"];
+                if (Session["service"] != null)
+                {
+                    Service newOrder = (Service)Session["service"];
+                    Session["service"] = null;
+                    Session.Remove("service");
 
-                Session["service"] = null;
-                Session.Remove("service");
+                    newOrder.Customer_idCustomer = db.Entry(customer).Entity.idCustomer;
 
-                newOrder.Customer_idCustomer = db.Entry(customer).Entity.idCustomer;
+                    db.Services.Add(newOrder);
+                    db.SaveChanges();
 
-                db.Services.Add(newOrder);
-                db.SaveChanges();
-
-                return RedirectToAction("ServiceOrders", "Account");
+                    return RedirectToAction("ServiceOrders", "Account");
+                }
+                else
+                {
+                    return RedirectToAction("PersonalData", "Account");
+                }
             }
 
             ViewBag.Locality_idLocality = new SelectList(db.Localities, "idLocality", "locality1", customer.Locality_idLocality);

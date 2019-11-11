@@ -11,6 +11,7 @@ namespace bikevision.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Feature
     {
@@ -21,6 +22,8 @@ namespace bikevision.Models
         }
     
         public int idFeature { get; set; }
+        [Display(Name = "Cecha:")]
+        [Required(ErrorMessage = "Cecha jest wymagana.")]
         public string feature1 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

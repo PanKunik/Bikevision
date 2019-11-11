@@ -14,7 +14,7 @@ namespace bikevision.Models
     
     public partial class EmployeeInThePosition
     {
-        public System.DateTime dateOfEmployment { get; set; }
+        public Nullable<System.DateTime> dateOfEmployment { get; set; }
         public int Employee_idEmployee { get; set; }
         public int Position_idPosition { get; set; }
     
