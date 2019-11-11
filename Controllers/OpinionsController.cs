@@ -15,6 +15,7 @@ namespace bikevision.Controllers
         private bikewayDBEntities db = new bikewayDBEntities();
 
         // GET: Opinions
+        [Authorize(Roles = "Administrator, Moderator")]
         public ActionResult Index()
         {
             var opinions = db.Opinions.Include(o => o.Customer).Include(o => o.Point).Include(o => o.Item);
@@ -22,6 +23,7 @@ namespace bikevision.Controllers
         }
 
         // GET: Opinions/Details/5
+        [Authorize(Roles = "Administrator, Moderator")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +39,7 @@ namespace bikevision.Controllers
         }
 
         // GET: Opinions/Create
+        [Authorize(Roles = "Administrator, Moderator")]
         public ActionResult Create()
         {
             ViewBag.Customer_idCustomer = new SelectList(db.Customers, "idCustomer", "name");
@@ -50,6 +53,7 @@ namespace bikevision.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator, Moderator")]
         public ActionResult Create([Bind(Include = "idOpinion,date,opinion1,Customer_idCustomer,Item_idItem,Points_idPoints")] Opinion opinion)
         {
             if (ModelState.IsValid)
@@ -66,6 +70,7 @@ namespace bikevision.Controllers
         }
 
         // GET: Opinions/Edit/5
+        [Authorize(Roles = "Administrator, Moderator")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -88,6 +93,7 @@ namespace bikevision.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator, Moderator")]
         public ActionResult Edit([Bind(Include = "idOpinion,date,opinion1,Customer_idCustomer,Item_idItem,Points_idPoints")] Opinion opinion)
         {
             if (ModelState.IsValid)
@@ -103,6 +109,7 @@ namespace bikevision.Controllers
         }
 
         // GET: Opinions/Delete/5
+        [Authorize(Roles = "Administrator, Moderator")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -120,6 +127,7 @@ namespace bikevision.Controllers
         // POST: Opinions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator, Moderator")]
         public ActionResult DeleteConfirmed(int id)
         {
             Opinion opinion = db.Opinions.Find(id);
@@ -128,6 +136,7 @@ namespace bikevision.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Administrator, Moderator")]
         protected override void Dispose(bool disposing)
         {
             if (disposing)

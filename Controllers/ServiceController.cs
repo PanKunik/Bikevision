@@ -11,6 +11,7 @@ namespace bikevision.Controllers
     public class ServiceController : Controller
     {
         bikewayDBEntities db = new bikewayDBEntities();
+
         // GET: Service
         public ActionResult Index()
         {

@@ -15,12 +15,14 @@ namespace bikevision.Controllers
         private bikewayDBEntities db = new bikewayDBEntities();
 
         // GET: ServiceTypes
+        [Authorize(Roles = "Administrator")]
         public ActionResult Index()
         {
             return View(db.ServiceTypes.ToList());
         }
 
         // GET: ServiceTypes/Details/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,6 +38,7 @@ namespace bikevision.Controllers
         }
 
         // GET: ServiceTypes/Create
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create()
         {
             return View();
@@ -46,6 +49,7 @@ namespace bikevision.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create([Bind(Include = "idServiceType,type,priceFrom,priceTo")] ServiceType serviceType)
         {
             if (ModelState.IsValid)
@@ -59,6 +63,7 @@ namespace bikevision.Controllers
         }
 
         // GET: ServiceTypes/Edit/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,6 +83,7 @@ namespace bikevision.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit([Bind(Include = "idServiceType,type,priceFrom,priceTo")] ServiceType serviceType)
         {
             if (ModelState.IsValid)
@@ -90,6 +96,7 @@ namespace bikevision.Controllers
         }
 
         // GET: ServiceTypes/Delete/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -107,6 +114,7 @@ namespace bikevision.Controllers
         // POST: ServiceTypes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult DeleteConfirmed(int id)
         {
             ServiceType serviceType = db.ServiceTypes.Find(id);
@@ -115,6 +123,7 @@ namespace bikevision.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Administrator")]
         protected override void Dispose(bool disposing)
         {
             if (disposing)

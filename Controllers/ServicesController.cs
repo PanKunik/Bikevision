@@ -15,6 +15,7 @@ namespace bikevision.Controllers
         private bikewayDBEntities db = new bikewayDBEntities();
 
         // GET: Services
+        [Authorize(Roles = "Administrator, Pracownik serwisu")]
         public ActionResult Index()
         {
             var services = db.Services.Include(s => s.Customer).Include(s => s.Employee).Include(s => s.ServiceState).Include(s => s.ServiceType);
@@ -22,6 +23,7 @@ namespace bikevision.Controllers
         }
 
         // GET: Services/Details/5
+        [Authorize(Roles = "Administrator, Pracownik serwisu")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +39,7 @@ namespace bikevision.Controllers
         }
 
         // GET: Services/Create
+        [Authorize(Roles = "Administrator, Pracownik serwisu")]
         public ActionResult Create()
         {
             ViewBag.Customer_idCustomer = new SelectList(db.Customers, "idCustomer", "name");
@@ -51,6 +54,7 @@ namespace bikevision.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator, Pracownik serwisu")]
         public ActionResult Create([Bind(Include = "idService,title,price,dateOfEmployment,description,dateOfCompletion,Customer_idCustomer,ServiceType_idServiceType,Employee_idEmployee,ServiceState_idServiceState")] Service service)
         {
             if (ModelState.IsValid)
@@ -68,6 +72,7 @@ namespace bikevision.Controllers
         }
 
         // GET: Services/Edit/5
+        [Authorize(Roles = "Administrator, Pracownik serwisu")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -91,6 +96,7 @@ namespace bikevision.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator, Pracownik serwisu")]
         public ActionResult Edit([Bind(Include = "idService,title,price,dateOfEmployment,description,dateOfCompletion,Customer_idCustomer,ServiceType_idServiceType,Employee_idEmployee,ServiceState_idServiceState")] Service service)
         {
             if (ModelState.IsValid)
@@ -107,6 +113,7 @@ namespace bikevision.Controllers
         }
 
         // GET: Services/Delete/5
+        [Authorize(Roles = "Administrator, Pracownik serwisu")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -124,6 +131,7 @@ namespace bikevision.Controllers
         // POST: Services/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator, Pracownik serwisu")]
         public ActionResult DeleteConfirmed(int id)
         {
             Service service = db.Services.Find(id);
@@ -132,6 +140,7 @@ namespace bikevision.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Administrator, Pracownik serwisu")]
         protected override void Dispose(bool disposing)
         {
             if (disposing)

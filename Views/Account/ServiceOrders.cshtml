@@ -26,7 +26,7 @@
                     <th scope="row" class="align-middle text-center">@serivceOrder.idService</th>
                     <td class="align-middle">@serivceOrder.dateOfEmployment</td>
                     <td class="align-middle">@serivceOrder.title</td>
-                    <td class="align-middle">(Status)</td>
+                    <td class="align-middle">@serivceOrder.ServiceState.state</td>
                     <td class="text-center align-middle">
                         @Html.ActionLink("Szczegóły", "OrderDetails", "Service", new { id = serivceOrder.idService }, new { @class = "btn btn-primary" })
                     </td>
