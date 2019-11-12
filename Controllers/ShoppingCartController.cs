@@ -16,8 +16,9 @@ namespace bikevision.Controllers
         private string sessionCartString = "Cart";
 
         // GET: ShoppingCart
-        public ActionResult Index()
+        public ActionResult Index(string Error)
         {
+            ViewBag.QuantityError = Error;
             return View();
         }
         [HttpPost]
@@ -88,6 +89,30 @@ namespace bikevision.Controllers
                     foreach (var item in lsCart)
                     {
                         SaleDetail detailOfSale = new SaleDetail();
+                        Item itemInShop = new Item();
+
+                        itemInShop = db.Items.Find(item.Item.idItem);
+                        int availbility = (int)itemInShop.availability - item.Quantity;
+                        try
+                        {
+                            itemInShop.availability = checked((byte)availbility);
+                        }
+                        catch (OverflowException e)
+                        {
+                            db.Customers.Remove(customer);
+                            db.Sales.Remove(sale);
+                            db.SaveChanges();
+
+                            if (itemInShop.availability <= 0)
+                                lsCart.Remove(item);
+                            else
+                                item.Quantity = itemInShop.availability;
+
+                            return RedirectToAction("Index", "ShoppingCart", new { Error = "Podczas składania zamówienia wystąpił błąd. Twoje zamówienie zawierało więcej przedmiotów, niż wynosi stan magazynowy." });
+                        }
+
+                        db.Entry(itemInShop).Entity.availability = itemInShop.availability;
+                        db.SaveChanges();
 
                         detailOfSale.Item_idItem = item.Item.idItem;
                         detailOfSale.Sale_idSale = db.Entry(sale).Entity.idSale;
@@ -143,6 +168,7 @@ namespace bikevision.Controllers
 
                     sale.Customer_idCustomer = customer.idCustomer;
                     sale.date = DateTime.Now;
+                    
 
                     SaleType saleTypeId = db.SaleTypes.Where(i => i.type == "Internetowa").First();
                     sale.SaleType_idSaleType = saleTypeId.idSaleType;
@@ -164,6 +190,29 @@ namespace bikevision.Controllers
                     foreach (var item in lsCart)
                     {
                         SaleDetail detailOfSale = new SaleDetail();
+                        Item itemInShop = new Item();
+
+                        itemInShop = db.Items.Find(item.Item.idItem);
+                        int availbility = (int)itemInShop.availability - item.Quantity;
+                        try
+                        {
+                            itemInShop.availability = checked((byte)availbility);
+                        }
+                        catch (OverflowException e)
+                        {
+                            db.Sales.Remove(sale);
+                            db.SaveChanges();
+
+                            if (itemInShop.availability <= 0)
+                                lsCart.Remove(item);
+                            else
+                                item.Quantity = itemInShop.availability;
+
+                            return RedirectToAction("Index", "ShoppingCart", new { Error = "Podczas składania zamówienia wystąpił błąd. Twoje zamówienie zawierało więcej przedmiotów, niż wynosi stan magazynowy." });
+                        }
+
+                        db.Entry(itemInShop).Entity.availability = itemInShop.availability;
+                        db.SaveChanges();
 
                         detailOfSale.Item_idItem = item.Item.idItem;
                         detailOfSale.Sale_idSale = db.Entry(sale).Entity.idSale;
@@ -265,6 +314,7 @@ namespace bikevision.Controllers
 
         public ActionResult AddQuantity(int? id)
         {
+            string errorQuantity = "";
             if (id == null)
             {
                 return RedirectToAction("Index", "Shop");
@@ -276,11 +326,18 @@ namespace bikevision.Controllers
             if (indexOfItem == -1)
                 lsCart.Add(new Cart(db.Items.Find(id), 1));
             else
-                lsCart[indexOfItem].Quantity++;
+            {
+                int itemAvailability = db.Items.Find(id).availability;
+
+                if (itemAvailability >= (lsCart[indexOfItem].Quantity + 1))
+                    lsCart[indexOfItem].Quantity++;
+                else
+                    errorQuantity = "Maksymalna liczba dostępnych sztuk została osiągnięta.";
+            }
 
             Session[sessionCartString] = lsCart;
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "ShoppingCart"/*, new { Error = errorQuantity }*/);
         }
         public ActionResult DecrementQuantity(int? id)
         {

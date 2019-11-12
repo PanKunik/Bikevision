@@ -54,7 +54,7 @@ namespace bikevision.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrator, Moderator")]
-        public ActionResult Create([Bind(Include = "idItem,name,description,avability,price,discount,outlet,weight,dimensions,ItemType_idItemType,Category_idCategory,Brand_idBrand")] Item item)
+        public ActionResult Create([Bind(Include = "idItem,name,description,availability,price,discount,outlet,weight,dimensions,ItemType_idItemType,Category_idCategory,Brand_idBrand")] Item item)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +94,7 @@ namespace bikevision.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrator, Moderator")]
-        public ActionResult Edit([Bind(Include = "idItem,name,description,avability,price,discount,outlet,weight,dimensions,ItemType_idItemType,Category_idCategory,Brand_idBrand")] Item item)
+        public ActionResult Edit([Bind(Include = "idItem,name,description,availability,price,discount,outlet,weight,dimensions,ItemType_idItemType,Category_idCategory,Brand_idBrand")] Item item)
         {
             if (ModelState.IsValid)
             {
