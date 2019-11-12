@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data;
+using System.Data.Entity;
 using System.Web;
 using System.Net;
 using System.Web.Mvc;
@@ -40,6 +42,7 @@ namespace bikevision.Controllers
             }
 
             ProductDetailsViewModel productDetails = new ProductDetailsViewModel();
+            productDetails.isEligibleToAddOpinion = true;
 
             Item product = db.Items.Find(id);
 
@@ -47,9 +50,32 @@ namespace bikevision.Controllers
             {
                 return View("Index");
             }
-
+            
             productDetails.product = product;
             productDetails.opinions = db.Opinions.Where(opinion => opinion.Item_idItem == id).ToList();
+
+            if (User.Identity.IsAuthenticated)
+            {
+                int? customerId = db.Customers.Where(user => user.AspNetUser.UserName == User.Identity.Name).First().idCustomer;
+
+                if (customerId == null)
+                {
+                    productDetails.isEligibleToAddOpinion = false;
+                }
+
+                int stateRealised = db.SaleStates.Where(i => i.state == "zrealizowane").First().idSaleState;
+
+                List<SaleDetail> isEligibleToAddOpinion = db.SaleDetails.Include(d => d.Sale).Where(item => item.Item_idItem == (int)id).Where(cust => cust.Sale.Customer_idCustomer == customerId).Where(state => state.Sale.SaleState_idSaleState == stateRealised).ToList();
+
+                if (isEligibleToAddOpinion.Count() <= 0)
+                {
+                    productDetails.isEligibleToAddOpinion = false;
+                }
+            }
+            else
+            {
+                productDetails.isEligibleToAddOpinion = false;
+            }
 
             return View(productDetails);
         }
@@ -70,6 +96,33 @@ namespace bikevision.Controllers
             return View(items);
         }
 
+        [HttpPost]
+        public ActionResult OpinionToOrder(int? idProduct)
+        {
+            int points = 0;
+            if(Int32.TryParse(Request["points"], out points) && points >= 1 && points <= 5)
+            {
+                Opinion newOpinion = new Opinion();
+                string opinion = Request["opinion"];
+                if(opinion != "" && opinion != null)
+                {
+                    newOpinion.opinion1 = opinion;
+                }
+
+                newOpinion.date = DateTime.Now;
+                newOpinion.Customer_idCustomer = db.Customers.Where(user => user.AspNetUser.UserName == User.Identity.Name).First().idCustomer; ;
+                newOpinion.Item_idItem = (int)idProduct;
+                newOpinion.points = (byte)points;
+
+                db.Opinions.Add(newOpinion);
+                db.SaveChanges();
+            }
+            else
+            {
+            }
+            
+            return RedirectToAction("Product", "Shop", new { id = (int)idProduct });
+        }
         public ActionResult Favorites()
         {
             return View();

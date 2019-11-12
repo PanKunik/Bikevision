@@ -77,8 +77,8 @@
                 <tr>
                     <td colspan="3" scope="row" class="font-weight-bold text-size-small">
                         <span>Kod rabatowy</span>
-                        @Html.TextBox("discountCode", null, new { @class="form-control" })
-                        <input type="submit" value="Skorzystaj" class="btn btn-primary"/>
+                        @Html.TextBox("discountCode", null, new { @class="form-control mt-2" })
+                        <input type="submit" value="Skorzystaj" class="btn btn-primary mt-2"/>
                     </td>
                     <td colspan="3" >
                         <div class="row">
@@ -125,7 +125,7 @@
                     <td colspan="6">
                         @using (Html.BeginForm("Index", "ShoppingCart", null, FormMethod.Post, new { @class = "d-flex flex-column", role = "form" }))
                         {
-                            <div class="input-group pt-1 justify-content-end">
+                            <div class="input-group mt-1 justify-content-end">
                                 <button type="submit" id="submit" class="btn btn-primary"> Przejdz dalej</button>
                             </div>
                         }

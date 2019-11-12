@@ -337,7 +337,7 @@ namespace bikevision.Controllers
 
             Session[sessionCartString] = lsCart;
 
-            return RedirectToAction("Index", "ShoppingCart"/*, new { Error = errorQuantity }*/);
+            return RedirectToAction("Index", "ShoppingCart", new { Error = errorQuantity });
         }
         public ActionResult DecrementQuantity(int? id)
         {
