@@ -20,11 +20,11 @@
         {
             <tr>
                 <th scope="row">@serviceType.type</th>
-                <td class="text-center">@serviceType.priceFrom</td>
+                <td class="text-center">@String.Format("{0:F2} zł", serviceType.priceFrom)</td>
                 <td class="text-center">
                 @if (serviceType.priceTo != null)
                 {
-                    @serviceType.priceTo
+                    @String.Format("{0:F2} zł", serviceType.priceTo)
                 }
                 else
                 {
