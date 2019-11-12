@@ -10,5 +10,6 @@ namespace bikevision.Models
         public Item product;
         public List<Opinion> opinions;
         public bool isEligibleToAddOpinion;
+        public int HiddenQuantity;
     }
 }

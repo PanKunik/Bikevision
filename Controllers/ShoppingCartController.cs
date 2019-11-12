@@ -270,18 +270,31 @@ namespace bikevision.Controllers
             return RedirectToAction("Index", "Shop");
         }
 
-        public ActionResult OrderNow(int? id)
+        public ActionResult OrderNow(int? id, int? quantity)
         {
             if(id == null)
             {
                 return RedirectToAction("Index", "Shop");
             }
 
+            if(Request["HiddenQuantity"] != null)
+            {
+                int quan = 0;
+                if(Int32.TryParse(Request["HiddenQuantity"], out quan))
+                {
+                    quantity = (int?)quan;
+                }
+                else
+                {
+                    quantity = 1;
+                }
+            }
+
             if(Session[sessionCartString] == null)
             {
                 List<Cart> lsCart = new List<Cart>
                 {
-                    new Cart(db.Items.Find(id), 1)
+                    new Cart(db.Items.Find(id), (int)quantity)
                 };
 
                 Session[sessionCartString] = lsCart;
@@ -292,9 +305,11 @@ namespace bikevision.Controllers
                 int indexOfItem = doseItemExistInCart(id);
 
                 if (indexOfItem == -1)
-                    lsCart.Add(new Cart(db.Items.Find(id), 1));
+                    lsCart.Add(new Cart(db.Items.Find(id), (int)quantity));
                 else
-                    lsCart[indexOfItem].Quantity++;
+                {
+                    lsCart[indexOfItem].Quantity += (int)quantity;
+                }
 
                 Session[sessionCartString] = lsCart;
             }

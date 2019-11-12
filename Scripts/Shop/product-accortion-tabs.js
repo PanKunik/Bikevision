@@ -46,4 +46,14 @@ $(document).ready(function () {
     $(window).resize(function () {
         TabsToAccordion();
     });
+
+    $('select').on('change', function () {
+        $(".product__final-price").text(($('option:selected', this).attr('value') * $(".product__actual-price").attr('value')).toString() + " zł");
+
+        $("#HiddenQuantity").attr('value', $('option:selected', this).attr('value'));
+    });
+    //$("#itemQuantity").change(function () {
+    //    $(window).alert("Ok");
+    //    $(".product__final-price").text($("#itemQuantity").val * $(".product__actual-price").text());
+    //});
 });
