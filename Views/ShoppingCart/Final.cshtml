@@ -9,93 +9,107 @@
     <h2> Szczegóły twojego zamówienia </h2>
 
     <div class="row m-0 p-0 pt-3">
-        <article class="col-12 col-lg-6 p-0 border-right-lg--black">
-            <header class="col-12 border-bottom--black">
-                <h5>Dane do wysyłki</h5>
-            </header>
-            <div class="col-12 row m-0">
-                <div class="col-6 font-weight-bold">
-                    @Html.LabelFor(model => model.First().Sale.Customer.name)
-                </div>
-                <div class="col-6">
-                    @Html.DisplayTextFor(model => model.First().Sale.Customer.name)
-                </div>
-            </div>
-            <div class="col-12 row m-0">
-                <div class="col-6 font-weight-bold">
-                    @Html.LabelFor(model => model.First().Sale.Customer.surname)
-                </div>
-                <div class="col-6">
-                    @Html.DisplayTextFor(model => model.First().Sale.Customer.surname)
-                </div>
-            </div>
-            <div class="col-12 row m-0">
-                <div class="col-6 font-weight-bold">
-                    @Html.LabelFor(model => model.First().Sale.Customer.emailAddress)
-                </div>
-                <div class="col-6">
-                    @Html.DisplayTextFor(model => model.First().Sale.Customer.emailAddress)
-                </div>
-            </div>
-            <div class="col-12 row m-0">
-                <div class="col-6 font-weight-bold">
-                    @Html.LabelFor(model => model.First().Sale.Customer.telephoneNumber)
-                </div>
-                <div class="col-6">
-                    @Html.DisplayTextFor(model => model.First().Sale.Customer.telephoneNumber)
-                </div>
-            </div>
-            <div class="col-12 row m-0">
-                <div class="col-6 font-weight-bold">
-                    @Html.LabelFor(model => model.First().Sale.Customer.Locality.locality1)
-                </div>
-                <div class="col-6">
-                    @Html.DisplayTextFor(model => model.First().Sale.Customer.Locality.locality1)
-                </div>
-            </div>
-            <div class="col-12 row m-0">
-                <div class="col-6 font-weight-bold">
-                    @Html.LabelFor(model => model.First().Sale.Customer.addressOfResidence)
-                </div>
-                <div class="col-6">
-                    @Html.DisplayTextFor(model => model.First().Sale.Customer.addressOfResidence)
-                </div>
-            </div>
-            <div class="col-12 row m-0">
-                <div class="col-6 font-weight-bold">
-                    @Html.LabelFor(model => model.First().Sale.Customer.zipCode)
-                </div>
-                <div class="col-6">
-                    @Html.DisplayTextFor(model => model.First().Sale.Customer.zipCode)
-                </div>
-            </div>
-        </article>
+        <table class="table table-sm table-striped text-primary">
+            <thead class="thead-dark">
+                <tr>
+                    <th colspan="2" scope="col">
+                        <h4 class="text-white align-middle">Dane do wysyłki</h4>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="row" class="font-weight-bold">
+                        @Html.LabelFor(model => model.First().Sale.Customer.name)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(model => model.First().Sale.Customer.name)
+                    </td>
+                </tr>
+                <tr>
+                    <td scope="row" class="font-weight-bold">
+                        @Html.LabelFor(model => model.First().Sale.Customer.surname)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(model => model.First().Sale.Customer.surname)
+                    </td>
+                </tr>
+                <tr>
+                    <td scope="row" class="font-weight-bold">
+                        @Html.LabelFor(model => model.First().Sale.Customer.emailAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(model => model.First().Sale.Customer.emailAddress)
+                    </td>
+                </tr>
+                <tr>
+                    <td scope="row" class="font-weight-bold">
+                        @Html.LabelFor(model => model.First().Sale.Customer.telephoneNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(model => model.First().Sale.Customer.telephoneNumber)
+                    </td>
+                </tr>
+                <tr>
+                    <td scope="row" class="font-weight-bold">
+                        @Html.LabelFor(model => model.First().Sale.Customer.Locality.locality1)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(model => model.First().Sale.Customer.Locality.locality1)
+                    </td>
+                </tr>
+                <tr>
+                    <td scope="row" class="font-weight-bold">
+                        @Html.LabelFor(model => model.First().Sale.Customer.addressOfResidence)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(model => model.First().Sale.Customer.addressOfResidence)
+                    </td>
+                </tr>
+                <tr>
+                    <td scope="row" class="font-weight-bold">
+                        @Html.LabelFor(model => model.First().Sale.Customer.zipCode)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(model => model.First().Sale.Customer.zipCode)
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-        <article class="col-12 col-lg-6 p-0">
-            <header class="col-12 border-bottom--black">
-                <h5>Zamówione przedmioty</h5>
-            </header>
-            <div class="row m-0 p-0 font-weight-bold">
-                <p class="col-8">Przedmiot</p>
-                <p class="col-2">Cena</p>
-                <p class="col-2">Ilość</p>
-            </div>
+        <h5>Zamówione przedmioty</h5>
 
-            <div class="row m-0 p-0">
+        <table class="table table-striped text-primary">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">
+                        Przedmiot
+                    </th>
+                    <th scope="col">
+                        Cena
+                    </th>
+                    <th scope="col">
+                        Szt.
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
                 @foreach (var item in Model)
                 {
-                    <div class="col-8">
-                        @item.Item.name
-                    </div>
-                    <div class="col-2">
-                        @item.Item.price
-                    </div>
-                    <div class="col-2">
-                        @ViewBag.values[index++]
-                    </div>
+                    <tr>
+                        <td scope="row">
+                            @item.Item.name
+                        </td>
+                        <td>
+                            @String.Format("{0:F2} zł", item.Item.price)
+                        </td>
+                        <td>
+                            @ViewBag.values[index++]
+                        </td>
+                    </tr>
                 }
-            </div>
-        </article>
+            </tbody>
+        </table>
     </div>
 
     @using(Html.BeginForm())

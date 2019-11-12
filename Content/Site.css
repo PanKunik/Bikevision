@@ -32,6 +32,8 @@
 
 .border-bottom--black {border-bottom: 1px solid black;}
 
+.table.vertical-align > tbody > tr > td {vertical-align: middle;}
+
 /*  End single property classes  */
 
 /*  Main HTML elements  */

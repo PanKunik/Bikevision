@@ -22,87 +22,115 @@
 
         <h2 class="px-0"> Twój koszyk </h2>
 
-        <header class="border-bottom--black row py-2 font-weight-bold d-none d-md-flex">
-            <div class="col-5 col-lg-1">Produkt</div>
-            <div class="d-none d-lg-block col-lg-4">Nazwa</div>
-            <div class="col-2">Cena</div>
-            <div class="col-2 text-center">Ilość</div>
-            <div class="col-2">Razem</div>
-            <div class="col-1">Usuń</div>
-        </header>
+        <table class="table table-striped text-primary vertical-align">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">
+                        Produkt
+                    </th>
+                    <th scope="col">
+                        Nazwa
+                    </th>
+                    <th scope="col">
+                        Cena
+                    </th>
+                    <th class="text-center" scope="col">
+                        Ilość
+                    </th>
+                    <th scope="col">
+                        Razem
+                    </th>
+                    <th class="text-center" scope="col">
+                        Usuń
+                    </th>
+                </tr>
+            </thead>
 
-        foreach (var productInCart in (List<Cart>)Session["Cart"])
-        {
-            <article class="border-top--black border-bottom--black row py-2 flex-wrap align-content-stretch align-items-center">
-                <div class="col-12 col-lg-1"><img src="~/Content/Images/Shop/siodelko_1.jpg" class="shopping-cart__product-image" alt="obrazek" /></div>
-                <h6 class="col-12 col-md-5 col-lg-4"> @productInCart.Item.name </h6>
-                <div class="col-4 col-md-2"> @String.Format("{0:F2} zł", ((productInCart.Item.price) - ((productInCart.Item.price * productInCart.Item.discount)/100)))</div>
-                <div class="row mx-0 col-4 col-md-2 text-center">
-                    @Html.Raw(Html.ActionLink("ToReplace", "AddQuantity", "ShoppingCart", new { id = productInCart.Item.idItem, area = "" }, new { @class = "col-4 col-md-12 order-3 order-md-1 m-auto shopping-cart__quantity-button shopping-cart__quantity-button--green" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-plus\"></span>"))
-                    @*<button class="col-4 col-md-12 order-3 order-md-1 m-auto shopping-cart__quantity-button shopping-cart__quantity-button--green">+</button>*@
-                    <p class="col-4 col-md-12 order-2 m-0 font-weight-bold">@productInCart.Quantity</p>
-                    @Html.Raw(Html.ActionLink("ToReplace", "DecrementQuantity", "ShoppingCart", new { id = productInCart.Item.idItem, area = "" }, new { @class = "col-4 col-md-12 order-1 order-md-3 m-auto shopping-cart__quantity-button shopping-cart__quantity-button--red" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-minus\"></span>"))
-                </div>
-                <div class="col-4 col-md-2">@String.Format("{0:F2} zł", (productInCart.Quantity * productInCart.Item.price))</div>
-                <div class="col-12 col-md text-center mt-3 mt-md-0">
-                    @Html.Raw(Html.ActionLink("ToReplace", "Delete", "ShoppingCart", new { id = productInCart.Item.idItem, area = "" }, new { @class = "shopping-cart__trash-button m-auto", @onclick = "return confirm('Na pewno chcesz usunąć ten przedmiot z koszyka?');" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-trash\"></span>"))
-                </div>
-            </article>
-        }
+            <tbody>
+                @foreach (var productInCart in (List<Cart>)Session["Cart"])
+                {
+                    <tr>
+                        <td scope="row">
+                            <img src="~/Content/Images/Shop/siodelko_1.jpg" class="shopping-cart__product-image" alt="obrazek" />
+                        </td>
+                        <td>
+                            <p class=""> @productInCart.Item.name </p>
+                        </td>
+                        <td>
+                            <p class=""> @String.Format("{0:F2} zł", ((productInCart.Item.price) - ((productInCart.Item.price * productInCart.Item.discount) / 100))) </p>
+                        </td>
+                        <td class="text-center">
+                            @Html.Raw(Html.ActionLink("ToReplace", "AddQuantity", "ShoppingCart", new { id = productInCart.Item.idItem, area = "" }, new { @class = "order-3 order-md-1 m-auto shopping-cart__quantity-button shopping-cart__quantity-button--green" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-plus\"></span>"))
+                            <p class="order-2 m-0 font-weight-bold">@productInCart.Quantity</p>
+                            @Html.Raw(Html.ActionLink("ToReplace", "DecrementQuantity", "ShoppingCart", new { id = productInCart.Item.idItem, area = "" }, new { @class = "order-1 order-md-3 m-auto shopping-cart__quantity-button shopping-cart__quantity-button--red" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-minus\"></span>"))
+                        </td>
+                        <td>
+                            @String.Format("{0:F2} zł", (productInCart.Quantity * productInCart.Item.price))
+                        </td>
+                        <td class="text-center">
+                            @Html.Raw(Html.ActionLink("ToReplace", "Delete", "ShoppingCart", new { id = productInCart.Item.idItem, area = "" }, new { @class = "shopping-cart__trash-button m-auto", @onclick = "return confirm('Na pewno chcesz usunąć ten przedmiot z koszyka?');" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-trash\"></span>"))
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <td colspan="3" scope="row" class="font-weight-bold text-size-small">
+                        <span>Kod rabatowy</span>
+                        @Html.TextBox("discountCode", null, new { @class="form-control" })
+                        <input type="submit" value="Skorzystaj" class="btn btn-primary"/>
+                    </td>
+                    <td colspan="3" >
+                        <div class="row">
+                            <p class="col-12 col-md-6 font-weight-bold"> Razem (brutto): </p>
+                            <p class="col-12 col-md-6 ">
+                                @String.Format("{0:F2} zł", total)
+                            </p>
+                        </div>
+                        <div class="row">
+                            <p class="col-12 col-md-6 text-size-small font-weight-bold"> Rabat:  </p>
+                            <p class="col-12 col-md-6 text-size-small">
+                                @String.Format("{0:F2} zł", promotionCode)
+                            </p>
+                        </div>
 
-        <section class="border-bottom--black row py-2">
-            <div class="col-6 font-weight-bold text-size-small">
-                Kod rabatowy
-            </div>
-            <div class="col-6">
-                <div class="row">
-                    <p class="col-12 col-md-6 font-weight-bold"> Razem (brutto): </p>
-                    <p class="col-12 col-md-6 ">
-                        @String.Format("{0:F2} zł", total)
-                    </p>
-                </div>
-                <div class="row">
-                    <p class="col-12 col-md-6 text-size-small font-weight-bold"> Rabat:  </p>
-                    <p class="col-12 col-md-6 text-size-small">
-                        @String.Format("{0:F2} zł", promotionCode)  
-                    </p>
-                </div>
-
-                <div class="row">
-                    <p class="col-12 col-md-6 text-size-small font-weight-bold"> Razem:  </p>
-                    <p class="col-12 col-md-6 text-size-small"> @String.Format("{0:F2} zł", total - promotionCode)  </p>
-                </div>
-            </div>
-        </section>
-
-        <section class="border-bottom--black row py-2">
-            <div class="col-12 col-md-6">
-                <p class="font-weight-bold text-size-small">Wybierz sposób dostawy:</p>
-                <p>Poczta Polska</p>
-                <p>Kurier DPD</p>
-            </div>
-            <div class="col-12 col-md-6">
-                <div class="row">
-                    <p class="col-6">Produkty: </p>
-                    <p class="col-6">@String.Format("{0:F2} zł", total - promotionCode)</p>
-                </div>
-                <div class="row">
-                    <p class="col-6">Koszt dostawy: </p>
-                    <p class="col-6">@String.Format("{0:F2} zł", deliveryCost)</p>
-                </div>
-                <div class="row">
-                    <p class="col-6 font-weight-bold text-size-small">Razem do zapłaty:</p>
-                    <p class="col-6 font-weight-bold text-size-small">@String.Format("{0:F2}", total - promotionCode + deliveryCost)</p>
-                </div>
-            </div>
-        </section>
-
-        using(Html.BeginForm("Index", "ShoppingCart", null, FormMethod.Post, new { @class = "d-flex flex-column", role = "form" }))
-        {
-            <div class="input-group pt-1 justify-content-end">
-            <button type = "submit" id="submit" class="btn btn-primary"> Przejdz dalej</button>
-            </div>
-        }
+                        <div class="row">
+                            <p class="col-12 col-md-6 text-size-small font-weight-bold"> Razem:  </p>
+                            <p class="col-12 col-md-6 text-size-small"> @String.Format("{0:F2} zł", total - promotionCode)  </p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3"  scope="row">
+                        <p class="font-weight-bold text-size-small">Wybierz sposób dostawy:</p>
+                        <p>Poczta Polska</p>
+                        <p>Kurier DPD</p>
+                    </td>
+                    <td colspan="3" >
+                        <div class="row">
+                            <p class="col-6">Produkty: </p>
+                            <p class="col-6">@String.Format("{0:F2} zł", total - promotionCode)</p>
+                        </div>
+                        <div class="row">
+                            <p class="col-6">Koszt dostawy: </p>
+                            <p class="col-6">@String.Format("{0:F2} zł", deliveryCost)</p>
+                        </div>
+                        <div class="row">
+                            <p class="col-6 font-weight-bold text-size-small">Razem do zapłaty:</p>
+                            <p class="col-6 font-weight-bold text-size-small">@String.Format("{0:F2}", total - promotionCode + deliveryCost)</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="6">
+                        @using (Html.BeginForm("Index", "ShoppingCart", null, FormMethod.Post, new { @class = "d-flex flex-column", role = "form" }))
+                        {
+                            <div class="input-group pt-1 justify-content-end">
+                                <button type="submit" id="submit" class="btn btn-primary"> Przejdz dalej</button>
+                            </div>
+                        }
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     }
     else
     {
