@@ -17,6 +17,16 @@ namespace bikevision.Controllers
 {
     public class AccountController : Controller
     {
+        public MainLayoutViewModel MainLayoutViewModel { get; set; }
+
+        public AccountController()
+        {
+            this.MainLayoutViewModel = new MainLayoutViewModel();
+            this.MainLayoutViewModel.Types = db.ItemTypes.ToList();
+
+            this.ViewData["MainLayoutViewModel"] = this.MainLayoutViewModel;
+        }
+
         bikewayDBEntities db = new bikewayDBEntities();
         // GET: /Account
         [Authorize(Roles = "Administrator, Uzytkownik, Moderator, Pracownik sklepu, Pracownik serwisu")]

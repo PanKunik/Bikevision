@@ -1,5 +1,9 @@
-﻿@{
+﻿@using bikevision.Models
+
+@{
     Layout = "~/Views/Shared/_HeadingLayout.cshtml";
+
+    var viewModel = (MainLayoutViewModel)ViewData["MainLayoutViewModel"];
 
     /*
 
@@ -50,7 +54,65 @@
 <nav class="container-fluid flex-row navbar navbar-expand-lg navbar-dark bg-primary py-0 py-lg-3">
     <div class="collapse navbar-collapse" id="navbarShopNavigation">
         <ul id="shopMenu" class="navbar-nav text-left mr-auto py-3 py-lg-0">
-            <li class="nav-item dropdown menu-area mr-lg-1">
+            @foreach (var type in viewModel.Types)
+            {
+                <li class="nav-item dropdown menu-area mr-lg-1">
+                    <a class="nav-link dropdown-toggle" id="mega-bikes" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        @type.type
+                    </a>
+                    @*<div class="dropdown-menu mega-area dropdown-menu-squared" aria-labelledby="mega-bikes">
+                        <div class="row px-lg-5">
+                            <div class="col-lg-4">
+                                <h5 class="dropdown-header">Rowery według przeznaczenia</h5>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="@Url.Action("ProductList", "Shop", new { type = "Rowery", category = "górskie"})">MTB <i class="fas fa-chevron-right"></i></a>
+                                <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Enduro <i class="fas fa-chevron-right"></i></a>
+                                <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Freeride <i class="fas fa-chevron-right"></i></a>
+                                <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Downhill <i class="fas fa-chevron-right"></i></a>
+                                <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Miejskie <i class="fas fa-chevron-right"></i></a>
+                                <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Dirt jump/BMX <i class="fas fa-chevron-right"></i></a>
+                                <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Trekkingowe/Cross <i class="fas fa-chevron-right"></i></a>
+                                <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Szosowe <i class="fas fa-chevron-right"></i></a>
+                                <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Dziecięce <i class="fas fa-chevron-right"></i></a>
+                            </div>
+                            <div class="col-lg-4">
+                                <h5 class="dropdown-header">Rowery według marek</h5>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Giant <i class="fas fa-chevron-right"></i></a>
+                                <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Kross <i class="fas fa-chevron-right"></i></a>
+                                <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Cube <i class="fas fa-chevron-right"></i></a>
+                                <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Merida <i class="fas fa-chevron-right"></i></a>
+                                <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Arkus &Aacute; Romet <i class="fas fa-chevron-right"></i></a>
+                                <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Author <i class="fas fa-chevron-right"></i></a>
+                                <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Dartmoor <i class="fas fa-chevron-right"></i></a>
+                                <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">NS Bikes <i class="fas fa-chevron-right"></i></a>
+                                <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Kellys <i class="fas fa-chevron-right"></i></a>
+                                <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Specialized <i class="fas fa-chevron-right"></i></a>
+                            </div>
+                            <div class="col-lg-4">
+                                <h5 class="dropdown-header">Rowery według wielkości kół</h5>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">15" <i class="fas fa-chevron-right"></i></a>
+                                <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">20" <i class="fas fa-chevron-right"></i></a>
+                                <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">24" <i class="fas fa-chevron-right"></i></a>
+                                <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">26" <i class="fas fa-chevron-right"></i></a>
+                                <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">27.5" <i class="fas fa-chevron-right"></i></a>
+                                <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">29" <i class="fas fa-chevron-right"></i></a>
+                            </div>
+                        </div>
+                    </div>*@
+                    <!-- <div class="dropdown-menu dropdown-menu-squared">
+                <h5 class="dropdown-header">Rowery według przeznaczenia</h5>
+                <a class="dropdown-item" href="#">Górskie <i class="fas fa-chevron-right"></i></a>
+                <a class="dropdown-item" href="#">Miejskie <i class="fas fa-chevron-right"></i></a>
+                <div class="dropdown-divider"></div>
+                <h5 class="dropdown-header">Rowery według marek</h5>
+                <a class="dropdown-item" href="#">Giant <i class="fas fa-chevron-right"></i></a>
+                <a class="dropdown-item" href="#">Kross <i class="fas fa-chevron-right"></i></a>
+            </div> -->
+                </li>
+            }
+            @*<li class="nav-item dropdown menu-area mr-lg-1">
                 <a class="nav-link dropdown-toggle" id="mega-bikes" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     Rowery
                 </a>
@@ -59,7 +121,7 @@
                         <div class="col-lg-4">
                             <h5 class="dropdown-header">Rowery według przeznaczenia</h5>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">MTB <i class="fas fa-chevron-right"></i></a>
+                            <a class="dropdown-item" href="@Url.Action("ProductList", "Shop", new { type = "Rowery", category = "górskie"})">MTB <i class="fas fa-chevron-right"></i></a>
                             <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Enduro <i class="fas fa-chevron-right"></i></a>
                             <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Freeride <i class="fas fa-chevron-right"></i></a>
                             <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Downhill <i class="fas fa-chevron-right"></i></a>
@@ -96,17 +158,17 @@
                     </div>
                 </div>
                 <!-- <div class="dropdown-menu dropdown-menu-squared">
-                    <h5 class="dropdown-header">Rowery według przeznaczenia</h5>
-                    <a class="dropdown-item" href="#">Górskie <i class="fas fa-chevron-right"></i></a>
-                    <a class="dropdown-item" href="#">Miejskie <i class="fas fa-chevron-right"></i></a>
-                    <div class="dropdown-divider"></div>
-                    <h5 class="dropdown-header">Rowery według marek</h5>
-                    <a class="dropdown-item" href="#">Giant <i class="fas fa-chevron-right"></i></a>
-                    <a class="dropdown-item" href="#">Kross <i class="fas fa-chevron-right"></i></a>
-                </div> -->
-            </li>
+            <h5 class="dropdown-header">Rowery według przeznaczenia</h5>
+            <a class="dropdown-item" href="#">Górskie <i class="fas fa-chevron-right"></i></a>
+            <a class="dropdown-item" href="#">Miejskie <i class="fas fa-chevron-right"></i></a>
+            <div class="dropdown-divider"></div>
+            <h5 class="dropdown-header">Rowery według marek</h5>
+            <a class="dropdown-item" href="#">Giant <i class="fas fa-chevron-right"></i></a>
+            <a class="dropdown-item" href="#">Kross <i class="fas fa-chevron-right"></i></a>
+        </div> -->
+            </li>*@
 
-            <li class="nav-item dropdown menu-area mr-lg-1">
+            @*<li class="nav-item dropdown menu-area mr-lg-1">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="mega-parts" role="button" aria-haspopup="true" aria-expanded="false">
                     Części
                 </a>
@@ -146,9 +208,9 @@
                         </div>
                     </div>
                 </div>
-            </li>
+            </li>*@
 
-            <li class="nav-item dropdown mr-lg-1">
+            @*<li class="nav-item dropdown mr-lg-1">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="mega-accessories" role="button" aria-haspopup="true" aria-expanded="false">
                     Akcesoria
                 </a>
@@ -172,9 +234,9 @@
                         </div>
                     </div>
                 </div>
-            </li>
+            </li>*@
 
-            <li class="nav-item dropdown mr-lg-1">
+            @*<li class="nav-item dropdown mr-lg-1">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     Odzież
                 </a>
@@ -185,9 +247,9 @@
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Separated link</a>
                 </div>
-            </li>
+            </li>*@
 
-            <li class="nav-item dropdown mr-lg-1">
+            @*<li class="nav-item dropdown mr-lg-1">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     Narzędzia
                 </a>
@@ -198,7 +260,7 @@
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Separated link</a>
                 </div>
-            </li>
+            </li>*@
 
             <li class="nav-item mr-lg-1">
                 @Html.ActionLink("Nowości", "ProductList", "Shop", new { area = "" }, new { @class = "nav-link" })

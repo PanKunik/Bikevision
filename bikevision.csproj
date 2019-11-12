@@ -255,6 +255,7 @@
     <Compile Include="Models\Locality.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MainLayoutViewModel.cs" />
     <Compile Include="Models\Note.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>

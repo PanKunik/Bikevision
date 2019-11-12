@@ -12,11 +12,23 @@ namespace bikevision.Controllers
 {
     public class ShopController : Controller
     {
+        public MainLayoutViewModel MainLayoutViewModel { get; set; }
+
+        public ShopController()
+        {
+            this.MainLayoutViewModel = new MainLayoutViewModel();
+            this.MainLayoutViewModel.Types = db.ItemTypes.ToList();
+            this.MainLayoutViewModel.CategoriesOfSpareParts = db.Items.SqlQuery("select * from dbo.item inner join Category on Category_idCategory = Category.idCategory inner join ItemType on ItemType_idItemType = ItemType.idItemType where ItemType.type = 'części zamienne'").ToList();
+            // filter list
+
+            this.ViewData["MainLayoutViewModel"] = this.MainLayoutViewModel;
+        }
+
         private bikewayDBEntities db = new bikewayDBEntities();
         // GET: Shop
         public ActionResult Index(string Searching)
         {
-            if(Searching != null && Searching != "")
+            if (Searching != null && Searching != "")
             {
                 return RedirectToAction("ProductList", new { Searching = Searching });
             }

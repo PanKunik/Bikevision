@@ -12,6 +12,16 @@ namespace bikevision.Controllers
 {
     public class ShoppingCartController : Controller
     {
+        public MainLayoutViewModel MainLayoutViewModel { get; set; }
+
+        public ShoppingCartController()
+        {
+            this.MainLayoutViewModel = new MainLayoutViewModel();
+            this.MainLayoutViewModel.Types = db.ItemTypes.ToList();
+
+            this.ViewData["MainLayoutViewModel"] = this.MainLayoutViewModel;
+        }
+
         bikewayDBEntities db = new bikewayDBEntities();
         private string sessionCartString = "Cart";
 

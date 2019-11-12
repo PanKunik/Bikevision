@@ -10,6 +10,16 @@ namespace bikevision.Controllers
 {
     public class ServiceController : Controller
     {
+        public MainLayoutViewModel MainLayoutViewModel { get; set; }
+
+        public ServiceController()
+        {
+            this.MainLayoutViewModel = new MainLayoutViewModel();
+            this.MainLayoutViewModel.Types = db.ItemTypes.ToList();
+
+            this.ViewData["MainLayoutViewModel"] = this.MainLayoutViewModel;
+        }
+
         bikewayDBEntities db = new bikewayDBEntities();
 
         // GET: Service
