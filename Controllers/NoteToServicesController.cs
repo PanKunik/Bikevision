@@ -15,7 +15,7 @@ namespace bikevision.Controllers
         private bikewayDBEntities db = new bikewayDBEntities();
 
         // GET: NoteToServices
-        [Authorize(Roles ="Administrator, PRacownik serwisu")]
+        [Authorize(Roles ="Administrator, Pracownik serwisu")]
         public ActionResult Index()
         {
             var noteToServices = db.NoteToServices.Include(n => n.AspNetUser).Include(n => n.Note).Include(n => n.Service);
@@ -23,7 +23,7 @@ namespace bikevision.Controllers
         }
 
         // GET: NoteToServices/Details/5
-        [Authorize(Roles = "Administrator, PRacownik serwisu")]
+        [Authorize(Roles = "Administrator, Pracownik serwisu")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -39,7 +39,7 @@ namespace bikevision.Controllers
         }
 
         // GET: NoteToServices/Create
-        [Authorize(Roles = "Administrator, PRacownik serwisu")]
+        [Authorize(Roles = "Administrator, Pracownik serwisu")]
         public ActionResult Create()
         {
             ViewBag.AspNetUser_idAspNetUser = new SelectList(db.AspNetUsers, "Id", "Email");
@@ -53,7 +53,7 @@ namespace bikevision.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Administrator, PRacownik serwisu")]
+        [Authorize(Roles = "Administrator, Pracownik serwisu")]
         public ActionResult Create([Bind(Include = "Note_idNote,Service_idService,date,AspNetUser_idAspNetUser")] NoteToService noteToService)
         {
             if (ModelState.IsValid)
@@ -70,7 +70,7 @@ namespace bikevision.Controllers
         }
 
         // GET: NoteToServices/Edit/5
-        [Authorize(Roles = "Administrator, PRacownik serwisu")]
+        [Authorize(Roles = "Administrator, Pracownik serwisu")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -93,7 +93,7 @@ namespace bikevision.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Administrator, PRacownik serwisu")]
+        [Authorize(Roles = "Administrator, Pracownik serwisu")]
         public ActionResult Edit([Bind(Include = "Note_idNote,Service_idService,date,AspNetUser_idAspNetUser")] NoteToService noteToService)
         {
             if (ModelState.IsValid)
@@ -109,7 +109,7 @@ namespace bikevision.Controllers
         }
 
         // GET: NoteToServices/Delete/5
-        [Authorize(Roles = "Administrator, PRacownik serwisu")]
+        [Authorize(Roles = "Administrator, Pracownik serwisu")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -127,7 +127,7 @@ namespace bikevision.Controllers
         // POST: NoteToServices/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Administrator, PRacownik serwisu")]
+        [Authorize(Roles = "Administrator, Pracownik serwisu")]
         public ActionResult DeleteConfirmed(int id)
         {
             NoteToService noteToService = db.NoteToServices.Find(id);
@@ -136,7 +136,7 @@ namespace bikevision.Controllers
             return RedirectToAction("Index");
         }
 
-        [Authorize(Roles = "Administrator, PRacownik serwisu")]
+        [Authorize(Roles = "Administrator, Pracownik serwisu")]
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -171,7 +171,6 @@
     <Compile Include="Controllers\NotesController.cs" />
     <Compile Include="Controllers\NoteToServicesController.cs" />
     <Compile Include="Controllers\OpinionsController.cs" />
-    <Compile Include="Controllers\PointsController.cs" />
     <Compile Include="Controllers\PositionsController.cs" />
     <Compile Include="Controllers\SaleDetailsController.cs" />
     <Compile Include="Controllers\SalesController.cs" />
@@ -266,9 +265,6 @@
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Order.cs" />
-    <Compile Include="Models\Point.cs">
-      <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Position.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
@@ -560,16 +556,6 @@
     <Content Include="Views\Notes\Details.cshtml" />
     <Content Include="Views\Notes\Edit.cshtml" />
     <Content Include="Views\Notes\Index.cshtml" />
-    <Content Include="Views\Opinions\Create.cshtml" />
-    <Content Include="Views\Opinions\Delete.cshtml" />
-    <Content Include="Views\Opinions\Details.cshtml" />
-    <Content Include="Views\Opinions\Edit.cshtml" />
-    <Content Include="Views\Opinions\Index.cshtml" />
-    <Content Include="Views\Points\Create.cshtml" />
-    <Content Include="Views\Points\Delete.cshtml" />
-    <Content Include="Views\Points\Details.cshtml" />
-    <Content Include="Views\Points\Edit.cshtml" />
-    <Content Include="Views\Points\Index.cshtml" />
     <Content Include="Views\Positions\Create.cshtml" />
     <Content Include="Views\Positions\Delete.cshtml" />
     <Content Include="Views\Positions\Details.cshtml" />
@@ -620,6 +606,11 @@
     <Content Include="Views\NoteToServices\Details.cshtml" />
     <Content Include="Views\NoteToServices\Edit.cshtml" />
     <Content Include="Views\NoteToServices\Index.cshtml" />
+    <Content Include="Views\Opinions\Create.cshtml" />
+    <Content Include="Views\Opinions\Delete.cshtml" />
+    <Content Include="Views\Opinions\Details.cshtml" />
+    <Content Include="Views\Opinions\Edit.cshtml" />
+    <Content Include="Views\Opinions\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

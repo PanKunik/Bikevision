@@ -179,18 +179,11 @@
             <PropertyRef Name="idOpinion" />
           </Key>
           <Property Name="idOpinion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="date" Type="datetime" />
-          <Property Name="opinion" Type="nvarchar(max)" />
+          <Property Name="date" Type="datetime" Nullable="false" />
+          <Property Name="points" Type="tinyint" Nullable="false" />
           <Property Name="Customer_idCustomer" Type="int" Nullable="false" />
           <Property Name="Item_idItem" Type="int" Nullable="false" />
-          <Property Name="Points_idPoints" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Points">
-          <Key>
-            <PropertyRef Name="idPoint" />
-          </Key>
-          <Property Name="idPoint" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="points" Type="int" Nullable="false" />
+          <Property Name="opinion" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Position">
           <Key>
@@ -513,18 +506,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Opinion_Points">
-          <End Role="Points" Type="Self.Points" Multiplicity="1" />
-          <End Role="Opinion" Type="Self.Opinion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Points">
-              <PropertyRef Name="idPoint" />
-            </Principal>
-            <Dependent Role="Opinion">
-              <PropertyRef Name="Points_idPoints" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_Sale_Customer1">
           <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
           <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
@@ -665,7 +646,6 @@
           <EntitySet Name="Note" EntityType="Self.Note" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NoteToService" EntityType="Self.NoteToService" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Opinion" EntityType="Self.Opinion" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Points" EntityType="Self.Points" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sale" EntityType="Self.Sale" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SaleDetails" EntityType="Self.SaleDetails" Schema="dbo" store:Type="Tables" />
@@ -754,10 +734,6 @@
             <End Role="Item" EntitySet="Item" />
             <End Role="Opinion" EntitySet="Opinion" />
           </AssociationSet>
-          <AssociationSet Name="FK_Opinion_Points" Association="Self.FK_Opinion_Points">
-            <End Role="Points" EntitySet="Points" />
-            <End Role="Opinion" EntitySet="Opinion" />
-          </AssociationSet>
           <AssociationSet Name="fk_Sale_Customer1" Association="Self.fk_Sale_Customer1">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="Sale" EntitySet="Sale" />
@@ -819,8 +795,6 @@
           <EntitySet Name="Items" EntityType="bikewayDBModel.Item" />
           <EntitySet Name="ItemTypes" EntityType="bikewayDBModel.ItemType" />
           <EntitySet Name="Localities" EntityType="bikewayDBModel.Locality" />
-          <EntitySet Name="Opinions" EntityType="bikewayDBModel.Opinion" />
-          <EntitySet Name="Points" EntityType="bikewayDBModel.Point" />
           <EntitySet Name="Positions" EntityType="bikewayDBModel.Position" />
           <EntitySet Name="Sales" EntityType="bikewayDBModel.Sale" />
           <EntitySet Name="SaleDetails" EntityType="bikewayDBModel.SaleDetail" />
@@ -856,10 +830,6 @@
           <AssociationSet Name="fk_Customer_Locality1" Association="bikewayDBModel.fk_Customer_Locality1">
             <End Role="Locality" EntitySet="Localities" />
             <End Role="Customer" EntitySet="Customers" />
-          </AssociationSet>
-          <AssociationSet Name="fk_Opinion_Customer1" Association="bikewayDBModel.fk_Opinion_Customer1">
-            <End Role="Customer" EntitySet="Customers" />
-            <End Role="Opinion" EntitySet="Opinions" />
           </AssociationSet>
           <AssociationSet Name="fk_Sale_Customer1" Association="bikewayDBModel.fk_Sale_Customer1">
             <End Role="Customer" EntitySet="Customers" />
@@ -901,17 +871,9 @@
             <End Role="ItemType" EntitySet="ItemTypes" />
             <End Role="Item" EntitySet="Items" />
           </AssociationSet>
-          <AssociationSet Name="fk_Opinion_Item1" Association="bikewayDBModel.fk_Opinion_Item1">
-            <End Role="Item" EntitySet="Items" />
-            <End Role="Opinion" EntitySet="Opinions" />
-          </AssociationSet>
           <AssociationSet Name="fk_SaleDetails_Item1" Association="bikewayDBModel.fk_SaleDetails_Item1">
             <End Role="Item" EntitySet="Items" />
             <End Role="SaleDetail" EntitySet="SaleDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Opinion_Points" Association="bikewayDBModel.FK_Opinion_Points">
-            <End Role="Point" EntitySet="Points" />
-            <End Role="Opinion" EntitySet="Opinions" />
           </AssociationSet>
           <AssociationSet Name="FK_Sale_SaleState" Association="bikewayDBModel.FK_Sale_SaleState">
             <End Role="SaleState" EntitySet="SaleStates" />
@@ -950,6 +912,15 @@
           <AssociationSet Name="FK_NoteToService_Note" Association="bikewayDBModel.FK_NoteToService_Note">
             <End Role="Note" EntitySet="Notes" />
             <End Role="NoteToService" EntitySet="NoteToServices" />
+          </AssociationSet>
+          <EntitySet Name="Opinions" EntityType="bikewayDBModel.Opinion" />
+          <AssociationSet Name="fk_Opinion_Customer1" Association="bikewayDBModel.fk_Opinion_Customer1">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Opinion" EntitySet="Opinions" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Opinion_Item1" Association="bikewayDBModel.fk_Opinion_Item1">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="Opinion" EntitySet="Opinions" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="AspNetRole">
@@ -1035,9 +1006,9 @@
           <Property Name="Locality_idLocality" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AspNetUser" Relationship="bikewayDBModel.fk_Customer_AspNetUsers1" FromRole="Customer" ToRole="AspNetUser" />
           <NavigationProperty Name="Locality" Relationship="bikewayDBModel.fk_Customer_Locality1" FromRole="Customer" ToRole="Locality" />
-          <NavigationProperty Name="Opinions" Relationship="bikewayDBModel.fk_Opinion_Customer1" FromRole="Customer" ToRole="Opinion" />
           <NavigationProperty Name="Sales" Relationship="bikewayDBModel.fk_Sale_Customer1" FromRole="Customer" ToRole="Sale" />
           <NavigationProperty Name="Services" Relationship="bikewayDBModel.fk_Service_Customer1" FromRole="Customer" ToRole="Service" />
+          <NavigationProperty Name="Opinions" Relationship="bikewayDBModel.fk_Opinion_Customer1" FromRole="Customer" ToRole="Opinion" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -1112,8 +1083,8 @@
           <NavigationProperty Name="Category" Relationship="bikewayDBModel.fk_Item_Category1" FromRole="Item" ToRole="Category" />
           <NavigationProperty Name="FeatureValueOfItems" Relationship="bikewayDBModel.fk_FeatureOfItem_Item1" FromRole="Item" ToRole="FeatureValueOfItem" />
           <NavigationProperty Name="ItemType" Relationship="bikewayDBModel.fk_Item_ItemType1" FromRole="Item" ToRole="ItemType" />
-          <NavigationProperty Name="Opinions" Relationship="bikewayDBModel.fk_Opinion_Item1" FromRole="Item" ToRole="Opinion" />
           <NavigationProperty Name="SaleDetails" Relationship="bikewayDBModel.fk_SaleDetails_Item1" FromRole="Item" ToRole="SaleDetail" />
+          <NavigationProperty Name="Opinions" Relationship="bikewayDBModel.fk_Opinion_Item1" FromRole="Item" ToRole="Opinion" />
         </EntityType>
         <EntityType Name="ItemType">
           <Key>
@@ -1130,28 +1101,6 @@
           <Property Name="idLocality" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="locality1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Customers" Relationship="bikewayDBModel.fk_Customer_Locality1" FromRole="Locality" ToRole="Customer" />
-        </EntityType>
-        <EntityType Name="Opinion">
-          <Key>
-            <PropertyRef Name="idOpinion" />
-          </Key>
-          <Property Name="idOpinion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="date" Type="DateTime" Precision="3" />
-          <Property Name="opinion1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Customer_idCustomer" Type="Int32" Nullable="false" />
-          <Property Name="Item_idItem" Type="Int32" Nullable="false" />
-          <Property Name="Points_idPoints" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Customer" Relationship="bikewayDBModel.fk_Opinion_Customer1" FromRole="Opinion" ToRole="Customer" />
-          <NavigationProperty Name="Item" Relationship="bikewayDBModel.fk_Opinion_Item1" FromRole="Opinion" ToRole="Item" />
-          <NavigationProperty Name="Point" Relationship="bikewayDBModel.FK_Opinion_Points" FromRole="Opinion" ToRole="Point" />
-        </EntityType>
-        <EntityType Name="Point">
-          <Key>
-            <PropertyRef Name="idPoint" />
-          </Key>
-          <Property Name="idPoint" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="points" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Opinions" Relationship="bikewayDBModel.FK_Opinion_Points" FromRole="Point" ToRole="Opinion" />
         </EntityType>
         <EntityType Name="Position">
           <Key>
@@ -1331,18 +1280,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_Opinion_Customer1">
-          <End Type="bikewayDBModel.Customer" Role="Customer" Multiplicity="1" />
-          <End Type="bikewayDBModel.Opinion" Role="Opinion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="idCustomer" />
-            </Principal>
-            <Dependent Role="Opinion">
-              <PropertyRef Name="Customer_idCustomer" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_Sale_Customer1">
           <End Type="bikewayDBModel.Customer" Role="Customer" Multiplicity="1" />
           <End Type="bikewayDBModel.Sale" Role="Sale" Multiplicity="*" />
@@ -1463,18 +1400,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_Opinion_Item1">
-          <End Type="bikewayDBModel.Item" Role="Item" Multiplicity="1" />
-          <End Type="bikewayDBModel.Opinion" Role="Opinion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Item">
-              <PropertyRef Name="idItem" />
-            </Principal>
-            <Dependent Role="Opinion">
-              <PropertyRef Name="Item_idItem" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_SaleDetails_Item1">
           <End Type="bikewayDBModel.Item" Role="Item" Multiplicity="1" />
           <End Type="bikewayDBModel.SaleDetail" Role="SaleDetail" Multiplicity="*" />
@@ -1484,18 +1409,6 @@
             </Principal>
             <Dependent Role="SaleDetail">
               <PropertyRef Name="Item_idItem" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Opinion_Points">
-          <End Type="bikewayDBModel.Point" Role="Point" Multiplicity="1" />
-          <End Type="bikewayDBModel.Opinion" Role="Opinion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Point">
-              <PropertyRef Name="idPoint" />
-            </Principal>
-            <Dependent Role="Opinion">
-              <PropertyRef Name="Points_idPoints" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1617,6 +1530,43 @@
             </Principal>
             <Dependent Role="NoteToService">
               <PropertyRef Name="Note_idNote" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Opinion">
+          <Key>
+            <PropertyRef Name="idOpinion" />
+          </Key>
+          <Property Name="idOpinion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="points" Type="Byte" Nullable="false" />
+          <Property Name="Customer_idCustomer" Type="Int32" Nullable="false" />
+          <Property Name="Item_idItem" Type="Int32" Nullable="false" />
+          <Property Name="opinion1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Customer" Relationship="bikewayDBModel.fk_Opinion_Customer1" FromRole="Opinion" ToRole="Customer" />
+          <NavigationProperty Name="Item" Relationship="bikewayDBModel.fk_Opinion_Item1" FromRole="Opinion" ToRole="Item" />
+        </EntityType>
+        <Association Name="fk_Opinion_Customer1">
+          <End Type="bikewayDBModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="bikewayDBModel.Opinion" Role="Opinion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="idCustomer" />
+            </Principal>
+            <Dependent Role="Opinion">
+              <PropertyRef Name="Customer_idCustomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Opinion_Item1">
+          <End Type="bikewayDBModel.Item" Role="Item" Multiplicity="1" />
+          <End Type="bikewayDBModel.Opinion" Role="Opinion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="idItem" />
+            </Principal>
+            <Dependent Role="Opinion">
+              <PropertyRef Name="Item_idItem" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1780,26 +1730,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Opinions">
-            <EntityTypeMapping TypeName="bikewayDBModel.Opinion">
-              <MappingFragment StoreEntitySet="Opinion">
-                <ScalarProperty Name="Points_idPoints" ColumnName="Points_idPoints" />
-                <ScalarProperty Name="Item_idItem" ColumnName="Item_idItem" />
-                <ScalarProperty Name="Customer_idCustomer" ColumnName="Customer_idCustomer" />
-                <ScalarProperty Name="opinion1" ColumnName="opinion" />
-                <ScalarProperty Name="date" ColumnName="date" />
-                <ScalarProperty Name="idOpinion" ColumnName="idOpinion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Points">
-            <EntityTypeMapping TypeName="bikewayDBModel.Point">
-              <MappingFragment StoreEntitySet="Points">
-                <ScalarProperty Name="points" ColumnName="points" />
-                <ScalarProperty Name="idPoint" ColumnName="idPoint" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Positions">
             <EntityTypeMapping TypeName="bikewayDBModel.Position">
               <MappingFragment StoreEntitySet="Position">
@@ -1903,6 +1833,18 @@
               <MappingFragment StoreEntitySet="Note">
                 <ScalarProperty Name="note1" ColumnName="note" />
                 <ScalarProperty Name="idNote" ColumnName="idNote" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Opinions">
+            <EntityTypeMapping TypeName="bikewayDBModel.Opinion">
+              <MappingFragment StoreEntitySet="Opinion">
+                <ScalarProperty Name="opinion1" ColumnName="opinion" />
+                <ScalarProperty Name="Item_idItem" ColumnName="Item_idItem" />
+                <ScalarProperty Name="Customer_idCustomer" ColumnName="Customer_idCustomer" />
+                <ScalarProperty Name="points" ColumnName="points" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="idOpinion" ColumnName="idOpinion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
