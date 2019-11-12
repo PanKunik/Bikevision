@@ -44,6 +44,8 @@ namespace bikevision.Models
         [Required(ErrorMessage = "Kod pocztowy jest wymagany.")]
         public string zipCode { get; set; }
         public string AspNetUsers_idAspNetUsers { get; set; }
+        [Display(Name = "Miejscowość:")]
+        [Required(ErrorMessage = "Miejscowość jest wymagana.")]
         public int Locality_idLocality { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
