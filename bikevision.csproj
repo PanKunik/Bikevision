@@ -208,6 +208,7 @@
     <Compile Include="Models\Category.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CategoryIdWithName.cs" />
     <Compile Include="Models\Customer.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>

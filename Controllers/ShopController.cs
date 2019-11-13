@@ -18,8 +18,111 @@ namespace bikevision.Controllers
         {
             this.MainLayoutViewModel = new MainLayoutViewModel();
             this.MainLayoutViewModel.Types = db.ItemTypes.ToList();
-            this.MainLayoutViewModel.CategoriesOfSpareParts = db.Items.SqlQuery("select * from dbo.item inner join Category on Category_idCategory = Category.idCategory inner join ItemType on ItemType_idItemType = ItemType.idItemType where ItemType.type = 'części zamienne'").ToList();
-            // filter list
+            this.MainLayoutViewModel.CategoriesOfSpareParts = new List<CategoryIdWithName>();
+            this.MainLayoutViewModel.CategoriesAccessories = new List<CategoryIdWithName>();
+            this.MainLayoutViewModel.CategoriesOfTools = new List<CategoryIdWithName>();
+            this.MainLayoutViewModel.CategoriesOfClothing = new List<CategoryIdWithName>();
+
+            this.MainLayoutViewModel.BicyclesByUsage = new List<CategoryIdWithName>();
+            this.MainLayoutViewModel.BicyclesByBrands = new List<CategoryIdWithName>();
+            this.MainLayoutViewModel.BicyclesByWheels = new List<CategoryIdWithName>();
+            // this.MainLayoutViewModel.CategoriesOfSpareParts 
+            IQueryable<Item> allItems = db.Items.Include(cat => cat.Category).Include(type => type.ItemType);
+
+
+            List<Item> itemsSpareParts = allItems.Where(type => type.ItemType.type == "Części zamienne").ToList();
+                //  db.Items.Include(cat => cat.Category).Include(type => type.ItemType).Where(type => type.ItemType.type == "Części zamienne").ToList();
+            List<Item> itemsAccessories = allItems.Where(type => type.ItemType.type == "Akcesoria").ToList();
+                //  db.Items.Include(cat => cat.Category).Include(type => type.ItemType).Where(type => type.ItemType.type == "Akcesoria").ToList();
+            List<Item> itemsClothing = allItems.Where(type => type.ItemType.type == "Odzież").ToList();
+                //  db.Items.Include(cat => cat.Category).Include(type => type.ItemType).Where(type => type.ItemType.type == "Odzież").ToList();
+            List<Item> itemsTools = allItems.Where(type => type.ItemType.type == "Narzędzia").ToList();
+                //  db.Items.Include(cat => cat.Category).Include(type => type.ItemType).Where(type => type.ItemType.type == "Narzędzia").ToList();
+
+            List<Item> bicyclesUsages = db.Items.Include(cat => cat.Category).Include(type => type.ItemType).Where(type => type.ItemType.type == "Rowery").ToList();
+            List<Item> bicyclesBrands = db.Items.Include(brand => brand.Brand).Include(type => type.ItemType).Where(type => type.ItemType.type == "Rowery").ToList();
+            List<FeatureValueOfItem> bicyclesWheels = db.FeatureValueOfItems.Include(feat => feat.Feature).Where(feature => feature.Feature.feature1 == "Rozmiar kół").ToList();
+
+            foreach(var item in itemsSpareParts)
+            {
+                CategoryIdWithName newCat = new CategoryIdWithName(item.Category_idCategory, item.Category.category1);
+
+                if(this.MainLayoutViewModel.CategoriesOfSpareParts.Where(id => id.id == item.Category_idCategory).Where(name => name.name == item.Category.category1).Count() <= 0)
+                    this.MainLayoutViewModel.CategoriesOfSpareParts.Add(newCat);
+            }
+
+            if (this.MainLayoutViewModel.CategoriesOfSpareParts.Count() > 0)
+                this.MainLayoutViewModel.CategoriesOfSpareParts = this.MainLayoutViewModel.CategoriesOfSpareParts.OrderBy(name => name.name).ToList();
+
+            foreach(var item in itemsAccessories)
+            {
+                CategoryIdWithName newCat = new CategoryIdWithName(item.Category_idCategory, item.Category.category1);
+
+                if(this.MainLayoutViewModel.CategoriesAccessories.Where(id => id.id == item.Category_idCategory).Where(name => name.name == item.Category.category1).Count() <= 0)
+                    this.MainLayoutViewModel.CategoriesAccessories.Add(newCat);
+            }
+
+            if (this.MainLayoutViewModel.CategoriesAccessories.Count() > 0)
+                this.MainLayoutViewModel.CategoriesAccessories = this.MainLayoutViewModel.CategoriesAccessories.OrderBy(name => name.name).ToList();
+
+            foreach (var item in itemsClothing)
+            {
+                CategoryIdWithName newCat = new CategoryIdWithName(item.Category_idCategory, item.Category.category1);
+
+                if(this.MainLayoutViewModel.CategoriesOfClothing.Where(id => id.id == item.Category_idCategory).Where(name => name.name == item.Category.category1).Count() <= 0)
+                    this.MainLayoutViewModel.CategoriesOfClothing.Add(newCat);
+            }
+
+            if (this.MainLayoutViewModel.CategoriesOfClothing.Count() > 0)
+                this.MainLayoutViewModel.CategoriesOfClothing = this.MainLayoutViewModel.CategoriesOfClothing.OrderBy(name => name.name).ToList();
+
+            foreach (var item in itemsTools)
+            {
+                CategoryIdWithName newCat = new CategoryIdWithName(item.Category_idCategory, item.Category.category1);
+
+                if(this.MainLayoutViewModel.CategoriesOfTools.Where(id => id.id == item.Category_idCategory).Where(name => name.name == item.Category.category1).Count() <= 0)
+                    this.MainLayoutViewModel.CategoriesOfTools.Add(newCat);
+            }
+
+            if (this.MainLayoutViewModel.CategoriesOfTools.Count() > 0)
+                this.MainLayoutViewModel.CategoriesOfTools = this.MainLayoutViewModel.CategoriesOfTools.OrderBy(name => name.name).ToList();
+
+            foreach (var bicycle in bicyclesUsages)
+            {
+                CategoryIdWithName newCat = new CategoryIdWithName(bicycle.Category_idCategory, bicycle.Category.category1);
+
+                if(this.MainLayoutViewModel.BicyclesByUsage.Where(id => id.id == bicycle.Category_idCategory).Where(name => name.name == bicycle.Category.category1).Count() <= 0)
+                    this.MainLayoutViewModel.BicyclesByUsage.Add(newCat);
+            }
+
+            if (this.MainLayoutViewModel.BicyclesByUsage.Count() > 0)
+                this.MainLayoutViewModel.BicyclesByUsage = this.MainLayoutViewModel.BicyclesByUsage.OrderBy(name => name.name).ToList();
+
+
+            //Make bicycles by wheels
+            foreach (var bicycle in bicyclesWheels)
+            {
+                CategoryIdWithName newCat = new CategoryIdWithName(bicycle.FeatureValue_idFeatureValue, bicycle.FeatureValue.featureValue1);
+
+                if (this.MainLayoutViewModel.BicyclesByWheels.Where(id => id.id == bicycle.FeatureValue_idFeatureValue).Where(name => name.name == bicycle.FeatureValue.featureValue1).Count() <= 0)
+                    this.MainLayoutViewModel.BicyclesByWheels.Add(newCat);
+            }
+
+            if (this.MainLayoutViewModel.BicyclesByWheels.Count() > 0)
+                this.MainLayoutViewModel.BicyclesByWheels = this.MainLayoutViewModel.BicyclesByWheels.OrderBy(name => name.name).ToList();
+
+
+            //Make bicycles by usage
+            foreach (var bicycle in bicyclesBrands)
+            {
+                CategoryIdWithName newCat = new CategoryIdWithName(bicycle.Brand_idBrand, bicycle.Brand.brand1);
+
+                if (this.MainLayoutViewModel.BicyclesByBrands.Where(id => id.id == bicycle.Brand_idBrand).Where(name => name.name == bicycle.Brand.brand1).Count() <= 0)
+                    this.MainLayoutViewModel.BicyclesByBrands.Add(newCat);
+            }
+
+            if (this.MainLayoutViewModel.BicyclesByBrands.Count() > 0)
+                this.MainLayoutViewModel.BicyclesByBrands = this.MainLayoutViewModel.BicyclesByBrands.OrderBy(name => name.name).ToList();
 
             this.ViewData["MainLayoutViewModel"] = this.MainLayoutViewModel;
         }
@@ -91,9 +194,47 @@ namespace bikevision.Controllers
 
             return View(productDetails);
         }
-        public ActionResult ProductList(string Searching)
+        public ActionResult ProductList(string Searching, int? categoryId, string types, int? featureId, int? brandId)
         {
             List<Item> items;
+
+            if(categoryId != null)
+            {
+                items = db.Items.Where(cat => cat.Category_idCategory == categoryId).ToList();
+                return View(items);
+            }
+
+            if(featureId != null)
+            {
+                List<FeatureValueOfItem> features = db.FeatureValueOfItems.Where(i => i.Feature.feature1 == "Rozmiar kół").Where(i => i.FeatureValue.idFeatureValue == featureId).ToList();
+                List<Int32> ids = new List<Int32>();
+
+                foreach(var i in features)
+                {
+                    if(!ids.Contains(i.Item_idItem1))
+                        ids.Add(i.Item_idItem1);
+                }
+
+                List<Item> allItems = db.Items.ToList();
+                items = new List<Item>();
+
+                foreach(var ID in ids)
+                {
+                    items.Add(allItems.Where(i => i.idItem == ID).First());
+                }
+                
+                //items.SelectMany(items, i => i.idItem == 1);
+                return View(items);
+            }
+
+            if(brandId != null)
+            {
+                if(types != "" && types != null)
+                    items = db.Items.Where(brand => brand.Brand_idBrand == brandId).Where(type => type.ItemType.type == types).ToList();
+                else
+                    items = db.Items.Where(brand => brand.Brand_idBrand == brandId).ToList();
+                return View(items);
+            }
 
             if (Searching == null || Searching == "")
             {

@@ -8,9 +8,14 @@ namespace bikevision.Models
     public class MainLayoutViewModel
     {
         public List<ItemType> Types;
-        public List<Item> CategoriesOfSpareParts;
-        public List<Item> CategoriesAccessories;
-        public List<Item> CategoriesOfClothing;
-        public List<Item> CategoriesOfTools;
+        public List<CategoryIdWithName> CategoriesOfSpareParts;
+        public List<CategoryIdWithName> CategoriesAccessories;
+        public List<CategoryIdWithName> CategoriesOfClothing;
+        public List<CategoryIdWithName> CategoriesOfTools;
+
+        public List<CategoryIdWithName> BicyclesByUsage;
+        public List<CategoryIdWithName> BicyclesByWheels;
+        public List<CategoryIdWithName> BicyclesByBrands;
+
     }
 }
