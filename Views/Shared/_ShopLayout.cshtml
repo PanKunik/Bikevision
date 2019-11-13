@@ -85,7 +85,7 @@
                                 <div class="dropdown-divider"></div>
                                     @for (int i = 0; i < count3; i++)
                                     {
-                                            <a class="dropdown-item" href="@Url.Action("ProductList", "Shop", new { categoryId = viewModel.BicyclesByWheels.ElementAt(i).id })"> @viewModel.BicyclesByWheels.ElementAt(i).name <i class="fas fa-chevron-right"></i></a>
+                                            <a class="dropdown-item" href="@Url.Action("ProductList", "Shop", new { featureId = viewModel.BicyclesByWheels.ElementAt(i).id })"> @viewModel.BicyclesByWheels.ElementAt(i).name <i class="fas fa-chevron-right"></i></a>
                                     }
                             </div>
 
@@ -95,7 +95,7 @@
                                 <div class="dropdown-divider"></div>
                                     @for (int i = 0; i < count1; i++)
                                     {
-                                            <a class="dropdown-item" href="@Url.Action("ProductList", "Shop", new { categoryId = viewModel.BicyclesByBrands.ElementAt(i).id })"> @viewModel.BicyclesByBrands.ElementAt(i).name <i class="fas fa-chevron-right"></i></a>
+                                            <a class="dropdown-item" href="@Url.Action("ProductList", "Shop", new { brandId = viewModel.BicyclesByBrands.ElementAt(i).id, types = "Rowery" })"> @viewModel.BicyclesByBrands.ElementAt(i).name <i class="fas fa-chevron-right"></i></a>
                                     }
                                 </div>
                             </div>

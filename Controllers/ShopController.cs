@@ -194,13 +194,45 @@ namespace bikevision.Controllers
 
             return View(productDetails);
         }
-        public ActionResult ProductList(string Searching, int? categoryId)
+        public ActionResult ProductList(string Searching, int? categoryId, string types, int? featureId, int? brandId)
         {
             List<Item> items;
 
             if(categoryId != null)
             {
                 items = db.Items.Where(cat => cat.Category_idCategory == categoryId).ToList();
+                return View(items);
+            }
+
+            if(featureId != null)
+            {
+                List<FeatureValueOfItem> features = db.FeatureValueOfItems.Where(i => i.Feature.feature1 == "Rozmiar kół").Where(i => i.FeatureValue.idFeatureValue == featureId).ToList();
+                List<Int32> ids = new List<Int32>();
+
+                foreach(var i in features)
+                {
+                    if(!ids.Contains(i.Item_idItem1))
+                        ids.Add(i.Item_idItem1);
+                }
+
+                List<Item> allItems = db.Items.ToList();
+                items = new List<Item>();
+
+                foreach(var ID in ids)
+                {
+                    items.Add(allItems.Where(i => i.idItem == ID).First());
+                }
+                
+                //items.SelectMany(items, i => i.idItem == 1);
+                return View(items);
+            }
+
+            if(brandId != null)
+            {
+                if(types != "" && types != null)
+                    items = db.Items.Where(brand => brand.Brand_idBrand == brandId).Where(type => type.ItemType.type == types).ToList();
+                else
+                    items = db.Items.Where(brand => brand.Brand_idBrand == brandId).ToList();
                 return View(items);
             }
 
