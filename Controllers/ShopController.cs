@@ -27,15 +27,21 @@ namespace bikevision.Controllers
             this.MainLayoutViewModel.BicyclesByBrands = new List<CategoryIdWithName>();
             this.MainLayoutViewModel.BicyclesByWheels = new List<CategoryIdWithName>();
             // this.MainLayoutViewModel.CategoriesOfSpareParts 
+            IQueryable<Item> allItems = db.Items.Include(cat => cat.Category).Include(type => type.ItemType);
 
-            List<Item> itemsSpareParts = db.Items.Include(cat => cat.Category).Include(type => type.ItemType).Where(type => type.ItemType.type == "Części zamienne").ToList();
-            List<Item> itemsAccessories = db.Items.Include(cat => cat.Category).Include(type => type.ItemType).Where(type => type.ItemType.type == "Akcesoria").ToList();
-            List<Item> itemsClothing = db.Items.Include(cat => cat.Category).Include(type => type.ItemType).Where(type => type.ItemType.type == "Odzież").ToList();
-            List<Item> itemsTools = db.Items.Include(cat => cat.Category).Include(type => type.ItemType).Where(type => type.ItemType.type == "Narzędzia").ToList();
+
+            List<Item> itemsSpareParts = allItems.Where(type => type.ItemType.type == "Części zamienne").ToList();
+                //  db.Items.Include(cat => cat.Category).Include(type => type.ItemType).Where(type => type.ItemType.type == "Części zamienne").ToList();
+            List<Item> itemsAccessories = allItems.Where(type => type.ItemType.type == "Akcesoria").ToList();
+                //  db.Items.Include(cat => cat.Category).Include(type => type.ItemType).Where(type => type.ItemType.type == "Akcesoria").ToList();
+            List<Item> itemsClothing = allItems.Where(type => type.ItemType.type == "Odzież").ToList();
+                //  db.Items.Include(cat => cat.Category).Include(type => type.ItemType).Where(type => type.ItemType.type == "Odzież").ToList();
+            List<Item> itemsTools = allItems.Where(type => type.ItemType.type == "Narzędzia").ToList();
+                //  db.Items.Include(cat => cat.Category).Include(type => type.ItemType).Where(type => type.ItemType.type == "Narzędzia").ToList();
 
             List<Item> bicyclesUsages = db.Items.Include(cat => cat.Category).Include(type => type.ItemType).Where(type => type.ItemType.type == "Rowery").ToList();
             List<Item> bicyclesBrands = db.Items.Include(brand => brand.Brand).Include(type => type.ItemType).Where(type => type.ItemType.type == "Rowery").ToList();
-            List<Item> bicyclesWheels = db.Items.Include(cat => cat.Category).Include(type => type.ItemType).Where(type => type.ItemType.type == "Rowery").ToList();
+            List<FeatureValueOfItem> bicyclesWheels = db.FeatureValueOfItems.Include(feat => feat.Feature).Where(feature => feature.Feature.feature1 == "Rozmiar kół").ToList();
 
             foreach(var item in itemsSpareParts)
             {
@@ -94,16 +100,16 @@ namespace bikevision.Controllers
 
 
             //Make bicycles by wheels
-            //foreach (var bicycle in bicyclesWheels)
-            //{
-            //    CategoryIdWithName newCat = new CategoryIdWithName(bicycle.Brand_idBrand, bicycle.Brand.brand1);
+            foreach (var bicycle in bicyclesWheels)
+            {
+                CategoryIdWithName newCat = new CategoryIdWithName(bicycle.FeatureValue_idFeatureValue, bicycle.FeatureValue.featureValue1);
 
-            //    if(this.MainLayoutViewModel.BicyclesByBrands.Where(id => id.id == bicycle.Brand_idBrand).Where(name => name.name == bicycle.Brand.brand1).Count() <= 0)
-            //        this.MainLayoutViewModel.BicyclesByBrands.Add(newCat);
-            //}
+                if (this.MainLayoutViewModel.BicyclesByWheels.Where(id => id.id == bicycle.FeatureValue_idFeatureValue).Where(name => name.name == bicycle.FeatureValue.featureValue1).Count() <= 0)
+                    this.MainLayoutViewModel.BicyclesByWheels.Add(newCat);
+            }
 
-            //if (this.MainLayoutViewModel.BicyclesByBrands.Count() > 0)
-            //    this.MainLayoutViewModel.BicyclesByBrands = this.MainLayoutViewModel.BicyclesByBrands.OrderBy(name => name.name).ToList();
+            if (this.MainLayoutViewModel.BicyclesByWheels.Count() > 0)
+                this.MainLayoutViewModel.BicyclesByWheels = this.MainLayoutViewModel.BicyclesByWheels.OrderBy(name => name.name).ToList();
 
 
             //Make bicycles by usage
