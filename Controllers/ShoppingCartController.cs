@@ -5,6 +5,7 @@ using System.Web;
 using System.Net;
 using System.Web.Mvc;
 using bikevision.Models;
+using System.Data;
 using System.Data.Entity;
 using System.Threading.Tasks;
 
@@ -16,18 +17,28 @@ namespace bikevision.Controllers
 
         public ShoppingCartController()
         {
-            this.MainLayoutViewModel = new MainLayoutViewModel();
-            this.MainLayoutViewModel.Types = db.ItemTypes.ToList();
-            this.MainLayoutViewModel.CategoriesOfSpareParts = new List<CategoryIdWithName>();
-            this.MainLayoutViewModel.CategoriesAccessories = new List<CategoryIdWithName>();
-            this.MainLayoutViewModel.CategoriesOfTools = new List<CategoryIdWithName>();
-            this.MainLayoutViewModel.CategoriesOfClothing = new List<CategoryIdWithName>();
+            this.MainLayoutViewModel = new MainLayoutViewModel
+            {
+                Types = db.ItemTypes.ToList(),
+                CategoriesOfSpareParts = new List<CategoryIdWithName>(),
+                CategoriesAccessories = new List<CategoryIdWithName>(),
+                CategoriesOfTools = new List<CategoryIdWithName>(),
+                CategoriesOfClothing = new List<CategoryIdWithName>(),
+
+                BicyclesByUsage = new List<CategoryIdWithName>(),
+                BicyclesByBrands = new List<CategoryIdWithName>(),
+                BicyclesByWheels = new List<CategoryIdWithName>()
+            };
             // this.MainLayoutViewModel.CategoriesOfSpareParts 
 
             List<Item> itemsSpareParts = db.Items.Include(cat => cat.Category).Include(type => type.ItemType).Where(type => type.ItemType.type == "Części zamienne").ToList();
             List<Item> itemsAccessories = db.Items.Include(cat => cat.Category).Include(type => type.ItemType).Where(type => type.ItemType.type == "Akcesoria").ToList();
             List<Item> itemsClothing = db.Items.Include(cat => cat.Category).Include(type => type.ItemType).Where(type => type.ItemType.type == "Odzież").ToList();
             List<Item> itemsTools = db.Items.Include(cat => cat.Category).Include(type => type.ItemType).Where(type => type.ItemType.type == "Narzędzia").ToList();
+
+            List<Item> bicyclesUsages = db.Items.Include(cat => cat.Category).Include(type => type.ItemType).Where(type => type.ItemType.type == "Rowery").ToList();
+            List<Item> bicyclesBrands = db.Items.Include(cat => cat.Category).Include(type => type.ItemType).Where(type => type.ItemType.type == "Rowery").ToList();
+            List<Item> bicyclesWheels = db.Items.Include(cat => cat.Category).Include(type => type.ItemType).Where(type => type.ItemType.type == "Rowery").ToList();
 
             foreach (var item in itemsSpareParts)
             {

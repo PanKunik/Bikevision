@@ -61,6 +61,47 @@
                     @type.type
                 </a>
 
+                @if (type.type == "Rowery")
+                {
+                    int count1 = viewModel.BicyclesByBrands.Count();
+                    int count2 = viewModel.BicyclesByUsage.Count();
+                    int count3 = viewModel.BicyclesByWheels.Count();
+
+                    <div class="dropdown-menu mega-area dropdown-menu-squared" aria-labelledby="mega-bikes">
+                        <div class="row px-lg-5">
+                            <!-- pierwsze rowery -->
+                            <div class="col-lg-4">
+                                <h3 class="dropdown-header text-center">Rowery według przeznaczenia</h3>
+                                <div class="dropdown-divider"></div>
+                                    @for (int i = 0; i < count2; i++)
+                                    {
+                                            <a class="dropdown-item" href="@Url.Action("ProductList", "Shop", new { categoryId = viewModel.BicyclesByUsage.ElementAt(i).id })"> @viewModel.BicyclesByUsage.ElementAt(i).name <i class="fas fa-chevron-right"></i></a>
+                                    }
+                            </div>
+
+                            <!-- drugie rowery -->
+                            <div class="col-lg-4">
+                                <h3 class="dropdown-header text-center">Rowery według rozmiaru kół</h3>
+                                <div class="dropdown-divider"></div>
+                                    @for (int i = 0; i < count3; i++)
+                                    {
+                                            <a class="dropdown-item" href="@Url.Action("ProductList", "Shop", new { categoryId = viewModel.BicyclesByWheels.ElementAt(i).id })"> @viewModel.BicyclesByWheels.ElementAt(i).name <i class="fas fa-chevron-right"></i></a>
+                                    }
+                            </div>
+
+                            <!-- trzecie rowery -->
+                            <div class="col-lg-4">
+                                <h3 class="dropdown-header text-center">Rowery według marek</h3>
+                                <div class="dropdown-divider"></div>
+                                    @for (int i = 0; i < count1; i++)
+                                    {
+                                            <a class="dropdown-item" href="@Url.Action("ProductList", "Shop", new { categoryId = viewModel.BicyclesByBrands.ElementAt(i).id })"> @viewModel.BicyclesByBrands.ElementAt(i).name <i class="fas fa-chevron-right"></i></a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                }
+
                 @if (type.type == "Części zamienne")
                 {
                     int count = viewModel.CategoriesOfSpareParts.Count();

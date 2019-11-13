@@ -12,5 +12,10 @@ namespace bikevision.Models
         public List<CategoryIdWithName> CategoriesAccessories;
         public List<CategoryIdWithName> CategoriesOfClothing;
         public List<CategoryIdWithName> CategoriesOfTools;
+
+        public List<CategoryIdWithName> BicyclesByUsage;
+        public List<CategoryIdWithName> BicyclesByWheels;
+        public List<CategoryIdWithName> BicyclesByBrands;
+
     }
 }
