@@ -43,6 +43,22 @@ $(document).ready(function () {
         $(this).children("i.rotate").toggleClass("down");
     });
 
+    $(".product__sub-image").click(function () {
+        if ($(this).hasClass("product__sub-image--active"))
+            return;
+
+        var newSrc = $(this).attr('src');
+        var clickedElement = $(this);
+
+        $(".product__main-image").fadeOut(500, function () {
+            if ($(this).css('display') == 'none') {
+                $(".product__sub-image").removeClass("product__sub-image--active");
+                $(clickedElement).addClass("product__sub-image--active");
+                $(this).attr('src', newSrc).fadeIn(500);
+            }
+        });
+    });
+
     $(window).resize(function () {
         TabsToAccordion();
     });
