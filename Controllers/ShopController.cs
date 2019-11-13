@@ -37,6 +37,9 @@ namespace bikevision.Controllers
                     this.MainLayoutViewModel.CategoriesOfSpareParts.Add(newCat);
             }
 
+            if (this.MainLayoutViewModel.CategoriesOfSpareParts.Count() > 0)
+                this.MainLayoutViewModel.CategoriesOfSpareParts = this.MainLayoutViewModel.CategoriesOfSpareParts.OrderBy(name => name.name).ToList();
+
             foreach(var item in itemsAccessories)
             {
                 CategoryIdWithName newCat = new CategoryIdWithName(item.Category_idCategory, item.Category.category1);
@@ -45,7 +48,10 @@ namespace bikevision.Controllers
                     this.MainLayoutViewModel.CategoriesAccessories.Add(newCat);
             }
 
-            foreach(var item in itemsClothing)
+            if (this.MainLayoutViewModel.CategoriesAccessories.Count() > 0)
+                this.MainLayoutViewModel.CategoriesAccessories = this.MainLayoutViewModel.CategoriesAccessories.OrderBy(name => name.name).ToList();
+
+            foreach (var item in itemsClothing)
             {
                 CategoryIdWithName newCat = new CategoryIdWithName(item.Category_idCategory, item.Category.category1);
 
@@ -53,14 +59,19 @@ namespace bikevision.Controllers
                     this.MainLayoutViewModel.CategoriesOfClothing.Add(newCat);
             }
 
-            foreach(var item in itemsTools)
+            if (this.MainLayoutViewModel.CategoriesOfClothing.Count() > 0)
+                this.MainLayoutViewModel.CategoriesOfClothing = this.MainLayoutViewModel.CategoriesOfClothing.OrderBy(name => name.name).ToList();
+
+            foreach (var item in itemsTools)
             {
                 CategoryIdWithName newCat = new CategoryIdWithName(item.Category_idCategory, item.Category.category1);
 
                 if(this.MainLayoutViewModel.CategoriesOfTools.Where(id => id.id == item.Category_idCategory).Where(name => name.name == item.Category.category1).Count() <= 0)
                     this.MainLayoutViewModel.CategoriesOfTools.Add(newCat);
             }
-            // filter list
+
+            if (this.MainLayoutViewModel.CategoriesOfTools.Count() > 0)
+                this.MainLayoutViewModel.CategoriesOfTools = this.MainLayoutViewModel.CategoriesOfTools.OrderBy(name => name.name).ToList();
 
             this.ViewData["MainLayoutViewModel"] = this.MainLayoutViewModel;
         }

@@ -23,6 +23,60 @@ namespace bikevision.Controllers
         {
             this.MainLayoutViewModel = new MainLayoutViewModel();
             this.MainLayoutViewModel.Types = db.ItemTypes.ToList();
+            this.MainLayoutViewModel.CategoriesOfSpareParts = new List<CategoryIdWithName>();
+            this.MainLayoutViewModel.CategoriesAccessories = new List<CategoryIdWithName>();
+            this.MainLayoutViewModel.CategoriesOfTools = new List<CategoryIdWithName>();
+            this.MainLayoutViewModel.CategoriesOfClothing = new List<CategoryIdWithName>();
+            // this.MainLayoutViewModel.CategoriesOfSpareParts 
+
+            List<Item> itemsSpareParts = db.Items.Include(cat => cat.Category).Include(type => type.ItemType).Where(type => type.ItemType.type == "Części zamienne").ToList();
+            List<Item> itemsAccessories = db.Items.Include(cat => cat.Category).Include(type => type.ItemType).Where(type => type.ItemType.type == "Akcesoria").ToList();
+            List<Item> itemsClothing = db.Items.Include(cat => cat.Category).Include(type => type.ItemType).Where(type => type.ItemType.type == "Odzież").ToList();
+            List<Item> itemsTools = db.Items.Include(cat => cat.Category).Include(type => type.ItemType).Where(type => type.ItemType.type == "Narzędzia").ToList();
+
+            foreach (var item in itemsSpareParts)
+            {
+                CategoryIdWithName newCat = new CategoryIdWithName(item.Category_idCategory, item.Category.category1);
+
+                if (this.MainLayoutViewModel.CategoriesOfSpareParts.Where(id => id.id == item.Category_idCategory).Where(name => name.name == item.Category.category1).Count() <= 0)
+                    this.MainLayoutViewModel.CategoriesOfSpareParts.Add(newCat);
+            }
+
+            if (this.MainLayoutViewModel.CategoriesOfSpareParts.Count() > 0)
+                this.MainLayoutViewModel.CategoriesOfSpareParts = this.MainLayoutViewModel.CategoriesOfSpareParts.OrderBy(name => name.name).ToList();
+
+            foreach (var item in itemsAccessories)
+            {
+                CategoryIdWithName newCat = new CategoryIdWithName(item.Category_idCategory, item.Category.category1);
+
+                if (this.MainLayoutViewModel.CategoriesAccessories.Where(id => id.id == item.Category_idCategory).Where(name => name.name == item.Category.category1).Count() <= 0)
+                    this.MainLayoutViewModel.CategoriesAccessories.Add(newCat);
+            }
+
+            if (this.MainLayoutViewModel.CategoriesAccessories.Count() > 0)
+                this.MainLayoutViewModel.CategoriesAccessories = this.MainLayoutViewModel.CategoriesAccessories.OrderBy(name => name.name).ToList();
+
+            foreach (var item in itemsClothing)
+            {
+                CategoryIdWithName newCat = new CategoryIdWithName(item.Category_idCategory, item.Category.category1);
+
+                if (this.MainLayoutViewModel.CategoriesOfClothing.Where(id => id.id == item.Category_idCategory).Where(name => name.name == item.Category.category1).Count() <= 0)
+                    this.MainLayoutViewModel.CategoriesOfClothing.Add(newCat);
+            }
+
+            if (this.MainLayoutViewModel.CategoriesOfClothing.Count() > 0)
+                this.MainLayoutViewModel.CategoriesOfClothing = this.MainLayoutViewModel.CategoriesOfClothing.OrderBy(name => name.name).ToList();
+
+            foreach (var item in itemsTools)
+            {
+                CategoryIdWithName newCat = new CategoryIdWithName(item.Category_idCategory, item.Category.category1);
+
+                if (this.MainLayoutViewModel.CategoriesOfTools.Where(id => id.id == item.Category_idCategory).Where(name => name.name == item.Category.category1).Count() <= 0)
+                    this.MainLayoutViewModel.CategoriesOfTools.Add(newCat);
+            }
+
+            if (this.MainLayoutViewModel.CategoriesOfTools.Count() > 0)
+                this.MainLayoutViewModel.CategoriesOfTools = this.MainLayoutViewModel.CategoriesOfTools.OrderBy(name => name.name).ToList();
 
             this.ViewData["MainLayoutViewModel"] = this.MainLayoutViewModel;
         }
