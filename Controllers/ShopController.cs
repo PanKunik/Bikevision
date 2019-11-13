@@ -18,7 +18,48 @@ namespace bikevision.Controllers
         {
             this.MainLayoutViewModel = new MainLayoutViewModel();
             this.MainLayoutViewModel.Types = db.ItemTypes.ToList();
-            this.MainLayoutViewModel.CategoriesOfSpareParts = db.Items.SqlQuery("select * from dbo.item inner join Category on Category_idCategory = Category.idCategory inner join ItemType on ItemType_idItemType = ItemType.idItemType where ItemType.type = 'części zamienne'").ToList();
+            this.MainLayoutViewModel.CategoriesOfSpareParts = new List<CategoryIdWithName>();
+            this.MainLayoutViewModel.CategoriesAccessories = new List<CategoryIdWithName>();
+            this.MainLayoutViewModel.CategoriesOfTools = new List<CategoryIdWithName>();
+            this.MainLayoutViewModel.CategoriesOfClothing = new List<CategoryIdWithName>();
+            // this.MainLayoutViewModel.CategoriesOfSpareParts 
+
+            List<Item> itemsSpareParts = db.Items.Include(cat => cat.Category).Include(type => type.ItemType).Where(type => type.ItemType.type == "Części zamienne").ToList();
+            List<Item> itemsAccessories = db.Items.Include(cat => cat.Category).Include(type => type.ItemType).Where(type => type.ItemType.type == "Akcesoria").ToList();
+            List<Item> itemsClothing = db.Items.Include(cat => cat.Category).Include(type => type.ItemType).Where(type => type.ItemType.type == "Odzież").ToList();
+            List<Item> itemsTools = db.Items.Include(cat => cat.Category).Include(type => type.ItemType).Where(type => type.ItemType.type == "Narzędzia").ToList();
+
+            foreach(var item in itemsSpareParts)
+            {
+                CategoryIdWithName newCat = new CategoryIdWithName(item.Category_idCategory, item.Category.category1);
+
+                if(this.MainLayoutViewModel.CategoriesOfSpareParts.Where(id => id.id == item.Category_idCategory).Where(name => name.name == item.Category.category1).Count() <= 0)
+                    this.MainLayoutViewModel.CategoriesOfSpareParts.Add(newCat);
+            }
+
+            foreach(var item in itemsAccessories)
+            {
+                CategoryIdWithName newCat = new CategoryIdWithName(item.Category_idCategory, item.Category.category1);
+
+                if(this.MainLayoutViewModel.CategoriesAccessories.Where(id => id.id == item.Category_idCategory).Where(name => name.name == item.Category.category1).Count() <= 0)
+                    this.MainLayoutViewModel.CategoriesAccessories.Add(newCat);
+            }
+
+            foreach(var item in itemsClothing)
+            {
+                CategoryIdWithName newCat = new CategoryIdWithName(item.Category_idCategory, item.Category.category1);
+
+                if(this.MainLayoutViewModel.CategoriesOfClothing.Where(id => id.id == item.Category_idCategory).Where(name => name.name == item.Category.category1).Count() <= 0)
+                    this.MainLayoutViewModel.CategoriesOfClothing.Add(newCat);
+            }
+
+            foreach(var item in itemsTools)
+            {
+                CategoryIdWithName newCat = new CategoryIdWithName(item.Category_idCategory, item.Category.category1);
+
+                if(this.MainLayoutViewModel.CategoriesOfTools.Where(id => id.id == item.Category_idCategory).Where(name => name.name == item.Category.category1).Count() <= 0)
+                    this.MainLayoutViewModel.CategoriesOfTools.Add(newCat);
+            }
             // filter list
 
             this.ViewData["MainLayoutViewModel"] = this.MainLayoutViewModel;
@@ -91,9 +132,15 @@ namespace bikevision.Controllers
 
             return View(productDetails);
         }
-        public ActionResult ProductList(string Searching)
+        public ActionResult ProductList(string Searching, int? categoryId)
         {
             List<Item> items;
+
+            if(categoryId != null)
+            {
+                items = db.Items.Where(cat => cat.Category_idCategory == categoryId).ToList();
+                return View(items);
+            }
 
             if (Searching == null || Searching == "")
             {
