@@ -52,5 +52,8 @@ namespace bikevision.Models
         public virtual DbSet<Item> Items { get; set; }
         public virtual DbSet<Sale> Sales { get; set; }
         public virtual DbSet<Shipping> Shippings { get; set; }
+        public virtual DbSet<AspNetUsersDiscountCode> AspNetUsersDiscountCodes { get; set; }
+        public virtual DbSet<DiscountCode> DiscountCodes { get; set; }
+        public virtual DbSet<DiscountCodeForItem> DiscountCodeForItems { get; set; }
     }
 }

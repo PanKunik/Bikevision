@@ -56,6 +56,15 @@
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
+        <EntityType Name="AspNetUsersDiscountCode">
+          <Key>
+            <PropertyRef Name="AspNetUser_Id" />
+            <PropertyRef Name="DiscountCode_idDiscountCode" />
+          </Key>
+          <Property Name="AspNetUser_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="DiscountCode_idDiscountCode" Type="int" Nullable="false" />
+          <Property Name="numberOfUses" Type="tinyint" Nullable="false" />
+        </EntityType>
         <EntityType Name="Brand">
           <Key>
             <PropertyRef Name="idBrand" />
@@ -83,6 +92,23 @@
           <Property Name="zipCode" Type="nvarchar" MaxLength="50" />
           <Property Name="AspNetUsers_idAspNetUsers" Type="nvarchar" MaxLength="128" />
           <Property Name="Locality_idLocality" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DiscountCode">
+          <Key>
+            <PropertyRef Name="idDiscountCode" />
+          </Key>
+          <Property Name="idDiscountCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="code" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="numberOfUses" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DiscountCodeForItem">
+          <Key>
+            <PropertyRef Name="Item_idItem" />
+            <PropertyRef Name="DiscountCode_idDiscountCode" />
+          </Key>
+          <Property Name="Item_idItem" Type="int" Nullable="false" />
+          <Property Name="DiscountCode_idDiscountCode" Type="int" Nullable="false" />
+          <Property Name="discount" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -267,6 +293,30 @@
           <Property Name="name" Type="nvarchar" MaxLength="80" Nullable="false" />
           <Property Name="cost" Type="decimal" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
+        <Association Name="FK_AspNetUsersDiscountCode_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="AspNetUsersDiscountCode" Type="Self.AspNetUsersDiscountCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUsersDiscountCode">
+              <PropertyRef Name="AspNetUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUsersDiscountCode_DiscountCode">
+          <End Role="DiscountCode" Type="Self.DiscountCode" Multiplicity="1" />
+          <End Role="AspNetUsersDiscountCode" Type="Self.AspNetUsersDiscountCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DiscountCode">
+              <PropertyRef Name="idDiscountCode" />
+            </Principal>
+            <Dependent Role="AspNetUsersDiscountCode">
+              <PropertyRef Name="DiscountCode_idDiscountCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_Customer_AspNetUsers1">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
           <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
@@ -344,6 +394,30 @@
             </Principal>
             <Dependent Role="AspNetUserRoles">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DiscountCodeForItem_DiscountCode">
+          <End Role="DiscountCode" Type="Self.DiscountCode" Multiplicity="1" />
+          <End Role="DiscountCodeForItem" Type="Self.DiscountCodeForItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DiscountCode">
+              <PropertyRef Name="idDiscountCode" />
+            </Principal>
+            <Dependent Role="DiscountCodeForItem">
+              <PropertyRef Name="DiscountCode_idDiscountCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DiscountCodeForItem_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="DiscountCodeForItem" Type="Self.DiscountCodeForItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="idItem" />
+            </Principal>
+            <Dependent Role="DiscountCodeForItem">
+              <PropertyRef Name="Item_idItem" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -653,9 +727,12 @@
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsersDiscountCode" EntityType="Self.AspNetUsersDiscountCode" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DiscountCode" EntityType="Self.DiscountCode" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DiscountCodeForItem" EntityType="Self.DiscountCodeForItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmployeeInThePosition" EntityType="Self.EmployeeInThePosition" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Feature" EntityType="Self.Feature" Schema="dbo" store:Type="Tables" />
@@ -676,6 +753,14 @@
           <EntitySet Name="ServiceState" EntityType="Self.ServiceState" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ServiceType" EntityType="Self.ServiceType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shipping" EntityType="Self.Shipping" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AspNetUsersDiscountCode_AspNetUsers" Association="Self.FK_AspNetUsersDiscountCode_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUsersDiscountCode" EntitySet="AspNetUsersDiscountCode" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUsersDiscountCode_DiscountCode" Association="Self.FK_AspNetUsersDiscountCode_DiscountCode">
+            <End Role="DiscountCode" EntitySet="DiscountCode" />
+            <End Role="AspNetUsersDiscountCode" EntitySet="AspNetUsersDiscountCode" />
+          </AssociationSet>
           <AssociationSet Name="fk_Customer_AspNetUsers1" Association="Self.fk_Customer_AspNetUsers1">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Customer" EntitySet="Customer" />
@@ -699,6 +784,14 @@
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DiscountCodeForItem_DiscountCode" Association="Self.FK_DiscountCodeForItem_DiscountCode">
+            <End Role="DiscountCode" EntitySet="DiscountCode" />
+            <End Role="DiscountCodeForItem" EntitySet="DiscountCodeForItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DiscountCodeForItem_Item" Association="Self.FK_DiscountCodeForItem_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="DiscountCodeForItem" EntitySet="DiscountCodeForItem" />
           </AssociationSet>
           <AssociationSet Name="fk_Employee_AspNetUsers1" Association="Self.fk_Employee_AspNetUsers1">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -953,6 +1046,25 @@
             <End Role="Sale" EntitySet="Sales" />
             <End Role="SaleDetail" EntitySet="SaleDetails" />
           </AssociationSet>
+          <EntitySet Name="AspNetUsersDiscountCodes" EntityType="bikewayDBModel.AspNetUsersDiscountCode" />
+          <EntitySet Name="DiscountCodes" EntityType="bikewayDBModel.DiscountCode" />
+          <EntitySet Name="DiscountCodeForItems" EntityType="bikewayDBModel.DiscountCodeForItem" />
+          <AssociationSet Name="FK_AspNetUsersDiscountCode_AspNetUsers" Association="bikewayDBModel.FK_AspNetUsersDiscountCode_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUsersDiscountCode" EntitySet="AspNetUsersDiscountCodes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUsersDiscountCode_DiscountCode" Association="bikewayDBModel.FK_AspNetUsersDiscountCode_DiscountCode">
+            <End Role="DiscountCode" EntitySet="DiscountCodes" />
+            <End Role="AspNetUsersDiscountCode" EntitySet="AspNetUsersDiscountCodes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DiscountCodeForItem_DiscountCode" Association="bikewayDBModel.FK_DiscountCodeForItem_DiscountCode">
+            <End Role="DiscountCode" EntitySet="DiscountCodes" />
+            <End Role="DiscountCodeForItem" EntitySet="DiscountCodeForItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DiscountCodeForItem_Item" Association="bikewayDBModel.FK_DiscountCodeForItem_Item">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="DiscountCodeForItem" EntitySet="DiscountCodeForItems" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -1005,6 +1117,7 @@
           <NavigationProperty Name="Employees" Relationship="bikewayDBModel.fk_Employee_AspNetUsers1" FromRole="AspNetUser" ToRole="Employee" />
           <NavigationProperty Name="AspNetRoles" Relationship="bikewayDBModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
           <NavigationProperty Name="NoteToServices" Relationship="bikewayDBModel.FK_NoteToService_AspNetUsers" FromRole="AspNetUser" ToRole="NoteToService" />
+          <NavigationProperty Name="AspNetUsersDiscountCodes" Relationship="bikewayDBModel.FK_AspNetUsersDiscountCode_AspNetUsers" FromRole="AspNetUser" ToRole="AspNetUsersDiscountCode" />
         </EntityType>
         <EntityType Name="Brand">
           <Key>
@@ -1452,6 +1565,7 @@
           <NavigationProperty Name="ItemType" Relationship="bikewayDBModel.fk_Item_ItemType1" FromRole="Item" ToRole="ItemType" />
           <NavigationProperty Name="Opinions" Relationship="bikewayDBModel.fk_Opinion_Item1" FromRole="Item" ToRole="Opinion" />
           <NavigationProperty Name="SaleDetails" Relationship="bikewayDBModel.fk_SaleDetails_Item1" FromRole="Item" ToRole="SaleDetail" />
+          <NavigationProperty Name="DiscountCodeForItems" Relationship="bikewayDBModel.FK_DiscountCodeForItem_Item" FromRole="Item" ToRole="DiscountCodeForItem" />
         </EntityType>
         <Association Name="fk_Item_Brand1">
           <End Type="bikewayDBModel.Brand" Role="Brand" Multiplicity="1" />
@@ -1621,6 +1735,86 @@
             </Principal>
             <Dependent Role="SaleDetail">
               <PropertyRef Name="Sale_idSale" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AspNetUsersDiscountCode">
+          <Key>
+            <PropertyRef Name="AspNetUser_Id" />
+            <PropertyRef Name="DiscountCode_idDiscountCode" />
+          </Key>
+          <Property Name="AspNetUser_Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="DiscountCode_idDiscountCode" Type="Int32" Nullable="false" />
+          <Property Name="numberOfUses" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="bikewayDBModel.FK_AspNetUsersDiscountCode_AspNetUsers" FromRole="AspNetUsersDiscountCode" ToRole="AspNetUser" />
+          <NavigationProperty Name="DiscountCode" Relationship="bikewayDBModel.FK_AspNetUsersDiscountCode_DiscountCode" FromRole="AspNetUsersDiscountCode" ToRole="DiscountCode" />
+        </EntityType>
+        <EntityType Name="DiscountCode">
+          <Key>
+            <PropertyRef Name="idDiscountCode" />
+          </Key>
+          <Property Name="idDiscountCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="code" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="numberOfUses" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="AspNetUsersDiscountCodes" Relationship="bikewayDBModel.FK_AspNetUsersDiscountCode_DiscountCode" FromRole="DiscountCode" ToRole="AspNetUsersDiscountCode" />
+          <NavigationProperty Name="DiscountCodeForItems" Relationship="bikewayDBModel.FK_DiscountCodeForItem_DiscountCode" FromRole="DiscountCode" ToRole="DiscountCodeForItem" />
+        </EntityType>
+        <EntityType Name="DiscountCodeForItem">
+          <Key>
+            <PropertyRef Name="Item_idItem" />
+            <PropertyRef Name="DiscountCode_idDiscountCode" />
+          </Key>
+          <Property Name="Item_idItem" Type="Int32" Nullable="false" />
+          <Property Name="DiscountCode_idDiscountCode" Type="Int32" Nullable="false" />
+          <Property Name="discount" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="DiscountCode" Relationship="bikewayDBModel.FK_DiscountCodeForItem_DiscountCode" FromRole="DiscountCodeForItem" ToRole="DiscountCode" />
+          <NavigationProperty Name="Item" Relationship="bikewayDBModel.FK_DiscountCodeForItem_Item" FromRole="DiscountCodeForItem" ToRole="Item" />
+        </EntityType>
+        <Association Name="FK_AspNetUsersDiscountCode_AspNetUsers">
+          <End Type="bikewayDBModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="bikewayDBModel.AspNetUsersDiscountCode" Role="AspNetUsersDiscountCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUsersDiscountCode">
+              <PropertyRef Name="AspNetUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUsersDiscountCode_DiscountCode">
+          <End Type="bikewayDBModel.DiscountCode" Role="DiscountCode" Multiplicity="1" />
+          <End Type="bikewayDBModel.AspNetUsersDiscountCode" Role="AspNetUsersDiscountCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DiscountCode">
+              <PropertyRef Name="idDiscountCode" />
+            </Principal>
+            <Dependent Role="AspNetUsersDiscountCode">
+              <PropertyRef Name="DiscountCode_idDiscountCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DiscountCodeForItem_DiscountCode">
+          <End Type="bikewayDBModel.DiscountCode" Role="DiscountCode" Multiplicity="1" />
+          <End Type="bikewayDBModel.DiscountCodeForItem" Role="DiscountCodeForItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DiscountCode">
+              <PropertyRef Name="idDiscountCode" />
+            </Principal>
+            <Dependent Role="DiscountCodeForItem">
+              <PropertyRef Name="DiscountCode_idDiscountCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DiscountCodeForItem_Item">
+          <End Type="bikewayDBModel.Item" Role="Item" Multiplicity="1" />
+          <End Type="bikewayDBModel.DiscountCodeForItem" Role="DiscountCodeForItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="idItem" />
+            </Principal>
+            <Dependent Role="DiscountCodeForItem">
+              <PropertyRef Name="Item_idItem" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1909,6 +2103,33 @@
                 <ScalarProperty Name="cost" ColumnName="cost" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="idShipping" ColumnName="idShipping" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsersDiscountCodes">
+            <EntityTypeMapping TypeName="bikewayDBModel.AspNetUsersDiscountCode">
+              <MappingFragment StoreEntitySet="AspNetUsersDiscountCode">
+                <ScalarProperty Name="numberOfUses" ColumnName="numberOfUses" />
+                <ScalarProperty Name="DiscountCode_idDiscountCode" ColumnName="DiscountCode_idDiscountCode" />
+                <ScalarProperty Name="AspNetUser_Id" ColumnName="AspNetUser_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DiscountCodes">
+            <EntityTypeMapping TypeName="bikewayDBModel.DiscountCode">
+              <MappingFragment StoreEntitySet="DiscountCode">
+                <ScalarProperty Name="numberOfUses" ColumnName="numberOfUses" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="idDiscountCode" ColumnName="idDiscountCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DiscountCodeForItems">
+            <EntityTypeMapping TypeName="bikewayDBModel.DiscountCodeForItem">
+              <MappingFragment StoreEntitySet="DiscountCodeForItem">
+                <ScalarProperty Name="discount" ColumnName="discount" />
+                <ScalarProperty Name="DiscountCode_idDiscountCode" ColumnName="DiscountCode_idDiscountCode" />
+                <ScalarProperty Name="Item_idItem" ColumnName="Item_idItem" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

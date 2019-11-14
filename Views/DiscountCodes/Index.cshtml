@@ -1,0 +1,40 @@
+﻿@model IEnumerable<bikevision.Models.DiscountCode>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_ManagementLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.numberOfUses)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.numberOfUses)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idDiscountCode }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idDiscountCode }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idDiscountCode })
+        </td>
+    </tr>
+}
+
+</table>

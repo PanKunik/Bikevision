@@ -162,6 +162,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AspNetRolesController.cs" />
+    <Compile Include="Controllers\AspNetUsersDiscountCodesController.cs" />
+    <Compile Include="Controllers\DiscountCodeForItemsController.cs" />
+    <Compile Include="Controllers\DiscountCodesController.cs" />
     <Compile Include="Controllers\FeatureValueOfItemsController.cs" />
     <Compile Include="Controllers\FeatureValuesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -199,6 +202,9 @@
     <Compile Include="Models\AspNetUserLogin.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AspNetUsersDiscountCode.cs">
+      <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Brand.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
@@ -228,6 +234,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DatabaseFirstModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DiscountCode.cs">
+      <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DiscountCodeForItem.cs">
+      <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Employee.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
@@ -622,6 +634,21 @@
     <Content Include="Views\Sales\Details.cshtml" />
     <Content Include="Views\Sales\Edit.cshtml" />
     <Content Include="Views\Sales\Index.cshtml" />
+    <Content Include="Views\AspNetUsersDiscountCodes\Create.cshtml" />
+    <Content Include="Views\AspNetUsersDiscountCodes\Delete.cshtml" />
+    <Content Include="Views\AspNetUsersDiscountCodes\Details.cshtml" />
+    <Content Include="Views\AspNetUsersDiscountCodes\Edit.cshtml" />
+    <Content Include="Views\AspNetUsersDiscountCodes\Index.cshtml" />
+    <Content Include="Views\DiscountCodes\Create.cshtml" />
+    <Content Include="Views\DiscountCodes\Delete.cshtml" />
+    <Content Include="Views\DiscountCodes\Details.cshtml" />
+    <Content Include="Views\DiscountCodes\Edit.cshtml" />
+    <Content Include="Views\DiscountCodes\Index.cshtml" />
+    <Content Include="Views\DiscountCodeForItems\Create.cshtml" />
+    <Content Include="Views\DiscountCodeForItems\Delete.cshtml" />
+    <Content Include="Views\DiscountCodeForItems\Details.cshtml" />
+    <Content Include="Views\DiscountCodeForItems\Edit.cshtml" />
+    <Content Include="Views\DiscountCodeForItems\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

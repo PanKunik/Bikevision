@@ -23,6 +23,7 @@ namespace bikevision.Models
             this.Employees = new HashSet<Employee>();
             this.AspNetRoles = new HashSet<AspNetRole>();
             this.NoteToServices = new HashSet<NoteToService>();
+            this.AspNetUsersDiscountCodes = new HashSet<AspNetUsersDiscountCode>();
         }
     
         public string Id { get; set; }
@@ -50,5 +51,7 @@ namespace bikevision.Models
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NoteToService> NoteToServices { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AspNetUsersDiscountCode> AspNetUsersDiscountCodes { get; set; }
     }
 }

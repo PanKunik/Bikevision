@@ -1,0 +1,35 @@
+﻿@model bikevision.Models.DiscountCode
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_ManagementLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DiscountCode</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numberOfUses)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numberOfUses)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idDiscountCode }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

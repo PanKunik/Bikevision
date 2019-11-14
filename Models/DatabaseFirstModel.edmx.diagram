@@ -62,6 +62,13 @@
         <AssociationConnector Association="bikewayDBModel.fk_Sale_SaleType1" />
         <AssociationConnector Association="bikewayDBModel.FK_Sale_Shipping" />
         <AssociationConnector Association="bikewayDBModel.fk_SaleDetails_Sale1" />
+        <EntityTypeShape EntityType="bikewayDBModel.AspNetUsersDiscountCode" Width="1.5" PointX="13.625" PointY="9.875" />
+        <EntityTypeShape EntityType="bikewayDBModel.DiscountCode" Width="1.5" PointX="9.375" PointY="2.375" />
+        <EntityTypeShape EntityType="bikewayDBModel.DiscountCodeForItem" Width="1.5" PointX="11.625" PointY="4.125" />
+        <AssociationConnector Association="bikewayDBModel.FK_AspNetUsersDiscountCode_AspNetUsers" />
+        <AssociationConnector Association="bikewayDBModel.FK_AspNetUsersDiscountCode_DiscountCode" />
+        <AssociationConnector Association="bikewayDBModel.FK_DiscountCodeForItem_DiscountCode" />
+        <AssociationConnector Association="bikewayDBModel.FK_DiscountCodeForItem_Item" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
