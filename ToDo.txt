@@ -1,3 +1,4 @@
+-sorting -> by price (actual price, not old price)
 -promotion code - numberOfUses -> increment
 -permanent discount for logged users ->
 -favorites ->
