@@ -23,9 +23,16 @@
     @if (Session["Cart"] != null)
     {
         List<Cart> temp = (List<Cart>)Session["Cart"];
-        var total = temp.Sum(x => x.Quantity * ((x.Item.price) - ((x.Item.price * x.Item.discount) / 100)));
+        var total = 0.0M;// temp.Sum(x => x.Quantity * ((x.Item.price) - ((x.Item.price * x.Item.discount) / 100)));
         Shipping deliveryCost;
-        var promotionCode = 0;
+        var promotionCode = 0.0M;
+
+        List<Tuple<int, int>> pairForCodes = null;
+
+        if (Session["Items"] != null)
+        {
+            pairForCodes = (List<Tuple<int, int>>)Session["Items"];
+        }
 
         if(ViewBag.costOfDelivery != null)
         {
@@ -69,6 +76,20 @@
             <tbody>
                 @foreach (var productInCart in (List<Cart>)Session["Cart"])
                 {
+                    total += (productInCart.Quantity * productInCart.Item.price);
+
+                    if (pairForCodes != null)
+                    {
+                        List<Tuple<int, int>> pairs = pairForCodes.Where(i => i.Item1 == productInCart.Item.idItem).ToList();
+
+                        if (pairs.Count() > 0)
+                        {
+                            promotionCode -= ((productInCart.Quantity * productInCart.Item.price) - (((100 - (decimal)pairs.First().Item2) / 100) * (productInCart.Quantity * productInCart.Item.price)));
+                        }
+
+                    }
+                    //promotionCode += ((productInCart.Quantity * productInCart.Item.price) - (productInCart.Quantity * productInCart.Item.price) * (1 / productInCart.Multiplier));
+                    //total += (productInCart.Quantity * productInCart.Item.price);
                     <tr>
                         <td scope="row">
                             <img src="~/Content/Images/Shop/siodelko_1.jpg" class="shopping-cart__product-image" alt="obrazek" />
@@ -95,10 +116,27 @@
                 <tr>
                     <td colspan="3" scope="row" class="font-weight-bold text-size-small">
                         <span>Kod rabatowy</span>
-                        @Html.TextBox("discountCode", null, new { @class="form-control mt-2" })
-                        <input type="submit" value="Skorzystaj" class="btn btn-primary mt-2"/>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            if (Session["code"] == null)
+                            {
+                                using (Html.BeginForm("DiscountCode", "ShoppingCart", FormMethod.Post))
+                                {
+                                    @Html.TextBox("discountCode", null, new { @class = "form-control mt-2" })
+                                    <input type="submit" value="Skorzystaj" class="btn btn-primary mt-2" />
+                                }
+                            }
+                            else
+                            {
+                                <p class="h6">Twój kod: @Session["code"]</p>
+                            }
+                        }
+                        else
+                        {
+                            <p class="h5">Aby skorzystać z kodów, musisz być zalogowany!</p>
+                        }
                     </td>
-                    <td colspan="3" >
+                    <td colspan="3">
                         <div class="row">
                             <p class="col-12 col-md-6 font-weight-bold"> Razem (brutto): </p>
                             <p class="col-12 col-md-6 ">
@@ -114,7 +152,7 @@
 
                         <div class="row">
                             <p class="col-12 col-md-6 text-size-small font-weight-bold"> Razem:  </p>
-                            <p class="col-12 col-md-6 text-size-small"> @String.Format("{0:F2} zł", total - promotionCode)  </p>
+                            <p class="col-12 col-md-6 text-size-small"> @String.Format("{0:F2} zł", total + promotionCode)  </p>
                         </div>
                     </td>
                 </tr>
@@ -125,14 +163,14 @@
                         {
                             foreach (var delivery in shippings)
                             {
-                                <label for="@delivery.name"><input type="radio" id="@delivery.name" onchange="form.submit();" name="deliveryCosts" value="@delivery.idShipping" @if(delivery.idShipping == deliveryCost.idShipping) { @String.Format("checked"); }/> @String.Format("{0} - {1:F2} zł", delivery.name, delivery.cost)</label><br />
+                                <label for="@delivery.name"><input type="radio" id="@delivery.name" onchange="form.submit();" name="deliveryCosts" value="@delivery.idShipping" @if (delivery.idShipping == deliveryCost.idShipping) { @String.Format("checked") ; } /> @String.Format("{0} - {1:F2} zł", delivery.name, delivery.cost)</label><br />
                             }
                         }
                     </td>
-                    <td colspan="3" >
+                    <td colspan="3">
                         <div class="row">
                             <p class="col-6">Produkty: </p>
-                            <p class="col-6">@String.Format("{0:F2} zł", total - promotionCode)</p>
+                            <p class="col-6">@String.Format("{0:F2} zł", total + promotionCode)</p>
                         </div>
                         <div class="row">
                             <p class="col-6">Koszt dostawy: </p>
@@ -140,7 +178,7 @@
                         </div>
                         <div class="row">
                             <p class="col-6 font-weight-bold text-size-small">Razem do zapłaty:</p>
-                            <p class="col-6 font-weight-bold text-size-small">@String.Format("{0:F2}", total - promotionCode + (deliveryCost.cost))</p>
+                            <p class="col-6 font-weight-bold text-size-small">@String.Format("{0:F2}", total + promotionCode + (deliveryCost.cost))</p>
                         </div>
                     </td>
                 </tr>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Net;
 using System.Web.Mvc;
+using System.Web.UI;
 using bikevision.Models;
 using System.Data;
 using System.Data.Entity;
@@ -130,6 +131,7 @@ namespace bikevision.Controllers
 
         bikewayDBEntities db = new bikewayDBEntities();
         private string sessionCartString = "Cart";
+        private string itemsForCodeString = "Items";
 
         // GET: ShoppingCart
         public ActionResult Index(string Error)
@@ -183,6 +185,76 @@ namespace bikevision.Controllers
             }
             else
                 return RedirectToAction("Index");
+        }
+
+        public ActionResult DiscountCode()
+        {
+            string code = "";
+            Session[itemsForCodeString] = null;
+
+            if (Session["code"] == null)
+                code = Request["discountCode"];
+            else
+                code = (string)Session["code"];
+
+            List<DiscountCode> codes = db.DiscountCodes.Where(co => co.code == code).ToList();
+
+            DiscountCode promotionCode = new DiscountCode();
+
+            if (codes.Count() <= 0)
+            {
+                if (Session["code"] != null)
+                    Session["code"] = null;
+                return RedirectToAction("Index", new { Error = "Wpisany przez ciebie kod jest nieprawidłowy." });
+            }
+
+            promotionCode = codes.First();
+            
+            List<DiscountCodeForItem> itemsAndCodes = db.DiscountCodeForItems.Where(id => id.DiscountCode_idDiscountCode == promotionCode.idDiscountCode).ToList();
+
+            if (itemsAndCodes.Count() <= 0)
+            {
+                if (Session["code"] != null)
+                    Session["code"] = null;
+                return RedirectToAction("Index", new { Error = "Kod nie dotyczy przedmiotów z twojego koszyka." });
+            }
+
+            List<AspNetUsersDiscountCode> usesOfCode = db.AspNetUsersDiscountCodes.Where(id => id.AspNetUser.UserName == User.Identity.Name).Where(co => co.DiscountCode.code == promotionCode.code).Where(uses => uses.numberOfUses == promotionCode.numberOfUses).ToList();
+
+            if (usesOfCode.Count() > 0)
+            {
+                if (Session["code"] != null)
+                    Session["code"] = null;
+                return RedirectToAction("Index", new { Error = "Wykorzystałeś już użyty kod." });
+            }
+
+
+            List<Cart> lsCart = (List<Cart>)Session[sessionCartString];
+
+            IEnumerable<int> Ids = lsCart.Select(id => id.Item.idItem);
+
+            List<Tuple<int, int>> pairs = new List<Tuple<int, int>>();
+
+            foreach (var row in itemsAndCodes)
+            {
+                if (Ids.Contains(row.Item_idItem))
+                {
+                    pairs.Add(new Tuple<int, int>(row.Item_idItem, row.discount));
+                }
+            }
+
+            if (pairs.Count() <= 0)
+            {
+                if (Session["code"] != null)
+                    Session["code"] = null;
+                return RedirectToAction("Index", new { Error = "Kod nie dotyczy przedmiotów z twojego koszyka." });
+            }
+
+            Session["code"] = promotionCode.code;
+            Session[sessionCartString] = lsCart;
+            Session[itemsForCodeString] = pairs;
+
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
@@ -448,6 +520,9 @@ namespace bikevision.Controllers
                 }
 
                 Session[sessionCartString] = lsCart;
+
+                if (Session["code"] != null)
+                    return RedirectToAction("DiscountCode");
             }
             return RedirectToAction("Index");
         }
@@ -504,7 +579,12 @@ namespace bikevision.Controllers
             {
                 lsCart[indexOfItem].Quantity--;
                 if (lsCart[indexOfItem].Quantity == 0)
+                {
                     Delete(lsCart[indexOfItem].Item.idItem);
+
+                    if (Session["code"] != null)
+                        return RedirectToAction("DiscountCode");
+                }
             }
 
             return RedirectToAction("Index");
