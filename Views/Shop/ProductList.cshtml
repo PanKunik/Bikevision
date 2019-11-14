@@ -4,7 +4,27 @@
     ViewBag.Title = "Lista produktów";
     Layout = "~/Views/Shared/_ShopLayout.cshtml";
 
-    int index = 0;
+    int category = 0;
+    int brand = 0;
+    int feature = 0;
+
+    if (ViewBag.categoryId != null)
+    {
+        category = (int)ViewBag.categoryId;
+    }
+
+    if (ViewBag.brandId != null)
+    {
+        brand = (int)ViewBag.brandId;
+    }
+
+    if (ViewBag.featureId != null)
+    {
+        feature = (int)ViewBag.featureId;
+    }
+
+    string searching = ViewBag.keyword;
+    string sortOrder = (ViewBag.sortOrder == null) ? "" : ViewBag.sortOrder;
 }
 
 <div class="container-fluid bg-semi-light m-0 p-0">
@@ -186,33 +206,24 @@
                         <button type="button" id="listButton" class="btn btn-primary"><i class="fas fa-list mr-2"></i>Lista</button>
                     </div>
                     <div class="p-1">
-                        @using (Html.BeginForm("SortProducts", "Shop", new { number = Model.Count() }, FormMethod.Post))
+                        @using (Html.BeginForm("ProductList", "Shop", FormMethod.Post))
                         {
-                            foreach(var product in Model)
-                            {
-                                @Html.Hidden("product[" + index + "].idItem", product.idItem);
-                                @Html.Hidden("product[" + index + "].name", product.name);
-                                @Html.Hidden("product[" + index + "].availability", product.availability);
-                                @Html.Hidden("product[" + index + "].Brand_idBrand", product.Brand_idBrand);
-                                @Html.Hidden("product[" + index + "].Category_idCategory", product.Category_idCategory);
-                                @Html.Hidden("product[" + index + "].ItemType_idItemType", product.ItemType_idItemType);
-                                @Html.Hidden("product[" + index + "].description", product.description);
-                                @Html.Hidden("product[" + index + "].dimensions", product.dimensions);
-                                @Html.Hidden("product[" + index + "].discount", product.discount);
-                                @Html.Hidden("product[" + index + "].outlet", product.outlet);
-                                @Html.Hidden("product[" + index + "].price", product.price);
-                                @Html.Hidden("product[" + index + "].weight", product.weight);
-                                index++;
-                            }
+
+                            @Html.Hidden("category", category);
+                            @Html.Hidden("brand", brand);
+                            @Html.Hidden("feature", feature);
+                            @Html.Hidden("searching", searching);
 
                             <label for="sortingItems"> Sortuj: </label>
                             <select id="sortingItems" name="sortingItems" onchange="form.submit();">
-                                <option value="" selected> Wybierz opcję sortowania.. </option>
-                                <option value="price-asc"> Cena: rosnąco </option>
-                                <option value="price-desc"> Cena: malejąco </option>
-                                <option value="alpha-asc"> Alfabetycznie: A-Z </option>
-                                <option value="alpha-desc"> Alfabetycznie: Z-A </option>
-                                <option value="opinions-asc"> Ocena klientów: rosnąco </option>
+                                @if (sortOrder == "")
+                                {
+                                    <option value="" @if (sortOrder == "") { @String.Format("selected") ; }> Wybierz opcję sortowania.. </option>
+                                }
+                                <option value="price-asc" @if (sortOrder.Contains("price-asc")) { @String.Format("selected") ; }> Cena: rosnąco </option>
+                                <option value="price-desc" @if (sortOrder.Contains("price-desc")) { @String.Format("selected") ; }> Cena: malejąco </option>
+                                <option value="alpha-asc" @if (sortOrder.Contains("alpha-asc")) { @String.Format("selected") ; }> Alfabetycznie: A-Z </option>
+                                <option value="alpha-desc" @if (sortOrder.Contains("alpha-desc")) { @String.Format("selected") ; }> Alfabetycznie: Z-A </option>
                             </select>
                         }
                     </div>

@@ -195,26 +195,53 @@ namespace bikevision.Controllers
 
             return View(productDetails);
         }
-        public ActionResult ProductList(string Searching, int? categoryId, string types, int? featureId, int? brandId)
+        public ActionResult ProductList(string Searching, int? categoryId, string types, int? featureId, int? brandId, string sortOrder)
         {
             List<Item> items;
 
-            if (TempData["tempItems"] != null)
-            {
-                IQueryable<Item> allItems;
-                allItems = TempData["tempItems"] as IQueryable<Item>;
-                //allItems.Include(cat => cat.Category).ToList();
-                return View(allItems.Include(cat => cat.Category).ToList());
-            }
+            if (sortOrder == null)
+                sortOrder = "";
 
+            if (Request["category"] != null)
+                if (Int32.Parse(Request["category"]) > 0)
+                    categoryId = Int32.Parse(Request["category"]);
+
+            if (Request["brand"] != null)
+                if (Int32.Parse(Request["brand"]) > 0)
+                    brandId = Int32.Parse(Request["brand"]);
+
+            if (Request["feature"] != null)
+                if (Int32.Parse(Request["feature"]) > 0)
+                    featureId = Int32.Parse(Request["feature"]);
+
+            if (Request["searching"] != null && Request["searching"] != "")
+                Searching = Request["searching"];
+
+            if (Request["sortingItems"] != null && Request["sortingItems"] != "")
+                sortOrder = Request["sortingItems"];
+
+            ViewBag.sortOrder = sortOrder;
+
+            Func<Item, Object> orderByFunc = null;
+
+            if (sortOrder.Contains("price"))
+                orderByFunc = it => it.price;
+            else if (sortOrder.Contains("alpha"))
+                orderByFunc = it => it.name;
+            else
+                orderByFunc = it => it.idItem;
+        
             if (categoryId != null)
             {
                 items = db.Items.Where(cat => cat.Category_idCategory == categoryId).ToList();
-                return View(items);
+                ViewBag.categoryId = categoryId;
+                return View((sortOrder.Contains("asc") ? items.OrderBy(orderByFunc).ToList() : items.OrderByDescending(orderByFunc).ToList()));
             }
 
             if(featureId != null)
             {
+                ViewBag.featureId = featureId;
+
                 List<FeatureValueOfItem> features = db.FeatureValueOfItems.Where(i => i.Feature.feature1 == "Rozmiar kół").Where(i => i.FeatureValue.idFeatureValue == featureId).ToList();
                 List<Int32> ids = new List<Int32>();
 
@@ -233,7 +260,7 @@ namespace bikevision.Controllers
                 }
                 
                 //items.SelectMany(items, i => i.idItem == 1);
-                return View(items);
+                return View((sortOrder.Contains("asc") ? items.OrderBy(orderByFunc).ToList() : items.OrderByDescending(orderByFunc).ToList()));
             }
 
             if(brandId != null)
@@ -242,7 +269,10 @@ namespace bikevision.Controllers
                     items = db.Items.Where(brand => brand.Brand_idBrand == brandId).Where(type => type.ItemType.type == types).ToList();
                 else
                     items = db.Items.Where(brand => brand.Brand_idBrand == brandId).ToList();
-                return View(items);
+
+                ViewBag.brandId = brandId;
+
+                return View((sortOrder.Contains("asc") ? items.OrderBy(orderByFunc).ToList() : items.OrderByDescending(orderByFunc).ToList()));
             }
 
             if (Searching == null || Searching == "")
@@ -255,7 +285,7 @@ namespace bikevision.Controllers
                 ViewBag.keyword = Searching;
             }
 
-            return View(items);
+            return View((sortOrder.Contains("asc") ? items.OrderBy(orderByFunc).ToList() : items.OrderByDescending(orderByFunc).ToList()));
         }
 
         [HttpPost]
@@ -284,46 +314,6 @@ namespace bikevision.Controllers
             }
             
             return RedirectToAction("Product", "Shop", new { id = (int)idProduct });
-        }
-
-        public ActionResult SortProducts(int? number)
-        {
-            List<Item> AllItems = new List<Item>();
-
-            if ((int)number <= 0)
-                return RedirectToAction("ProductList");
-
-            for (int i = 0; i < number; i++)
-            {
-                Item newItem = new Item();
-                newItem.idItem = Int32.Parse(Request["product[" + i.ToString() + "].idItem"]);
-                newItem.name = Request["product[" + i.ToString() + "].name"];
-                newItem.description = Request["product[" + i.ToString() + "].description"];
-                newItem.availability = Byte.Parse(Request["product[" + i.ToString() + "].availability"]);
-                newItem.price = Decimal.Parse(Request["product[" + i.ToString() + "].price"]);
-                newItem.discount = Int32.Parse(Request["product[" + i.ToString() + "].discount"]);
-                newItem.outlet = Int16.Parse(Request["product[" + i.ToString() + "].outlet"]);
-                newItem.weight = Double.Parse(Request["product[" + i.ToString() + "].weight"]);
-                newItem.dimensions = Request["product[" + i.ToString() + "].dimensions"];
-                newItem.ItemType_idItemType = Int32.Parse(Request["product[" + i.ToString() + "].ItemType_idItemType"]);
-                newItem.Category_idCategory = Int32.Parse(Request["product[" + i.ToString() + "].Category_idCategory"]);
-                newItem.Brand_idBrand = Int32.Parse(Request["product[" + i.ToString() + "].Brand_idBrand"]);
-
-                AllItems.Add(newItem);
-            }
-
-            //IQueryable<Item> cos = AllItems.AsQueryable();
-
-            //Session["tempItems"] = new List<Item>();
-            string sorting = Request["sortingItems"];
-
-            if (sorting == "price-asc") TempData["tempItems"] = AllItems.OrderBy(col => col.price).AsQueryable();
-            if(sorting == "price-desc") TempData["tempItems"] = AllItems.OrderByDescending(col => col.price).AsQueryable();
-            if (sorting == "alpha-asc") TempData["tempItems"] = AllItems.OrderBy(col => col.name).AsQueryable();
-            if (sorting == "alpha-desc") TempData["tempItems"] = AllItems.OrderByDescending(col => col.name).AsQueryable();
-            // if (sorting == "opinions-asc")
-
-            return RedirectToAction("ProductList", "Shop");
         }
 
         public ActionResult Favorites()
