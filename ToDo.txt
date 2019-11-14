@@ -1,0 +1,3 @@
+-promotion code - numberOfUses -> increment
+-permanent discount for logged users ->
+-favorites ->
