@@ -21,4 +21,15 @@
             $(this).find(".shopping-card__hidden-content").appendTo($(this).find(".shopping-card__main-column"));
         });
     });
+
+    $.ajax({
+        type: "POST",
+        url: "/Shop/SortProducts",
+        data: JSON.stringify(customers),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (r) {
+            alert(r + " record(s) inserted.");
+        }
+    });
 });

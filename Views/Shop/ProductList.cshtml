@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = "Lista produktów";
     Layout = "~/Views/Shared/_ShopLayout.cshtml";
+
+    int index = 0;
 }
 
 <div class="container-fluid bg-semi-light m-0 p-0">
@@ -184,14 +186,35 @@
                         <button type="button" id="listButton" class="btn btn-primary"><i class="fas fa-list mr-2"></i>Lista</button>
                     </div>
                     <div class="p-1">
-                        <span> Sortuj: </span>
-                        <select>
-                            <option> Cena /\ </option>
-                            <option> Cena \/ </option>
-                            <option> Alfabetycznie A-Z </option>
-                            <option> Alfabetycznie Z-A </option>
-                            <option> Ocena klientów /\ </option>
-                        </select>
+                        @using (Html.BeginForm("SortProducts", "Shop", new { number = Model.Count() }, FormMethod.Post))
+                        {
+                            foreach(var product in Model)
+                            {
+                                @Html.Hidden("product[" + index + "].idItem", product.idItem);
+                                @Html.Hidden("product[" + index + "].name", product.name);
+                                @Html.Hidden("product[" + index + "].availability", product.availability);
+                                @Html.Hidden("product[" + index + "].Brand_idBrand", product.Brand_idBrand);
+                                @Html.Hidden("product[" + index + "].Category_idCategory", product.Category_idCategory);
+                                @Html.Hidden("product[" + index + "].ItemType_idItemType", product.ItemType_idItemType);
+                                @Html.Hidden("product[" + index + "].description", product.description);
+                                @Html.Hidden("product[" + index + "].dimensions", product.dimensions);
+                                @Html.Hidden("product[" + index + "].discount", product.discount);
+                                @Html.Hidden("product[" + index + "].outlet", product.outlet);
+                                @Html.Hidden("product[" + index + "].price", product.price);
+                                @Html.Hidden("product[" + index + "].weight", product.weight);
+                                index++;
+                            }
+
+                            <label for="sortingItems"> Sortuj: </label>
+                            <select id="sortingItems" name="sortingItems" onchange="form.submit();">
+                                <option value="" selected> Wybierz opcję sortowania.. </option>
+                                <option value="price-asc"> Cena: rosnąco </option>
+                                <option value="price-desc"> Cena: malejąco </option>
+                                <option value="alpha-asc"> Alfabetycznie: A-Z </option>
+                                <option value="alpha-desc"> Alfabetycznie: Z-A </option>
+                                <option value="opinions-asc"> Ocena klientów: rosnąco </option>
+                            </select>
+                        }
                     </div>
                 </div>
 
@@ -206,7 +229,7 @@
                     else
                     {
                         <p class="h3 p-2"> Brak produktów spełniających podane wymagania </p>
-                    }
+                        }
                 </div>
 
                 <nav class="d-block flex-row mt-2 mx-auto">
