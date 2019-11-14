@@ -202,6 +202,7 @@
           <Property Name="SaleType_idSaleType" Type="int" Nullable="false" />
           <Property Name="Employee_idEmployee" Type="int" Nullable="false" />
           <Property Name="SaleState_idSaleState" Type="int" Nullable="false" />
+          <Property Name="Shipping_idShipping" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="SaleDetails">
           <Key>
@@ -257,6 +258,14 @@
           <Property Name="type" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="priceFrom" Type="int" />
           <Property Name="priceTo" Type="int" />
+        </EntityType>
+        <EntityType Name="Shipping">
+          <Key>
+            <PropertyRef Name="idShipping" />
+          </Key>
+          <Property Name="idShipping" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="cost" Type="decimal" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
         <Association Name="fk_Customer_AspNetUsers1">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
@@ -554,6 +563,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Sale_Shipping">
+          <End Role="Shipping" Type="Self.Shipping" Multiplicity="1" />
+          <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shipping">
+              <PropertyRef Name="idShipping" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="Shipping_idShipping" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_SaleDetails_Item1">
           <End Role="Item" Type="Self.Item" Multiplicity="1" />
           <End Role="SaleDetails" Type="Self.SaleDetails" Multiplicity="*" />
@@ -654,6 +675,7 @@
           <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ServiceState" EntityType="Self.ServiceState" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ServiceType" EntityType="Self.ServiceType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shipping" EntityType="Self.Shipping" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="fk_Customer_AspNetUsers1" Association="Self.fk_Customer_AspNetUsers1">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Customer" EntitySet="Customer" />
@@ -750,6 +772,10 @@
             <End Role="SaleType" EntitySet="SaleType" />
             <End Role="Sale" EntitySet="Sale" />
           </AssociationSet>
+          <AssociationSet Name="FK_Sale_Shipping" Association="Self.FK_Sale_Shipping">
+            <End Role="Shipping" EntitySet="Shipping" />
+            <End Role="Sale" EntitySet="Sale" />
+          </AssociationSet>
           <AssociationSet Name="fk_SaleDetails_Item1" Association="Self.fk_SaleDetails_Item1">
             <End Role="Item" EntitySet="Item" />
             <End Role="SaleDetails" EntitySet="SaleDetails" />
@@ -795,7 +821,6 @@
           <EntitySet Name="ItemTypes" EntityType="bikewayDBModel.ItemType" />
           <EntitySet Name="Localities" EntityType="bikewayDBModel.Locality" />
           <EntitySet Name="Positions" EntityType="bikewayDBModel.Position" />
-          <EntitySet Name="Sales" EntityType="bikewayDBModel.Sale" />
           <EntitySet Name="SaleDetails" EntityType="bikewayDBModel.SaleDetail" />
           <EntitySet Name="SaleStates" EntityType="bikewayDBModel.SaleState" />
           <EntitySet Name="SaleTypes" EntityType="bikewayDBModel.SaleType" />
@@ -822,10 +847,6 @@
             <End Role="Locality" EntitySet="Localities" />
             <End Role="Customer" EntitySet="Customers" />
           </AssociationSet>
-          <AssociationSet Name="fk_Sale_Customer1" Association="bikewayDBModel.fk_Sale_Customer1">
-            <End Role="Customer" EntitySet="Customers" />
-            <End Role="Sale" EntitySet="Sales" />
-          </AssociationSet>
           <AssociationSet Name="fk_Service_Customer1" Association="bikewayDBModel.fk_Service_Customer1">
             <End Role="Customer" EntitySet="Customers" />
             <End Role="Service" EntitySet="Services" />
@@ -833,10 +854,6 @@
           <AssociationSet Name="fk_EmployeeInThePosition_Employee1" Association="bikewayDBModel.fk_EmployeeInThePosition_Employee1">
             <End Role="Employee" EntitySet="Employees" />
             <End Role="EmployeeInThePosition" EntitySet="EmployeeInThePositions" />
-          </AssociationSet>
-          <AssociationSet Name="fk_Sale_Employee1" Association="bikewayDBModel.fk_Sale_Employee1">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="Sale" EntitySet="Sales" />
           </AssociationSet>
           <AssociationSet Name="fk_Service_Employee1" Association="bikewayDBModel.fk_Service_Employee1">
             <End Role="Employee" EntitySet="Employees" />
@@ -853,18 +870,6 @@
           <AssociationSet Name="fk_FeatureOfItem_FeatureValue1" Association="bikewayDBModel.fk_FeatureOfItem_FeatureValue1">
             <End Role="FeatureValue" EntitySet="FeatureValues" />
             <End Role="FeatureValueOfItem" EntitySet="FeatureValueOfItems" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Sale_SaleState" Association="bikewayDBModel.FK_Sale_SaleState">
-            <End Role="SaleState" EntitySet="SaleStates" />
-            <End Role="Sale" EntitySet="Sales" />
-          </AssociationSet>
-          <AssociationSet Name="fk_Sale_SaleType1" Association="bikewayDBModel.fk_Sale_SaleType1">
-            <End Role="SaleType" EntitySet="SaleTypes" />
-            <End Role="Sale" EntitySet="Sales" />
-          </AssociationSet>
-          <AssociationSet Name="fk_SaleDetails_Sale1" Association="bikewayDBModel.fk_SaleDetails_Sale1">
-            <End Role="Sale" EntitySet="Sales" />
-            <End Role="SaleDetail" EntitySet="SaleDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_Service_ServiceState" Association="bikewayDBModel.FK_Service_ServiceState">
             <End Role="ServiceState" EntitySet="ServiceStates" />
@@ -920,6 +925,32 @@
           </AssociationSet>
           <AssociationSet Name="fk_SaleDetails_Item1" Association="bikewayDBModel.fk_SaleDetails_Item1">
             <End Role="Item" EntitySet="Items" />
+            <End Role="SaleDetail" EntitySet="SaleDetails" />
+          </AssociationSet>
+          <EntitySet Name="Sales" EntityType="bikewayDBModel.Sale" />
+          <EntitySet Name="Shippings" EntityType="bikewayDBModel.Shipping" />
+          <AssociationSet Name="fk_Sale_Customer1" Association="bikewayDBModel.fk_Sale_Customer1">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Sale" EntitySet="Sales" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Sale_Employee1" Association="bikewayDBModel.fk_Sale_Employee1">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Sale" EntitySet="Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sale_SaleState" Association="bikewayDBModel.FK_Sale_SaleState">
+            <End Role="SaleState" EntitySet="SaleStates" />
+            <End Role="Sale" EntitySet="Sales" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Sale_SaleType1" Association="bikewayDBModel.fk_Sale_SaleType1">
+            <End Role="SaleType" EntitySet="SaleTypes" />
+            <End Role="Sale" EntitySet="Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sale_Shipping" Association="bikewayDBModel.FK_Sale_Shipping">
+            <End Role="Shipping" EntitySet="Shippings" />
+            <End Role="Sale" EntitySet="Sales" />
+          </AssociationSet>
+          <AssociationSet Name="fk_SaleDetails_Sale1" Association="bikewayDBModel.fk_SaleDetails_Sale1">
+            <End Role="Sale" EntitySet="Sales" />
             <End Role="SaleDetail" EntitySet="SaleDetails" />
           </AssociationSet>
         </EntityContainer>
@@ -1006,9 +1037,9 @@
           <Property Name="Locality_idLocality" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AspNetUser" Relationship="bikewayDBModel.fk_Customer_AspNetUsers1" FromRole="Customer" ToRole="AspNetUser" />
           <NavigationProperty Name="Locality" Relationship="bikewayDBModel.fk_Customer_Locality1" FromRole="Customer" ToRole="Locality" />
-          <NavigationProperty Name="Sales" Relationship="bikewayDBModel.fk_Sale_Customer1" FromRole="Customer" ToRole="Sale" />
           <NavigationProperty Name="Services" Relationship="bikewayDBModel.fk_Service_Customer1" FromRole="Customer" ToRole="Service" />
           <NavigationProperty Name="Opinions" Relationship="bikewayDBModel.fk_Opinion_Customer1" FromRole="Customer" ToRole="Opinion" />
+          <NavigationProperty Name="Sales" Relationship="bikewayDBModel.fk_Sale_Customer1" FromRole="Customer" ToRole="Sale" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -1020,8 +1051,8 @@
           <Property Name="AspNetUsers_idAspNetUsers" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUser" Relationship="bikewayDBModel.fk_Employee_AspNetUsers1" FromRole="Employee" ToRole="AspNetUser" />
           <NavigationProperty Name="EmployeeInThePositions" Relationship="bikewayDBModel.fk_EmployeeInThePosition_Employee1" FromRole="Employee" ToRole="EmployeeInThePosition" />
-          <NavigationProperty Name="Sales" Relationship="bikewayDBModel.fk_Sale_Employee1" FromRole="Employee" ToRole="Sale" />
           <NavigationProperty Name="Services" Relationship="bikewayDBModel.fk_Service_Employee1" FromRole="Employee" ToRole="Service" />
+          <NavigationProperty Name="Sales" Relationship="bikewayDBModel.fk_Sale_Employee1" FromRole="Employee" ToRole="Sale" />
         </EntityType>
         <EntityType Name="EmployeeInThePosition">
           <Key>
@@ -1087,22 +1118,6 @@
           <Property Name="name" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="EmployeeInThePositions" Relationship="bikewayDBModel.fk_EmployeeInThePosition_Position1" FromRole="Position" ToRole="EmployeeInThePosition" />
         </EntityType>
-        <EntityType Name="Sale">
-          <Key>
-            <PropertyRef Name="idSale" />
-          </Key>
-          <Property Name="idSale" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Customer_idCustomer" Type="Int32" Nullable="false" />
-          <Property Name="SaleType_idSaleType" Type="Int32" Nullable="false" />
-          <Property Name="Employee_idEmployee" Type="Int32" Nullable="false" />
-          <Property Name="SaleState_idSaleState" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Customer" Relationship="bikewayDBModel.fk_Sale_Customer1" FromRole="Sale" ToRole="Customer" />
-          <NavigationProperty Name="Employee" Relationship="bikewayDBModel.fk_Sale_Employee1" FromRole="Sale" ToRole="Employee" />
-          <NavigationProperty Name="SaleState" Relationship="bikewayDBModel.FK_Sale_SaleState" FromRole="Sale" ToRole="SaleState" />
-          <NavigationProperty Name="SaleType" Relationship="bikewayDBModel.fk_Sale_SaleType1" FromRole="Sale" ToRole="SaleType" />
-          <NavigationProperty Name="SaleDetails" Relationship="bikewayDBModel.fk_SaleDetails_Sale1" FromRole="Sale" ToRole="SaleDetail" />
-        </EntityType>
         <EntityType Name="SaleDetail">
           <Key>
             <PropertyRef Name="Sale_idSale" />
@@ -1112,8 +1127,8 @@
           <Property Name="Sale_idSale" Type="Int32" Nullable="false" />
           <Property Name="Item_idItem" Type="Int32" Nullable="false" />
           <Property Name="quantity" Type="Byte" Nullable="false" />
-          <NavigationProperty Name="Sale" Relationship="bikewayDBModel.fk_SaleDetails_Sale1" FromRole="SaleDetail" ToRole="Sale" />
           <NavigationProperty Name="Item" Relationship="bikewayDBModel.fk_SaleDetails_Item1" FromRole="SaleDetail" ToRole="Item" />
+          <NavigationProperty Name="Sale" Relationship="bikewayDBModel.fk_SaleDetails_Sale1" FromRole="SaleDetail" ToRole="Sale" />
         </EntityType>
         <EntityType Name="SaleState">
           <Key>
@@ -1233,18 +1248,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_Sale_Customer1">
-          <End Type="bikewayDBModel.Customer" Role="Customer" Multiplicity="1" />
-          <End Type="bikewayDBModel.Sale" Role="Sale" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="idCustomer" />
-            </Principal>
-            <Dependent Role="Sale">
-              <PropertyRef Name="Customer_idCustomer" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_Service_Customer1">
           <End Type="bikewayDBModel.Customer" Role="Customer" Multiplicity="1" />
           <End Type="bikewayDBModel.Service" Role="Service" Multiplicity="*" />
@@ -1265,18 +1268,6 @@
               <PropertyRef Name="idEmployee" />
             </Principal>
             <Dependent Role="EmployeeInThePosition">
-              <PropertyRef Name="Employee_idEmployee" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_Sale_Employee1">
-          <End Type="bikewayDBModel.Employee" Role="Employee" Multiplicity="1" />
-          <End Type="bikewayDBModel.Sale" Role="Sale" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="idEmployee" />
-            </Principal>
-            <Dependent Role="Sale">
               <PropertyRef Name="Employee_idEmployee" />
             </Dependent>
           </ReferentialConstraint>
@@ -1326,42 +1317,6 @@
             </Principal>
             <Dependent Role="FeatureValueOfItem">
               <PropertyRef Name="FeatureValue_idFeatureValue" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Sale_SaleState">
-          <End Type="bikewayDBModel.SaleState" Role="SaleState" Multiplicity="1" />
-          <End Type="bikewayDBModel.Sale" Role="Sale" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SaleState">
-              <PropertyRef Name="idSaleState" />
-            </Principal>
-            <Dependent Role="Sale">
-              <PropertyRef Name="SaleState_idSaleState" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_Sale_SaleType1">
-          <End Type="bikewayDBModel.SaleType" Role="SaleType" Multiplicity="1" />
-          <End Type="bikewayDBModel.Sale" Role="Sale" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SaleType">
-              <PropertyRef Name="idSaleType" />
-            </Principal>
-            <Dependent Role="Sale">
-              <PropertyRef Name="SaleType_idSaleType" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_SaleDetails_Sale1">
-          <End Type="bikewayDBModel.Sale" Role="Sale" Multiplicity="1" />
-          <End Type="bikewayDBModel.SaleDetail" Role="SaleDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sale">
-              <PropertyRef Name="idSale" />
-            </Principal>
-            <Dependent Role="SaleDetail">
-              <PropertyRef Name="Sale_idSale" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1570,6 +1525,105 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Sale">
+          <Key>
+            <PropertyRef Name="idSale" />
+          </Key>
+          <Property Name="idSale" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Customer_idCustomer" Type="Int32" Nullable="false" />
+          <Property Name="SaleType_idSaleType" Type="Int32" Nullable="false" />
+          <Property Name="Employee_idEmployee" Type="Int32" Nullable="false" />
+          <Property Name="SaleState_idSaleState" Type="Int32" Nullable="false" />
+          <Property Name="Shipping_idShipping" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="bikewayDBModel.fk_Sale_Customer1" FromRole="Sale" ToRole="Customer" />
+          <NavigationProperty Name="Employee" Relationship="bikewayDBModel.fk_Sale_Employee1" FromRole="Sale" ToRole="Employee" />
+          <NavigationProperty Name="SaleState" Relationship="bikewayDBModel.FK_Sale_SaleState" FromRole="Sale" ToRole="SaleState" />
+          <NavigationProperty Name="SaleType" Relationship="bikewayDBModel.fk_Sale_SaleType1" FromRole="Sale" ToRole="SaleType" />
+          <NavigationProperty Name="Shipping" Relationship="bikewayDBModel.FK_Sale_Shipping" FromRole="Sale" ToRole="Shipping" />
+          <NavigationProperty Name="SaleDetails" Relationship="bikewayDBModel.fk_SaleDetails_Sale1" FromRole="Sale" ToRole="SaleDetail" />
+        </EntityType>
+        <EntityType Name="Shipping">
+          <Key>
+            <PropertyRef Name="idShipping" />
+          </Key>
+          <Property Name="idShipping" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="cost" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <NavigationProperty Name="Sales" Relationship="bikewayDBModel.FK_Sale_Shipping" FromRole="Shipping" ToRole="Sale" />
+        </EntityType>
+        <Association Name="fk_Sale_Customer1">
+          <End Type="bikewayDBModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="bikewayDBModel.Sale" Role="Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="idCustomer" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="Customer_idCustomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Sale_Employee1">
+          <End Type="bikewayDBModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="bikewayDBModel.Sale" Role="Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="idEmployee" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="Employee_idEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sale_SaleState">
+          <End Type="bikewayDBModel.SaleState" Role="SaleState" Multiplicity="1" />
+          <End Type="bikewayDBModel.Sale" Role="Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SaleState">
+              <PropertyRef Name="idSaleState" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="SaleState_idSaleState" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Sale_SaleType1">
+          <End Type="bikewayDBModel.SaleType" Role="SaleType" Multiplicity="1" />
+          <End Type="bikewayDBModel.Sale" Role="Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SaleType">
+              <PropertyRef Name="idSaleType" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="SaleType_idSaleType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sale_Shipping">
+          <End Type="bikewayDBModel.Shipping" Role="Shipping" Multiplicity="1" />
+          <End Type="bikewayDBModel.Sale" Role="Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shipping">
+              <PropertyRef Name="idShipping" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="Shipping_idShipping" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_SaleDetails_Sale1">
+          <End Type="bikewayDBModel.Sale" Role="Sale" Multiplicity="1" />
+          <End Type="bikewayDBModel.SaleDetail" Role="SaleDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sale">
+              <PropertyRef Name="idSale" />
+            </Principal>
+            <Dependent Role="SaleDetail">
+              <PropertyRef Name="Sale_idSale" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1720,18 +1774,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Sales">
-            <EntityTypeMapping TypeName="bikewayDBModel.Sale">
-              <MappingFragment StoreEntitySet="Sale">
-                <ScalarProperty Name="SaleState_idSaleState" ColumnName="SaleState_idSaleState" />
-                <ScalarProperty Name="Employee_idEmployee" ColumnName="Employee_idEmployee" />
-                <ScalarProperty Name="SaleType_idSaleType" ColumnName="SaleType_idSaleType" />
-                <ScalarProperty Name="Customer_idCustomer" ColumnName="Customer_idCustomer" />
-                <ScalarProperty Name="date" ColumnName="date" />
-                <ScalarProperty Name="idSale" ColumnName="idSale" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SaleDetails">
             <EntityTypeMapping TypeName="bikewayDBModel.SaleDetail">
               <MappingFragment StoreEntitySet="SaleDetails">
@@ -1845,6 +1887,28 @@
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="idItem" ColumnName="idItem" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sales">
+            <EntityTypeMapping TypeName="bikewayDBModel.Sale">
+              <MappingFragment StoreEntitySet="Sale">
+                <ScalarProperty Name="Shipping_idShipping" ColumnName="Shipping_idShipping" />
+                <ScalarProperty Name="SaleState_idSaleState" ColumnName="SaleState_idSaleState" />
+                <ScalarProperty Name="Employee_idEmployee" ColumnName="Employee_idEmployee" />
+                <ScalarProperty Name="SaleType_idSaleType" ColumnName="SaleType_idSaleType" />
+                <ScalarProperty Name="Customer_idCustomer" ColumnName="Customer_idCustomer" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="idSale" ColumnName="idSale" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shippings">
+            <EntityTypeMapping TypeName="bikewayDBModel.Shipping">
+              <MappingFragment StoreEntitySet="Shipping">
+                <ScalarProperty Name="cost" ColumnName="cost" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="idShipping" ColumnName="idShipping" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

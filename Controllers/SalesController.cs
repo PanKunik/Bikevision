@@ -18,7 +18,7 @@ namespace bikevision.Controllers
         [Authorize(Roles = "Administrator, Pracownik sklepu")]
         public ActionResult Index()
         {
-            var sales = db.Sales.Include(s => s.Customer).Include(s => s.Employee).Include(s => s.SaleState).Include(s => s.SaleType);
+            var sales = db.Sales.Include(s => s.Customer).Include(s => s.Employee).Include(s => s.SaleState).Include(s => s.SaleType).Include(s => s.Shipping);
             return View(sales.ToList());
         }
 
@@ -46,6 +46,7 @@ namespace bikevision.Controllers
             ViewBag.Employee_idEmployee = new SelectList(db.Employees, "idEmployee", "name");
             ViewBag.SaleState_idSaleState = new SelectList(db.SaleStates, "idSaleState", "state");
             ViewBag.SaleType_idSaleType = new SelectList(db.SaleTypes, "idSaleType", "type");
+            ViewBag.Shipping_idShipping = new SelectList(db.Shippings, "idShipping", "name");
             return View();
         }
 
@@ -55,7 +56,7 @@ namespace bikevision.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrator, Pracownik sklepu")]
-        public ActionResult Create([Bind(Include = "idSale,date,Customer_idCustomer,SaleType_idSaleType,Employee_idEmployee,SaleState_idSaleState")] Sale sale)
+        public ActionResult Create([Bind(Include = "idSale,date,Customer_idCustomer,SaleType_idSaleType,Employee_idEmployee,SaleState_idSaleState,Shipping_idShipping")] Sale sale)
         {
             if (ModelState.IsValid)
             {
@@ -68,6 +69,7 @@ namespace bikevision.Controllers
             ViewBag.Employee_idEmployee = new SelectList(db.Employees, "idEmployee", "name", sale.Employee_idEmployee);
             ViewBag.SaleState_idSaleState = new SelectList(db.SaleStates, "idSaleState", "state", sale.SaleState_idSaleState);
             ViewBag.SaleType_idSaleType = new SelectList(db.SaleTypes, "idSaleType", "type", sale.SaleType_idSaleType);
+            ViewBag.Shipping_idShipping = new SelectList(db.Shippings, "idShipping", "name", sale.Shipping_idShipping);
             return View(sale);
         }
 
@@ -88,6 +90,7 @@ namespace bikevision.Controllers
             ViewBag.Employee_idEmployee = new SelectList(db.Employees, "idEmployee", "name", sale.Employee_idEmployee);
             ViewBag.SaleState_idSaleState = new SelectList(db.SaleStates, "idSaleState", "state", sale.SaleState_idSaleState);
             ViewBag.SaleType_idSaleType = new SelectList(db.SaleTypes, "idSaleType", "type", sale.SaleType_idSaleType);
+            ViewBag.Shipping_idShipping = new SelectList(db.Shippings, "idShipping", "name", sale.Shipping_idShipping);
             return View(sale);
         }
 
@@ -97,7 +100,7 @@ namespace bikevision.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrator, Pracownik sklepu")]
-        public ActionResult Edit([Bind(Include = "idSale,date,Customer_idCustomer,SaleType_idSaleType,Employee_idEmployee,SaleState_idSaleState")] Sale sale)
+        public ActionResult Edit([Bind(Include = "idSale,date,Customer_idCustomer,SaleType_idSaleType,Employee_idEmployee,SaleState_idSaleState,Shipping_idShipping")] Sale sale)
         {
             if (ModelState.IsValid)
             {
@@ -109,6 +112,7 @@ namespace bikevision.Controllers
             ViewBag.Employee_idEmployee = new SelectList(db.Employees, "idEmployee", "name", sale.Employee_idEmployee);
             ViewBag.SaleState_idSaleState = new SelectList(db.SaleStates, "idSaleState", "state", sale.SaleState_idSaleState);
             ViewBag.SaleType_idSaleType = new SelectList(db.SaleTypes, "idSaleType", "type", sale.SaleType_idSaleType);
+            ViewBag.Shipping_idShipping = new SelectList(db.Shippings, "idShipping", "name", sale.Shipping_idShipping);
             return View(sale);
         }
 

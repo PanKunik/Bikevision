@@ -26,11 +26,13 @@ namespace bikevision.Models
         public int SaleType_idSaleType { get; set; }
         public int Employee_idEmployee { get; set; }
         public int SaleState_idSaleState { get; set; }
+        public int Shipping_idShipping { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual Employee Employee { get; set; }
         public virtual SaleState SaleState { get; set; }
         public virtual SaleType SaleType { get; set; }
+        public virtual Shipping Shipping { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SaleDetail> SaleDetails { get; set; }
     }

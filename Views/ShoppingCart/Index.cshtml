@@ -2,6 +2,13 @@
 @{
     ViewBag.Title = "Koszyk";
     Layout = "~/Views/Shared/_ShopLayout.cshtml";
+
+    List<Shipping> shippings = new List<Shipping>();
+
+    if (ViewBag.Shippings != null)
+    {
+        shippings = (List<Shipping>)ViewBag.Shippings;
+    }
 }
 
 <section class="container py-5 text-primary">
@@ -17,13 +24,24 @@
     {
         List<Cart> temp = (List<Cart>)Session["Cart"];
         var total = temp.Sum(x => x.Quantity * ((x.Item.price) - ((x.Item.price * x.Item.discount) / 100)));
-        var deliveryCost = 0;
+        Shipping deliveryCost;
         var promotionCode = 0;
+
+        if(ViewBag.costOfDelivery != null)
+        {
+            deliveryCost = new Shipping();
+            deliveryCost = (Shipping)ViewBag.costOfDelivery;
+        }
+        else
+        {
+            deliveryCost = new Shipping();
+            deliveryCost.cost = 0;
+        }
 
         <h2 class="px-0"> Twój koszyk </h2>
 
         <p class="text-danger">@ViewBag.QuantityError</p>
-
+        
         <table class="table table-striped text-primary vertical-align">
             <thead class="thead-dark">
                 <tr>
@@ -101,10 +119,15 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="3"  scope="row">
+                    <td colspan="3" scope="row">
                         <p class="font-weight-bold text-size-small">Wybierz sposób dostawy:</p>
-                        <p>Poczta Polska</p>
-                        <p>Kurier DPD</p>
+                        @using (Html.BeginForm("ShippingCosts", "ShoppingCart", FormMethod.Post))
+                        {
+                            foreach (var delivery in shippings)
+                            {
+                                <label for="@delivery.name"><input type="radio" id="@delivery.name" onchange="form.submit();" name="deliveryCosts" value="@delivery.idShipping" @if(delivery.idShipping == deliveryCost.idShipping) { @String.Format("checked"); }/> @String.Format("{0} - {1:F2} zł", delivery.name, delivery.cost)</label><br />
+                            }
+                        }
                     </td>
                     <td colspan="3" >
                         <div class="row">
@@ -113,11 +136,11 @@
                         </div>
                         <div class="row">
                             <p class="col-6">Koszt dostawy: </p>
-                            <p class="col-6">@String.Format("{0:F2} zł", deliveryCost)</p>
+                            <p class="col-6">@String.Format("{0:F2} zł", deliveryCost.cost)</p>
                         </div>
                         <div class="row">
                             <p class="col-6 font-weight-bold text-size-small">Razem do zapłaty:</p>
-                            <p class="col-6 font-weight-bold text-size-small">@String.Format("{0:F2}", total - promotionCode + deliveryCost)</p>
+                            <p class="col-6 font-weight-bold text-size-small">@String.Format("{0:F2}", total - promotionCode + (deliveryCost.cost))</p>
                         </div>
                     </td>
                 </tr>

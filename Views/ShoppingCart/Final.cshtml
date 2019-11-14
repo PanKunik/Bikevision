@@ -108,6 +108,18 @@
                         </td>
                     </tr>
                 }
+
+                <tr>
+                    <td scope="row">
+                        Koszt dostawy:
+                    </td>
+                    <td scope="row">
+                        @Model.First().Sale.Shipping.name
+                    </td>
+                    <td scope="row">
+                        @String.Format("{0:F2} zł", Model.First().Sale.Shipping.cost)
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>

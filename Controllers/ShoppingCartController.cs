@@ -135,6 +135,12 @@ namespace bikevision.Controllers
         public ActionResult Index(string Error)
         {
             ViewBag.QuantityError = Error;
+
+            if (Session["deliveryCost"] != null)
+                ViewBag.costOfDelivery = (Shipping)Session["deliveryCost"];
+
+            ViewBag.Shippings = db.Shippings.ToList();
+            
             return View();
         }
         [HttpPost]
@@ -144,9 +150,19 @@ namespace bikevision.Controllers
             if (Session[sessionCartString] != null)
                 return RedirectToAction("Order");
             else
+            {
+                if(Session["deliveryCost"] != null)
+                    ViewBag.costOfDelivery = (Shipping)Session["deliveryCost"];
                 return View();
+            }
         }
 
+        public ActionResult ShippingCosts()
+        {
+            int value = Int32.Parse(Request["deliveryCosts"]);
+            Session["deliveryCost"] = db.Shippings.Find(value);
+            return RedirectToAction("Index");
+        }
         public ActionResult Order()
         {
             if (Session[sessionCartString] != null)
@@ -184,6 +200,10 @@ namespace bikevision.Controllers
 
                     sale.Customer_idCustomer = customer.idCustomer;
                     sale.date = DateTime.Now;
+
+                    Shipping delivery = (Shipping)Session["deliveryCost"];
+                    Session["deliveryCost"] = null;
+                    sale.Shipping_idShipping = delivery.idShipping;
 
                     SaleType saleTypeId = db.SaleTypes.Where(i => i.type == "Internetowa").First();
                     sale.SaleType_idSaleType = saleTypeId.idSaleType;
