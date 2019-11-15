@@ -166,7 +166,32 @@ namespace bikevision.Controllers
             {
                 return View("Index");
             }
-            
+
+            List<Item> lastViewedItems = new List<Item>();
+
+            if (Session["lastViewedItems"] != null)
+            {
+                lastViewedItems = (List<Item>)(Session["lastViewedItems"]);
+            }
+
+            if (lastViewedItems.Where(itemId => itemId.idItem == product.idItem).ToList().Count() <= 0)
+            {
+                lastViewedItems = lastViewedItems.Append(product).ToList();
+            }
+            else
+            {
+                int index = lastViewedItems.FindIndex(itemId => itemId.idItem == product.idItem);
+                lastViewedItems.RemoveAt(index);
+                lastViewedItems = lastViewedItems.Append(product).ToList();
+            }
+
+            if (lastViewedItems.Count() >= 10)
+            {
+                lastViewedItems = lastViewedItems.Skip(lastViewedItems.Count()-10).Take(10).ToList();
+            }
+
+            Session["lastViewedItems"] = lastViewedItems;
+
             productDetails.product = product;
             productDetails.opinions = db.Opinions.Where(opinion => opinion.Item_idItem == id).ToList();
 

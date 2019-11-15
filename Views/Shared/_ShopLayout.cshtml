@@ -5,6 +5,13 @@
 
     var viewModel = (MainLayoutViewModel)ViewData["MainLayoutViewModel"];
 
+    List<Item> lastViewed = new List<Item>();
+
+    if (Session["lastViewedItems"] != null)
+    {
+        lastViewed = (List<Item>)(Session["lastViewedItems"]);
+    }
+
     /*
 
     TO-DO:
@@ -56,330 +63,130 @@
         <ul id="shopMenu" class="navbar-nav text-left mr-auto py-3 py-lg-0">
             @foreach (var type in viewModel.Types)
             {
-            <li class="nav-item dropdown menu-area mr-lg-1">
-                <a class="nav-link dropdown-toggle" id="mega-bikes" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                    @type.type
-                </a>
+                <li class="nav-item dropdown menu-area mr-lg-1">
+                    <a class="nav-link dropdown-toggle" id="mega-bikes" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        @type.type
+                    </a>
 
-                @if (type.type == "Rowery")
-                {
-                    int count1 = viewModel.BicyclesByBrands.Count();
-                    int count2 = viewModel.BicyclesByUsage.Count();
-                    int count3 = viewModel.BicyclesByWheels.Count();
+                    @if (type.type == "Rowery")
+                    {
+                        int count1 = viewModel.BicyclesByBrands.Count();
+                        int count2 = viewModel.BicyclesByUsage.Count();
+                        int count3 = viewModel.BicyclesByWheels.Count();
 
-                    <div class="dropdown-menu mega-area dropdown-menu-squared" aria-labelledby="mega-bikes">
-                        <div class="row px-lg-5">
-                            <!-- pierwsze rowery -->
-                            <div class="col-lg-4">
-                                <h3 class="dropdown-header text-center">Rowery według przeznaczenia</h3>
-                                <div class="dropdown-divider"></div>
-                                    @for (int i = 0; i < count2; i++)
-                                    {
-                                            <a class="dropdown-item" href="@Url.Action("ProductList", "Shop", new { categoryId = viewModel.BicyclesByUsage.ElementAt(i).id })"> @viewModel.BicyclesByUsage.ElementAt(i).name <i class="fas fa-chevron-right"></i></a>
-                                    }
-                            </div>
-
-                            <!-- drugie rowery -->
-                            <div class="col-lg-4">
-                                <h3 class="dropdown-header text-center">Rowery według rozmiaru kół</h3>
-                                <div class="dropdown-divider"></div>
-                                    @for (int i = 0; i < count3; i++)
-                                    {
-                                            <a class="dropdown-item" href="@Url.Action("ProductList", "Shop", new { featureId = viewModel.BicyclesByWheels.ElementAt(i).id })"> @viewModel.BicyclesByWheels.ElementAt(i).name <i class="fas fa-chevron-right"></i></a>
-                                    }
-                            </div>
-
-                            <!-- trzecie rowery -->
-                            <div class="col-lg-4">
-                                <h3 class="dropdown-header text-center">Rowery według marek</h3>
-                                <div class="dropdown-divider"></div>
-                                    @for (int i = 0; i < count1; i++)
-                                    {
-                                            <a class="dropdown-item" href="@Url.Action("ProductList", "Shop", new { brandId = viewModel.BicyclesByBrands.ElementAt(i).id, types = "Rowery" })"> @viewModel.BicyclesByBrands.ElementAt(i).name <i class="fas fa-chevron-right"></i></a>
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                }
-
-                @if (type.type == "Części zamienne")
-                {
-                    int count = viewModel.CategoriesOfSpareParts.Count();
-                    <div class="dropdown-menu mega-area dropdown-menu-squared" aria-labelledby="mega-parts">
-                        <div class="col">
-                            <h3 class="dropdown-header text-center">@type.type</h3>
-                            <div class="dropdown-divider"></div>
-                            <div class="row px-lg-5">
-                                @for (int i = 0; i < count; i++)
-                                {
-                                    <div class="col-lg-4">
-                                        <a class="dropdown-item" href="@Url.Action("ProductList", "Shop", new { categoryId = viewModel.CategoriesOfSpareParts.ElementAt(i).id })"> @viewModel.CategoriesOfSpareParts.ElementAt(i).name <i class="fas fa-chevron-right"></i></a>
-                                    </div>
-                                }
-                            </div>
-                        </div>
-                    </div>
-                }
-
-                @if (type.type == "Narzędzia")
-                {
-                    int count = viewModel.CategoriesOfTools.Count();
-                    <div class="dropdown-menu mega-area dropdown-menu-squared" aria-labelledby="mega-parts">
-                        <div class="col">
-                            <h3 class="dropdown-header text-center">@type.type</h3>
-                            <div class="dropdown-divider"></div>
-                            <div class="row px-lg-5">
-                                @for (int i = 0; i < count; i++)
-                                {
-                                    <div class="col-lg-4">
-                                        <a class="dropdown-item" href="@Url.Action("ProductList", "Shop", new { categoryId = viewModel.CategoriesOfTools.ElementAt(i).id })"> @viewModel.CategoriesOfTools.ElementAt(i).name <i class="fas fa-chevron-right"></i></a>
-                                    </div>
-                                }
-                            </div>
-                        </div>
-                    </div>
-                }
-
-                @if (type.type == "Odzież")
-                {
-                    int count = viewModel.CategoriesOfClothing.Count();
-
-                    <div class="dropdown-menu mega-area dropdown-menu-squared" aria-labelledby="mega-parts">
-                        <div class="col">
-                            <h3 class="dropdown-header text-center">@type.type</h3>
-                            <div class="dropdown-divider"></div>
-                            <div class="row px-lg-5">
-                                @for (int i = 0; i < count; i++)
-                                {
-                                    <div class="col-lg-4">
-                                        <a class="dropdown-item" href="@Url.Action("ProductList", "Shop", new { categoryId = viewModel.CategoriesOfClothing.ElementAt(i).id })"> @viewModel.CategoriesOfClothing.ElementAt(i).name <i class="fas fa-chevron-right"></i></a>
-                                    </div>
-                                }
-                            </div>
-                        </div>
-                    </div>
-                }
-
-                @if (type.type == "Akcesoria")
-                {
-                    int count = viewModel.CategoriesAccessories.Count();
-                    <div class="dropdown-menu mega-area dropdown-menu-squared" aria-labelledby="mega-parts">
-                        <div class="col">
-                            <h3 class="dropdown-header text-center">@type.type</h3>
-                            <div class="dropdown-divider"></div>
-                            <div class="row px-lg-5">
-                                @for (int i = 0; i < count; i++)
-                                {
-                                    <div class="col-lg-4">
-                                        <a class="dropdown-item" href="@Url.Action("ProductList", "Shop", new { categoryId = viewModel.CategoriesAccessories.ElementAt(i).id })"> @viewModel.CategoriesAccessories.ElementAt(i).name <i class="fas fa-chevron-right"></i></a>
-                                    </div>
-                                }
-                            </div>
-                        </div>
-                    </div>
-                }
-
-                @*<div class="dropdown-menu mega-area dropdown-menu-squared" aria-labelledby="mega-bikes">
-            <div class="row px-lg-5">
-                <div class="col-lg-4">
-                    <h5 class="dropdown-header">Rowery według przeznaczenia</h5>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop", new { type = "Rowery", category = "górskie"})">MTB <i class="fas fa-chevron-right"></i></a>
-                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Enduro <i class="fas fa-chevron-right"></i></a>
-                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Freeride <i class="fas fa-chevron-right"></i></a>
-                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Downhill <i class="fas fa-chevron-right"></i></a>
-                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Miejskie <i class="fas fa-chevron-right"></i></a>
-                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Dirt jump/BMX <i class="fas fa-chevron-right"></i></a>
-                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Trekkingowe/Cross <i class="fas fa-chevron-right"></i></a>
-                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Szosowe <i class="fas fa-chevron-right"></i></a>
-                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Dziecięce <i class="fas fa-chevron-right"></i></a>
-                </div>
-                <div class="col-lg-4">
-                    <h5 class="dropdown-header">Rowery według marek</h5>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Giant <i class="fas fa-chevron-right"></i></a>
-                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Kross <i class="fas fa-chevron-right"></i></a>
-                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Cube <i class="fas fa-chevron-right"></i></a>
-                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Merida <i class="fas fa-chevron-right"></i></a>
-                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Arkus &Aacute; Romet <i class="fas fa-chevron-right"></i></a>
-                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Author <i class="fas fa-chevron-right"></i></a>
-                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Dartmoor <i class="fas fa-chevron-right"></i></a>
-                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">NS Bikes <i class="fas fa-chevron-right"></i></a>
-                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Kellys <i class="fas fa-chevron-right"></i></a>
-                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Specialized <i class="fas fa-chevron-right"></i></a>
-                </div>
-                <div class="col-lg-4">
-                    <h5 class="dropdown-header">Rowery według wielkości kół</h5>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">15" <i class="fas fa-chevron-right"></i></a>
-                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">20" <i class="fas fa-chevron-right"></i></a>
-                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">24" <i class="fas fa-chevron-right"></i></a>
-                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">26" <i class="fas fa-chevron-right"></i></a>
-                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">27.5" <i class="fas fa-chevron-right"></i></a>
-                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">29" <i class="fas fa-chevron-right"></i></a>
-                </div>
-            </div>
-        </div>*@
-                <!-- <div class="dropdown-menu dropdown-menu-squared">
-        <h5 class="dropdown-header">Rowery według przeznaczenia</h5>
-        <a class="dropdown-item" href="#">Górskie <i class="fas fa-chevron-right"></i></a>
-        <a class="dropdown-item" href="#">Miejskie <i class="fas fa-chevron-right"></i></a>
-        <div class="dropdown-divider"></div>
-        <h5 class="dropdown-header">Rowery według marek</h5>
-        <a class="dropdown-item" href="#">Giant <i class="fas fa-chevron-right"></i></a>
-        <a class="dropdown-item" href="#">Kross <i class="fas fa-chevron-right"></i></a>
-    </div> -->
-            </li>
-            }
-            @*<li class="nav-item dropdown menu-area mr-lg-1">
-                        <a class="nav-link dropdown-toggle" id="mega-bikes" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                            Rowery
-                        </a>
                         <div class="dropdown-menu mega-area dropdown-menu-squared" aria-labelledby="mega-bikes">
                             <div class="row px-lg-5">
+                                <!-- pierwsze rowery -->
                                 <div class="col-lg-4">
-                                    <h5 class="dropdown-header">Rowery według przeznaczenia</h5>
+                                    <h3 class="dropdown-header text-center">Rowery według przeznaczenia</h3>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop", new { type = "Rowery", category = "górskie"})">MTB <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Enduro <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Freeride <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Downhill <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Miejskie <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Dirt jump/BMX <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Trekkingowe/Cross <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Szosowe <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Dziecięce <i class="fas fa-chevron-right"></i></a>
+                                    @for (int i = 0; i < count2; i++)
+                                    {
+                                        <a class="dropdown-item" href="@Url.Action("ProductList", "Shop", new { categoryId = viewModel.BicyclesByUsage.ElementAt(i).id })"> @viewModel.BicyclesByUsage.ElementAt(i).name <i class="fas fa-chevron-right"></i></a>
+                                    }
                                 </div>
+
+                                <!-- drugie rowery -->
                                 <div class="col-lg-4">
-                                    <h5 class="dropdown-header">Rowery według marek</h5>
+                                    <h3 class="dropdown-header text-center">Rowery według rozmiaru kół</h3>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Giant <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Kross <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Cube <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Merida <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Arkus &Aacute; Romet <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Author <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Dartmoor <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">NS Bikes <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Kellys <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Specialized <i class="fas fa-chevron-right"></i></a>
+                                    @for (int i = 0; i < count3; i++)
+                                    {
+                                        <a class="dropdown-item" href="@Url.Action("ProductList", "Shop", new { featureId = viewModel.BicyclesByWheels.ElementAt(i).id })"> @viewModel.BicyclesByWheels.ElementAt(i).name <i class="fas fa-chevron-right"></i></a>
+                                    }
                                 </div>
+
+                                <!-- trzecie rowery -->
                                 <div class="col-lg-4">
-                                    <h5 class="dropdown-header">Rowery według wielkości kół</h5>
+                                    <h3 class="dropdown-header text-center">Rowery według marek</h3>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">15" <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">20" <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">24" <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">26" <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">27.5" <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">29" <i class="fas fa-chevron-right"></i></a>
+                                    @for (int i = 0; i < count1; i++)
+                                    {
+                                        <a class="dropdown-item" href="@Url.Action("ProductList", "Shop", new { brandId = viewModel.BicyclesByBrands.ElementAt(i).id, types = "Rowery" })"> @viewModel.BicyclesByBrands.ElementAt(i).name <i class="fas fa-chevron-right"></i></a>
+                                    }
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="dropdown-menu dropdown-menu-squared">
-                    <h5 class="dropdown-header">Rowery według przeznaczenia</h5>
-                    <a class="dropdown-item" href="#">Górskie <i class="fas fa-chevron-right"></i></a>
-                    <a class="dropdown-item" href="#">Miejskie <i class="fas fa-chevron-right"></i></a>
-                    <div class="dropdown-divider"></div>
-                    <h5 class="dropdown-header">Rowery według marek</h5>
-                    <a class="dropdown-item" href="#">Giant <i class="fas fa-chevron-right"></i></a>
-                    <a class="dropdown-item" href="#">Kross <i class="fas fa-chevron-right"></i></a>
-                </div> -->
-                    </li>*@
+                    }
 
-            @*<li class="nav-item dropdown menu-area mr-lg-1">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="mega-parts" role="button" aria-haspopup="true" aria-expanded="false">
-                        Części
-                    </a>
-                    <div class="dropdown-menu mega-area dropdown-menu-squared" aria-labelledby="mega-parts">
-                        <div class="col">
-                            <h3 class="dropdown-header text-center">Części rowerowe</h3>
-                            <div class="dropdown-divider"></div>
-                            <div class="row px-lg-5">
-                                <div class="col-lg-4">
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Kierownice <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Mostki <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Hamulce <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Przerzutki <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Tarcze hamuclowe <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Klocki hamulcowe <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Koła <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Szprychy <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Siodła <i class="fas fa-chevron-right"></i></a>
-                                </div>
-                                <div class="col-lg-4">
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Zaciski hamulców <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Zaciski siodła <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Zębatki <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Korby <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Przewody hamuclowe <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Gripy <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Linki <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Nyple <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Obręcze <i class="fas fa-chevron-right"></i></a>
-                                </div>
-                                <div class="col-lg-4">
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Dętki <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Opony <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Ramy <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Śruby mocujące <i class="fas fa-chevron-right"></i></a>
+                    @if (type.type == "Części zamienne")
+                    {
+                        int count = viewModel.CategoriesOfSpareParts.Count();
+                        <div class="dropdown-menu mega-area dropdown-menu-squared" aria-labelledby="mega-parts">
+                            <div class="col">
+                                <h3 class="dropdown-header text-center">@type.type</h3>
+                                <div class="dropdown-divider"></div>
+                                <div class="row px-lg-5">
+                                    @for (int i = 0; i < count; i++)
+                                    {
+                                        <div class="col-lg-4">
+                                            <a class="dropdown-item" href="@Url.Action("ProductList", "Shop", new { categoryId = viewModel.CategoriesOfSpareParts.ElementAt(i).id })"> @viewModel.CategoriesOfSpareParts.ElementAt(i).name <i class="fas fa-chevron-right"></i></a>
+                                        </div>
+                                    }
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </li>*@
+                    }
 
-            @*<li class="nav-item dropdown mr-lg-1">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="mega-accessories" role="button" aria-haspopup="true" aria-expanded="false">
-                        Akcesoria
-                    </a>
-                    <div class="dropdown-menu mega-area dropdown-menu-squared" aria-labelledby="mega-accessories">
-                        <div class="col">
-                            <h3 class="dropdown-header text-center">Akcesoria rowerowe</h3>
-                            <div class="dropdown-divider"></div>
-                            <div class="row px-lg-5">
-                                <div class="col-lg-4">
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Lampki <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Odblaski <i class="fas fa-chevron-right"></i></a>
-                                </div>
-                                <div class="col-lg-4">
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Bagażniki rowerowe <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Wózki i foteliki <i class="fas fa-chevron-right"></i></a>
-                                </div>
-                                <div class="col-lg-4">
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Dętki <i class="fas fa-chevron-right"></i></a>
-                                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Opony <i class="fas fa-chevron-right"></i></a>
+                    @if (type.type == "Narzędzia")
+                    {
+                        int count = viewModel.CategoriesOfTools.Count();
+                        <div class="dropdown-menu mega-area dropdown-menu-squared" aria-labelledby="mega-parts">
+                            <div class="col">
+                                <h3 class="dropdown-header text-center">@type.type</h3>
+                                <div class="dropdown-divider"></div>
+                                <div class="row px-lg-5">
+                                    @for (int i = 0; i < count; i++)
+                                    {
+                                        <div class="col-lg-4">
+                                            <a class="dropdown-item" href="@Url.Action("ProductList", "Shop", new { categoryId = viewModel.CategoriesOfTools.ElementAt(i).id })"> @viewModel.CategoriesOfTools.ElementAt(i).name <i class="fas fa-chevron-right"></i></a>
+                                        </div>
+                                    }
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </li>*@
+                    }
 
-            @*<li class="nav-item dropdown mr-lg-1">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                        Odzież
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-squared">
-                        <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Action</a>
-                        <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Another action</a>
-                        <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Something else here</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Separated link</a>
-                    </div>
-                </li>*@
+                    @if (type.type == "Odzież")
+                    {
+                        int count = viewModel.CategoriesOfClothing.Count();
 
-            @*<li class="nav-item dropdown mr-lg-1">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                        Narzędzia
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-squared">
-                        <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Action</a>
-                        <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Another action</a>
-                        <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Something else here</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Separated link</a>
-                    </div>
-                </li>*@
+                        <div class="dropdown-menu mega-area dropdown-menu-squared" aria-labelledby="mega-parts">
+                            <div class="col">
+                                <h3 class="dropdown-header text-center">@type.type</h3>
+                                <div class="dropdown-divider"></div>
+                                <div class="row px-lg-5">
+                                    @for (int i = 0; i < count; i++)
+                                    {
+                                        <div class="col-lg-4">
+                                            <a class="dropdown-item" href="@Url.Action("ProductList", "Shop", new { categoryId = viewModel.CategoriesOfClothing.ElementAt(i).id })"> @viewModel.CategoriesOfClothing.ElementAt(i).name <i class="fas fa-chevron-right"></i></a>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    @if (type.type == "Akcesoria")
+                    {
+                        int count = viewModel.CategoriesAccessories.Count();
+                        <div class="dropdown-menu mega-area dropdown-menu-squared" aria-labelledby="mega-parts">
+                            <div class="col">
+                                <h3 class="dropdown-header text-center">@type.type</h3>
+                                <div class="dropdown-divider"></div>
+                                <div class="row px-lg-5">
+                                    @for (int i = 0; i < count; i++)
+                                    {
+                                        <div class="col-lg-4">
+                                            <a class="dropdown-item" href="@Url.Action("ProductList", "Shop", new { categoryId = viewModel.CategoriesAccessories.ElementAt(i).id })"> @viewModel.CategoriesAccessories.ElementAt(i).name <i class="fas fa-chevron-right"></i></a>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </li>
+            }
 
             <li class="nav-item mr-lg-1">
                 @Html.ActionLink("Nowości", "ProductList", "Shop", new { area = "" }, new { @class = "nav-link" })
@@ -407,11 +214,23 @@
 
 @RenderBody()
 
+<a class="lastViewed__button hidden" href="#">Ostatnio oglądane</a>
+<section id="lastViewed" class="lastViewed__container hidden">
+    @if (lastViewed != null && lastViewed.Count() > 0)
+    {
+        foreach (var item in lastViewed)
+        {
+            @Html.Partial("_CarouselProduct", item)
+        }
+    }
+</section>
+
 <footer class="flex-row bg-dark text-light text-center">
     <p> Footer </p>
 </footer>
 
 @section scripts
-                    {
-                        @RenderSection("scripts", required: false)
+{
+    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/Scripts/Shop/shop-last-viewed.js")
 }

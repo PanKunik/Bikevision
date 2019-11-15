@@ -456,6 +456,7 @@
     <Content Include="Scripts\Shop\hidden-filters.js" />
     <Content Include="Scripts\Shop\list-grid-view.js" />
     <Content Include="Scripts\Shop\product-accortion-tabs.js" />
+    <Content Include="Scripts\Shop\shop-last-viewed.js" />
     <Content Include="Scripts\Shop\shop-multicarousel.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
