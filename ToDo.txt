@@ -1,3 +1,4 @@
 *-sorting -> by price (actual price, not old price)
 *-permanent discount for logged users -> works -> add discount on order and in account view
+*-accoujnt index -> PermanentDiscount & 5 newest shopping orders & 5 newest service orders 
 -favorites ->
