@@ -137,8 +137,27 @@ namespace bikevision.Controllers
         [Authorize(Roles = "Administrator, Uzytkownik, Moderator, Pracownik sklepu, Pracownik serwisu")]
         public ActionResult Index()
         {
+            AccountDataViewModel accountData = new AccountDataViewModel();
+            accountData.Sales = new List<Sale>();
+            accountData.Services = new List<Service>();
+            accountData.discount = 0;
 
-            return View();
+            List<Sale> customerSales = db.Sales.Where(sales => sales.Customer.AspNetUser.UserName == User.Identity.Name).OrderByDescending(date => date.date).Take(3).ToList();
+
+            if (customerSales.Count() > 0)
+                accountData.Sales = customerSales;
+
+            List<Service> customerServices = db.Services.Where(sales => sales.Customer.AspNetUser.UserName == User.Identity.Name).OrderByDescending(date => date.dateOfEmployment).Take(3).ToList();
+
+            if (customerServices.Count() > 0)
+                accountData.Services = customerServices;
+
+            List<Customer> custs = db.Customers.Where(cust => cust.AspNetUser.UserName == User.Identity.Name).ToList();
+
+            if (custs.Count() > 0)
+                accountData.discount = custs.First().PermanentDiscount.discount;
+
+            return View(accountData);
         }
 
         // GET: /Account/PersonalData
@@ -430,6 +449,7 @@ namespace bikevision.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            Session.Clear();
             return RedirectToAction("Index", "Home");
         }
 

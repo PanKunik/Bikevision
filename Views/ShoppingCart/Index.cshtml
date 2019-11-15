@@ -9,6 +9,13 @@
     {
         shippings = (List<Shipping>)ViewBag.Shippings;
     }
+
+    byte customerDiscount = 0;
+
+    if (Session["customerDiscount"] != null)
+    {
+        customerDiscount = (byte)Session["customerDiscount"];
+    }
 }
 
 <section class="container py-5 text-primary">
@@ -84,9 +91,13 @@
 
                         if (pairs.Count() > 0)
                         {
-                            promotionCode -= ((productInCart.Quantity * productInCart.Item.price) - (((100 - (decimal)pairs.First().Item2) / 100) * (productInCart.Quantity * productInCart.Item.price)));
+                            promotionCode -= ((productInCart.Quantity * productInCart.Item.price) - (((100 - (decimal)pairs.First().Item2 - customerDiscount) / 100) * (productInCart.Quantity * productInCart.Item.price)));
                         }
 
+                    }
+                    else if(customerDiscount > 0)
+                    {
+                        promotionCode -= ((productInCart.Quantity * productInCart.Item.price) - (((100 - (decimal)customerDiscount) / 100) * (productInCart.Quantity * productInCart.Item.price)));
                     }
                     //promotionCode += ((productInCart.Quantity * productInCart.Item.price) - (productInCart.Quantity * productInCart.Item.price) * (1 / productInCart.Multiplier));
                     //total += (productInCart.Quantity * productInCart.Item.price);

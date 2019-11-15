@@ -1,8 +1,75 @@
-﻿
+﻿@model bikevision.Models.AccountDataViewModel
 @{
     ViewBag.Title = "Konto";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
 <h2>Twoje konto</h2>
+<hr />
+
+<p class="h6 my-5"> Twój dotychczasowy rabat dla stałęgo klienta wynosi: @Model.discount%</p>
+
+<h4> Twoje najnowsze zamówienia </h4>
+@if (Model.Sales != null)
+{
+    <table class="table table-sm table-striped text-primary">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nr</th>
+                <th scope="col">Data</th>
+                <th scope="col">Status</th>
+                <th class="text-center" scope="col">Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model.Sales)
+            {
+                <tr>
+                    <th scope="row" class="align-middle">@order.idSale</th>
+                    <td class="align-middle">@order.date</td>
+                    <td class="align-middle">@order.SaleState.state</td>
+                    <td class="text-center align-middle">
+                        @Html.ActionLink("Szczegóły", "OrderDetails", "Account", new { id = order.idSale }, new { @class = "btn btn-primary" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p> Nie zamówiłeś jeszcze nic w naszym sklepie. </p>
+}
+
+<h4 class="mt-5"> Twoje najnowsze zlecenia serwisowe </h4>
+@if (Model.Services != null)
+{
+    <table class="table table-sm table-striped text-primary">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nr</th>
+                <th scope="col">Data</th>
+                <th scope="col">Status</th>
+                <th class="text-center" scope="col">Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model.Services)
+            {
+                <tr>
+                    <th scope="row" class="align-middle">@order.idService</th>
+                    <td class="align-middle">@order.dateOfEmployment</td>
+                    <td class="align-middle">@order.ServiceState.state</td>
+                    <td class="text-center align-middle">
+                        @Html.ActionLink("Szczegóły", "OrderDetails", "Service", new { id = order.idService }, new { @class = "btn btn-primary" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p> Nie masz żadnych zleceń serwisowych. </p>
+}
 
