@@ -1,5 +1,3 @@
--sorting -> by price (actual price, not old price)
--permanent discount for logged users ->
+*-sorting -> by price (actual price, not old price)
+*-permanent discount for logged users -> works -> add discount on order and in account view
 -favorites ->
-
-Customer
