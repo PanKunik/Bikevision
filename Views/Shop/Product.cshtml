@@ -144,7 +144,7 @@
                             @*</form>*@
                         </div>
                     </div>
-                    <button class="btn btn-primary @if (Model.product.availability <= 0) { String.Format(" disabled"); } "> Dodaj </button>
+                    <input type="submit" value="Do koszyka" @if (Model.product.availability <= 0) { @String.Format(" disabled "); } class="btn btn-primary @if (Model.product.availability <= 0) { @String.Format(" disabled"); }"/>
                 }
             </div>
         </div>
