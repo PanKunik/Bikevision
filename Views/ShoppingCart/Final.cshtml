@@ -91,6 +91,9 @@
                     <th scope="col">
                         Szt.
                     </th>
+                    <th scope="col">
+                        Suma
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -101,23 +104,33 @@
                             @item.Item.name
                         </td>
                         <td>
-                            @String.Format("{0:F2} zł", item.Item.price)
+                            @String.Format("{0:F2} zł", ViewBag.prices[index])
                         </td>
                         <td>
-                            @ViewBag.values[index++]
+                            @ViewBag.values[index]
+                        </td>
+                        <td>
+                            @String.Format("{0:F2} zł", (ViewBag.prices[index] * ViewBag.values[index++]))
                         </td>
                     </tr>
                 }
-
                 <tr>
                     <td scope="row">
                         Koszt dostawy:
                     </td>
-                    <td scope="row">
+                    <td colspan="2" scope="row">
                         @Model.First().Sale.Shipping.name
                     </td>
                     <td scope="row">
                         @String.Format("{0:F2} zł", Model.First().Sale.Shipping.cost)
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        Suma zamówienia:
+                    </td>
+                    <td>
+                        @String.Format("{0:F2} zł", (ViewBag.sumOfOrder + Model.First().Sale.Shipping.cost))
                     </td>
                 </tr>
             </tbody>
