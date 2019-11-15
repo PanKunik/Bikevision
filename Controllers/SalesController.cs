@@ -106,6 +106,43 @@ namespace bikevision.Controllers
             {
                 db.Entry(sale).State = EntityState.Modified;
                 db.SaveChanges();
+
+                List<SaleDetail> detailsOfSales = db.SaleDetails.Where(saleState => saleState.Sale.SaleState.state == "zrealizowane").Where(idCust => idCust.Sale.Customer_idCustomer == sale.Customer_idCustomer).ToList();
+
+                if (detailsOfSales.Count() > 0)
+                {
+                    decimal sumOfOrders = 0.0M;
+
+                    foreach (var saleValue in detailsOfSales)
+                    {
+                        sumOfOrders += saleValue.value;
+                    }
+
+                    List<PermanentDiscount> allTresholds = db.PermanentDiscounts.ToList();
+
+                    int idOfDiscount = 0;
+
+                    foreach (var tres in allTresholds)
+                    {
+                        if (tres.treshold <= sumOfOrders)
+                        {
+                            idOfDiscount = tres.idPermanentDiscount;
+                        }
+                    }
+
+                    if (idOfDiscount > 0)
+                    {
+                        Customer cust = db.Customers.Where(id => id.idCustomer == sale.Customer_idCustomer).First();
+
+                        if (cust.PermanentDiscount_idPermanentDiscount != idOfDiscount)
+                        {
+                            cust.PermanentDiscount_idPermanentDiscount = idOfDiscount;
+                            db.Entry(cust).State = EntityState.Modified;
+                            db.SaveChanges();
+                        }
+                    }
+                }
+
                 return RedirectToAction("Index");
             }
             ViewBag.Customer_idCustomer = new SelectList(db.Customers, "idCustomer", "name", sale.Customer_idCustomer);

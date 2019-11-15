@@ -31,7 +31,6 @@ namespace bikevision.Models
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<EmployeeInThePosition> EmployeeInThePositions { get; set; }
         public virtual DbSet<Feature> Features { get; set; }
@@ -40,7 +39,6 @@ namespace bikevision.Models
         public virtual DbSet<ItemType> ItemTypes { get; set; }
         public virtual DbSet<Locality> Localities { get; set; }
         public virtual DbSet<Position> Positions { get; set; }
-        public virtual DbSet<SaleDetail> SaleDetails { get; set; }
         public virtual DbSet<SaleState> SaleStates { get; set; }
         public virtual DbSet<SaleType> SaleTypes { get; set; }
         public virtual DbSet<Service> Services { get; set; }
@@ -55,5 +53,8 @@ namespace bikevision.Models
         public virtual DbSet<AspNetUsersDiscountCode> AspNetUsersDiscountCodes { get; set; }
         public virtual DbSet<DiscountCode> DiscountCodes { get; set; }
         public virtual DbSet<DiscountCodeForItem> DiscountCodeForItems { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<PermanentDiscount> PermanentDiscounts { get; set; }
+        public virtual DbSet<SaleDetail> SaleDetails { get; set; }
     }
 }

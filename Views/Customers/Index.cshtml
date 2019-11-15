@@ -36,6 +36,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Locality.locality1)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PermanentDiscount.idPermanentDiscount)
+        </th>
         <th></th>
     </tr>
 
@@ -64,6 +67,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Locality.locality1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PermanentDiscount.idPermanentDiscount)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.idCustomer }) |

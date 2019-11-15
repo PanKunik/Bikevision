@@ -408,6 +408,8 @@ namespace bikevision.Controllers
 
                     List<int> ids = (Session["code"] != null) ? pairs.Select(i => i.Item1).ToList() : null;
 
+                    string code = (string)(Session["code"]);
+
                     int lastSaleDetails = 0;
 
                     foreach (var item in lsCart)
@@ -423,6 +425,7 @@ namespace bikevision.Controllers
                             {
                                 int index = ids.FindIndex(i => i == itemInShop.idItem);
                                 item.NewPrice = item.Item.price * ((100.0M - (decimal)pairs.ElementAt(index).Item2) / 100.0M);
+                                detailOfSale.DiscountCode_idDiscountCode = db.DiscountCodes.Where(id => id.code == code).First().idDiscountCode;
                             }
                         }
 
@@ -458,23 +461,33 @@ namespace bikevision.Controllers
                         db.SaleDetails.Add(detailOfSale);
                         db.SaveChanges();
 
-                        string code = (string)(Session["code"]);
-
-                        Session["code"] = null;
-                        Session[itemsForCodeString] = null;
-
-                        List<AspNetUsersDiscountCode> aspNetUsersDiscountCodes = db.AspNetUsersDiscountCodes.Where(id => id.AspNetUser.UserName == User.Identity.Name).Where(co => co.DiscountCode.code == code).ToList();
-
-                        if (aspNetUsersDiscountCodes.Count() > 0)
-                        {
-                            AspNetUsersDiscountCode userCode = aspNetUsersDiscountCodes.First();
-                            userCode.numberOfUses++;
-
-                            db.Entry(userCode).State = EntityState.Modified;
-                            db.SaveChanges();
-                        }
-
                     }
+
+
+
+                    List<AspNetUsersDiscountCode> aspNetUsersDiscountCodes = db.AspNetUsersDiscountCodes.Where(id => id.AspNetUser.UserName == User.Identity.Name).Where(co => co.DiscountCode.code == code).ToList();
+
+                    if (aspNetUsersDiscountCodes.Count() > 0)
+                    {
+                        AspNetUsersDiscountCode userCode = aspNetUsersDiscountCodes.First();
+                        userCode.numberOfUses++;
+
+                        db.Entry(userCode).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        AspNetUsersDiscountCode newRow = new AspNetUsersDiscountCode();
+                        newRow.AspNetUser_Id = db.AspNetUsers.Where(id => id.UserName == User.Identity.Name).First().Id;
+                        newRow.DiscountCode_idDiscountCode = db.DiscountCodes.Where(co =>co.code == code).First().idDiscountCode;
+                        newRow.numberOfUses = 1;
+
+                        db.AspNetUsersDiscountCodes.Add(newRow);
+                        db.SaveChanges();
+                    }
+
+                    Session["code"] = null;
+                    Session[itemsForCodeString] = null;
 
                     Session[sessionCartString] = null;
 

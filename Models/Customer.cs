@@ -22,7 +22,7 @@ namespace bikevision.Models
             this.Sales = new HashSet<Sale>();
             this.Services = new HashSet<Service>();
         }
-    
+
         public int idCustomer { get; set; }
         [Display(Name = "Imię:")]
         [Required(ErrorMessage = "Imię jest wymagane.")]
@@ -47,9 +47,11 @@ namespace bikevision.Models
         [Display(Name = "Miejscowość:")]
         [Required(ErrorMessage = "Miejscowość jest wymagana.")]
         public int Locality_idLocality { get; set; }
-    
+        public Nullable<int> PermanentDiscount_idPermanentDiscount { get; set; }
+
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual Locality Locality { get; set; }
+        public virtual PermanentDiscount PermanentDiscount { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Opinion> Opinions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
