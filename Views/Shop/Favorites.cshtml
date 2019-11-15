@@ -1,8 +1,31 @@
-﻿
+﻿@using bikevision.Models
 @{
     ViewBag.Title = "Ulubione";
     Layout = "~/Views/Shared/_ShopLayout.cshtml";
+
+    List<Item> favoriteItems = new List<Item>();
+
+    if(Session["favoriteItems"] != null)
+    {
+        favoriteItems = (List<Item>)(Session["favoriteItems"]);
+    }
 }
 
-<h2>Favorites</h2>
+<section class="container py-2 my-2 flex-fill">
+    <h2>Schowek ulubionych przedmiotów</h2>
+    <hr />
+
+    @if(favoriteItems.Count() > 0)
+    {
+        foreach(var item in favoriteItems)
+        {
+            @Html.Partial("_CarouselProduct", item);
+        }
+    }
+    else
+    {
+        <h4> Nie dodałes jeszcze żadnych produktów do ulubionych </h4>
+    }
+
+</section>
 

@@ -339,6 +339,42 @@ namespace bikevision.Controllers
             return RedirectToAction("Product", "Shop", new { id = (int)idProduct });
         }
 
+
+        private ActionResult RedirectToLocal(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            return RedirectToAction("Index", "Shop");
+        }
+
+        public ActionResult AddToFavorites(int? itemId, string returnUrl)
+        {
+            if (itemId == null)
+                return Redirect(returnUrl);
+
+            List<Item> newFavoriteItem = db.Items.Where(id => id.idItem == itemId).ToList();
+
+            if(newFavoriteItem.Count() == 0)
+                return Redirect(returnUrl);
+
+            List<Item> favoriteItems = new List<Item>();
+
+            if (Session["favoriteItems"] != null)
+                favoriteItems = (List<Item>)(Session["favoriteItems"]);
+
+            if (favoriteItems.Where(id => id.idItem == newFavoriteItem.First().idItem).ToList().Count() > 0)
+                ViewBag.ShopError = "";
+            else
+            {
+                favoriteItems = favoriteItems.Append(newFavoriteItem.First()).ToList();
+                Session["favoriteItems"] = favoriteItems;
+            }
+
+            return Redirect(returnUrl);
+        }
+
         public ActionResult Favorites()
         {
             return View();

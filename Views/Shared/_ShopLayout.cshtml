@@ -6,10 +6,16 @@
     var viewModel = (MainLayoutViewModel)ViewData["MainLayoutViewModel"];
 
     List<Item> lastViewed = new List<Item>();
+    int favoriteItemsCount = 0;
 
     if (Session["lastViewedItems"] != null)
     {
         lastViewed = (List<Item>)(Session["lastViewedItems"]);
+    }
+
+    if (Session["favoriteItems"] != null)
+    {
+        favoriteItemsCount = ((List<Item>)(Session["favoriteItems"])).Count();
     }
 
     /*
@@ -46,7 +52,7 @@
                 <a href="@Url.Action("Index", "ShoppingCart")" class="nav-link p-1 text-light"><i class="fas fa-shopping-cart pr-2 small-icon"></i></a>
             </li>
             <li class="nav-item">
-                <a href="@Url.Action("Favorites", "Shop")" class="nav-link p-1 text-light"><i class="fas fa-heart px-2 small-icon"></i></a>
+                <a href="@Url.Action("Favorites", "Shop")" class="nav-link p-1 text-light"><span>@favoriteItemsCount</span><i class="fas fa-heart px-2 small-icon"></i></a>
             </li>
             <li class="nav-item">
                 <a href="@Url.Action("Index", "Account")" class="nav-link p-1 text-light"><i class="fas fa-user-alt px-2 pl-lg-2 px-lg-0 small-icon"></i></a>
