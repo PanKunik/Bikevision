@@ -296,6 +296,7 @@ namespace bikevision.Controllers
             {
                 Opinion newOpinion = new Opinion();
                 string opinion = Request["opinion"];
+
                 if(opinion != "" && opinion != null)
                 {
                     newOpinion.opinion1 = opinion;
@@ -308,9 +309,6 @@ namespace bikevision.Controllers
 
                 db.Opinions.Add(newOpinion);
                 db.SaveChanges();
-            }
-            else
-            {
             }
             
             return RedirectToAction("Product", "Shop", new { id = (int)idProduct });

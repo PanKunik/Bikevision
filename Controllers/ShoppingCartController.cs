@@ -150,10 +150,13 @@ namespace bikevision.Controllers
         {
             // NoError -> move to next step of ordering
             if (Session[sessionCartString] != null)
+            {
+
                 return RedirectToAction("Order");
+            }
             else
             {
-                if(Session["deliveryCost"] != null)
+                if (Session["deliveryCost"] != null)
                     ViewBag.costOfDelivery = (Shipping)Session["deliveryCost"];
                 return View();
             }
@@ -372,6 +375,9 @@ namespace bikevision.Controllers
                         db.SaveChanges();
                     }
 
+                    // calculate new price
+
+
                     Sale sale = new Sale();
 
                     sale.Customer_idCustomer = customer.idCustomer;
@@ -387,11 +393,18 @@ namespace bikevision.Controllers
                     SaleState stateId = db.SaleStates.Where(i => i.state == "oczekuje na zatwierdzenie").First();
                     sale.SaleState_idSaleState = stateId.idSaleState;
 
+                    sale.Shipping_idShipping = 1;
+
                     db.Sales.Add(sale);
                     db.SaveChanges();
 
                     List<Cart> lsCart = new List<Cart>();
                     lsCart = (List<Cart>)Session[sessionCartString];
+
+                    List<Tuple<int, int>> pairs = new List<Tuple<int, int>>();
+                    pairs = (List<Tuple<int, int>>)Session[itemsForCodeString];
+
+                    List<int> ids = pairs.Select(i => i.Item1).ToList();
 
                     int lastSaleDetails = 0;
 
@@ -401,6 +414,13 @@ namespace bikevision.Controllers
                         Item itemInShop = new Item();
 
                         itemInShop = db.Items.Find(item.Item.idItem);
+
+                        if(ids.Contains(itemInShop.idItem))
+                        {
+                            int index = ids.FindIndex(i => i == itemInShop.idItem);
+                            item.NewPrice = item.Item.price * ((100.0M - (decimal)pairs.ElementAt(index).Item2)/100.0M);
+                        }
+
                         int availbility = (int)itemInShop.availability - item.Quantity;
                         try
                         {
@@ -428,7 +448,7 @@ namespace bikevision.Controllers
                         lastSaleDetails = detailOfSale.Sale_idSale;
 
                         detailOfSale.quantity = (byte)item.Quantity;
-                        detailOfSale.value = item.Item.price * item.Quantity;
+                        detailOfSale.value = (item.NewPrice != 0.0M ) ? item.NewPrice * (decimal)item.Quantity : item.Item.price * (decimal)item.Quantity;
 
                         db.SaleDetails.Add(detailOfSale);
                         db.SaveChanges();
