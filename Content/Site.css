@@ -49,6 +49,16 @@ html, body {
 
 /*  Random classes  */
 
+.timeToShipping {
+    display: table;
+    background-color: orange;
+    color: black;
+    text-align: center;
+    line-height: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
 .rotate {
     -moz-transition: all .25s linear;
     -webkit-transition: all .25s linear;
