@@ -351,12 +351,12 @@ namespace bikevision.Controllers
         public ActionResult AddToFavorites(int? itemId, string returnUrl)
         {
             if (itemId == null)
-                return Redirect(returnUrl);
+                return RedirectToUrl(returnUrl);
 
             List<Item> newFavoriteItem = db.Items.Where(id => id.idItem == itemId).ToList();
 
             if(newFavoriteItem.Count() == 0)
-                return Redirect(returnUrl);
+                return RedirectToUrl(returnUrl);
 
             List<Item> favoriteItems = new List<Item>();
 
@@ -371,7 +371,7 @@ namespace bikevision.Controllers
                 string thisUserId = (db.AspNetUsers.Where(name => name.UserName == User.Identity.Name).ToList().Count() > 0) ? db.AspNetUsers.Where(name => name.UserName == User.Identity.Name).ToList().First().Id : "";
 
                 if (thisUserId == "" || thisUserId == null)
-                    return Redirect(returnUrl);
+                    return RedirectToUrl(returnUrl);
 
                 //db.AspNetUserFavorites.Where(item => item.Item_idItem == itemId).Where(user => user.AspNetUsers_Id == thisUserId).ToList();
 
@@ -384,13 +384,13 @@ namespace bikevision.Controllers
                 db.SaveChanges();
             }
 
-            return Redirect(returnUrl);
+            return RedirectToUrl(returnUrl);
         }
 
         public ActionResult DeleteFromFavorites(int? idItem, string returnUrl)
         {
             if (idItem == null)
-                return RedirectToLocal(returnUrl);
+                return RedirectToUrl(returnUrl);
 
             List<Item> favoriteItems = new List<Item>();
 
@@ -406,29 +406,29 @@ namespace bikevision.Controllers
                 string thisUserId = (db.AspNetUsers.Where(name => name.UserName == User.Identity.Name).ToList().Count() > 0) ? db.AspNetUsers.Where(name => name.UserName == User.Identity.Name).ToList().First().Id : "";
 
                 if (thisUserId == "" || thisUserId == null)
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToUrl(returnUrl);
 
                 AspNetUserFavorite favUserItem = (db.AspNetUserFavorites.Where(item => item.Item_idItem == idItem).Where(user => user.AspNetUsers_Id == thisUserId).ToList().Count() > 0) ? db.AspNetUserFavorites.Where(item => item.Item_idItem == idItem).Where(user => user.AspNetUsers_Id == thisUserId).ToList().First() : null;
 
                 if(favUserItem == null)
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToUrl(returnUrl);
 
                 db.AspNetUserFavorites.Remove(favUserItem);
                 db.SaveChanges();
             }
 
-            return RedirectToLocal(returnUrl);
+            return RedirectToUrl(returnUrl);
         }
 
         public ActionResult AddToComparation(int? itemId, string returnUrl)
         {
             if (itemId == null)
-                return RedirectToLocal(returnUrl);
+                return RedirectToUrl(returnUrl);
 
             Item newItem = (db.Items.Where(id => id.idItem == itemId) != null) ? db.Items.Where(id => id.idItem == itemId).ToList().First(): null;
 
             if (newItem == null)
-                return RedirectToLocal(returnUrl);
+                return RedirectToUrl(returnUrl);
 
             List<Item> itemsInComparation = new List<Item>();
 
@@ -438,25 +438,25 @@ namespace bikevision.Controllers
 
                 if (itemsInComparation.Count() >= 3)
                 {
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToUrl(returnUrl);
                 }
             }
 
             itemsInComparation.Add(newItem);
             Session["comparation"] = itemsInComparation;
 
-            return RedirectToLocal(returnUrl);
+            return RedirectToUrl(returnUrl);
         }
 
         public ActionResult RemoveFromComparation(int? itemId, string returnUrl)
         {
             if (itemId == null)
-                return RedirectToLocal(returnUrl);
+                return RedirectToUrl(returnUrl);
 
             Item newItem = (db.Items.Where(id => id.idItem == itemId) != null) ? db.Items.Where(id => id.idItem == itemId).ToList().First() : null;
 
             if (newItem == null)
-                return RedirectToLocal(returnUrl);
+                return RedirectToUrl(returnUrl);
 
             List<Item> itemsInComparation = new List<Item>();
 
@@ -469,7 +469,17 @@ namespace bikevision.Controllers
 
             Session["comparation"] = (itemsInComparation.Count() > 0) ? itemsInComparation : null;
 
-            return RedirectToLocal(returnUrl);
+            return RedirectToUrl(returnUrl);
+        }
+
+        private ActionResult RedirectToUrl(string returnUrl)
+        {
+            if (returnUrl != null && returnUrl != "")
+            {
+                return Redirect(returnUrl);
+            }
+
+            return RedirectToAction("Index", "Shop");
         }
 
         public ActionResult Favorites()
