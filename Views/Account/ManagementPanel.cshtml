@@ -13,6 +13,8 @@
             @Html.ActionLink("Tabela wartości cech dla przedmiotów", "Index", "FeatureValueOfItems", new { area = "" }, new { @class = "btn btn-info hover-bg" })
             @Html.ActionLink("Tabela typów przedmiotów", "Index", "ItemTypes", new { area = "" }, new { @class = "btn btn-info hover-bg" })
             @Html.ActionLink("Tabela opinii", "Index", "Opinions", new { area = "" }, new { @class = "btn btn-info hover-bg" })
+            @Html.ActionLink("Tabela kodów rabatowych dla przedmiotów", "Index", "DiscountCodeForItems", new { area = "" }, new { @class = "btn btn-info hover-bg" })
+            @Html.ActionLink("Tabela kodów rabatowych", "Index", "DiscountCodes", new { area = "" }, new { @class = "btn btn-info hover-bg" })
         }
 
         @if (User.IsInRole("Administrator"))
@@ -26,6 +28,9 @@
             @Html.ActionLink("Tabela typów zleceń serwisowych", "Index", "ServiceTypes", new { area = "" }, new { @class = "btn btn-info hover-bg" })
             @Html.ActionLink("Tabela statusów zamówień", "Index", "SaleStates", new { area = "" }, new { @class = "btn btn-info hover-bg" })
             @Html.ActionLink("Tabela statusów zleceń", "Index", "ServiceStates", new { area = "" }, new { @class = "btn btn-info hover-bg" })
+            @Html.ActionLink("Tabela ulubionych przedmiotów użytkowników", "Index", "AspNetUserFavorites", new { area = "" }, new { @class = "btn btn-info hover-bg" })
+            @Html.ActionLink("Tabela kodów rabatowych użytkowników", "Index", "AspNetUsersDiscountCodes", new { area = "" }, new { @class = "btn btn-info hover-bg" })
+            @Html.ActionLink("Tabela stałych rabatów", "Index", "PermanentDiscounts", new { area = "" }, new { @class = "btn btn-info hover-bg" })
         }
 
         @if (User.IsInRole("Moderator") || User.IsInRole("Administrator") || User.IsInRole("Pracownik sklepu"))
@@ -43,7 +48,7 @@
         {
             @Html.ActionLink("Tabela zleceń serwisowych", "Index", "Services", new { area = "" }, new { @class = "btn btn-info hover-bg" })
             @Html.ActionLink("Tabela notatek serwisowych", "Index", "Notes", new { area = "" }, new { @class = "btn btn-info hover-bg" })
-            @Html.ActionLink("Tabela notatek do zleceń serwisowych", "Index", "ServiceNotes", new { area = "" }, new { @class = "btn btn-info hover-bg" })
+            @Html.ActionLink("Tabela notatek do zleceń serwisowych", "Index", "NoteToServices", new { area = "" }, new { @class = "btn btn-info hover-bg" })
         }
     </section>
 

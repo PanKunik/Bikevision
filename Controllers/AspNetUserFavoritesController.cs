@@ -15,6 +15,7 @@ namespace bikevision.Controllers
         private bikewayDBEntities db = new bikewayDBEntities();
 
         // GET: AspNetUserFavorites
+        [Authorize(Roles = "Administrator")]
         public ActionResult Index()
         {
             var aspNetUserFavorites = db.AspNetUserFavorites.Include(a => a.AspNetUser).Include(a => a.Item);
@@ -22,6 +23,7 @@ namespace bikevision.Controllers
         }
 
         // GET: AspNetUserFavorites/Details/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Details(string id)
         {
             if (id == null)
@@ -37,6 +39,7 @@ namespace bikevision.Controllers
         }
 
         // GET: AspNetUserFavorites/Create
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create()
         {
             ViewBag.AspNetUsers_Id = new SelectList(db.AspNetUsers, "Id", "Email");
@@ -49,6 +52,7 @@ namespace bikevision.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create([Bind(Include = "AspNetUsers_Id,Item_idItem,dateOfCreation")] AspNetUserFavorite aspNetUserFavorite)
         {
             if (ModelState.IsValid)
@@ -64,6 +68,7 @@ namespace bikevision.Controllers
         }
 
         // GET: AspNetUserFavorites/Edit/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -85,6 +90,7 @@ namespace bikevision.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit([Bind(Include = "AspNetUsers_Id,Item_idItem,dateOfCreation")] AspNetUserFavorite aspNetUserFavorite)
         {
             if (ModelState.IsValid)
@@ -99,6 +105,7 @@ namespace bikevision.Controllers
         }
 
         // GET: AspNetUserFavorites/Delete/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Delete(string id)
         {
             if (id == null)
@@ -115,6 +122,7 @@ namespace bikevision.Controllers
 
         // POST: AspNetUserFavorites/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Administrator")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
@@ -124,6 +132,7 @@ namespace bikevision.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Administrator")]
         protected override void Dispose(bool disposing)
         {
             if (disposing)

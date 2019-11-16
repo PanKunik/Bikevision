@@ -15,6 +15,7 @@ namespace bikevision.Controllers
         private bikewayDBEntities db = new bikewayDBEntities();
 
         // GET: DiscountCodeForItems
+        [Authorize(Roles = "Administrator, Moderator")]
         public ActionResult Index()
         {
             var discountCodeForItems = db.DiscountCodeForItems.Include(d => d.DiscountCode).Include(d => d.Item);
@@ -22,6 +23,7 @@ namespace bikevision.Controllers
         }
 
         // GET: DiscountCodeForItems/Details/5
+        [Authorize(Roles = "Administrator, Moderator")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +39,7 @@ namespace bikevision.Controllers
         }
 
         // GET: DiscountCodeForItems/Create
+        [Authorize(Roles = "Administrator, Moderator")]
         public ActionResult Create()
         {
             ViewBag.DiscountCode_idDiscountCode = new SelectList(db.DiscountCodes, "idDiscountCode", "code");
@@ -49,6 +52,7 @@ namespace bikevision.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator, Moderator")]
         public ActionResult Create([Bind(Include = "Item_idItem,DiscountCode_idDiscountCode,discount")] DiscountCodeForItem discountCodeForItem)
         {
             if (ModelState.IsValid)
@@ -64,6 +68,7 @@ namespace bikevision.Controllers
         }
 
         // GET: DiscountCodeForItems/Edit/5
+        [Authorize(Roles = "Administrator, Moderator")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -85,6 +90,7 @@ namespace bikevision.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator, Moderator")]
         public ActionResult Edit([Bind(Include = "Item_idItem,DiscountCode_idDiscountCode,discount")] DiscountCodeForItem discountCodeForItem)
         {
             if (ModelState.IsValid)
@@ -99,6 +105,7 @@ namespace bikevision.Controllers
         }
 
         // GET: DiscountCodeForItems/Delete/5
+        [Authorize(Roles = "Administrator, Moderator")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -116,6 +123,7 @@ namespace bikevision.Controllers
         // POST: DiscountCodeForItems/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator, Moderator")]
         public ActionResult DeleteConfirmed(int id)
         {
             DiscountCodeForItem discountCodeForItem = db.DiscountCodeForItems.Find(id);
@@ -124,6 +132,7 @@ namespace bikevision.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Administrator, Moderator")]
         protected override void Dispose(bool disposing)
         {
             if (disposing)
