@@ -41,7 +41,7 @@
             pairForCodes = (List<Tuple<int, int>>)Session["Items"];
         }
 
-        if(ViewBag.costOfDelivery != null)
+        if (ViewBag.costOfDelivery != null)
         {
             deliveryCost = new Shipping();
             deliveryCost = (Shipping)ViewBag.costOfDelivery;
@@ -55,7 +55,7 @@
         <h2 class="px-0"> Twój koszyk </h2>
 
         <p class="text-danger">@ViewBag.QuantityError</p>
-        
+
         <table class="table table-striped text-primary vertical-align">
             <thead class="thead-dark">
                 <tr>
@@ -95,7 +95,7 @@
                         }
 
                     }
-                    else if(customerDiscount > 0)
+                    else if (customerDiscount > 0)
                     {
                         promotionCode -= ((productInCart.Quantity * productInCart.Item.price) - (((100 - (decimal)customerDiscount) / 100) * (productInCart.Quantity * productInCart.Item.price)));
                     }
@@ -172,6 +172,7 @@
                         <p class="font-weight-bold text-size-small">Wybierz sposób dostawy:</p>
                         @using (Html.BeginForm("ShippingCosts", "ShoppingCart", FormMethod.Post))
                         {
+                            <p class="text-danger">@ViewBag.ErrorShipping</p>
                             foreach (var delivery in shippings)
                             {
                                 <label for="@delivery.name"><input type="radio" id="@delivery.name" onchange="form.submit();" name="deliveryCosts" value="@delivery.idShipping" @if (delivery.idShipping == deliveryCost.idShipping) { @String.Format("checked") ; } /> @String.Format("{0} - {1:F2} zł", delivery.name, delivery.cost)</label><br />
@@ -198,7 +199,7 @@
                         @using (Html.BeginForm("Index", "ShoppingCart", null, FormMethod.Post, new { @class = "d-flex flex-column", role = "form" }))
                         {
                             <div class="input-group mt-1 justify-content-end">
-                                <button type="submit" id="submit" class="btn btn-primary"> Przejdz dalej</button>
+                                <button type="submit" id="submit" title="@if(deliveryCost.idShipping == 0) { @String.Format("Musisz wybrać formę dostawy.") }" @if(deliveryCost.idShipping == 0) { @String.Format(" disabled ") } class="btn btn-primary"> Przejdz dalej</button>
                             </div>
                         }
                     </td>
@@ -209,5 +210,11 @@
     else
     {
         <h4> Twój koszyk jest pusty! </h4>
+        Session["deliveryCost"] = null;
     }
 </section>
+
+@section scripts
+{
+    @Scripts.Render("~/Scripts/Shop/shopping-cart-validation.js");
+}
