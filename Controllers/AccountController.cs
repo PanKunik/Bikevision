@@ -155,7 +155,7 @@ namespace bikevision.Controllers
             List<Customer> custs = db.Customers.Where(cust => cust.AspNetUser.UserName == User.Identity.Name).ToList();
 
             if (custs.Count() > 0)
-                accountData.discount = custs.First().PermanentDiscount.discount;
+                accountData.discount = (custs.First().PermanentDiscount_idPermanentDiscount != null) ? custs.First().PermanentDiscount.discount : 0;
 
             return View(accountData);
         }
