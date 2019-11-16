@@ -222,6 +222,7 @@
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CategoryIdWithName.cs" />
+    <Compile Include="Models\ComparationViewModel.cs" />
     <Compile Include="Models\Customer.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
@@ -670,6 +671,7 @@
     <Content Include="Views\AspNetUserFavorites\Edit.cshtml" />
     <Content Include="Views\AspNetUserFavorites\Index.cshtml" />
     <Content Include="Views\Shop\Comparation.cshtml" />
+    <Content Include="Views\Shared\_ItemInComparation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

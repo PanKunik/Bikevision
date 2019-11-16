@@ -477,9 +477,81 @@ namespace bikevision.Controllers
             return View();
         }
 
+        //public ActionResult Comparation()
+        //{
+        //    ComparationViewModel itemsInComparation = new ComparationViewModel();
+
+        //    List<Item> itemsToCompare = new List<Item>();
+
+        //    if (Session["comparation"] == null)
+        //        return View(itemsInComparation);
+
+        //    itemsToCompare = (List<Item>)(Session["comparation"]);
+
+        //    if (itemsToCompare.Count() <= 0)
+        //        return View(itemsInComparation);
+            
+        //    itemsInComparation.itemIds = new List<int>();
+        //    itemsInComparation.itemFeaturesToCompare = new List<FeatureValueOfItem>();
+
+        //    foreach (var it in itemsToCompare)
+        //    {
+        //        itemsInComparation.itemIds.Add(it.idItem);
+        //        itemsInComparation.itemFeaturesToCompare = itemsInComparation.itemFeaturesToCompare.Concat(db.FeatureValueOfItems.Where(itemId => itemId.Item_idItem1 == it.idItem)).ToList();
+        //    }
+
+        //    return View(itemsInComparation);
+        //}
+
         public ActionResult Comparation()
         {
-            return View();
+            List<Item> itemsToCompare = new List<Item>();
+
+            if (Session["comparation"] == null)
+                return View();
+
+            itemsToCompare = (List<Item>)(Session["comparation"]);
+
+            if (itemsToCompare.Count() <= 0)
+                return View();
+
+            List<string> featuresList = new List<string>();
+
+            List<ComparationViewModel> comparation = new List<ComparationViewModel>();
+
+            foreach (var oneItem in itemsToCompare)
+            {
+                List<string> tempFeature = db.FeatureValueOfItems.Where(item => item.Item_idItem1 == oneItem.idItem).Select(feature => feature.Feature.feature1).ToList();
+
+                if (tempFeature != null)
+                    if (tempFeature.Count() > 0)
+                        foreach (var feature in tempFeature)
+                            if (!featuresList.Contains(feature))
+                                featuresList.Add(feature);
+            }
+
+            foreach(var oneItem in itemsToCompare)
+            { 
+
+                ComparationViewModel newComparationItem = new ComparationViewModel();
+
+                newComparationItem.ComparationItem = oneItem;
+                newComparationItem.FeaturesList = new List<Tuple<string, string>>();
+
+                foreach(var feature in featuresList)
+                {
+                    string featureValue = (db.FeatureValueOfItems.Where(item => item.Item_idItem1 == oneItem.idItem).Where(feat => feat.Feature.feature1 == feature).Count() > 0) ? db.FeatureValueOfItems.Where(item => item.Item_idItem1 == oneItem.idItem).Where(feat => feat.Feature.feature1 == feature).First().FeatureValue.featureValue1 : "" ;
+                    Tuple<string, string> newFeatureRow = new Tuple<string, string>(feature, featureValue);
+
+                    newComparationItem.FeaturesList.Add(newFeatureRow);
+                }
+
+                comparation.Add(newComparationItem);
+            }
+
+            //comparation.itemsToCompare = itemsToCompare;
+
+            return View(comparation);
         }
     }
 }

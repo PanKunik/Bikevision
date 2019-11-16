@@ -66,19 +66,19 @@
             </div>
             <div class="order-3 col-12 col-lg-4 mt-4 mt-lg-0">
                 <ul class="nav justify-content-around justify-content-lg-end">
-                    <li class="nav-item">
-                        <a href="@Url.Action("Index", "ShoppingCart")" class="nav-link p-1 text-light"><span class="align-text-bottom">@(String.Format("({0}) {1:F2} zł ", countOfItems, sumOfOrderInCart))</span><i class="fas fa-shopping-cart pr-2 small-icon"></i></a>
+                    <li class="nav-item mr-0">
+                        <a href="@Url.Action("Index", "ShoppingCart")" class="nav-link p-1 text-light"><span class="d-none d-lg-inline align-text-bottom">@(String.Format("({0}) {1:F2} zł ", countOfItems, sumOfOrderInCart))</span><i class="fas fa-shopping-cart pr-2 small-icon"></i></a>
                     </li>
-                    <li class="nav-item">
-                        <a href="@Url.Action("Favorites", "Shop")" class="nav-link p-1 text-light"><span class="align-text-bottom">@favoriteItemsCount</span><i class="fas fa-heart px-2 small-icon"></i></a>
+                    <li class="nav-item mr-0">
+                        <a href="@Url.Action("Favorites", "Shop")" class="nav-link p-1 text-light"><span class="d-none d-lg-inline align-text-bottom">@favoriteItemsCount</span><i class="fas fa-heart px-2 small-icon"></i></a>
                     </li>
-                    <li class="nav-item">
-                        <a href="@Url.Action("Comparation", "Shop")" class="nav-link p-1 text-light"><span class="align-text-bottom">@comparationItemCount</span><i class="fas fa-retweet px-2 small-icon"></i></a>
+                    <li class="nav-item mr-0">
+                        <a href="@Url.Action("Comparation", "Shop")" class="nav-link p-1 text-light"><span class="d-none d-lg-inline align-text-bottom">@comparationItemCount</span><i class="fas fa-retweet px-2 small-icon"></i></a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item mr-0">
                         <a href="@Url.Action("Index", "Account")" class="nav-link p-1 text-light"><i class="fas fa-user-alt px-2 pl-lg-2 px-lg-0 small-icon"></i></a>
                     </li>
-                    <li class="nav-item d-lg-none ml-lg-0 text-center">
+                    <li class="nav-item mr-0 d-lg-none ml-lg-0 text-center">
                         <a href="#" class="nav-link p-1 text-light" data-toggle="collapse" data-target="#navbarShopNavigation"><i class="fas fa-bars pl-2 pl-lg-0 small-icon"></i></a>
                     </li>
                 </ul>

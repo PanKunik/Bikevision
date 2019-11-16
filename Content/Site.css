@@ -104,6 +104,10 @@ select.error, select.valid {
 
 /*  Elements with IDs  */
 
+#lastViewed::-webkit-scrollbar {
+    display: none;
+}
+
 div#loginImage {
     background-image: url('Images/wallpaper_rocks_bike(low-res).jpg');
     background-repeat: no-repeat;
@@ -383,7 +387,7 @@ a#shop-link {
 
 .lastViewed__button {
     position: fixed;
-    top: 50%;
+    top: 75%;
     left: 250px;
     transform: translate(-37.5%) rotate(90deg);
     background-color: white;

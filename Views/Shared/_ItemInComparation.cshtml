@@ -1,0 +1,10 @@
+﻿@model bikevision.Models.ComparationViewModel
+
+    <article class="col-4 p-0 m-0">
+        <h4>@Model.ComparationItem.name</h4>
+        <hr />
+        @foreach (var feature in Model.FeaturesList)
+        {
+            <p>@feature.Item1 - @feature.Item2</p>
+        }
+    </article>
