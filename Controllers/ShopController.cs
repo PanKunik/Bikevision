@@ -28,8 +28,7 @@ namespace bikevision.Controllers
             this.MainLayoutViewModel.BicyclesByWheels = new List<CategoryIdWithName>();
             // this.MainLayoutViewModel.CategoriesOfSpareParts 
             IQueryable<Item> allItems = db.Items.Include(cat => cat.Category).Include(type => type.ItemType);
-
-
+            
             List<Item> itemsSpareParts = allItems.Where(type => type.ItemType.type == "Części zamienne").ToList();
                 //  db.Items.Include(cat => cat.Category).Include(type => type.ItemType).Where(type => type.ItemType.type == "Części zamienne").ToList();
             List<Item> itemsAccessories = allItems.Where(type => type.ItemType.type == "Akcesoria").ToList();
