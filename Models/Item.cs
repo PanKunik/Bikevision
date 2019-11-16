@@ -22,6 +22,7 @@ namespace bikevision.Models
             this.Opinions = new HashSet<Opinion>();
             this.SaleDetails = new HashSet<SaleDetail>();
             this.DiscountCodeForItems = new HashSet<DiscountCodeForItem>();
+            this.AspNetUserFavorites = new HashSet<AspNetUserFavorite>();
         }
     
         public int idItem { get; set; }
@@ -64,5 +65,7 @@ namespace bikevision.Models
         public virtual ICollection<SaleDetail> SaleDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DiscountCodeForItem> DiscountCodeForItems { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AspNetUserFavorite> AspNetUserFavorites { get; set; }
     }
 }

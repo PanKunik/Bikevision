@@ -1,3 +1,1 @@
-*-sorting -> by price (actual price, not old price)
--favorites ->
--last viewwed items
+*-sorting -> by price (actual price, not old price

@@ -364,12 +364,58 @@ namespace bikevision.Controllers
             if (Session["favoriteItems"] != null)
                 favoriteItems = (List<Item>)(Session["favoriteItems"]);
 
-            if (favoriteItems.Where(id => id.idItem == newFavoriteItem.First().idItem).ToList().Count() > 0)
-                ViewBag.ShopError = "";
-            else
+            favoriteItems = favoriteItems.Append(newFavoriteItem.First()).ToList();
+            Session["favoriteItems"] = favoriteItems;
+
+            if(User.Identity.IsAuthenticated)
             {
-                favoriteItems = favoriteItems.Append(newFavoriteItem.First()).ToList();
-                Session["favoriteItems"] = favoriteItems;
+                string thisUserId = (db.AspNetUsers.Where(name => name.UserName == User.Identity.Name).ToList().Count() > 0) ? db.AspNetUsers.Where(name => name.UserName == User.Identity.Name).ToList().First().Id : "";
+
+                if (thisUserId == "" || thisUserId == null)
+                    return Redirect(returnUrl);
+
+                //db.AspNetUserFavorites.Where(item => item.Item_idItem == itemId).Where(user => user.AspNetUsers_Id == thisUserId).ToList();
+
+                AspNetUserFavorite newFavoriteRow = new AspNetUserFavorite();
+                newFavoriteRow.AspNetUsers_Id = thisUserId;
+                newFavoriteRow.Item_idItem = (int)itemId;
+                newFavoriteRow.dateOfCreation = DateTime.Now;
+
+                db.AspNetUserFavorites.Add(newFavoriteRow);
+                db.SaveChanges();
+            }
+
+            return Redirect(returnUrl);
+        }
+
+        public ActionResult DeleteFromFavorites(int? idItem, string returnUrl)
+        {
+            if (idItem == null)
+                return Redirect(returnUrl);
+
+            List<Item> favoriteItems = new List<Item>();
+
+            if (Session["favoriteItems"] != null)
+                favoriteItems = (List<Item>)(Session["favoriteItems"]);
+
+            favoriteItems.Remove(favoriteItems.Where(id => id.idItem == idItem).First());
+
+            Session["favoriteItems"] = favoriteItems;
+
+            if (User.Identity.IsAuthenticated)
+            {
+                string thisUserId = (db.AspNetUsers.Where(name => name.UserName == User.Identity.Name).ToList().Count() > 0) ? db.AspNetUsers.Where(name => name.UserName == User.Identity.Name).ToList().First().Id : "";
+
+                if (thisUserId == "" || thisUserId == null)
+                    return Redirect(returnUrl);
+
+                AspNetUserFavorite favUserItem = (db.AspNetUserFavorites.Where(item => item.Item_idItem == idItem).Where(user => user.AspNetUsers_Id == thisUserId).ToList().Count() > 0) ? db.AspNetUserFavorites.Where(item => item.Item_idItem == idItem).Where(user => user.AspNetUsers_Id == thisUserId).ToList().First() : null;
+
+                if(favUserItem == null)
+                    return Redirect(returnUrl);
+
+                db.AspNetUserFavorites.Remove(favUserItem);
+                db.SaveChanges();
             }
 
             return Redirect(returnUrl);

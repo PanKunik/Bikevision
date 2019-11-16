@@ -19,11 +19,12 @@ namespace bikevision.Models
         {
             this.AspNetUserClaims = new HashSet<AspNetUserClaim>();
             this.AspNetUserLogins = new HashSet<AspNetUserLogin>();
-            this.Customers = new HashSet<Customer>();
             this.Employees = new HashSet<Employee>();
             this.AspNetRoles = new HashSet<AspNetRole>();
             this.NoteToServices = new HashSet<NoteToService>();
             this.AspNetUsersDiscountCodes = new HashSet<AspNetUsersDiscountCode>();
+            this.Customers = new HashSet<Customer>();
+            this.AspNetUserFavorites = new HashSet<AspNetUserFavorite>();
         }
     
         public string Id { get; set; }
@@ -44,8 +45,6 @@ namespace bikevision.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Customer> Customers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employee> Employees { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
@@ -53,5 +52,9 @@ namespace bikevision.Models
         public virtual ICollection<NoteToService> NoteToServices { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUsersDiscountCode> AspNetUsersDiscountCodes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Customer> Customers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AspNetUserFavorite> AspNetUserFavorites { get; set; }
     }
 }

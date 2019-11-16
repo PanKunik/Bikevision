@@ -71,6 +71,9 @@
         <EntityTypeShape EntityType="bikewayDBModel.SaleDetail" Width="1.5" PointX="13.5" PointY="12.625" />
         <AssociationConnector Association="bikewayDBModel.fk_SaleDetails_Item1" />
         <AssociationConnector Association="bikewayDBModel.fk_SaleDetails_Sale1" />
+        <EntityTypeShape EntityType="bikewayDBModel.AspNetUserFavorite" Width="1.5" PointX="6" PointY="9.5" />
+        <AssociationConnector Association="bikewayDBModel.FK_AspNetUserFavorite_AspNetUsers" />
+        <AssociationConnector Association="bikewayDBModel.FK_AspNetUserFavorite_Item" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

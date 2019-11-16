@@ -363,7 +363,28 @@ namespace bikevision.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    {
+                        string thisUserId = (db.AspNetUsers.Where(name => name.UserName == model.Email).ToList().Count() > 0) ? db.AspNetUsers.Where(name => name.UserName == model.Email).ToList().First().Id : "";
+
+                        if (thisUserId == "" || thisUserId == null)
+                            return RedirectToLocal(returnUrl);
+
+                        List<AspNetUserFavorite> favoriteItems = db.AspNetUserFavorites.Where(items => items.AspNetUsers_Id == thisUserId).ToList();
+
+                        if(favoriteItems.Count() <= 0)
+                            return RedirectToLocal(returnUrl);
+
+                        List<Item> favItems = new List<Item>();
+
+                        foreach(var it in favoriteItems)
+                        {
+                            favItems.Add(db.Items.Where(i => i.idItem == it.Item_idItem).ToList().First());
+                        }
+
+                        Session["favoriteItems"] = favItems;
+
+                        return RedirectToLocal(returnUrl);
+                    }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:

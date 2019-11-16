@@ -1,4 +1,5 @@
 ﻿@model bikevision.Models.Item
+@using bikevision.Models
 
 @{ 
     string classes = "shopping-card__cart-button btn btn-info";
@@ -6,6 +7,13 @@
     if (Model.availability <= 0)
     {
         classes += " disabled";
+    }
+
+    List<int> favoriteItemsIds = new List<int>();
+
+    if(Session["favoriteItems"] != null)
+    {
+        favoriteItemsIds = ((List<Item>)(Session["favoriteItems"])).Select(id => id.idItem).ToList();
     }
 }
 
@@ -33,7 +41,21 @@
 <div class="d-none d-lg-block shopping-card__hidden-content">
     @Html.Raw(Html.ActionLink("ToReplace", "OrderNow", "ShoppingCart", new { id = Model.idItem, quantity = 1, area = "" }, new { @class = classes }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-shopping-cart small-icon\"></span><span class=\"small-icon\"> Do koszyka </span>"))
     <div class="shopping-card__additional-buttons">
-        @Html.Raw(Html.ActionLink("ToReplace", "AddToFavorites", "Shop", new { itemId = Model.idItem, returnUrl = Request.Url }, new { @class = "shopping-card__additional-button btn btn-outline-primary px-0" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-heart text-size-very-small\"></span><span class=\"text-size-very-small\"> Ulubiony</span>"))
+        @if (favoriteItemsIds.Count() > 0)
+        {
+            if (favoriteItemsIds.Contains(Model.idItem))
+            {
+                @Html.Raw(Html.ActionLink("ToReplace", "DeleteFromFavorites", "Shop", new { idItem = Model.idItem, returnUrl = Request.Url }, new { @class = "shopping-card__additional-button btn btn-primary px-0" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-heart text-size-very-small\"></span><span class=\"text-size-very-small\"> Usuń</span>"))
+            }
+            else
+            {
+                @Html.Raw(Html.ActionLink("ToReplace", "AddToFavorites", "Shop", new { itemId = Model.idItem, returnUrl = Request.Url }, new { @class = "shopping-card__additional-button btn btn-outline-primary px-0" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-heart text-size-very-small\"></span><span class=\"text-size-very-small\"> Ulubiony</span>"))
+            }
+        }
+        else
+        {
+            @Html.Raw(Html.ActionLink("ToReplace", "AddToFavorites", "Shop", new { itemId = Model.idItem, returnUrl = Request.Url }, new { @class = "shopping-card__additional-button btn btn-outline-primary px-0" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-heart text-size-very-small\"></span><span class=\"text-size-very-small\"> Ulubiony</span>"))
+        }
         @*<button class="shopping-card__additional-button btn btn-outline-primary p-0 align-text-bottom"><span class="fas fa-heart text-size-very-small"></span><span class="text-size-very-small"> Ulubiony</span></button>*@
         <button class="shopping-card__additional-button btn btn-outline-primary p-0 align-text-bottom"><span class="fas fa-retweet text-size-very-small"></span><span class="text-size-very-small"> Porównaj</span></button>
     </div>

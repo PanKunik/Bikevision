@@ -56,5 +56,6 @@ namespace bikevision.Models
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<PermanentDiscount> PermanentDiscounts { get; set; }
         public virtual DbSet<SaleDetail> SaleDetails { get; set; }
+        public virtual DbSet<AspNetUserFavorite> AspNetUserFavorites { get; set; }
     }
 }

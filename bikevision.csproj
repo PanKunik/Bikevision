@@ -162,6 +162,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AspNetRolesController.cs" />
+    <Compile Include="Controllers\AspNetUserFavoritesController.cs" />
     <Compile Include="Controllers\AspNetUsersDiscountCodesController.cs" />
     <Compile Include="Controllers\DiscountCodeForItemsController.cs" />
     <Compile Include="Controllers\DiscountCodesController.cs" />
@@ -199,6 +200,9 @@
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetUserClaim.cs">
+      <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserFavorite.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetUserLogin.cs">
@@ -660,6 +664,11 @@
     <Content Include="Views\PermanentDiscounts\Details.cshtml" />
     <Content Include="Views\PermanentDiscounts\Edit.cshtml" />
     <Content Include="Views\PermanentDiscounts\Index.cshtml" />
+    <Content Include="Views\AspNetUserFavorites\Create.cshtml" />
+    <Content Include="Views\AspNetUserFavorites\Delete.cshtml" />
+    <Content Include="Views\AspNetUserFavorites\Details.cshtml" />
+    <Content Include="Views\AspNetUserFavorites\Edit.cshtml" />
+    <Content Include="Views\AspNetUserFavorites\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

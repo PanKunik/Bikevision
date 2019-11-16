@@ -21,6 +21,15 @@
           <Property Name="ClaimType" Type="nvarchar(max)" />
           <Property Name="ClaimValue" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="AspNetUserFavorite">
+          <Key>
+            <PropertyRef Name="AspNetUsers_Id" />
+            <PropertyRef Name="Item_idItem" />
+          </Key>
+          <Property Name="AspNetUsers_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Item_idItem" Type="int" Nullable="false" />
+          <Property Name="dateOfCreation" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="AspNetUserLogins">
           <Key>
             <PropertyRef Name="LoginProvider" />
@@ -303,6 +312,30 @@
           <Property Name="name" Type="nvarchar" MaxLength="80" Nullable="false" />
           <Property Name="cost" Type="decimal" Precision="10" Scale="2" Nullable="false" />
         </EntityType>
+        <Association Name="FK_AspNetUserFavorite_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="AspNetUserFavorite" Type="Self.AspNetUserFavorite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserFavorite">
+              <PropertyRef Name="AspNetUsers_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUserFavorite_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="AspNetUserFavorite" Type="Self.AspNetUserFavorite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="idItem" />
+            </Principal>
+            <Dependent Role="AspNetUserFavorite">
+              <PropertyRef Name="Item_idItem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_AspNetUsersDiscountCode_AspNetUsers">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="AspNetUsersDiscountCode" Type="Self.AspNetUsersDiscountCode" Multiplicity="*" />
@@ -746,6 +779,7 @@
         <EntityContainer Name="bikewayDBModelStoreContainer">
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserFavorite" EntityType="Self.AspNetUserFavorite" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
@@ -776,6 +810,14 @@
           <EntitySet Name="ServiceState" EntityType="Self.ServiceState" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ServiceType" EntityType="Self.ServiceType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shipping" EntityType="Self.Shipping" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AspNetUserFavorite_AspNetUsers" Association="Self.FK_AspNetUserFavorite_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserFavorite" EntitySet="AspNetUserFavorite" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUserFavorite_Item" Association="Self.FK_AspNetUserFavorite_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="AspNetUserFavorite" EntitySet="AspNetUserFavorite" />
+          </AssociationSet>
           <AssociationSet Name="FK_AspNetUsersDiscountCode_AspNetUsers" Association="Self.FK_AspNetUsersDiscountCode_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUsersDiscountCode" EntitySet="AspNetUsersDiscountCode" />
@@ -1097,6 +1139,15 @@
             <End Role="Sale" EntitySet="Sales" />
             <End Role="SaleDetail" EntitySet="SaleDetails" />
           </AssociationSet>
+          <EntitySet Name="AspNetUserFavorites" EntityType="bikewayDBModel.AspNetUserFavorite" />
+          <AssociationSet Name="FK_AspNetUserFavorite_AspNetUsers" Association="bikewayDBModel.FK_AspNetUserFavorite_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserFavorite" EntitySet="AspNetUserFavorites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUserFavorite_Item" Association="bikewayDBModel.FK_AspNetUserFavorite_Item">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="AspNetUserFavorite" EntitySet="AspNetUserFavorites" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -1150,6 +1201,7 @@
           <NavigationProperty Name="NoteToServices" Relationship="bikewayDBModel.FK_NoteToService_AspNetUsers" FromRole="AspNetUser" ToRole="NoteToService" />
           <NavigationProperty Name="AspNetUsersDiscountCodes" Relationship="bikewayDBModel.FK_AspNetUsersDiscountCode_AspNetUsers" FromRole="AspNetUser" ToRole="AspNetUsersDiscountCode" />
           <NavigationProperty Name="Customers" Relationship="bikewayDBModel.fk_Customer_AspNetUsers1" FromRole="AspNetUser" ToRole="Customer" />
+          <NavigationProperty Name="AspNetUserFavorites" Relationship="bikewayDBModel.FK_AspNetUserFavorite_AspNetUsers" FromRole="AspNetUser" ToRole="AspNetUserFavorite" />
         </EntityType>
         <EntityType Name="Brand">
           <Key>
@@ -1519,6 +1571,7 @@
           <NavigationProperty Name="Opinions" Relationship="bikewayDBModel.fk_Opinion_Item1" FromRole="Item" ToRole="Opinion" />
           <NavigationProperty Name="DiscountCodeForItems" Relationship="bikewayDBModel.FK_DiscountCodeForItem_Item" FromRole="Item" ToRole="DiscountCodeForItem" />
           <NavigationProperty Name="SaleDetails" Relationship="bikewayDBModel.fk_SaleDetails_Item1" FromRole="Item" ToRole="SaleDetail" />
+          <NavigationProperty Name="AspNetUserFavorites" Relationship="bikewayDBModel.FK_AspNetUserFavorite_Item" FromRole="Item" ToRole="AspNetUserFavorite" />
         </EntityType>
         <Association Name="fk_Item_Brand1">
           <End Type="bikewayDBModel.Brand" Role="Brand" Multiplicity="1" />
@@ -1874,6 +1927,41 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="AspNetUserFavorite">
+          <Key>
+            <PropertyRef Name="AspNetUsers_Id" />
+            <PropertyRef Name="Item_idItem" />
+          </Key>
+          <Property Name="AspNetUsers_Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Item_idItem" Type="Int32" Nullable="false" />
+          <Property Name="dateOfCreation" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="AspNetUser" Relationship="bikewayDBModel.FK_AspNetUserFavorite_AspNetUsers" FromRole="AspNetUserFavorite" ToRole="AspNetUser" />
+          <NavigationProperty Name="Item" Relationship="bikewayDBModel.FK_AspNetUserFavorite_Item" FromRole="AspNetUserFavorite" ToRole="Item" />
+        </EntityType>
+        <Association Name="FK_AspNetUserFavorite_AspNetUsers">
+          <End Type="bikewayDBModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="bikewayDBModel.AspNetUserFavorite" Role="AspNetUserFavorite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserFavorite">
+              <PropertyRef Name="AspNetUsers_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUserFavorite_Item">
+          <End Type="bikewayDBModel.Item" Role="Item" Multiplicity="1" />
+          <End Type="bikewayDBModel.AspNetUserFavorite" Role="AspNetUserFavorite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="idItem" />
+            </Principal>
+            <Dependent Role="AspNetUserFavorite">
+              <PropertyRef Name="Item_idItem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2197,6 +2285,15 @@
                 <ScalarProperty Name="Item_idItem" ColumnName="Item_idItem" />
                 <ScalarProperty Name="Sale_idSale" ColumnName="Sale_idSale" />
                 <ScalarProperty Name="value" ColumnName="value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserFavorites">
+            <EntityTypeMapping TypeName="bikewayDBModel.AspNetUserFavorite">
+              <MappingFragment StoreEntitySet="AspNetUserFavorite">
+                <ScalarProperty Name="dateOfCreation" ColumnName="dateOfCreation" />
+                <ScalarProperty Name="Item_idItem" ColumnName="Item_idItem" />
+                <ScalarProperty Name="AspNetUsers_Id" ColumnName="AspNetUsers_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

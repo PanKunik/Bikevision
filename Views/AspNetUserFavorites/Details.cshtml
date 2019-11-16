@@ -1,0 +1,43 @@
+﻿@model bikevision.Models.AspNetUserFavorite
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_ManagementLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AspNetUserFavorite</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.dateOfCreation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateOfCreation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUser.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Item.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
