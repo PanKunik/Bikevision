@@ -9,6 +9,7 @@
     int favoriteItemsCount = 0;
     decimal sumOfOrderInCart = 0;
     int countOfItems = 0;
+    int comparationItemCount = 0;
 
     if (Session["lastViewedItems"] != null)
     {
@@ -18,6 +19,11 @@
     if (Session["favoriteItems"] != null)
     {
         favoriteItemsCount = ((List<Item>)(Session["favoriteItems"])).Count();
+    }
+
+    if (Session["comparation"] != null)
+    {
+        comparationItemCount = ((List<Item>)(Session["comparation"])).Count();
     }
 
     if (Session["Cart"] != null)
@@ -59,12 +65,15 @@
                 }
             </div>
             <div class="order-3 col-12 col-lg-4 mt-4 mt-lg-0">
-                <ul class="nav justify-content-between justify-content-lg-end">
+                <ul class="nav justify-content-around justify-content-lg-end">
                     <li class="nav-item">
                         <a href="@Url.Action("Index", "ShoppingCart")" class="nav-link p-1 text-light"><span class="align-text-bottom">@(String.Format("({0}) {1:F2} zł ", countOfItems, sumOfOrderInCart))</span><i class="fas fa-shopping-cart pr-2 small-icon"></i></a>
                     </li>
                     <li class="nav-item">
                         <a href="@Url.Action("Favorites", "Shop")" class="nav-link p-1 text-light"><span class="align-text-bottom">@favoriteItemsCount</span><i class="fas fa-heart px-2 small-icon"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Comparation", "Shop")" class="nav-link p-1 text-light"><span class="align-text-bottom">@comparationItemCount</span><i class="fas fa-retweet px-2 small-icon"></i></a>
                     </li>
                     <li class="nav-item">
                         <a href="@Url.Action("Index", "Account")" class="nav-link p-1 text-light"><i class="fas fa-user-alt px-2 pl-lg-2 px-lg-0 small-icon"></i></a>

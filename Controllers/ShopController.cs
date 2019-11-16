@@ -390,7 +390,7 @@ namespace bikevision.Controllers
         public ActionResult DeleteFromFavorites(int? idItem, string returnUrl)
         {
             if (idItem == null)
-                return Redirect(returnUrl);
+                return RedirectToLocal(returnUrl);
 
             List<Item> favoriteItems = new List<Item>();
 
@@ -406,21 +406,78 @@ namespace bikevision.Controllers
                 string thisUserId = (db.AspNetUsers.Where(name => name.UserName == User.Identity.Name).ToList().Count() > 0) ? db.AspNetUsers.Where(name => name.UserName == User.Identity.Name).ToList().First().Id : "";
 
                 if (thisUserId == "" || thisUserId == null)
-                    return Redirect(returnUrl);
+                    return RedirectToLocal(returnUrl);
 
                 AspNetUserFavorite favUserItem = (db.AspNetUserFavorites.Where(item => item.Item_idItem == idItem).Where(user => user.AspNetUsers_Id == thisUserId).ToList().Count() > 0) ? db.AspNetUserFavorites.Where(item => item.Item_idItem == idItem).Where(user => user.AspNetUsers_Id == thisUserId).ToList().First() : null;
 
                 if(favUserItem == null)
-                    return Redirect(returnUrl);
+                    return RedirectToLocal(returnUrl);
 
                 db.AspNetUserFavorites.Remove(favUserItem);
                 db.SaveChanges();
             }
 
-            return Redirect(returnUrl);
+            return RedirectToLocal(returnUrl);
+        }
+
+        public ActionResult AddToComparation(int? itemId, string returnUrl)
+        {
+            if (itemId == null)
+                return RedirectToLocal(returnUrl);
+
+            Item newItem = (db.Items.Where(id => id.idItem == itemId) != null) ? db.Items.Where(id => id.idItem == itemId).ToList().First(): null;
+
+            if (newItem == null)
+                return RedirectToLocal(returnUrl);
+
+            List<Item> itemsInComparation = new List<Item>();
+
+            if (Session["comparation"] != null)
+            {
+                itemsInComparation = (List<Item>)(Session["comparation"]);
+
+                if (itemsInComparation.Count() >= 3)
+                {
+                    return RedirectToLocal(returnUrl);
+                }
+            }
+
+            itemsInComparation.Add(newItem);
+            Session["comparation"] = itemsInComparation;
+
+            return RedirectToLocal(returnUrl);
+        }
+
+        public ActionResult RemoveFromComparation(int? itemId, string returnUrl)
+        {
+            if (itemId == null)
+                return RedirectToLocal(returnUrl);
+
+            Item newItem = (db.Items.Where(id => id.idItem == itemId) != null) ? db.Items.Where(id => id.idItem == itemId).ToList().First() : null;
+
+            if (newItem == null)
+                return RedirectToLocal(returnUrl);
+
+            List<Item> itemsInComparation = new List<Item>();
+
+            if (Session["comparation"] != null)
+            {
+                itemsInComparation = (List<Item>)(Session["comparation"]);
+            }
+
+            itemsInComparation.Remove(itemsInComparation.Where(id => id.idItem == itemId).First());
+
+            Session["comparation"] = (itemsInComparation.Count() > 0) ? itemsInComparation : null;
+
+            return RedirectToLocal(returnUrl);
         }
 
         public ActionResult Favorites()
+        {
+            return View();
+        }
+
+        public ActionResult Comparation()
         {
             return View();
         }

@@ -669,6 +669,7 @@
     <Content Include="Views\AspNetUserFavorites\Details.cshtml" />
     <Content Include="Views\AspNetUserFavorites\Edit.cshtml" />
     <Content Include="Views\AspNetUserFavorites\Index.cshtml" />
+    <Content Include="Views\Shop\Comparation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -15,6 +15,13 @@
     {
         favoriteItemsIds = ((List<Item>)(Session["favoriteItems"])).Select(id => id.idItem).ToList();
     }
+
+    List<int> compareItemsIds = new List<int>();
+
+    if(Session["comparation"] != null)
+    {
+        compareItemsIds = ((List<Item>)(Session["comparation"])).Select(id => id.idItem).ToList();
+    }
 }
 
 <div class="shopping-card__main-content">
@@ -56,7 +63,21 @@
         {
             @Html.Raw(Html.ActionLink("ToReplace", "AddToFavorites", "Shop", new { itemId = Model.idItem, returnUrl = Request.Url }, new { @class = "shopping-card__additional-button btn btn-outline-primary px-0" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-heart text-size-very-small\"></span><span class=\"text-size-very-small\"> Ulubiony</span>"))
         }
-        @*<button class="shopping-card__additional-button btn btn-outline-primary p-0 align-text-bottom"><span class="fas fa-heart text-size-very-small"></span><span class="text-size-very-small"> Ulubiony</span></button>*@
-        <button class="shopping-card__additional-button btn btn-outline-primary p-0 align-text-bottom"><span class="fas fa-retweet text-size-very-small"></span><span class="text-size-very-small"> Porównaj</span></button>
+
+        @if (compareItemsIds.Count() > 0)
+        {
+            if (compareItemsIds.Contains(Model.idItem))
+            {
+                @Html.Raw(Html.ActionLink("ToReplace", "RemoveFromComparation", "Shop", new { itemId = Model.idItem, returnUrl = Request.Url }, new { @class = "shopping-card__additional-button btn btn-primary px-0" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-retweet text-size-very-small\"></span><span class=\"text-size-very-small\"> Usuń</span>"))
+            }
+            else
+            {
+                @Html.Raw(Html.ActionLink("ToReplace", "AddToComparation", "Shop", new { itemId = Model.idItem, returnUrl = Request.Url }, new { @class = "shopping-card__additional-button btn btn-outline-primary px-0" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-retweet text-size-very-small\"></span><span class=\"text-size-very-small\"> Porównaj</span>"))
+            }
+        }
+        else
+        {
+            @Html.Raw(Html.ActionLink("ToReplace", "AddToComparation", "Shop", new { itemId = Model.idItem, returnUrl = Request.Url }, new { @class = "shopping-card__additional-button btn btn-outline-primary px-0" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-retweet text-size-very-small\"></span><span class=\"text-size-very-small\"> Porównaj</span>"))
+        }
     </div>
 </div>
