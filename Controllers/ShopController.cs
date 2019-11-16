@@ -487,32 +487,6 @@ namespace bikevision.Controllers
             return View();
         }
 
-        //public ActionResult Comparation()
-        //{
-        //    ComparationViewModel itemsInComparation = new ComparationViewModel();
-
-        //    List<Item> itemsToCompare = new List<Item>();
-
-        //    if (Session["comparation"] == null)
-        //        return View(itemsInComparation);
-
-        //    itemsToCompare = (List<Item>)(Session["comparation"]);
-
-        //    if (itemsToCompare.Count() <= 0)
-        //        return View(itemsInComparation);
-            
-        //    itemsInComparation.itemIds = new List<int>();
-        //    itemsInComparation.itemFeaturesToCompare = new List<FeatureValueOfItem>();
-
-        //    foreach (var it in itemsToCompare)
-        //    {
-        //        itemsInComparation.itemIds.Add(it.idItem);
-        //        itemsInComparation.itemFeaturesToCompare = itemsInComparation.itemFeaturesToCompare.Concat(db.FeatureValueOfItems.Where(itemId => itemId.Item_idItem1 == it.idItem)).ToList();
-        //    }
-
-        //    return View(itemsInComparation);
-        //}
-
         public ActionResult Comparation()
         {
             List<Item> itemsToCompare = new List<Item>();
@@ -542,7 +516,6 @@ namespace bikevision.Controllers
 
             foreach(var oneItem in itemsToCompare)
             { 
-
                 ComparationViewModel newComparationItem = new ComparationViewModel();
 
                 newComparationItem.ComparationItem = oneItem;
@@ -558,9 +531,7 @@ namespace bikevision.Controllers
 
                 comparation.Add(newComparationItem);
             }
-
-            //comparation.itemsToCompare = itemsToCompare;
-
+            
             return View(comparation);
         }
     }

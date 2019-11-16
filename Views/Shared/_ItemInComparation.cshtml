@@ -1,10 +1,46 @@
 ﻿@model bikevision.Models.ComparationViewModel
+@{ 
+    string classes = "btn btn-info";
+    
+    if (Model.ComparationItem.availability <= 0)
+    {
+        classes += " disabled";
+    }
+}
+    <article class="col-3 p-0 m-0 text-center mx-1">
+        <a href="@Url.Action("Product", "Shop", new { id = Model.ComparationItem.idItem })">
+            <img src="~/Content/Images/Shop/siodelko_1.jpg" class="text-center w-50" />
+        </a>
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th colspan="2" class="text-center" scope="col">
+                            @Model.ComparationItem.name
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="text-dark">
+                    @foreach (var feature in Model.FeaturesList)
+                    {
+                        <tr>
+                            <td scope="row" class="text-left">
+                                @feature.Item1
+                            </td>
+                            <td class="text-left">
+                                @if (feature.Item2 == null || feature.Item2 == "")
+                                {
+                                    @String.Format("-");
+                                }
+                                else
+                                {
+                                    @feature.Item2
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            @Html.Raw(Html.ActionLink("ToReplace", "OrderNow", "ShoppingCart", new { id = Model.ComparationItem.idItem, quantity = 1, area = "" }, new { @class = classes }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-shopping-cart text-size-very-small\"></span><span class=\"text-size-very-small\"> Do koszyka </span>"))
 
-    <article class="col-4 p-0 m-0">
-        <h4>@Model.ComparationItem.name</h4>
-        <hr />
-        @foreach (var feature in Model.FeaturesList)
-        {
-            <p>@feature.Item1 - @feature.Item2</p>
-        }
-    </article>
+            @Html.Raw(Html.ActionLink("ToReplace", "RemoveFromComparation", "Shop", new { itemId = Model.ComparationItem.idItem, returnUrl = Request.Url }, new { @class = "btn btn-primary" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-retweet text-size-very-small\"></span><span class=\"text-size-very-small\"> Usuń</span>"))
+</article>

@@ -28,18 +28,10 @@
 }
 
 <div class="container-fluid bg-semi-light m-0 p-0">
-    <div class="container container--big d-flex flex-column">
+    <div class="container container--big py-3 d-flex flex-column">
         <!-- content <-- own BEM class -->
-        <nav class="py-2" aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Shop</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Kategoria</li>
-            </ol>
-        </nav>
-
         <div class="d-flex flex-row justify-content-between">
-            <h3 class="align-self-baseline">
+            <p class="align-self-baseline h4">
                 @if (ViewBag.keyword == "" || ViewBag.keyword == null)
                 {
                     <span>Aktualna kategoria</span>
@@ -48,8 +40,8 @@
                 {
                     <span>Produkty zawierające frazę &ldquo;@ViewBag.keyword&rdquo;</span>
                 }
-            </h3>
-            <h5 class="ml-2 align-self-baseline">Liczba produktow</h5>
+            </p>
+            <p class="ml-2 h5 align-self-baseline">@if (Model != null) { @String.Format("Liczba produktów: {0}", Model.Count()); }</p>
         </div>
 
         <div class="d-flex flex-row my-1 overlay">
@@ -200,10 +192,10 @@
             </div>
 
             <div class="d-flex flex-column right-column">
-                <div class="d-flex flex-row justify-content-between">
-                    <div class="btn-group ml-1" role="group" aria-label="Basic example">
-                        <button type="button" id="gridButton" class="btn btn-primary active"><i class="fas fa-th-large mr-2"></i>Siatka</button>
-                        <button type="button" id="listButton" class="btn btn-primary"><i class="fas fa-list mr-2"></i>Lista</button>
+                <div class="d-flex flex-row justify-content-between flex-wrap">
+                    <div class="btn-group ml-1" role="group">
+                        <button type="button" id="gridButton" class="btn btn-sm btn-primary active text-size-very-small"><i class="fas fa-th-large mr-2"></i>Siatka</button>
+                        <button type="button" id="listButton" class="btn btn-sm btn-primary text-size-very-small"><i class="fas fa-list mr-2"></i>Lista</button>
                     </div>
                     <div class="p-1">
                         @using (Html.BeginForm("ProductList", "Shop", FormMethod.Post))

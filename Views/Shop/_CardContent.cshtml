@@ -3,10 +3,12 @@
 
 @{ 
     string classes = "shopping-card__cart-button btn btn-info";
+    string classesResponsive = "btn btn-outline-info col-4 m-0";
 
     if (Model.availability <= 0)
     {
         classes += " disabled";
+        classesResponsive += " disabled";
     }
 
     List<int> favoriteItemsIds = new List<int>();
@@ -33,8 +35,8 @@
     }
 
     <a href="@Url.Action("Product", "Shop", new { id = Model.idItem })" class="wrapRow"><img class="shopping-card__image" src="~/Content/Images/Shop/siodelko_1.jpg" /></a>
-    <h1 class="shopping-card__subtitle mb-0 wrapColumn wrapRow"> @Html.DisplayFor(modelItem => Model.Category.category1) </h1>
-    <a href="@Url.Action("Product", "Shop", new { id = Model.idItem })" class="wrapColumn wrapRow"><h3 class="shopping-card__title mb-0">@Html.DisplayFor(modelItem => Model.name)</h3></a>
+    <p class="shopping-card__subtitle mb-0 wrapColumn wrapRow h5"> @Html.DisplayFor(modelItem => Model.Category.category1) </p>
+    <a href="@Url.Action("Product", "Shop", new { id = Model.idItem })" class="wrapColumn wrapRow"><p class="shopping-card__title mb-0 h4">@Html.DisplayFor(modelItem => Model.name)</p></a>
     <hr class="shopping-card__underline wrapColumn wrapRow" />
     <div class="shopping-card__footer wrapColumn wrapRow">
         <h3 class="shopping-card__price">@String.Format("{0:F2} zł", Model.price - ((Model.price * Model.discount) / 100))</h3>
@@ -80,4 +82,38 @@
             @Html.Raw(Html.ActionLink("ToReplace", "AddToComparation", "Shop", new { itemId = Model.idItem, returnUrl = Request.Url }, new { @class = "shopping-card__additional-button btn btn-outline-primary px-0" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-retweet text-size-very-small\"></span><span class=\"text-size-very-small\"> Porównaj</span>"))
         }
     </div>
+</div>
+<div class="d-block d-lg-none p-0">
+    @Html.Raw(Html.ActionLink("ToReplace", "OrderNow", "ShoppingCart", new { id = Model.idItem, quantity = 1, area = "" }, new { @class = classesResponsive }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-shopping-cart small-icon\"></span>"))
+    @if (favoriteItemsIds.Count() > 0)
+    {
+        if (favoriteItemsIds.Contains(Model.idItem))
+        {
+            @Html.Raw(Html.ActionLink("ToReplace", "DeleteFromFavorites", "Shop", new { idItem = Model.idItem, returnUrl = Request.Url }, new { @class = "btn btn-primary col-4 m-0" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-heart text-size-very-small\"></span>"))
+        }
+        else
+        {
+            @Html.Raw(Html.ActionLink("ToReplace", "AddToFavorites", "Shop", new { itemId = Model.idItem, returnUrl = Request.Url }, new { @class = "btn btn-outline-primary col-4 m-0" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-heart text-size-very-small\"></span>"))
+        }
+    }
+    else
+    {
+        @Html.Raw(Html.ActionLink("ToReplace", "AddToFavorites", "Shop", new { itemId = Model.idItem, returnUrl = Request.Url }, new { @class = "btn btn-outline-primary col-4 m-0" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-heart text-size-very-small\"></span>"))
+    }
+
+    @if (compareItemsIds.Count() > 0)
+    {
+        if (compareItemsIds.Contains(Model.idItem))
+        {
+            @Html.Raw(Html.ActionLink("ToReplace", "RemoveFromComparation", "Shop", new { itemId = Model.idItem, returnUrl = Request.Url }, new { @class = "btn btn-primary col-4 m-0" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-retweet text-size-very-small\"></span>"))
+        }
+        else
+        {
+            @Html.Raw(Html.ActionLink("ToReplace", "AddToComparation", "Shop", new { itemId = Model.idItem, returnUrl = Request.Url }, new { @class = "btn btn-outline-primary col-4 m-0" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-retweet text-size-very-small\"></span>"))
+        }
+    }
+    else
+    {
+        @Html.Raw(Html.ActionLink("ToReplace", "AddToComparation", "Shop", new { itemId = Model.idItem, returnUrl = Request.Url }, new { @class = "btn btn-outline-primary col-4 m-0" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-retweet text-size-very-small\"></span>"))
+    }
 </div>

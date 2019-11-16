@@ -4,10 +4,6 @@
         <div class="shopping-card__content shopping-card__content--wider">
             <div class="shopping-card__main-column">
                 @Html.Partial("_CardContent", (bikevision.Models.Item)Model)
-                
-                <button class="d-lg-none d-block btn btn-sm btn-outline-primary border-0 shopping-card__hidden-button">
-                    Wybierz inny
-                </button>
             </div>
             <div class="d-none d-lg-block shopping-card__gallery-column">
                 <a href="@Url.Action("Product", "Shop")">
