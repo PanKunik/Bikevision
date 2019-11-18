@@ -26,7 +26,7 @@
                             <td scope="row" class="text-left">
                                 @feature.Item1
                             </td>
-                            <td class="text-left">
+                            <td name="comparation_@feature.Item1.ToString().Replace(" ","")" class="text-left">
                                 @if (feature.Item2 == null || feature.Item2 == "")
                                 {
                                     @String.Format("-");

@@ -4,23 +4,27 @@
     Layout = "~/Views/Shared/_ShopLayout.cshtml";
 }
 
-    <section class="container py-2 my-2 flex-fill">
-        <h2> Porównanie przedmiotów </h2>
-        <hr />
+<section class="container py-2 my-2 flex-fill">
+    <h2> Porównanie przedmiotów </h2>
+    <hr />
 
-        @if (Model != null)
-        {
-            <section class="row m-0 p-0 justify-content-center">
-                @foreach (var item in Model)
-                {
-                    @Html.Partial("_ItemInComparation", item);
-                }
-            </section>
-        }
-        else
-        {
-            <p class="h4"> Nie dodałeś jeszcze żadnych przedmiotów do porównania. </p>
-        }
+    @if (Model != null)
+    {
+        <section class="row m-0 p-0 justify-content-center">
+            @foreach (var item in Model)
+            {
+                @Html.Partial("_ItemInComparation", item);
+            }
+        </section>
+    }
+    else
+    {
+        <p class="h4"> Nie dodałeś jeszcze żadnych przedmiotów do porównania. </p>
+    }
 
-    </section>
+</section>
 
+@section scripts
+{
+    @Scripts.Render("~/Scripts/Shop/comparation-differences.js")
+}

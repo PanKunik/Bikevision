@@ -364,6 +364,7 @@
     <Content Include="Content\Images\Service\service_07 %28cropped%29.jpg" />
     <Content Include="Content\Images\Service\service_07.jpg" />
     <Content Include="Content\Images\Service\service_08.jpg" />
+    <Content Include="Scripts\Shop\comparation-differences.js" />
     <Content Include="Content\Images\Shop\promotion.png" />
     <Content Include="Content\Images\Shop\shop_04.jpg" />
     <Content Include="Content\Images\Shop\shop_06.jpg" />
