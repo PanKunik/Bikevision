@@ -355,6 +355,9 @@
     <Content Include="Content\Images\About\about_6.jpg" />
     <Content Include="Content\Images\About\about_7.jpg" />
     <Content Include="Content\Images\bikevision.png" />
+    <Content Include="Content\Images\Products\1\1_black-green\1.jpg" />
+    <Content Include="Content\Images\Products\1\1_black\1.jpg" />
+    <Content Include="Content\Images\Products\1\1_red\1.jpg" />
     <Content Include="Content\Images\Service\service_01.jpg" />
     <Content Include="Content\Images\Service\service_02.jpg" />
     <Content Include="Content\Images\Service\service_03.jpg" />
@@ -676,6 +679,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\Products\2\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

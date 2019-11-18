@@ -519,12 +519,12 @@ namespace bikevision.Controllers
                 ComparationViewModel newComparationItem = new ComparationViewModel();
 
                 newComparationItem.ComparationItem = oneItem;
-                newComparationItem.FeaturesList = new List<Tuple<string, string>>();
+                newComparationItem.FeaturesList = new List<Tuple<string, List<string>>>();
 
                 foreach(var feature in featuresList)
                 {
-                    string featureValue = (db.FeatureValueOfItems.Where(item => item.Item_idItem1 == oneItem.idItem).Where(feat => feat.Feature.feature1 == feature).Count() > 0) ? db.FeatureValueOfItems.Where(item => item.Item_idItem1 == oneItem.idItem).Where(feat => feat.Feature.feature1 == feature).First().FeatureValue.featureValue1 : "" ;
-                    Tuple<string, string> newFeatureRow = new Tuple<string, string>(feature, featureValue);
+                    List<string> featureValue = (db.FeatureValueOfItems.Where(item => item.Item_idItem1 == oneItem.idItem).Where(feat => feat.Feature.feature1 == feature).Count() > 0) ? db.FeatureValueOfItems.Where(item => item.Item_idItem1 == oneItem.idItem).Where(feat => feat.Feature.feature1 == feature).Select(val => val.FeatureValue.featureValue1).ToList() : null ;
+                    Tuple<string, List<string>> newFeatureRow = new Tuple<string, List<string>>(feature, featureValue);
 
                     newComparationItem.FeaturesList.Add(newFeatureRow);
                 }

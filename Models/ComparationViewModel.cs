@@ -9,6 +9,6 @@ namespace bikevision.Models
     {
 
         public Item ComparationItem { get; set; }
-        public List<Tuple<string,string>> FeaturesList { get; set; }
+        public List<Tuple<string,List<string>>> FeaturesList { get; set; }
     }
 }
