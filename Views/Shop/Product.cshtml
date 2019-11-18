@@ -50,7 +50,14 @@
                 <div class="d-flex flex-row flex-wrap">
                     @foreach (var img in images)
                     {
-                        <img src="@img" class="product__sub-image product__sub-image--active" alt="subimg" />
+                        if (img == images.First())
+                        {
+                            <img src="@img" class="product__sub-image product__sub-image--active" alt="subimg" />
+                        }
+                        else
+                        {
+                            <img src="@img" class="product__sub-image" alt="subimg" />
+                        }
                     }
                     @*<img src="~/Content/Images/Shop/siodelko_2.jpg" class="product__sub-image" alt="subimg" />*@
                 </div>

@@ -7,7 +7,7 @@
 
     List<string> images = new List<string>();
 
-    foreach(var path in directories)
+    foreach (var path in directories)
     {
         string[] fil = Directory.GetFiles(path + "\\");
 
@@ -15,28 +15,29 @@
         {
             if (!f.Contains("main"))
             {
-                images = images.Append(f.Replace(Server.MapPath("~/Content/"),"../Content/")).ToList();
+                images = images.Append(f.Replace(Server.MapPath("~/Content/"), "../Content/")).ToList();
             }
         }
     }
 }
 
-<div class="shopping-card">
-    <div class="shopping-card__content shopping-card__content--wider">
-        <div class="shopping-card__main-column">
-            @Html.Partial("_CardContent", (bikevision.Models.Item)Model)
-        </div>
 
-        @if (directories.Length > 0)
-        {
-            <div class="d-none d-lg-block shopping-card__gallery-column">
-                @foreach (var path in images)
-                {
-                    <a href="@Url.Action("Product", "Shop", new { id = Model.idItem })">
-                        <img class="shopping-card__gallery-image" src="@path" />
-                    </a>
-                }
+    <div class="shopping-card">
+        <div class="shopping-card__content @if (directories.Length > 1) { @String.Format("shopping-card__content--wider"); }">
+            <div class="shopping-card__main-column">
+                @Html.Partial("_CardContent", (bikevision.Models.Item)Model)
             </div>
-        }
+
+            @if (directories.Length > 1)
+            {
+                <div class="d-none d-lg-block shopping-card__gallery-column">
+                    @foreach (var path in images)
+                    {
+                        <a href="@Url.Action("Product", "Shop", new { id = Model.idItem })">
+                            <img class="shopping-card__gallery-image" src="@path" />
+                        </a>
+                    }
+                </div>
+            }
+        </div>
     </div>
-</div>
