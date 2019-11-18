@@ -1,15 +1,36 @@
 ﻿@model bikevision.Models.ProductDetailsViewModel
+
+@using System;
+@using System.IO;
+
 @{
+
     ViewBag.Title = Model.product.name;
     Layout = "~/Views/Shared/_ShopLayout.cshtml";
-    
+
     string classes = "btn btn-primary";
-    
+
     if (Model.product.availability <= 0)
     {
         classes += " disabled";
     }
 
+    string[] directories = Directory.GetDirectories(Server.MapPath("~/Content/Images/Products/" + Model.product.idItem + "/"));
+
+    List<string> images = new List<string>();
+
+    foreach(var path in directories)
+    {
+        string[] fil = Directory.GetFiles(path + "/");
+
+        foreach (var f in fil)
+        {
+            if (f.Contains("main"))
+            {
+                images = images.Append(f.Replace(Server.MapPath("~/Content/"),"../../Content/")).ToList();
+            }
+        }
+    }
 }
 <nav class="container" aria-label="breadcrumb">
     <ol class="breadcrumb px-0">
@@ -24,11 +45,14 @@
         <h2> @Model.product.name </h2>
         <div class="d-flex flex-lg-row flex-column">
             <div class="d-flex flex-column product-left-column">
-                <img src="~/Content/Images/Shop/siodelko_1.jpg" class="product__main-image" alt="mainimg" />
+                <img src="@images.First()" class="product__main-image" alt="mainimg" />
 
                 <div class="d-flex flex-row flex-wrap">
-                    <img src="~/Content/Images/Shop/siodelko_1.jpg" class="product__sub-image product__sub-image--active" alt="subimg" />
-                    <img src="~/Content/Images/Shop/siodelko_2.jpg" class="product__sub-image" alt="subimg" />
+                    @foreach (var img in images)
+                    {
+                        <img src="@img" class="product__sub-image product__sub-image--active" alt="subimg" />
+                    }
+                    @*<img src="~/Content/Images/Shop/siodelko_2.jpg" class="product__sub-image" alt="subimg" />*@
                 </div>
             </div>
             <div class="d-flex flex-column fill-even product-right-column">
@@ -62,34 +86,34 @@
                             <span class="product__option">@*@Model.FeatureValueOfItems.ElementAt(0).Feature.feature1*@:</span>
                         </div>
                         @*<div class="d-flex flex-column mr-3">
-                        <span class="product__option"> Rozmiar: </span>
-                    </div>
+                                    <span class="product__option"> Rozmiar: </span>
+                                </div>
 
-                    <div class="d-flex flex-row mr-1 flex-wrap">
-                        <div class="product__option-choice-size product__option-choice-size--active">28.5cm</div>
-                        <div class="product__option-choice-size">30cm</div>
-                        <div class="product__option-choice-size">33cm</div>
-                        <div class="product__option-choice-size">35cm</div>
-                        <div class="product__option-choice-size">38cm</div>
-                        <div class="product__option-choice-size">40cm</div>
-                        <div class="product__option-choice-size">42cm</div>
-                    </div>
-                </div>
+                                <div class="d-flex flex-row mr-1 flex-wrap">
+                                    <div class="product__option-choice-size product__option-choice-size--active">28.5cm</div>
+                                    <div class="product__option-choice-size">30cm</div>
+                                    <div class="product__option-choice-size">33cm</div>
+                                    <div class="product__option-choice-size">35cm</div>
+                                    <div class="product__option-choice-size">38cm</div>
+                                    <div class="product__option-choice-size">40cm</div>
+                                    <div class="product__option-choice-size">42cm</div>
+                                </div>
+                            </div>
 
-                <div class="d-flex flex-row">
-                    <div class="d-flex flex-column mr-3">
-                        <span class="product__option"> Długość: </span>
-                    </div>
+                            <div class="d-flex flex-row">
+                                <div class="d-flex flex-column mr-3">
+                                    <span class="product__option"> Długość: </span>
+                                </div>
 
-                    <div class="d-flex flex-row mr-1 flex-wrap">
-                        <div class="product__option-choice-size product__option-choice-size--active">73.5cm</div>
-                        <div class="product__option-choice-size">80cm</div>
-                        <div class="product__option-choice-size">85cm</div>
-                        <div class="product__option-choice-size">90cm</div>
-                        <div class="product__option-choice-size">100cm</div>
-                        <div class="product__option-choice-size">110cm</div>
-                        <div class="product__option-choice-size">120cm</div>
-                    </div>*@
+                                <div class="d-flex flex-row mr-1 flex-wrap">
+                                    <div class="product__option-choice-size product__option-choice-size--active">73.5cm</div>
+                                    <div class="product__option-choice-size">80cm</div>
+                                    <div class="product__option-choice-size">85cm</div>
+                                    <div class="product__option-choice-size">90cm</div>
+                                    <div class="product__option-choice-size">100cm</div>
+                                    <div class="product__option-choice-size">110cm</div>
+                                    <div class="product__option-choice-size">120cm</div>
+                                </div>*@
                     </div>
 
                     <hr class="w-100 text-primary" />
@@ -140,11 +164,11 @@
                         <div class="d-flex flex-row fill-even mb-3 justify-content-between align-self-auto align-self-md-end align-self-lg-auto">
                             <p class="product__option">Cena: <span class="product__final-price">@String.Format("{0:F2} zł", Model.product.price)</span></p>
                             @*<form class="">*@
-                                <label for="compare"><input id="compare" value="true" type="checkbox" /> Porównaj</label>
+                            <label for="compare"><input id="compare" value="true" type="checkbox" /> Porównaj</label>
                             @*</form>*@
                         </div>
                     </div>
-                    <input type="submit" value="Do koszyka" @if (Model.product.availability <= 0) { @String.Format(" disabled "); } class="btn btn-primary @if (Model.product.availability <= 0) { @String.Format(" disabled"); }"/>
+                    <input type="submit" value="Do koszyka" @if (Model.product.availability <= 0) { @String.Format(" disabled ") ; } class="btn btn-primary @if (Model.product.availability <= 0) { @String.Format(" disabled"); }" />
                 }
             </div>
         </div>

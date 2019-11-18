@@ -5,6 +5,8 @@
     string classes = "shopping-card__cart-button btn btn-info";
     string classesResponsive = "btn btn-outline-info col-4 m-0";
 
+    string imgPath = "../Content/Images/Products/" + Model.idItem + "/" + Model.idItem + "_main/1.jpg";
+
     if (Model.availability <= 0)
     {
         classes += " disabled";
@@ -34,7 +36,9 @@
         </a>
     }
 
-    <a href="@Url.Action("Product", "Shop", new { id = Model.idItem })" class="wrapRow"><img class="shopping-card__image" src="~/Content/Images/Shop/siodelko_1.jpg" /></a>
+    <a href="@Url.Action("Product", "Shop", new { id = Model.idItem })" class="wrapRow">
+    <img class="shopping-card__image" runat="server" src="@imgPath" />
+    </a>
     <p class="shopping-card__subtitle mb-0 wrapColumn wrapRow h5"> @Html.DisplayFor(modelItem => Model.Category.category1) </p>
     <a href="@Url.Action("Product", "Shop", new { id = Model.idItem })" class="wrapColumn wrapRow"><p class="shopping-card__title mb-0 h4">@Html.DisplayFor(modelItem => Model.name)</p></a>
     <hr class="shopping-card__underline wrapColumn wrapRow" />

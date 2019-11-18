@@ -1,20 +1,42 @@
 ﻿@model bikevision.Models.Item
+@using System;
+@using System.IO;
 
-    <div class="shopping-card">
-        <div class="shopping-card__content shopping-card__content--wider">
-            <div class="shopping-card__main-column">
-                @Html.Partial("_CardContent", (bikevision.Models.Item)Model)
-            </div>
-            <div class="d-none d-lg-block shopping-card__gallery-column">
-                <a href="@Url.Action("Product", "Shop")">
-                    <img class="shopping-card__gallery-image" src="~/Content/Images/Shop/siodelko_2.jpg" />
-                </a>
-                <a href="@Url.Action("Product", "Shop")">
-                    <img class="shopping-card__gallery-image" src="~/Content/Images/Shop/siodelko_1.jpg" />
-                </a>
-                <a href="@Url.Action("Product", "Shop")">
-                    <img class="shopping-card__gallery-image" src="~/Content/Images/Shop/siodelko_2.jpg" />
-                </a>
-            </div>
+@{
+    string[] directories = Directory.GetDirectories(Server.MapPath("~/Content/Images/Products/" + Model.idItem + "/"));
+
+    List<string> images = new List<string>();
+
+    foreach(var path in directories)
+    {
+        string[] fil = Directory.GetFiles(path + "\\");
+
+        foreach (var f in fil)
+        {
+            if (!f.Contains("main"))
+            {
+                images = images.Append(f.Replace(Server.MapPath("~/Content/"),"../Content/")).ToList();
+            }
+        }
+    }
+}
+
+<div class="shopping-card">
+    <div class="shopping-card__content shopping-card__content--wider">
+        <div class="shopping-card__main-column">
+            @Html.Partial("_CardContent", (bikevision.Models.Item)Model)
         </div>
+
+        @if (directories.Length > 0)
+        {
+            <div class="d-none d-lg-block shopping-card__gallery-column">
+                @foreach (var path in images)
+                {
+                    <a href="@Url.Action("Product", "Shop", new { id = Model.idItem })">
+                        <img class="shopping-card__gallery-image" src="@path" />
+                    </a>
+                }
+            </div>
+        }
     </div>
+</div>
