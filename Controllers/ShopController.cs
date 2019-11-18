@@ -40,7 +40,7 @@ namespace bikevision.Controllers
 
             List<Item> bicyclesUsages = db.Items.Include(cat => cat.Category).Include(type => type.ItemType).Where(type => type.ItemType.type == "Rowery").ToList();
             List<Item> bicyclesBrands = db.Items.Include(brand => brand.Brand).Include(type => type.ItemType).Where(type => type.ItemType.type == "Rowery").ToList();
-            List<FeatureValueOfItem> bicyclesWheels = db.FeatureValueOfItems.Include(feat => feat.Feature).Where(feature => feature.Feature.feature1 == "Rozmiar kół").ToList();
+            List<FeatureValueOfItem> bicyclesWheels = db.FeatureValueOfItems.Include(feat => feat.Feature).Where(type => type.Item.ItemType.type == "Rowery").Where(feature => feature.Feature.feature1 == "Rozmiar kół").ToList();
 
             foreach(var item in itemsSpareParts)
             {
@@ -149,7 +149,7 @@ namespace bikevision.Controllers
             return View();
         }
 
-        public ActionResult Product(int? id)
+        public ActionResult Product(int? id, string model)
         {
             if (id == null)
             {
@@ -165,6 +165,10 @@ namespace bikevision.Controllers
             {
                 return View("Index");
             }
+
+            if (model != null)
+                if (model != "")
+                    Session["productModel"] = model;
 
             List<Item> lastViewedItems = new List<Item>();
 
@@ -191,7 +195,24 @@ namespace bikevision.Controllers
 
             Session["lastViewedItems"] = lastViewedItems;
 
+            productDetails.FeaturesList = new List<Tuple<string, List<string>, bool>>();
+
             productDetails.product = product;
+            List<FeatureValueOfItem> featuresOfItem = db.FeatureValueOfItems.Where(item => item.Item_idItem1 == id).ToList();
+
+            List<string> featuresList = featuresOfItem.Select(feat => feat.Feature.feature1).Distinct().ToList();
+                        
+            foreach (var feat in featuresList)
+            {
+                List<string> featVal = featuresOfItem.Where(feature => feature.Feature.feature1 == feat).Select(fe => fe.FeatureValue.featureValue1).ToList();
+                bool isSelectable = (featuresOfItem.Where(feature => feature.Feature.feature1 == feat).Select(fe => fe.Feature.selectable).First() != null) ? (bool)(featuresOfItem.Where(feature => feature.Feature.feature1 == feat).Select(fe => fe.Feature.selectable).First()) : false;
+
+                Tuple<string, List<string>, bool> featureValues = new Tuple<string, List<string>, bool>(feat, featVal, isSelectable);
+
+                productDetails.FeaturesList.Add(featureValues);
+            }
+
+            //productDetails.productDetail.FeaturesList = db.FeatureValueOfItems.Where(item => item.Item_idItem1 == id).ToList();
             productDetails.opinions = db.Opinions.Where(opinion => opinion.Item_idItem == id).ToList();
 
             if (User.Identity.IsAuthenticated)

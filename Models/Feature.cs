@@ -25,7 +25,9 @@ namespace bikevision.Models
         [Display(Name = "Cecha:")]
         [Required(ErrorMessage = "Cecha jest wymagana.")]
         public string feature1 { get; set; }
-    
+        [Display(Name = "Mo¿liwoœæ wyboru?")]
+        public Nullable<bool> selectable { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FeatureValueOfItem> FeatureValueOfItems { get; set; }
     }

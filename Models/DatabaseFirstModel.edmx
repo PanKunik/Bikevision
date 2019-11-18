@@ -144,6 +144,7 @@
           </Key>
           <Property Name="idFeature" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="feature" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="selectable" Type="bit" />
         </EntityType>
         <EntityType Name="FeatureValue">
           <Key>
@@ -976,7 +977,6 @@
           <EntitySet Name="Categories" EntityType="bikewayDBModel.Category" />
           <EntitySet Name="Employees" EntityType="bikewayDBModel.Employee" />
           <EntitySet Name="EmployeeInThePositions" EntityType="bikewayDBModel.EmployeeInThePosition" />
-          <EntitySet Name="Features" EntityType="bikewayDBModel.Feature" />
           <EntitySet Name="FeatureValues" EntityType="bikewayDBModel.FeatureValue" />
           <EntitySet Name="FeatureValueOfItems" EntityType="bikewayDBModel.FeatureValueOfItem" />
           <EntitySet Name="ItemTypes" EntityType="bikewayDBModel.ItemType" />
@@ -1010,10 +1010,6 @@
           <AssociationSet Name="fk_EmployeeInThePosition_Position1" Association="bikewayDBModel.fk_EmployeeInThePosition_Position1">
             <End Role="Position" EntitySet="Positions" />
             <End Role="EmployeeInThePosition" EntitySet="EmployeeInThePositions" />
-          </AssociationSet>
-          <AssociationSet Name="fk_FeatureOfItem_Feature1" Association="bikewayDBModel.fk_FeatureOfItem_Feature1">
-            <End Role="Feature" EntitySet="Features" />
-            <End Role="FeatureValueOfItem" EntitySet="FeatureValueOfItems" />
           </AssociationSet>
           <AssociationSet Name="fk_FeatureOfItem_FeatureValue1" Association="bikewayDBModel.fk_FeatureOfItem_FeatureValue1">
             <End Role="FeatureValue" EntitySet="FeatureValues" />
@@ -1148,6 +1144,11 @@
             <End Role="Item" EntitySet="Items" />
             <End Role="AspNetUserFavorite" EntitySet="AspNetUserFavorites" />
           </AssociationSet>
+          <EntitySet Name="Features" EntityType="bikewayDBModel.Feature" />
+          <AssociationSet Name="fk_FeatureOfItem_Feature1" Association="bikewayDBModel.fk_FeatureOfItem_Feature1">
+            <End Role="Feature" EntitySet="Features" />
+            <End Role="FeatureValueOfItem" EntitySet="FeatureValueOfItems" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -1243,14 +1244,6 @@
           <NavigationProperty Name="Employee" Relationship="bikewayDBModel.fk_EmployeeInThePosition_Employee1" FromRole="EmployeeInThePosition" ToRole="Employee" />
           <NavigationProperty Name="Position" Relationship="bikewayDBModel.fk_EmployeeInThePosition_Position1" FromRole="EmployeeInThePosition" ToRole="Position" />
         </EntityType>
-        <EntityType Name="Feature">
-          <Key>
-            <PropertyRef Name="idFeature" />
-          </Key>
-          <Property Name="idFeature" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="feature1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="FeatureValueOfItems" Relationship="bikewayDBModel.fk_FeatureOfItem_Feature1" FromRole="Feature" ToRole="FeatureValueOfItem" />
-        </EntityType>
         <EntityType Name="FeatureValue">
           <Key>
             <PropertyRef Name="idFeatureValue" />
@@ -1268,9 +1261,9 @@
           <Property Name="Feature_idFeature1" Type="Int32" Nullable="false" />
           <Property Name="Item_idItem1" Type="Int32" Nullable="false" />
           <Property Name="FeatureValue_idFeatureValue" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Feature" Relationship="bikewayDBModel.fk_FeatureOfItem_Feature1" FromRole="FeatureValueOfItem" ToRole="Feature" />
           <NavigationProperty Name="FeatureValue" Relationship="bikewayDBModel.fk_FeatureOfItem_FeatureValue1" FromRole="FeatureValueOfItem" ToRole="FeatureValue" />
           <NavigationProperty Name="Item" Relationship="bikewayDBModel.fk_FeatureOfItem_Item1" FromRole="FeatureValueOfItem" ToRole="Item" />
+          <NavigationProperty Name="Feature" Relationship="bikewayDBModel.fk_FeatureOfItem_Feature1" FromRole="FeatureValueOfItem" ToRole="Feature" />
         </EntityType>
         <EntityType Name="ItemType">
           <Key>
@@ -1423,18 +1416,6 @@
             </Principal>
             <Dependent Role="EmployeeInThePosition">
               <PropertyRef Name="Position_idPosition" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_FeatureOfItem_Feature1">
-          <End Type="bikewayDBModel.Feature" Role="Feature" Multiplicity="1" />
-          <End Type="bikewayDBModel.FeatureValueOfItem" Role="FeatureValueOfItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Feature">
-              <PropertyRef Name="idFeature" />
-            </Principal>
-            <Dependent Role="FeatureValueOfItem">
-              <PropertyRef Name="Feature_idFeature1" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1962,6 +1943,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Feature">
+          <Key>
+            <PropertyRef Name="idFeature" />
+          </Key>
+          <Property Name="idFeature" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="feature1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="selectable" Type="Boolean" />
+          <NavigationProperty Name="FeatureValueOfItems" Relationship="bikewayDBModel.fk_FeatureOfItem_Feature1" FromRole="Feature" ToRole="FeatureValueOfItem" />
+        </EntityType>
+        <Association Name="fk_FeatureOfItem_Feature1">
+          <End Type="bikewayDBModel.Feature" Role="Feature" Multiplicity="1" />
+          <End Type="bikewayDBModel.FeatureValueOfItem" Role="FeatureValueOfItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Feature">
+              <PropertyRef Name="idFeature" />
+            </Principal>
+            <Dependent Role="FeatureValueOfItem">
+              <PropertyRef Name="Feature_idFeature1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2045,14 +2047,6 @@
                 <ScalarProperty Name="Position_idPosition" ColumnName="Position_idPosition" />
                 <ScalarProperty Name="Employee_idEmployee" ColumnName="Employee_idEmployee" />
                 <ScalarProperty Name="dateOfEmployment" ColumnName="dateOfEmployment" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Features">
-            <EntityTypeMapping TypeName="bikewayDBModel.Feature">
-              <MappingFragment StoreEntitySet="Feature">
-                <ScalarProperty Name="feature1" ColumnName="feature" />
-                <ScalarProperty Name="idFeature" ColumnName="idFeature" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2294,6 +2288,15 @@
                 <ScalarProperty Name="dateOfCreation" ColumnName="dateOfCreation" />
                 <ScalarProperty Name="Item_idItem" ColumnName="Item_idItem" />
                 <ScalarProperty Name="AspNetUsers_Id" ColumnName="AspNetUsers_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Features">
+            <EntityTypeMapping TypeName="bikewayDBModel.Feature">
+              <MappingFragment StoreEntitySet="Feature">
+                <ScalarProperty Name="selectable" ColumnName="selectable" />
+                <ScalarProperty Name="feature1" ColumnName="feature" />
+                <ScalarProperty Name="idFeature" ColumnName="idFeature" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -15,6 +15,9 @@
         <th>
             @Html.DisplayNameFor(model => model.feature1)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.selectable)
+        </th>
         <th></th>
     </tr>
 
@@ -22,6 +25,9 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.feature1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.selectable)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.idFeature }) |

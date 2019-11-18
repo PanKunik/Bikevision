@@ -222,6 +222,7 @@
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CategoryIdWithName.cs" />
+    <Compile Include="Models\ColorsPicker.cs" />
     <Compile Include="Models\ComparationViewModel.cs" />
     <Compile Include="Models\Customer.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
@@ -355,13 +356,16 @@
     <Content Include="Content\Images\About\about_6.jpg" />
     <Content Include="Content\Images\About\about_7.jpg" />
     <Content Include="Content\Images\bikevision.png" />
-    <Content Include="Content\Images\Products\1\1_black-green\1.jpg" />
-    <Content Include="Content\Images\Products\1\1_green\1.jpg" />
-    <Content Include="Content\Images\Products\1\1_main\1.jpg" />
-    <Content Include="Content\Images\Products\1\1_red\1.jpg" />
-    <Content Include="Content\Images\Products\2\2_green\1.jpg" />
-    <Content Include="Content\Images\Products\2\2_main\1.jpg" />
-    <Content Include="Content\Images\Products\2\2_seaLemon\1.jpg" />
+    <Content Include="Content\Images\Products\1\1_czarno-zielony\1.jpg" />
+    <Content Include="Content\Images\Products\1\1_czarny\1.jpg" />
+    <Content Include="Content\Images\Products\1\1_czerwony\1.jpg" />
+    <Content Include="Content\Images\Products\1\1_zielony\1.jpg" />
+    <Content Include="Content\Images\Products\2\2_czarny\1.jpg" />
+    <Content Include="Content\Images\Products\2\2_sea-lemon\1.jpg" />
+    <Content Include="Content\Images\Products\2\2_zielony\1.jpg" />
+    <Content Include="Content\Images\Products\3\3_czarny\1.jpg" />
+    <Content Include="Content\Images\Products\3\3_czarny\2.jpg" />
+    <Content Include="Content\Images\Products\3\3_czarny\3.jpg" />
     <Content Include="Content\Images\Service\service_01.jpg" />
     <Content Include="Content\Images\Service\service_02.jpg" />
     <Content Include="Content\Images\Service\service_03.jpg" />
@@ -512,8 +516,8 @@
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Shared\_NavbarPartial.cshtml" />
     <Content Include="Views\Shared\_ProductCard.cshtml" />
-    <Content Include="Views\Shop\_CarouselProduct.cshtml" />
-    <Content Include="Views\Shop\_CardContent.cshtml" />
+    <Content Include="Views\Shared\_CarouselProduct.cshtml" />
+    <Content Include="Views\Shared\_CardContent.cshtml" />
     <Content Include="Views\Shared\_UserLayout.cshtml" />
     <Content Include="Views\Account\PersonalData.cshtml" />
     <Content Include="Views\Account\Orders.cshtml" />

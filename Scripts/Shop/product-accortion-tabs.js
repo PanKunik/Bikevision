@@ -64,7 +64,7 @@ $(document).ready(function () {
     });
 
     $('select').on('change', function () {
-        $(".product__final-price").text(($('option:selected', this).attr('value') * $(".product__actual-price").attr('value')).toString() + " zł");
+        $(".product__final-price").text((Math.round((parseFloat($('option:selected', this).attr('value')) * parseFloat($(".product__actual-price").attr('value'))) * 100)/100).toString().replace(".", ",") + " zł");
 
         $("#HiddenQuantity").attr('value', $('option:selected', this).attr('value'));
     });

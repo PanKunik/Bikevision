@@ -50,7 +50,7 @@ namespace bikevision.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrator, Moderator")]
-        public ActionResult Create([Bind(Include = "idFeature,feature1")] Feature feature)
+        public ActionResult Create([Bind(Include = "idFeature,feature1,selectable")] Feature feature)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +84,7 @@ namespace bikevision.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrator, Moderator")]
-        public ActionResult Edit([Bind(Include = "idFeature,feature1")] Feature feature)
+        public ActionResult Edit([Bind(Include = "idFeature,feature1,selectable")] Feature feature)
         {
             if (ModelState.IsValid)
             {

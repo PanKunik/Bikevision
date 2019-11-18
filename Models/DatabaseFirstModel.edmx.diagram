@@ -13,7 +13,6 @@
         <EntityTypeShape EntityType="bikewayDBModel.Category" Width="1.5" PointX="0.75" PointY="1.625" />
         <EntityTypeShape EntityType="bikewayDBModel.Employee" Width="1.5" PointX="0.75" PointY="24.625" />
         <EntityTypeShape EntityType="bikewayDBModel.EmployeeInThePosition" Width="1.5" PointX="3" PointY="25.875" />
-        <EntityTypeShape EntityType="bikewayDBModel.Feature" Width="1.5" PointX="3" PointY="0.875" />
         <EntityTypeShape EntityType="bikewayDBModel.FeatureValue" Width="1.5" PointX="3" PointY="9.25" />
         <EntityTypeShape EntityType="bikewayDBModel.FeatureValueOfItem" Width="1.5" PointX="5.25" PointY="1.5" />
         <EntityTypeShape EntityType="bikewayDBModel.ItemType" Width="1.5" PointX="0.75" PointY="4.75" />
@@ -30,7 +29,6 @@
         <AssociationConnector Association="bikewayDBModel.fk_EmployeeInThePosition_Employee1" />
         <AssociationConnector Association="bikewayDBModel.fk_Service_Employee1" />
         <AssociationConnector Association="bikewayDBModel.fk_EmployeeInThePosition_Position1" />
-        <AssociationConnector Association="bikewayDBModel.fk_FeatureOfItem_Feature1" />
         <AssociationConnector Association="bikewayDBModel.fk_FeatureOfItem_FeatureValue1" />
         <AssociationConnector Association="bikewayDBModel.FK_Service_ServiceState" />
         <AssociationConnector Association="bikewayDBModel.fk_Service_ServiceType1" />
@@ -74,6 +72,8 @@
         <EntityTypeShape EntityType="bikewayDBModel.AspNetUserFavorite" Width="1.5" PointX="6" PointY="9.5" />
         <AssociationConnector Association="bikewayDBModel.FK_AspNetUserFavorite_AspNetUsers" />
         <AssociationConnector Association="bikewayDBModel.FK_AspNetUserFavorite_Item" />
+        <EntityTypeShape EntityType="bikewayDBModel.Feature" Width="1.5" PointX="5.375" PointY="4.875" />
+        <AssociationConnector Association="bikewayDBModel.fk_FeatureOfItem_Feature1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

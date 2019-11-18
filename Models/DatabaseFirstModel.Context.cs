@@ -33,7 +33,6 @@ namespace bikevision.Models
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<EmployeeInThePosition> EmployeeInThePositions { get; set; }
-        public virtual DbSet<Feature> Features { get; set; }
         public virtual DbSet<FeatureValue> FeatureValues { get; set; }
         public virtual DbSet<FeatureValueOfItem> FeatureValueOfItems { get; set; }
         public virtual DbSet<ItemType> ItemTypes { get; set; }
@@ -57,5 +56,6 @@ namespace bikevision.Models
         public virtual DbSet<PermanentDiscount> PermanentDiscounts { get; set; }
         public virtual DbSet<SaleDetail> SaleDetails { get; set; }
         public virtual DbSet<AspNetUserFavorite> AspNetUserFavorites { get; set; }
+        public virtual DbSet<Feature> Features { get; set; }
     }
 }
