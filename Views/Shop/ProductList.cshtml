@@ -27,9 +27,9 @@
                 brands.Add(product.Brand.brand1.ToString());
             }
 
-            if (!discounts.Contains((product.discount > 0) ? "Promocja": "Cena regularna"))
+            if (!discounts.Contains((product.discount > 0) ? "Promocja" : "Cena regularna"))
             {
-                discounts.Add((product.discount > 0) ? "Promocja": "Cena regularna");
+                discounts.Add((product.discount > 0) ? "Promocja" : "Cena regularna");
             }
         }
     }
@@ -119,202 +119,178 @@
                     <span>Produkty zawierające frazę &ldquo;@ViewBag.keyword&rdquo;</span>
                 }
             </p>
-            <p class="ml-2 h5 align-self-baseline">@if (Model != null)
-            {@String.Format("Liczba produktów: {0}", Model.Count());
-        }</p>
+            <p class="ml-2 h5 align-self-baseline">
+                @if (Model != null)
+                {@String.Format("Liczba produktów: {0}", Model.Count());
+            }
+        </p>
+    </div>
+
+    <div class="d-flex flex-row my-1 overlay">
+        <div class=" d-lg-flex flex-column left-column bg-semi-light">
+            @using (Html.BeginForm("ProductList", "Shop"))
+            {
+                @Html.Hidden("category", category);
+                @Html.Hidden("brand", brand);
+                @Html.Hidden("feature", feature);
+                @Html.Hidden("searching", searching);
+
+                <div class="card">
+                    <article class="card-group-item">
+                        <header class="card-header">
+                            <h6 class="title">Marka:</h6>
+                        </header>
+                        <div class="filter-content">
+                            <div class="card-body">
+                                @foreach (var ava in brans)
+                                {
+                                    <div class="custom-control custom-checkbox">
+                                        @*<span class="float-right badge badge-light round">52</span>*@
+                                        @if (brandSelected.Contains(ava))
+                                        {
+                                            @Html.CheckBox("brands", new { @onchange = "form.submit();", @value = ava, @id = "brands" + ava, @class = "custom-control-input", @checked = "" })
+                                        }
+                                        else
+                                        {
+                                            @Html.CheckBox("brands", new { @onchange = "form.submit();", @value = ava, @id = "brands" + ava, @class = "custom-control-input" })
+
+                                        }
+                                        @*<input type="checkbox" onchange="form.submit();" name="availability" class="custom-control-input" id="Check@(String.Format("{0}", ava))">*@
+                                        <label class="custom-control-label" for="brands@(String.Format("{0}", ava))">@ava</label>
+                                    </div> <!-- form-check.// -->
+                                }
+                            </div> <!-- card-body.// -->
+                        </div>
+                    </article>
+
+                    <article class="card-group-item">
+                        <header class="card-header">
+                            <h6 class="title">Zakres cenowy:</h6>
+                        </header>
+                        <div class="filter-content">
+                            <div class="card-body">
+                                <div class="form-row">
+                                    <div class="form-group col-lg-6">
+                                        <label>Od</label>
+                                        <input type="number" name="priceFrom" @if (ViewBag.priceFrom != null) { @String.Format("value={0}", ViewBag.priceFrom) ; } class="form-control" id="inputEmail4" placeholder="0 zł">
+                                    </div>
+                                    <div class="form-group col-lg-6 text-right">
+                                        <label>Do</label>
+                                        <input type="number" name="priceTo" @if (ViewBag.priceTo != null) { @String.Format("value={0}", ViewBag.priceTo) ; } class="form-control" placeholder="10000 zł">
+                                    </div>
+                                </div>
+                            </div> <!-- card-body.// -->
+                        </div>
+                        <input type="submit" onclick="form.submit();" value="Filtruj" class="btn btn-sm btn-primary" />
+                    </article> <!-- card-group-item.// -->
+
+                    <article class="card-group-item">
+                        <header class="card-header">
+                            <h6 class="title">Promocje:</h6>
+                        </header>
+                        <div class="filter-content">
+                            <div class="card-body">
+                                @foreach (var ava in discs)
+                                {
+                                    <div class="custom-control custom-checkbox">
+                                        @*<span class="float-right badge badge-light round">52</span>*@
+                                        @if (discountsSelected.Contains(ava))
+                                        {
+                                            @Html.CheckBox("discounts", new { @onchange = "form.submit();", @value = ava, @id = "discounts" + ava, @class = "custom-control-input", @checked = "" })
+                                        }
+                                        else
+                                        {
+                                            @Html.CheckBox("discounts", new { @onchange = "form.submit();", @value = ava, @id = "discounts" + ava, @class = "custom-control-input" })
+
+                                        }
+                                        @*<input type="checkbox" onchange="form.submit();" name="availability" class="custom-control-input" id="Check@(String.Format("{0}", ava))">*@
+                                        <label class="custom-control-label" for="discounts@(String.Format("{0}", ava))">@ava</label>
+                                    </div> <!-- form-check.// -->
+                                }
+                            </div> <!-- card-body.// -->
+                        </div>
+                    </article>
+
+                    <article class="card-group-item">
+                        <header class="card-header">
+                            <h6 class="title">Dostępność:</h6>
+                        </header>
+                        <div class="filter-content">
+                            <div class="card-body">
+                                @foreach (var ava in avas)
+                                {
+                                    <div class="custom-control custom-checkbox">
+                                        @*<span class="float-right badge badge-light round">52</span>*@
+                                        @if (avasSelected.Contains(ava))
+                                        {
+                                            @Html.CheckBox("availability", new { @onchange = "form.submit();", @value = ava, @id = "availability" + ava, @class = "custom-control-input", @checked = "" })
+                                        }
+                                        else
+                                        {
+                                            @Html.CheckBox("availability", new { @onchange = "form.submit();", @value = ava, @id = "availability" + ava, @class = "custom-control-input" })
+
+                                        }
+                                        @*<input type="checkbox" onchange="form.submit();" name="availability" class="custom-control-input" id="Check@(String.Format("{0}", ava))">*@
+                                        <label class="custom-control-label" for="availability@(String.Format("{0}", ava))">@ava</label>
+                                    </div> <!-- form-check.// -->
+                                }
+                            </div> <!-- card-body.// -->
+                        </div>
+                    </article>
+                </div>
+
+
+            }
         </div>
 
-        <div class="d-flex flex-row my-1 overlay">
-            <div class=" d-lg-flex flex-column left-column bg-semi-light">
-                @using (Html.BeginForm("ProductList", "Shop"))
+        <div class="d-flex flex-column right-column">
+            <div class="d-flex flex-row justify-content-between flex-wrap">
+                <div class="btn-group ml-1" role="group">
+                    <button type="button" id="gridButton" class="btn btn-sm btn-primary active text-size-very-small"><i class="fas fa-th-large mr-2"></i>Siatka</button>
+                    <button type="button" id="listButton" class="btn btn-sm btn-primary text-size-very-small"><i class="fas fa-list mr-2"></i>Lista</button>
+                </div>
+                <div class="p-1">
+                    @using (Html.BeginForm("ProductList", "Shop", FormMethod.Post))
+                    {
+
+                        @Html.Hidden("category", category);
+                        @Html.Hidden("brand", brand);
+                        @Html.Hidden("feature", feature);
+                        @Html.Hidden("searching", searching);
+
+                        <label for="sortingItems"> Sortuj: </label>
+                        <select id="sortingItems" name="sortingItems" onchange="form.submit();">
+                            @if (sortOrder == "")
+                            {
+                                <option value="" @if (sortOrder == "") { @String.Format("selected") ; }> Wybierz opcję sortowania.. </option>
+                            }
+                            <option value="price-asc" @if (sortOrder.Contains("price-asc")) { @String.Format("selected") ; }> Cena: rosnąco </option>
+                            <option value="price-desc" @if (sortOrder.Contains("price-desc")) { @String.Format("selected") ; }> Cena: malejąco </option>
+                            <option value="alpha-asc" @if (sortOrder.Contains("alpha-asc")) { @String.Format("selected") ; }> Alfabetycznie: A-Z </option>
+                            <option value="alpha-desc" @if (sortOrder.Contains("alpha-desc")) { @String.Format("selected") ; }> Alfabetycznie: Z-A </option>
+                        </select>
+                    }
+                </div>
+            </div>
+
+            <div class="d-flex flex-row flex-wrap">
+                @if (Model.Count() > 0)
                 {
-                    @Html.Hidden("category", category);
-                    @Html.Hidden("brand", brand);
-                    @Html.Hidden("feature", feature);
-                    @Html.Hidden("searching", searching);
-
-                    <div class="card">
-                        <article class="card-group-item">
-                            <header class="card-header">
-                                <h6 class="title">Marka:</h6>
-                            </header>
-                            <div class="filter-content">
-                                <div class="card-body">
-                                    @foreach (var ava in brans)
-                                    {
-                                        <div class="custom-control custom-checkbox">
-                                            @*<span class="float-right badge badge-light round">52</span>*@
-                                            @if (brandSelected.Contains(ava))
-                                            {
-                                                @Html.CheckBox("brands", new { @onchange = "form.submit();", @value = ava, @id = "brands" + ava, @class = "custom-control-input", @checked = "" })
-                                            }
-                                            else
-                                            {
-                                                @Html.CheckBox("brands", new { @onchange = "form.submit();", @value = ava, @id = "brands" + ava, @class = "custom-control-input" })
-
-                                            }
-                                            @*<input type="checkbox" onchange="form.submit();" name="availability" class="custom-control-input" id="Check@(String.Format("{0}", ava))">*@
-                                            <label class="custom-control-label" for="brands@(String.Format("{0}", ava))">@ava</label>
-                                        </div> <!-- form-check.// -->
-                                    }
-                                </div> <!-- card-body.// -->
-                            </div>
-                        </article>
-
-                        <article class="card-group-item">
-                            <header class="card-header">
-                                <h6 class="title">Zakres cenowy:</h6>
-                            </header>
-                            <div class="filter-content">
-                                <div class="card-body">
-                                    <div class="form-row">
-                                        <div class="form-group col-lg-6">
-                                            <label>Od</label>
-                                            <input type="number" name="priceFrom" @if (ViewBag.priceFrom != null) { @String.Format("value={0}", ViewBag.priceFrom) ; } class="form-control" id="inputEmail4" placeholder="0 zł">
-                                        </div>
-                                        <div class="form-group col-lg-6 text-right">
-                                            <label>Do</label>
-                                            <input type="number" name="priceTo" @if (ViewBag.priceTo != null) { @String.Format("value={0}", ViewBag.priceTo) ; } class="form-control" placeholder="10000 zł">
-                                        </div>
-                                    </div>
-                                </div> <!-- card-body.// -->
-                            </div>
-                            <input type="submit" onclick="form.submit();" value="Filtruj" class="btn btn-sm btn-primary" />
-                        </article> <!-- card-group-item.// -->
-
-                        <article class="card-group-item">
-                            <header class="card-header">
-                                <h6 class="title">Promocje:</h6>
-                            </header>
-                            <div class="filter-content">
-                                <div class="card-body">
-                                    @foreach (var ava in discs)
-                                    {
-                                        <div class="custom-control custom-checkbox">
-                                            @*<span class="float-right badge badge-light round">52</span>*@
-                                            @if (discountsSelected.Contains(ava))
-                                            {
-                                                @Html.CheckBox("discounts", new { @onchange = "form.submit();", @value = ava, @id = "discounts" + ava, @class = "custom-control-input", @checked = "" })
-                                            }
-                                            else
-                                            {
-                                                @Html.CheckBox("discounts", new { @onchange = "form.submit();", @value = ava, @id = "discounts" + ava, @class = "custom-control-input" })
-
-                                            }
-                                            @*<input type="checkbox" onchange="form.submit();" name="availability" class="custom-control-input" id="Check@(String.Format("{0}", ava))">*@
-                                            <label class="custom-control-label" for="discounts@(String.Format("{0}", ava))">@ava</label>
-                                        </div> <!-- form-check.// -->
-                                    }
-                                </div> <!-- card-body.// -->
-                            </div>
-                        </article>
-
-                        <article class="card-group-item">
-                            <header class="card-header">
-                                <h6 class="title">Dostępność:</h6>
-                            </header>
-                            <div class="filter-content">
-                                <div class="card-body">
-                                    @foreach (var ava in avas)
-                                    {
-                                        <div class="custom-control custom-checkbox">
-                                            @*<span class="float-right badge badge-light round">52</span>*@
-                                            @if (avasSelected.Contains(ava))
-                                            {
-                                                @Html.CheckBox("availability", new { @onchange = "form.submit();", @value = ava, @id = "availability" + ava, @class = "custom-control-input", @checked = "" })
-                                            }
-                                            else
-                                            {
-                                                @Html.CheckBox("availability", new { @onchange = "form.submit();", @value = ava, @id = "availability" + ava, @class = "custom-control-input" })
-
-                                            }
-                                            @*<input type="checkbox" onchange="form.submit();" name="availability" class="custom-control-input" id="Check@(String.Format("{0}", ava))">*@
-                                            <label class="custom-control-label" for="availability@(String.Format("{0}", ava))">@ava</label>
-                                        </div> <!-- form-check.// -->
-                                    }
-                                </div> <!-- card-body.// -->
-                            </div>
-                        </article>
-                    </div>
-
-
+                    foreach (var product in Model)
+                    {
+                        @Html.Partial("_ProductCard", product)
+                    }
+                }
+                else
+                {
+                    <p class="h3 p-2"> Brak produktów spełniających podane wymagania </p>
                 }
             </div>
-
-            <div class="d-flex flex-column right-column">
-                <div class="d-flex flex-row justify-content-between flex-wrap">
-                    <div class="btn-group ml-1" role="group">
-                        <button type="button" id="gridButton" class="btn btn-sm btn-primary active text-size-very-small"><i class="fas fa-th-large mr-2"></i>Siatka</button>
-                        <button type="button" id="listButton" class="btn btn-sm btn-primary text-size-very-small"><i class="fas fa-list mr-2"></i>Lista</button>
-                    </div>
-                    <div class="p-1">
-                        @using (Html.BeginForm("ProductList", "Shop", FormMethod.Post))
-                        {
-
-                            @Html.Hidden("category", category);
-                            @Html.Hidden("brand", brand);
-                            @Html.Hidden("feature", feature);
-                            @Html.Hidden("searching", searching);
-
-                            <label for="sortingItems"> Sortuj: </label>
-                            <select id="sortingItems" name="sortingItems" onchange="form.submit();">
-                                @if (sortOrder == "")
-                                {
-                                    <option value="" @if (sortOrder == "") { @String.Format("selected") ; }> Wybierz opcję sortowania.. </option>
-                                }
-                                <option value="price-asc" @if (sortOrder.Contains("price-asc")) { @String.Format("selected") ; }> Cena: rosnąco </option>
-                                <option value="price-desc" @if (sortOrder.Contains("price-desc")) { @String.Format("selected") ; }> Cena: malejąco </option>
-                                <option value="alpha-asc" @if (sortOrder.Contains("alpha-asc")) { @String.Format("selected") ; }> Alfabetycznie: A-Z </option>
-                                <option value="alpha-desc" @if (sortOrder.Contains("alpha-desc")) { @String.Format("selected") ; }> Alfabetycznie: Z-A </option>
-                            </select>
-                        }
-                    </div>
-                </div>
-
-                <div class="d-flex flex-row flex-wrap">
-                    @if (Model.Count() > 0)
-                    {
-                        foreach (var product in Model)
-                        {
-                            @Html.Partial("_ProductCard", product)
-                        }
-                    }
-                    else
-                    {
-                        <p class="h3 p-2"> Brak produktów spełniających podane wymagania </p>
-                    }
-                </div>
-
-                <nav class="d-block flex-row mt-2 mx-auto">
-                    <ul class="pagination">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#">&laquo;</a>
-                        </li>
-                        <li class="page-item active">
-                            <a class="page-link" href="#">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">4</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">5</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">&raquo;</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
         </div>
-
-        <button class="d-block d-lg-none floating-button align-text-bottom" onclick="showFilters()"> <i class="fas fa-filter"></i> Filtruj </button>
     </div>
+
+    <button class="d-block d-lg-none floating-button align-text-bottom" onclick="showFilters()"> <i class="fas fa-filter"></i> Filtruj </button>
+</div>
 </div>
 
 @section scripts

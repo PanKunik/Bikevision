@@ -7,6 +7,7 @@ using System.Web;
 using System.Net;
 using System.Web.Mvc;
 using bikevision.Models;
+using PagedList;
 
 namespace bikevision.Controllers
 {
