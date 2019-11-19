@@ -240,12 +240,37 @@ namespace bikevision.Controllers
 
             return View(productDetails);
         }
-        public ActionResult ProductList(string Searching, int? categoryId, string types, int? featureId, int? brandId, string sortOrder)
+        public ActionResult ProductList(string Searching, int? categoryId, string types, int? featureId, int? brandId, decimal? priceFrom, decimal? priceTo, FormCollection coll, string sortOrder)
         {
             List<Item> items;
 
             if (sortOrder == null)
                 sortOrder = "";
+
+            List<string> availabilities = new List<string>();
+
+            if (!string.IsNullOrEmpty(coll["availability"]))
+            {
+                string[] values = coll["availability"].Split(',');
+                foreach(var check in values)
+                {
+                    if(check != "false")
+                        availabilities = availabilities.Append(check).ToList();
+                }
+            }
+
+            ViewBag.avasSelected = availabilities;
+
+            if (priceFrom == null)
+                if (Request["priceFrom"] != null && Request["priceFrom"] != "")
+                    if (Decimal.Parse(Request["priceFrom"]) > 0)
+                        priceFrom = Decimal.Parse(Request["priceFrom"]);
+
+            if (priceTo == null)
+                if (Request["priceTo"] != null && Request["priceTo"] != "")
+                    if (Decimal.Parse(Request["priceTo"]) > 0)
+                        priceFrom = Decimal.Parse(Request["priceTo"]);
+
 
             if (Request["category"] != null)
                 if (Int32.Parse(Request["category"]) > 0)
@@ -270,15 +295,54 @@ namespace bikevision.Controllers
             Func<Item, Object> orderByFunc = null;
 
             if (sortOrder.Contains("price"))
-                orderByFunc = it => it.price;
+                orderByFunc = it => (it.price * ((100.0M - it.discount)/100.0M));
             else if (sortOrder.Contains("alpha"))
                 orderByFunc = it => it.name;
             else
                 orderByFunc = it => it.idItem;
-        
+
+
+            Func<Item, bool> whereFuncPrice = null;
+
+            if (priceFrom != null && priceTo != null)
+                whereFuncPrice = pric => pric.price >= priceFrom && pric.price <= priceTo;
+            else if(priceFrom != null)
+                whereFuncPrice = pric => pric.price >= priceFrom;
+            else if (priceTo != null)
+                whereFuncPrice = pric => pric.price <= priceTo;
+            else
+                whereFuncPrice = null;
+
+            ViewBag.priceFrom = priceFrom;
+            ViewBag.priceTo = priceTo;
+
+            List<Func<Item, bool>> whereFuncAva = new List<Func<Item, bool>>();
+
+            if (availabilities.Count() > 0)
+            {
+                foreach (var ava in availabilities)
+                {
+                    whereFuncAva.Add(i => i.availability.ToString() == ava);
+                }
+            }
+
             if (categoryId != null)
             {
                 items = db.Items.Where(cat => cat.Category_idCategory == categoryId).ToList();
+
+                if (whereFuncPrice != null)
+                    items = items.Where(whereFuncPrice).ToList();
+
+                List<Item> newItems1 = new List<Item>();
+
+                if (whereFuncAva.Count() > 0)
+                {
+                    foreach (var func in whereFuncAva)
+                        newItems1 = newItems1.Concat(items.Where(func)).ToList();
+
+                    items = newItems1;
+                }
+
                 ViewBag.categoryId = categoryId;
                 return View((sortOrder.Contains("asc") ? items.OrderBy(orderByFunc).ToList() : items.OrderByDescending(orderByFunc).ToList()));
             }
@@ -303,7 +367,20 @@ namespace bikevision.Controllers
                 {
                     items.Add(allItems.Where(i => i.idItem == ID).First());
                 }
-                
+
+                if (whereFuncPrice != null)
+                    items = items.Where(whereFuncPrice).ToList();
+
+                List<Item> newItems2 = new List<Item>();
+
+                if (whereFuncAva.Count() > 0)
+                {
+                    foreach (var func in whereFuncAva)
+                        newItems2 = newItems2.Concat(items.Where(func)).ToList();
+
+                    items = newItems2;
+                }
+
                 //items.SelectMany(items, i => i.idItem == 1);
                 return View((sortOrder.Contains("asc") ? items.OrderBy(orderByFunc).ToList() : items.OrderByDescending(orderByFunc).ToList()));
             }
@@ -317,6 +394,19 @@ namespace bikevision.Controllers
 
                 ViewBag.brandId = brandId;
 
+                if (whereFuncPrice != null)
+                    items = items.Where(whereFuncPrice).ToList();
+
+                List<Item> newItems3 = new List<Item>();
+
+                if (whereFuncAva.Count() > 0)
+                {
+                    foreach (var func in whereFuncAva)
+                        newItems3 = newItems3.Concat(items.Where(func)).ToList();
+
+                    items = newItems3;
+                }
+
                 return View((sortOrder.Contains("asc") ? items.OrderBy(orderByFunc).ToList() : items.OrderByDescending(orderByFunc).ToList()));
             }
 
@@ -328,6 +418,19 @@ namespace bikevision.Controllers
             {
                 items = db.Items.Where(i => i.name.Contains(Searching)).ToList();
                 ViewBag.keyword = Searching;
+            }
+
+            if (whereFuncPrice != null)
+                items = items.Where(whereFuncPrice).ToList();
+
+            List<Item> newItems4 = new List<Item>();
+
+            if (whereFuncAva.Count() > 0)
+            {
+                foreach (var func in whereFuncAva)
+                    newItems4 = newItems4.Concat(items.Where(func)).ToList();
+
+                items = newItems4;
             }
 
             return View((sortOrder.Contains("asc") ? items.OrderBy(orderByFunc).ToList() : items.OrderByDescending(orderByFunc).ToList()));
