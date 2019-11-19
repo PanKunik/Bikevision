@@ -575,7 +575,7 @@ namespace bikevision.Controllers
                 int quan = 1;
                 if(Int32.TryParse(Request["HiddenQuantity"], out quan))
                 {
-                    quantity = (int?)quan;
+                    quantity = (int?)quan > 0 ? quan : 1;
                 }
                 else
                 {
