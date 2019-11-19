@@ -23,6 +23,19 @@ function TabsToAccordion() {
 }
 
 $(document).ready(function () {
+
+    var listOfHiddeninputs = $("input[type*='hidden']");
+
+    listOfHiddeninputs.each(function () {
+        $(this).val($(".product__option-choice-size--active[name*='" + $(this).attr('name') + "']").attr('value'));
+    });
+
+    $(".product__option-choice-size").click(function () {
+        $(".product__option-choice-size[name*='" + $(this).attr('name') + "'").removeClass("product__option-choice-size--active");
+        $(this).addClass("product__option-choice-size--active");
+        $("input[name*='" + $(this).attr('name') + "']").val($(this).attr('value'));
+    });
+
     if ($(".product__menu-card").css("display") == "block") {
         lastWindowState = "smallScreen";
     }

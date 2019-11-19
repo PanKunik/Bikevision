@@ -9,6 +9,19 @@
 
     string imgPath = directories[0].Replace(Server.MapPath("~/Content"), "../Content") + "/1.jpg";
 
+    string options = "";
+
+    foreach(var feat in Model.FeatureValueOfItems)
+    {
+        if(feat.Feature.selectable != null && (bool)feat.Feature.selectable)
+        {
+            if(!options.Contains(feat.Feature.feature1))
+            {
+                options += feat.Feature.feature1 + ":" + feat.FeatureValue.FeatureValueOfItems.Where(f => f.Feature.feature1 == feat.Feature.feature1).Select(s => s.FeatureValue.featureValue1).First() + ";";
+            }
+        }
+    }
+
     if (Model.availability <= 0)
     {
         classes += " disabled";
@@ -54,7 +67,7 @@
     </div>
 </div>
 <div class="d-none d-lg-block shopping-card__hidden-content">
-    @Html.Raw(Html.ActionLink("ToReplace", "OrderNow", "ShoppingCart", new { id = Model.idItem, quantity = 1, area = "" }, new { @class = classes }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-shopping-cart small-icon\"></span><span class=\"small-icon\"> Do koszyka </span>"))
+    @Html.Raw(Html.ActionLink("ToReplace", "OrderNow", "ShoppingCart", new { id = Model.idItem, option = options, quantity = 1, area = "" }, new { @class = classes }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-shopping-cart small-icon\"></span><span class=\"small-icon\"> Do koszyka </span>"))
     <div class="shopping-card__additional-buttons">
         @if (favoriteItemsIds.Count() > 0)
         {

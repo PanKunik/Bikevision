@@ -48,7 +48,6 @@ namespace bikevision.Models
         [Required(ErrorMessage = "Waga jest wymagana.")]
         public Nullable<double> weight { get; set; }
         [Display(Name = "Wymiary:")]
-        [Required(ErrorMessage = "Wymiary są wymagane.")]
         public string dimensions { get; set; }
         public int ItemType_idItemType { get; set; }
         public int Category_idCategory { get; set; }

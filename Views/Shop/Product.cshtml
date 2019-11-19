@@ -79,7 +79,7 @@
                 </div>
             </div>
             <div class="d-flex flex-column fill-even product-right-column">
-                @using (Html.BeginForm("OrderNow", "ShoppingCart", new { id = Model.product.idItem }, FormMethod.Post))
+                @using (Html.BeginForm("OrderNow", "ShoppingCart", new { id = Model.product.idItem, option = modelVariant }, FormMethod.Post))
                 {
                     if (Model.product.discount > 0)
                     {
@@ -94,11 +94,11 @@
                     <div class="d-flex flex-column mb-2">
                         @foreach (var featureList in Model.FeaturesList)
                         {
-                            int index = 0;
                             if (featureList.Item3)
                             {
                             <div class="d-flex flex-row">
                                 <div class="d-flex flex-column mr-3">
+                                    @Html.Hidden(featureList.Item1)
                                     <span class="product__option">@featureList.Item1:</span>
                                 </div>
 

@@ -563,13 +563,13 @@ namespace bikevision.Controllers
             return RedirectToAction("Index", "Shop");
         }
 
-        public ActionResult OrderNow(int? id, int? quantity = 1)
+        public ActionResult OrderNow(string option, FormCollection collection, int? id, int? quantity = 1)
         {
             if(id == null)
             {
                 return RedirectToAction("Index", "Shop");
             }
-
+            
             if(Request["HiddenQuantity"] != null)
             {
                 int quan = 1;
@@ -583,11 +583,25 @@ namespace bikevision.Controllers
                 }
             }
 
+            List<string> keys = collection.AllKeys.ToList();
+
+            if (keys != null)
+                if (keys.Count() > 0)
+                    option = "";
+
+            foreach(var ke in keys)
+            {
+                if(!ke.Equals("HiddenQuantity") && !ke.Equals("itemQuantity"))
+                {
+                    option += ke + ":" + collection[ke] + ";";
+                }
+            }
+
             if(Session[sessionCartString] == null)
             {
                 List<Cart> lsCart = new List<Cart>
                 {
-                    new Cart(db.Items.Find(id), (int)quantity)
+                    new Cart(db.Items.Find(id), (int)quantity, option)
                 };
 
                 Session[sessionCartString] = lsCart;
@@ -598,10 +612,13 @@ namespace bikevision.Controllers
                 int indexOfItem = doseItemExistInCart(id);
 
                 if (indexOfItem == -1)
-                    lsCart.Add(new Cart(db.Items.Find(id), (int)quantity));
+                    lsCart.Add(new Cart(db.Items.Find(id), (int)quantity, option));
                 else
                 {
-                    lsCart[indexOfItem].Quantity += (int)quantity;
+                    if(lsCart[indexOfItem].Options == option)
+                        lsCart[indexOfItem].Quantity += (int)quantity;
+                    else
+                        lsCart.Add(new Cart(db.Items.Find(id), (int)quantity, option));
                 }
 
                 Session[sessionCartString] = lsCart;

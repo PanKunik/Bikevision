@@ -11,11 +11,13 @@ namespace bikevision.Models
         public Item Item { get; set; }
         public int Quantity { get; set; }
         public decimal NewPrice { get; set; }
-        public Cart(Item item, int quantity, decimal price = 0)
+        public string Options { get; set; }
+        public Cart(Item item, int quantity, string options = "", decimal price = 0)
         {
             Item = item;
             Quantity = quantity;
             NewPrice = price;
+            Options = options;
         }
     }
 }
