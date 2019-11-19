@@ -563,7 +563,7 @@ namespace bikevision.Controllers
             return RedirectToAction("Index", "Shop");
         }
 
-        public ActionResult OrderNow(int? id, int? quantity)
+        public ActionResult OrderNow(int? id, int? quantity = 1)
         {
             if(id == null)
             {
@@ -572,7 +572,7 @@ namespace bikevision.Controllers
 
             if(Request["HiddenQuantity"] != null)
             {
-                int quan = 0;
+                int quan = 1;
                 if(Int32.TryParse(Request["HiddenQuantity"], out quan))
                 {
                     quantity = (int?)quan;
