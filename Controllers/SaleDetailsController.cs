@@ -53,7 +53,7 @@ namespace bikevision.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrator, Pracownik sklepu")]
-        public ActionResult Create([Bind(Include = "value,Sale_idSale,Item_idItem,quantity")] SaleDetail saleDetail)
+        public ActionResult Create([Bind(Include = "value,Sale_idSale,Item_idItem,quantity,DiscountCode_idDiscountCode,details")] SaleDetail saleDetail)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace bikevision.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrator, Pracownik sklepu")]
-        public ActionResult Edit([Bind(Include = "value,Sale_idSale,Item_idItem,quantity")] SaleDetail saleDetail)
+        public ActionResult Edit([Bind(Include = "value,Sale_idSale,Item_idItem,quantity,DiscountCode_idDiscountCode,details")] SaleDetail saleDetail)
         {
             if (ModelState.IsValid)
             {

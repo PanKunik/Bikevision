@@ -617,11 +617,6 @@
     <Content Include="Views\Positions\Details.cshtml" />
     <Content Include="Views\Positions\Edit.cshtml" />
     <Content Include="Views\Positions\Index.cshtml" />
-    <Content Include="Views\SaleDetails\Create.cshtml" />
-    <Content Include="Views\SaleDetails\Delete.cshtml" />
-    <Content Include="Views\SaleDetails\Details.cshtml" />
-    <Content Include="Views\SaleDetails\Edit.cshtml" />
-    <Content Include="Views\SaleDetails\Index.cshtml" />
     <Content Include="Views\SaleStates\Create.cshtml" />
     <Content Include="Views\SaleStates\Delete.cshtml" />
     <Content Include="Views\SaleStates\Details.cshtml" />
@@ -699,6 +694,11 @@
     <Content Include="Views\AspNetUserFavorites\Index.cshtml" />
     <Content Include="Views\Shop\Comparation.cshtml" />
     <Content Include="Views\Shared\_ItemInComparation.cshtml" />
+    <Content Include="Views\SaleDetails\Create.cshtml" />
+    <Content Include="Views\SaleDetails\Delete.cshtml" />
+    <Content Include="Views\SaleDetails\Details.cshtml" />
+    <Content Include="Views\SaleDetails\Edit.cshtml" />
+    <Content Include="Views\SaleDetails\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -66,14 +66,14 @@
         <AssociationConnector Association="bikewayDBModel.fk_Opinion_Customer1" />
         <AssociationConnector Association="bikewayDBModel.fk_Sale_Customer1" />
         <AssociationConnector Association="bikewayDBModel.fk_Service_Customer1" />
-        <EntityTypeShape EntityType="bikewayDBModel.SaleDetail" Width="1.5" PointX="13.5" PointY="12.625" />
-        <AssociationConnector Association="bikewayDBModel.fk_SaleDetails_Item1" />
-        <AssociationConnector Association="bikewayDBModel.fk_SaleDetails_Sale1" />
         <EntityTypeShape EntityType="bikewayDBModel.AspNetUserFavorite" Width="1.5" PointX="6" PointY="9.5" />
         <AssociationConnector Association="bikewayDBModel.FK_AspNetUserFavorite_AspNetUsers" />
         <AssociationConnector Association="bikewayDBModel.FK_AspNetUserFavorite_Item" />
         <EntityTypeShape EntityType="bikewayDBModel.Feature" Width="1.5" PointX="5.375" PointY="4.875" />
         <AssociationConnector Association="bikewayDBModel.fk_FeatureOfItem_Feature1" />
+        <EntityTypeShape EntityType="bikewayDBModel.SaleDetail" Width="1.5" PointX="13.5" PointY="13.5" />
+        <AssociationConnector Association="bikewayDBModel.fk_SaleDetails_Item1" />
+        <AssociationConnector Association="bikewayDBModel.fk_SaleDetails_Sale1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

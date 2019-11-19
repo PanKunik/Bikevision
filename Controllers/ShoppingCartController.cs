@@ -344,6 +344,7 @@ namespace bikevision.Controllers
 
                         detailOfSale.quantity = (byte)item.Quantity;
                         detailOfSale.value = item.Item.price * item.Quantity;
+                        detailOfSale.details = (item.Options != "") ? item.Options : "bez-opcji";
 
                         db.SaleDetails.Add(detailOfSale);
                         db.SaveChanges();
@@ -478,6 +479,7 @@ namespace bikevision.Controllers
 
                         detailOfSale.quantity = (byte)item.Quantity;
                         detailOfSale.value = (item.NewPrice != 0.0M ) ? item.NewPrice * (decimal)item.Quantity : item.Item.price * (decimal)item.Quantity;
+                        detailOfSale.details = (item.Options != "") ? item.Options: "bez-opcji";
 
                         db.SaleDetails.Add(detailOfSale);
                         db.SaveChanges();

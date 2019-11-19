@@ -86,37 +86,37 @@
 
             <tbody>
                 @foreach (var productInCart in (List<Cart>)Session["Cart"])
+                {
+                    total += (productInCart.Quantity * (productInCart.Item.price * ((100.0M - (decimal)productInCart.Item.discount) / 100.0M)));
+
+
+                    List<string> colorModel = productInCart.Options.Split(';').ToList();
+
+                    foreach (var str in colorModel)
                     {
-                        total += (productInCart.Quantity * (productInCart.Item.price * ((100.0M - (decimal)productInCart.Item.discount) / 100.0M)));
-
-
-                        List<string> colorModel = productInCart.Options.Split(';').ToList();
-
-                        foreach (var str in colorModel)
+                        if (str.Contains("Kolor"))
                         {
-                            if (str.Contains("Kolor"))
-                            {
-                                colorModel = str.Split(':').ToList();
-                                break;
-                            }
+                            colorModel = str.Split(':').ToList();
+                            break;
+                        }
+                    }
+
+                    string colorM = colorModel.Last();
+
+                    if (pairForCodes != null)
+                    {
+                        List<Tuple<int, int>> pairs = pairForCodes.Where(i => i.Item1 == productInCart.Item.idItem).ToList();
+
+                        if (pairs.Count() > 0)
+                        {
+                            promotionCode -= ((productInCart.Quantity * (productInCart.Item.price * ((100.0M - (decimal)productInCart.Item.discount) / 100.0M))) - (((100.0M - (decimal)pairs.First().Item2 - customerDiscount - (decimal)productInCart.Item.discount) / 100) * (productInCart.Quantity * productInCart.Item.price)));
                         }
 
-                        string colorM = colorModel.Last();
-
-                        if (pairForCodes != null)
-                        {
-                            List<Tuple<int, int>> pairs = pairForCodes.Where(i => i.Item1 == productInCart.Item.idItem).ToList();
-
-                            if (pairs.Count() > 0)
-                            {
-                                promotionCode -= ((productInCart.Quantity * (productInCart.Item.price * ((100.0M - (decimal)productInCart.Item.discount) / 100.0M))) - (((100.0M - (decimal)pairs.First().Item2 - customerDiscount - (decimal)productInCart.Item.discount) / 100) * (productInCart.Quantity * productInCart.Item.price)));
-                            }
-
-                        }
-                        else if (customerDiscount > 0)
-                        {
-                            promotionCode -= ((productInCart.Quantity * (productInCart.Item.price * ((100.0M - (decimal)productInCart.Item.discount) / 100.0M))) - (((100 - (decimal)customerDiscount) / 100.0M) * (productInCart.Quantity * productInCart.Item.price)));
-                        }
+                    }
+                    else if (customerDiscount > 0)
+                    {
+                        promotionCode -= ((productInCart.Quantity * (productInCart.Item.price * ((100.0M - (decimal)productInCart.Item.discount) / 100.0M))) - (((100 - (decimal)customerDiscount) / 100.0M) * (productInCart.Quantity * productInCart.Item.price)));
+                    }
 
                     //promotionCode += ((productInCart.Quantity * productInCart.Item.price) - (productInCart.Quantity * productInCart.Item.price) * (1 / productInCart.Multiplier));
                     //total += (productInCart.Quantity * productInCart.Item.price);
@@ -125,7 +125,14 @@
                             <img src="@(String.Format("../../Content/Images/Products/{0}/{1}_{2}/1.jpg", productInCart.Item.idItem, productInCart.Item.idItem, colorM.ToLower()))" class="shopping-cart__product-image" alt="obrazek" />
                         </td>
                         <td>
-                            <p class=""> @productInCart.Item.name </p><p>@productInCart.Options</p>
+                            <p class="h5"> @productInCart.Item.name </p>
+                            @{
+                                List<string> values = productInCart.Options.Split(';').ToList();
+                                foreach (var val in values)
+                                {
+                                    <p>@val.Replace(":", ": ")</p>
+                                }
+                            }
                         </td>
                         <td>
                             <p class=""> @String.Format("{0:F2} zł", ((productInCart.Item.price) - ((productInCart.Item.price * productInCart.Item.discount) / 100))) </p>

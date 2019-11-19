@@ -19,10 +19,16 @@
             @Html.DisplayNameFor(model => model.quantity)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Sale.idSale)
+            @Html.DisplayNameFor(model => model.DiscountCode_idDiscountCode)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Item.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sale.idSale)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.details)
         </th>
         <th></th>
     </tr>
@@ -36,10 +42,16 @@
             @Html.DisplayFor(modelItem => item.quantity)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Sale.idSale)
+            @Html.DisplayFor(modelItem => item.DiscountCode_idDiscountCode)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sale.idSale)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.details)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

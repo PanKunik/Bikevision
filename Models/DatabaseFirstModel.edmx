@@ -253,12 +253,14 @@
           <Key>
             <PropertyRef Name="Sale_idSale" />
             <PropertyRef Name="Item_idItem" />
+            <PropertyRef Name="details" />
           </Key>
           <Property Name="value" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Sale_idSale" Type="int" Nullable="false" />
           <Property Name="Item_idItem" Type="int" Nullable="false" />
           <Property Name="quantity" Type="tinyint" Nullable="false" />
           <Property Name="DiscountCode_idDiscountCode" Type="int" />
+          <Property Name="details" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="SaleState">
           <Key>
@@ -1126,15 +1128,6 @@
             <End Role="Customer" EntitySet="Customers" />
             <End Role="Service" EntitySet="Services" />
           </AssociationSet>
-          <EntitySet Name="SaleDetails" EntityType="bikewayDBModel.SaleDetail" />
-          <AssociationSet Name="fk_SaleDetails_Item1" Association="bikewayDBModel.fk_SaleDetails_Item1">
-            <End Role="Item" EntitySet="Items" />
-            <End Role="SaleDetail" EntitySet="SaleDetails" />
-          </AssociationSet>
-          <AssociationSet Name="fk_SaleDetails_Sale1" Association="bikewayDBModel.fk_SaleDetails_Sale1">
-            <End Role="Sale" EntitySet="Sales" />
-            <End Role="SaleDetail" EntitySet="SaleDetails" />
-          </AssociationSet>
           <EntitySet Name="AspNetUserFavorites" EntityType="bikewayDBModel.AspNetUserFavorite" />
           <AssociationSet Name="FK_AspNetUserFavorite_AspNetUsers" Association="bikewayDBModel.FK_AspNetUserFavorite_AspNetUsers">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
@@ -1148,6 +1141,15 @@
           <AssociationSet Name="fk_FeatureOfItem_Feature1" Association="bikewayDBModel.fk_FeatureOfItem_Feature1">
             <End Role="Feature" EntitySet="Features" />
             <End Role="FeatureValueOfItem" EntitySet="FeatureValueOfItems" />
+          </AssociationSet>
+          <EntitySet Name="SaleDetails" EntityType="bikewayDBModel.SaleDetail" />
+          <AssociationSet Name="fk_SaleDetails_Item1" Association="bikewayDBModel.fk_SaleDetails_Item1">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="SaleDetail" EntitySet="SaleDetails" />
+          </AssociationSet>
+          <AssociationSet Name="fk_SaleDetails_Sale1" Association="bikewayDBModel.fk_SaleDetails_Sale1">
+            <End Role="Sale" EntitySet="Sales" />
+            <End Role="SaleDetail" EntitySet="SaleDetails" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="AspNetRole">
@@ -1551,8 +1553,8 @@
           <NavigationProperty Name="ItemType" Relationship="bikewayDBModel.fk_Item_ItemType1" FromRole="Item" ToRole="ItemType" />
           <NavigationProperty Name="Opinions" Relationship="bikewayDBModel.fk_Opinion_Item1" FromRole="Item" ToRole="Opinion" />
           <NavigationProperty Name="DiscountCodeForItems" Relationship="bikewayDBModel.FK_DiscountCodeForItem_Item" FromRole="Item" ToRole="DiscountCodeForItem" />
-          <NavigationProperty Name="SaleDetails" Relationship="bikewayDBModel.fk_SaleDetails_Item1" FromRole="Item" ToRole="SaleDetail" />
           <NavigationProperty Name="AspNetUserFavorites" Relationship="bikewayDBModel.FK_AspNetUserFavorite_Item" FromRole="Item" ToRole="AspNetUserFavorite" />
+          <NavigationProperty Name="SaleDetails" Relationship="bikewayDBModel.fk_SaleDetails_Item1" FromRole="Item" ToRole="SaleDetail" />
         </EntityType>
         <Association Name="fk_Item_Brand1">
           <End Type="bikewayDBModel.Brand" Role="Brand" Multiplicity="1" />
@@ -1871,43 +1873,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="SaleDetail">
-          <Key>
-            <PropertyRef Name="Sale_idSale" />
-            <PropertyRef Name="Item_idItem" />
-          </Key>
-          <Property Name="value" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="Sale_idSale" Type="Int32" Nullable="false" />
-          <Property Name="Item_idItem" Type="Int32" Nullable="false" />
-          <Property Name="quantity" Type="Byte" Nullable="false" />
-          <Property Name="DiscountCode_idDiscountCode" Type="Int32" />
-          <NavigationProperty Name="Item" Relationship="bikewayDBModel.fk_SaleDetails_Item1" FromRole="SaleDetail" ToRole="Item" />
-          <NavigationProperty Name="Sale" Relationship="bikewayDBModel.fk_SaleDetails_Sale1" FromRole="SaleDetail" ToRole="Sale" />
-        </EntityType>
-        <Association Name="fk_SaleDetails_Item1">
-          <End Type="bikewayDBModel.Item" Role="Item" Multiplicity="1" />
-          <End Type="bikewayDBModel.SaleDetail" Role="SaleDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Item">
-              <PropertyRef Name="idItem" />
-            </Principal>
-            <Dependent Role="SaleDetail">
-              <PropertyRef Name="Item_idItem" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_SaleDetails_Sale1">
-          <End Type="bikewayDBModel.Sale" Role="Sale" Multiplicity="1" />
-          <End Type="bikewayDBModel.SaleDetail" Role="SaleDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sale">
-              <PropertyRef Name="idSale" />
-            </Principal>
-            <Dependent Role="SaleDetail">
-              <PropertyRef Name="Sale_idSale" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="AspNetUserFavorite">
           <Key>
             <PropertyRef Name="AspNetUsers_Id" />
@@ -1961,6 +1926,45 @@
             </Principal>
             <Dependent Role="FeatureValueOfItem">
               <PropertyRef Name="Feature_idFeature1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SaleDetail">
+          <Key>
+            <PropertyRef Name="Sale_idSale" />
+            <PropertyRef Name="Item_idItem" />
+            <PropertyRef Name="details" />
+          </Key>
+          <Property Name="value" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Sale_idSale" Type="Int32" Nullable="false" />
+          <Property Name="Item_idItem" Type="Int32" Nullable="false" />
+          <Property Name="quantity" Type="Byte" Nullable="false" />
+          <Property Name="DiscountCode_idDiscountCode" Type="Int32" />
+          <Property Name="details" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Item" Relationship="bikewayDBModel.fk_SaleDetails_Item1" FromRole="SaleDetail" ToRole="Item" />
+          <NavigationProperty Name="Sale" Relationship="bikewayDBModel.fk_SaleDetails_Sale1" FromRole="SaleDetail" ToRole="Sale" />
+        </EntityType>
+        <Association Name="fk_SaleDetails_Item1">
+          <End Type="bikewayDBModel.Item" Role="Item" Multiplicity="1" />
+          <End Type="bikewayDBModel.SaleDetail" Role="SaleDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="idItem" />
+            </Principal>
+            <Dependent Role="SaleDetail">
+              <PropertyRef Name="Item_idItem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_SaleDetails_Sale1">
+          <End Type="bikewayDBModel.Sale" Role="Sale" Multiplicity="1" />
+          <End Type="bikewayDBModel.SaleDetail" Role="SaleDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sale">
+              <PropertyRef Name="idSale" />
+            </Principal>
+            <Dependent Role="SaleDetail">
+              <PropertyRef Name="Sale_idSale" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2271,17 +2275,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SaleDetails">
-            <EntityTypeMapping TypeName="bikewayDBModel.SaleDetail">
-              <MappingFragment StoreEntitySet="SaleDetails">
-                <ScalarProperty Name="DiscountCode_idDiscountCode" ColumnName="DiscountCode_idDiscountCode" />
-                <ScalarProperty Name="quantity" ColumnName="quantity" />
-                <ScalarProperty Name="Item_idItem" ColumnName="Item_idItem" />
-                <ScalarProperty Name="Sale_idSale" ColumnName="Sale_idSale" />
-                <ScalarProperty Name="value" ColumnName="value" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserFavorites">
             <EntityTypeMapping TypeName="bikewayDBModel.AspNetUserFavorite">
               <MappingFragment StoreEntitySet="AspNetUserFavorite">
@@ -2297,6 +2290,18 @@
                 <ScalarProperty Name="selectable" ColumnName="selectable" />
                 <ScalarProperty Name="feature1" ColumnName="feature" />
                 <ScalarProperty Name="idFeature" ColumnName="idFeature" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaleDetails">
+            <EntityTypeMapping TypeName="bikewayDBModel.SaleDetail">
+              <MappingFragment StoreEntitySet="SaleDetails">
+                <ScalarProperty Name="details" ColumnName="details" />
+                <ScalarProperty Name="DiscountCode_idDiscountCode" ColumnName="DiscountCode_idDiscountCode" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="Item_idItem" ColumnName="Item_idItem" />
+                <ScalarProperty Name="Sale_idSale" ColumnName="Sale_idSale" />
+                <ScalarProperty Name="value" ColumnName="value" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

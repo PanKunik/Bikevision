@@ -24,6 +24,10 @@ namespace bikevision.Models
         [Required(ErrorMessage = "Liczba przedmiotów jest wymagana.")]
         public byte quantity { get; set; }
         public Nullable<int> DiscountCode_idDiscountCode { get; set; }
+        [Display(Name = "Opcje przedmiotu:")]
+        [Required(ErrorMessage = "Opcje przedmiotu są wymagane.")]
+        public string details { get; set; }
+
 
         public virtual Item Item { get; set; }
         public virtual Sale Sale { get; set; }
