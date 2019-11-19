@@ -91,7 +91,7 @@
                     <span class="text-size-big text-primary product__actual-price" value="@(String.Format("{0:F2}", ((Model.product.price) - ((Model.product.price * Model.product.discount) / 100.0M))).Replace(",","."))">
                         @String.Format("{0:F2} zł", ((Model.product.price) - ((Model.product.price * Model.product.discount) / 100)))
                     </span>
-                    <div class="d-flex flex-row mb-2">
+                    <div class="d-flex flex-column mb-2">
                         @foreach (var featureList in Model.FeaturesList)
                         {
                             int index = 0;
@@ -134,51 +134,7 @@
                             </div>
                             }
                         }
-                        @*<div class="d-flex flex-column mr-1">
-            <span class="product__option"> Kolor: </span>
-            <span class="product__option-text"> x </span>
-        </div>
-
-            <div class="product__option-choice-color" style=""></div>
-            <div class="product__option-choice-color" style="background: linear-gradient(to right, #ff0000 0% 50%, #feee22 50% 100%)"></div>
-            <div class="product__option-choice-color" style="background: linear-gradient(to right, #0000FF 0% 50%, #00FF00 50% 100%)"></div>
-                        *@
                     </div>
-
-                    @*<div class="d-flex flex-row">
-                        <div class="d-flex flex-column mr-3">
-                            <span class="product__option">@Model.FeatureValueOfItems.ElementAt(0).Feature.feature1:</span>
-                        </div>
-                        <div class="d-flex flex-column mr-3">
-                                    <span class="product__option"> Rozmiar: </span>
-                                </div>
-
-                                <div class="d-flex flex-row mr-1 flex-wrap">
-                                    <div class="product__option-choice-size product__option-choice-size--active">28.5cm</div>
-                                    <div class="product__option-choice-size">30cm</div>
-                                    <div class="product__option-choice-size">33cm</div>
-                                    <div class="product__option-choice-size">35cm</div>
-                                    <div class="product__option-choice-size">38cm</div>
-                                    <div class="product__option-choice-size">40cm</div>
-                                    <div class="product__option-choice-size">42cm</div>
-                                </div>
-                            </div>
-
-                            <div class="d-flex flex-row">
-                                <div class="d-flex flex-column mr-3">
-                                    <span class="product__option"> Długość: </span>
-                                </div>
-
-                                <div class="d-flex flex-row mr-1 flex-wrap">
-                                    <div class="product__option-choice-size product__option-choice-size--active">73.5cm</div>
-                                    <div class="product__option-choice-size">80cm</div>
-                                    <div class="product__option-choice-size">85cm</div>
-                                    <div class="product__option-choice-size">90cm</div>
-                                    <div class="product__option-choice-size">100cm</div>
-                                    <div class="product__option-choice-size">110cm</div>
-                                    <div class="product__option-choice-size">120cm</div>
-                                </div>
-                    </div>*@
 
                     <hr class="w-100 text-primary" />
 
@@ -217,16 +173,8 @@
                     </div>
 
                     <div class="d-flex flex-column flex-md-row flex-lg-column justify-content-between">
-                        @*<div class="d-flex flex-row fill-even mb-3">
-                            <span class="product__option">Opcje: </span>
-                            <ul class="product__option-summary">
-                                <li>Kolor: czerwony</li>
-                                <li>Rozmiar: 42</li>
-                                <li>Długość: 110cm</li>
-                            </ul>
-                        </div>*@
                         <div class="d-flex flex-row fill-even mb-3 justify-content-between align-self-auto align-self-md-end align-self-lg-auto">
-                            <p class="product__option">Cena: <span class="product__final-price">@String.Format("{0:F2} zł", Model.product.price)</span></p>
+                            <p class="product__option">Cena: <span class="product__final-price">@String.Format("{0:F2} zł", Model.product.price * ((100.0M - Model.product.discount) / 100.0M))</span></p>
                             @*<form class="">*@
                             <label for="compare"><input id="compare" value="true" type="checkbox" /> Porównaj</label>
                             @*</form>*@

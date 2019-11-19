@@ -9,6 +9,9 @@
     int feature = 0;
 
     List<string> avaliabilities = new List<string>();
+    List<string> brands = new List<string>();
+    List<string> discounts = new List<string>();
+
 
     if (Model.Count() > 0)
     {
@@ -17,6 +20,16 @@
             if (!avaliabilities.Contains(product.availability.ToString()))
             {
                 avaliabilities.Add(product.availability.ToString());
+            }
+
+            if (!brands.Contains(product.Brand.brand1.ToString()))
+            {
+                brands.Add(product.Brand.brand1.ToString());
+            }
+
+            if (!discounts.Contains((product.discount > 0) ? "Promocja": "Cena regularna"))
+            {
+                discounts.Add((product.discount > 0) ? "Promocja": "Cena regularna");
             }
         }
     }
@@ -28,6 +41,10 @@
 
     List<string> avas = new List<string>();
     List<string> avasSelected = new List<string>();
+    List<string> brans = new List<string>();
+    List<string> brandSelected = new List<string>();
+    List<string> discs = new List<string>();
+    List<string> discountsSelected = new List<string>();
 
     if (Session["productAvailabilities"] != null)
     {
@@ -39,6 +56,26 @@
         avas = avaliabilities;
     }
 
+    if (Session["productBrands"] != null)
+    {
+        brans = (List<string>)(Session["productBrands"]);
+    }
+    else
+    {
+        Session["productBrands"] = brands;
+        brans = brands;
+    }
+
+    if (Session["productDiscounts"] != null)
+    {
+        discs = (List<string>)(Session["productDiscounts"]);
+    }
+    else
+    {
+        Session["productDiscounts"] = discounts;
+        discs = discounts;
+    }
+
     if (ViewBag.brandId != null)
     {
         brand = (int)ViewBag.brandId;
@@ -47,6 +84,16 @@
     if (ViewBag.avasSelected != null)
     {
         avasSelected = ViewBag.avasSelected;
+    }
+
+    if (ViewBag.brandsSelected != null)
+    {
+        brandSelected = ViewBag.brandsSelected;
+    }
+
+    if (ViewBag.discountsSelected != null)
+    {
+        discountsSelected = ViewBag.discountsSelected;
     }
 
     if (ViewBag.featureId != null)
@@ -82,95 +129,33 @@
                 @using (Html.BeginForm("ProductList", "Shop"))
                 {
                     <div class="card">
-                        @*<article class="card-group-item">
-                                <header class="card-header"><h6 class="title">Similar category </h6></header>
-                                <div class="filter-content">
-                                    <div class="list-group list-group-flush">
-                                        <a href="#" class="list-group-item">Cras justo odio <span class="float-right badge badge-light round">142</span> </a>
-                                        <a href="#" class="list-group-item">Dapibus ac facilisis  <span class="float-right badge badge-light round">3</span>  </a>
-                                        <a href="#" class="list-group-item">Morbi leo risus <span class="float-right badge badge-light round">32</span>  </a>
-                                        <a href="#" class="list-group-item">Another item <span class="float-right badge badge-light round">12</span>  </a>
-                                    </div>  <!-- list-group .// -->
-                                </div>
-                            </article> <!-- card-group-item.// -->*@
-
-                        @*<article class="card-group-item">
-                                <header class="card-header">
-                                    <h6 class="title">Choose type </h6>
-                                </header>
-                                <div class="filter-content">
-                                    <div class="card-body">
-                                        <label class="form-check">
-                                            <input class="form-check-input" type="radio" name="exampleRadio" value="">
-                                            <span class="form-check-label">
-                                                First hand items
-                                            </span>
-                                        </label>
-                                        <label class="form-check">
-                                            <input class="form-check-input" type="radio" name="exampleRadio" value="">
-                                            <span class="form-check-label">
-                                                Brand new items
-                                            </span>
-                                        </label>
-                                        <label class="form-check">
-                                            <input class="form-check-input" type="radio" name="exampleRadio" value="">
-                                            <span class="form-check-label">
-                                                Some other option
-                                            </span>
-                                        </label>
-                                    </div> <!-- card-body.// -->
-                                </div>
-                            </article> <!-- card-group-item.// -->*@
 
                         <article class="card-group-item">
                             <header class="card-header">
-                                <h6 class="title">Marka </h6>
+                                <h6 class="title">Marka:</h6>
                             </header>
                             <div class="filter-content">
                                 <div class="card-body">
-                                    <form>
-                                        <label class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="">
-                                            <span class="form-check-label">
-                                                Mersedes Benz
-                                            </span>
-                                        </label> <!-- form-check.// -->
-                                        <label class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="">
-                                            <span class="form-check-label">
-                                                Nissan Altima
-                                            </span>
-                                        </label>  <!-- form-check.// -->
-                                        <label class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="">
-                                            <span class="form-check-label">
-                                                Another Brand
-                                            </span>
-                                        </label>  <!-- form-check.// -->
-                                    </form>
+                                    @foreach (var ava in brans)
+                                    {
+                                        <div class="custom-control custom-checkbox">
+                                            @*<span class="float-right badge badge-light round">52</span>*@
+                                            @if (brandSelected.Contains(ava))
+                                            {
+                                                @Html.CheckBox("brands", new { @onchange = "form.submit();", @value = ava, @id = "brands" + ava, @class = "custom-control-input", @checked = "" })
+                                            }
+                                            else
+                                            {
+                                                @Html.CheckBox("brands", new { @onchange = "form.submit();", @value = ava, @id = "brands" + ava, @class = "custom-control-input" })
 
+                                            }
+                                            @*<input type="checkbox" onchange="form.submit();" name="availability" class="custom-control-input" id="Check@(String.Format("{0}", ava))">*@
+                                            <label class="custom-control-label" for="brands@(String.Format("{0}", ava))">@ava</label>
+                                        </div> <!-- form-check.// -->
+                                    }
                                 </div> <!-- card-body.// -->
                             </div>
-                        </article> <!-- card-group-item.// -->
-                        <article class="card-group-item">
-                            <header class="card-header"><h6 class="title">Color check</h6></header>
-                            <div class="filter-content">
-                                <div class="card-body">
-                                    <label class="btn btn-danger">
-                                        <input class="" type="checkbox" name="myradio" value="">
-                                        <span class="form-check-label">Red</span>
-                                    </label>
-                                    <label class="btn btn-success">
-                                        <input class="" type="checkbox" name="myradio" value="">
-                                        <span class="form-check-label">Green</span>
-                                    </label>
-                                    <label class="btn btn-primary">
-                                        <input class="" type="checkbox" name="myradio" value="">
-                                        <span class="form-check-label">Blue</span>
-                                    </label>
-                                </div> <!-- card-body.// -->
-                            </div>
-                        </article> <!-- card-group-item.// -->
+                        </article>
 
                         <article class="card-group-item">
                             <header class="card-header">
@@ -195,6 +180,33 @@
 
                         <article class="card-group-item">
                             <header class="card-header">
+                                <h6 class="title">Promocje:</h6>
+                            </header>
+                            <div class="filter-content">
+                                <div class="card-body">
+                                        @foreach (var ava in discs)
+                                        {
+                                    <div class="custom-control custom-checkbox">
+                                        @*<span class="float-right badge badge-light round">52</span>*@
+                                        @if (discountsSelected.Contains(ava))
+                                        {
+                                            @Html.CheckBox("discounts", new { @onchange = "form.submit();", @value = ava, @id = "discounts" + ava, @class = "custom-control-input", @checked ="" })
+                                        }
+                                        else
+                                        {
+                                            @Html.CheckBox("discounts", new { @onchange = "form.submit();", @value = ava, @id = "discounts" + ava, @class = "custom-control-input" })
+
+                                        }
+                                        @*<input type="checkbox" onchange="form.submit();" name="availability" class="custom-control-input" id="Check@(String.Format("{0}", ava))">*@
+                                        <label class="custom-control-label" for="discounts@(String.Format("{0}", ava))">@ava</label>
+                                    </div> <!-- form-check.// -->
+                                        }
+                                </div> <!-- card-body.// -->
+                            </div>
+                        </article>
+
+                        <article class="card-group-item">
+                            <header class="card-header">
                                 <h6 class="title">Dostępność:</h6>
                             </header>
                             <div class="filter-content">
@@ -216,24 +228,6 @@
                                         <label class="custom-control-label" for="availability@(String.Format("{0}", ava))">@ava</label>
                                     </div> <!-- form-check.// -->
                                         }
-                                    
-                                    @*<div class="custom-control custom-checkbox">
-                                        <span class="float-right badge badge-light round">132</span>
-                                        <input type="checkbox" class="custom-control-input" id="Check2">
-                                        <label class="custom-control-label" for="Check2">Black berry</label>
-                                    </div> <!-- form-check.// -->
-
-                                    <div class="custom-control custom-checkbox">
-                                        <span class="float-right badge badge-light round">17</span>
-                                        <input type="checkbox" class="custom-control-input" id="Check3">
-                                        <label class="custom-control-label" for="Check3">Samsung</label>
-                                    </div> <!-- form-check.// -->
-
-                                    <div class="custom-control custom-checkbox">
-                                        <span class="float-right badge badge-light round">7</span>
-                                        <input type="checkbox" class="custom-control-input" id="Check4">
-                                        <label class="custom-control-label" for="Check4">Other Brand</label>
-                                    </div>*@ <!-- form-check.// -->
                                 </div> <!-- card-body.// -->
                             </div>
                         </article>

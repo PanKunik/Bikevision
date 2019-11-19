@@ -366,6 +366,9 @@
     <Content Include="Content\Images\Products\3\3_czarny\1.jpg" />
     <Content Include="Content\Images\Products\3\3_czarny\2.jpg" />
     <Content Include="Content\Images\Products\3\3_czarny\3.jpg" />
+    <Content Include="Content\Images\Products\4\4_czarny\1.jpg" />
+    <Content Include="Content\Images\Products\4\4_czerwony\1.jpg" />
+    <Content Include="Content\Images\Products\4\4_niebieski\1.jpg" />
     <Content Include="Content\Images\Service\service_01.jpg" />
     <Content Include="Content\Images\Service\service_02.jpg" />
     <Content Include="Content\Images\Service\service_03.jpg" />

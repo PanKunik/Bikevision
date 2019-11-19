@@ -261,6 +261,34 @@ namespace bikevision.Controllers
 
             ViewBag.avasSelected = availabilities;
 
+            List<string> brands = new List<string>();
+
+            if (!string.IsNullOrEmpty(coll["brands"]))
+            {
+                string[] values = coll["brands"].Split(',');
+                foreach(var check in values)
+                {
+                    if(check != "false")
+                        brands = brands.Append(check).ToList();
+                }
+            }
+
+            ViewBag.brandsSelected = brands;
+
+            List<string> discounts = new List<string>();
+
+            if (!string.IsNullOrEmpty(coll["discounts"]))
+            {
+                string[] values = coll["discounts"].Split(',');
+                foreach(var check in values)
+                {
+                    if(check != "false")
+                        discounts = discounts.Append(check).ToList();
+                }
+            }
+
+            ViewBag.discountsSelected = discounts;
+
             if (priceFrom == null)
                 if (Request["priceFrom"] != null && Request["priceFrom"] != "")
                     if (Decimal.Parse(Request["priceFrom"]) > 0)
@@ -305,11 +333,11 @@ namespace bikevision.Controllers
             Func<Item, bool> whereFuncPrice = null;
 
             if (priceFrom != null && priceTo != null)
-                whereFuncPrice = pric => pric.price >= priceFrom && pric.price <= priceTo;
+                whereFuncPrice = pric => (pric.price * ((100.0M - pric.discount) / 100.0M)) >= priceFrom && (pric.price * ((100.0M - pric.discount) / 100.0M)) <= priceTo;
             else if(priceFrom != null)
-                whereFuncPrice = pric => pric.price >= priceFrom;
+                whereFuncPrice = pric => (pric.price * ((100.0M - pric.discount) / 100.0M)) >= priceFrom;
             else if (priceTo != null)
-                whereFuncPrice = pric => pric.price <= priceTo;
+                whereFuncPrice = pric => (pric.price * ((100.0M - pric.discount) / 100.0M)) <= priceTo;
             else
                 whereFuncPrice = null;
 
@@ -326,6 +354,31 @@ namespace bikevision.Controllers
                 }
             }
 
+            List<Func<Item, bool>> whereFuncBrand = new List<Func<Item, bool>>();
+
+            if (brands.Count() > 0)
+            {
+                foreach (var ava in brands)
+                {
+                    whereFuncBrand.Add(i => i.Brand.brand1.ToString() == ava);
+                }
+            }
+
+            List<Func<Item, bool>> whereFuncDiscount = new List<Func<Item, bool>>();
+
+            if (discounts.Count() > 0)
+            {
+                foreach (var ava in discounts)
+                {
+                    if (ava == "Promocja")
+                        whereFuncDiscount.Add(i => i.discount > 0);
+
+                    if(ava == "Cena regularna")
+                        whereFuncDiscount.Add(i => i.discount == 0);
+                    //whereFuncDiscount.Add(i => i.discount (ava == "Promocja") ? > 0 : );
+                }
+            }
+
             if (categoryId != null)
             {
                 items = db.Items.Where(cat => cat.Category_idCategory == categoryId).ToList();
@@ -338,6 +391,26 @@ namespace bikevision.Controllers
                 if (whereFuncAva.Count() > 0)
                 {
                     foreach (var func in whereFuncAva)
+                        newItems1 = newItems1.Concat(items.Where(func)).ToList();
+
+                    items = newItems1;
+                }
+
+                newItems1 = new List<Item>();
+
+                if (whereFuncBrand.Count() > 0)
+                {
+                    foreach (var func in whereFuncBrand)
+                        newItems1 = newItems1.Concat(items.Where(func)).ToList();
+
+                    items = newItems1;
+                }
+
+                newItems1 = new List<Item>();
+
+                if (whereFuncDiscount.Count() > 0)
+                {
+                    foreach (var func in whereFuncDiscount)
                         newItems1 = newItems1.Concat(items.Where(func)).ToList();
 
                     items = newItems1;
@@ -381,6 +454,26 @@ namespace bikevision.Controllers
                     items = newItems2;
                 }
 
+                newItems2 = new List<Item>();
+
+                if (whereFuncBrand.Count() > 0)
+                {
+                    foreach (var func in whereFuncBrand)
+                        newItems2 = newItems2.Concat(items.Where(func)).ToList();
+
+                    items = newItems2;
+                }
+
+                newItems2 = new List<Item>();
+
+                if (whereFuncDiscount.Count() > 0)
+                {
+                    foreach (var func in whereFuncDiscount)
+                        newItems2 = newItems2.Concat(items.Where(func)).ToList();
+
+                    items = newItems2;
+                }
+
                 //items.SelectMany(items, i => i.idItem == 1);
                 return View((sortOrder.Contains("asc") ? items.OrderBy(orderByFunc).ToList() : items.OrderByDescending(orderByFunc).ToList()));
             }
@@ -407,6 +500,26 @@ namespace bikevision.Controllers
                     items = newItems3;
                 }
 
+                newItems3 = new List<Item>();
+
+                if (whereFuncBrand.Count() > 0)
+                {
+                    foreach (var func in whereFuncBrand)
+                        newItems3 = newItems3.Concat(items.Where(func)).ToList();
+
+                    items = newItems3;
+                }
+
+                newItems3 = new List<Item>();
+
+                if (whereFuncDiscount.Count() > 0)
+                {
+                    foreach (var func in whereFuncDiscount)
+                        newItems3 = newItems3.Concat(items.Where(func)).ToList();
+
+                    items = newItems3;
+                }
+
                 return View((sortOrder.Contains("asc") ? items.OrderBy(orderByFunc).ToList() : items.OrderByDescending(orderByFunc).ToList()));
             }
 
@@ -428,6 +541,26 @@ namespace bikevision.Controllers
             if (whereFuncAva.Count() > 0)
             {
                 foreach (var func in whereFuncAva)
+                    newItems4 = newItems4.Concat(items.Where(func)).ToList();
+
+                items = newItems4;
+            }
+
+            newItems4 = new List<Item>();
+
+            if (whereFuncBrand.Count() > 0)
+            {
+                foreach (var func in whereFuncBrand)
+                    newItems4 = newItems4.Concat(items.Where(func)).ToList();
+
+                items = newItems4;
+            }
+
+            newItems4 = new List<Item>();
+
+            if (whereFuncDiscount.Count() > 0)
+            {
+                foreach (var func in whereFuncDiscount)
                     newItems4 = newItems4.Concat(items.Where(func)).ToList();
 
                 items = newItems4;
