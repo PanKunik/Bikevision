@@ -240,8 +240,15 @@ namespace bikevision.Controllers
 
             return View(productDetails);
         }
-        public ActionResult ProductList(string Searching, int? categoryId, string types, int? featureId, int? brandId, decimal? priceFrom, decimal? priceTo, FormCollection coll, string sortOrder)
+        public ActionResult ProductList(string Searching, int? categoryId, string types, int? featureId, int? brandId, decimal? priceFrom, decimal? priceTo, FormCollection coll, string sortOrder, bool? init = false)
         {
+            if(init == true)
+            {
+                Session["productAvailabilities"] = null;
+                Session["productDiscounts"] = null;
+                Session["productBrands"] = null;
+            }
+
             List<Item> items;
 
             if (sortOrder == null)

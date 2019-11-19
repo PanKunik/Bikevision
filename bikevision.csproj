@@ -361,7 +361,7 @@
     <Content Include="Content\Images\Products\1\1_czerwony\1.jpg" />
     <Content Include="Content\Images\Products\1\1_zielony\1.jpg" />
     <Content Include="Content\Images\Products\2\2_czarny\1.jpg" />
-    <Content Include="Content\Images\Products\2\2_sea-lemon\1.jpg" />
+    <Content Include="Content\Images\Products\2\2_sea_lemon\1.jpg" />
     <Content Include="Content\Images\Products\2\2_zielony\1.jpg" />
     <Content Include="Content\Images\Products\3\3_czarny\1.jpg" />
     <Content Include="Content\Images\Products\3\3_czarny\2.jpg" />
@@ -369,6 +369,11 @@
     <Content Include="Content\Images\Products\4\4_czarny\1.jpg" />
     <Content Include="Content\Images\Products\4\4_czerwony\1.jpg" />
     <Content Include="Content\Images\Products\4\4_niebieski\1.jpg" />
+    <Content Include="Content\Images\Products\5\5_czarny\1.jpg" />
+    <Content Include="Content\Images\Products\5\5_czerwony\1.jpg" />
+    <Content Include="Content\Images\Products\5\5_marine_blue\1.jpg" />
+    <Content Include="Content\Images\Products\5\5_royal_blue\1.jpg" />
+    <Content Include="Content\Images\Products\5\5_sky_blue\1.jpg" />
     <Content Include="Content\Images\Service\service_01.jpg" />
     <Content Include="Content\Images\Service\service_02.jpg" />
     <Content Include="Content\Images\Service\service_03.jpg" />
