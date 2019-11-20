@@ -34,6 +34,8 @@
 
 .table.vertical-align > tbody > tr > td {vertical-align: middle;}
 
+.text-shadow {text-shadow: 4px 4px 8px black;}
+
 /*  End single property classes  */
 
 /*  Main HTML elements  */

@@ -354,13 +354,13 @@
     <Content Include="Content\Font Awesome 5.10.2\webfonts\fa-regular-400.svg" />
     <Content Include="Content\Font Awesome 5.10.2\webfonts\fa-solid-900.svg" />
     <Content Include="Content\Images\60353.jpg" />
-    <Content Include="Content\Images\About\about_1.jpg" />
-    <Content Include="Content\Images\About\about_2.jpg" />
-    <Content Include="Content\Images\About\about_3.jpg" />
     <Content Include="Content\Images\About\about_4.jpg" />
     <Content Include="Content\Images\About\about_5.jpg" />
     <Content Include="Content\Images\About\about_6.jpg" />
-    <Content Include="Content\Images\About\about_7.jpg" />
+    <Content Include="Content\Images\About\about_Carousel %281%29.jpg" />
+    <Content Include="Content\Images\About\about_Carousel %282%29.jpg" />
+    <Content Include="Content\Images\About\about_Carousel %283%29.jpg" />
+    <Content Include="Content\Images\About\about_Carousel %284%29.jpg" />
     <Content Include="Content\Images\bikevision.png" />
     <Content Include="Content\Images\Products\1\1_czarno-zielony\1.jpg" />
     <Content Include="Content\Images\Products\1\1_czarny\1.jpg" />
