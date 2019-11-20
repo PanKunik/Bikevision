@@ -27,13 +27,13 @@
                                 @feature.Item1
                             </td>
                             <td name="comparation_@feature.Item1.ToString().Replace(" ","")" class="text-left">
-                                @if (feature.Item2 == null && feature.Item2.Count() <= 0)
+                                @if (feature.Item2 == null)
                                 {
                                     @String.Format("-");
                                 }
                                 else
                                 {
-                                    foreach(var val in feature.Item2)
+                                    foreach (var val in feature.Item2)
                                     {
                                         if (feature.Item2.Last() == val)
                                         {
