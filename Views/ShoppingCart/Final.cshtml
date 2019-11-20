@@ -101,7 +101,7 @@
                 {
                     <tr>
                         <td scope="row">
-                            @item.Item.name
+                            <a href="@Url.Action("Product", "Shop", new { id = item.Item.idItem })">@item.Item.name</a>
                         </td>
                         <td>
                             @String.Format("{0:F2} zł", ViewBag.prices[index])

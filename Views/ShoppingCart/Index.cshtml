@@ -109,23 +109,33 @@
 
                         if (pairs.Count() > 0)
                         {
-                            promotionCode -= ((productInCart.Quantity * (productInCart.Item.price * ((100.0M - (decimal)productInCart.Item.discount) / 100.0M))) - (((100.0M - (decimal)pairs.First().Item2 - customerDiscount - (decimal)productInCart.Item.discount) / 100) * (productInCart.Quantity * productInCart.Item.price)));
+                            decimal priceOnDiscount = productInCart.Quantity * (productInCart.Item.price * ((100.0M - (decimal)productInCart.Item.discount)/100.0M));
+
+                            promotionCode -= ((productInCart.Quantity * priceOnDiscount) - ((productInCart.Quantity * priceOnDiscount * (100.0M - (decimal)pairs.First().Item2 - (decimal)customerDiscount) / 100.0M)));
                         }
 
                     }
                     else if (customerDiscount > 0)
                     {
-                        promotionCode -= ((productInCart.Quantity * (productInCart.Item.price * ((100.0M - (decimal)productInCart.Item.discount) / 100.0M))) - (((100 - (decimal)customerDiscount) / 100.0M) * (productInCart.Quantity * productInCart.Item.price)));
+                        decimal priceOnDiscount = productInCart.Quantity * (productInCart.Item.price * ((100.0M - (decimal)productInCart.Item.discount)/100.0M));
+
+                        promotionCode -= ((productInCart.Quantity * priceOnDiscount) - ((productInCart.Quantity * priceOnDiscount * (100.0M - (decimal)customerDiscount) / 100.0M)));
                     }
 
                     //promotionCode += ((productInCart.Quantity * productInCart.Item.price) - (productInCart.Quantity * productInCart.Item.price) * (1 / productInCart.Multiplier));
                     //total += (productInCart.Quantity * productInCart.Item.price);
                     <tr>
                         <td scope="row">
-                            <img src="@(String.Format("../../Content/Images/Products/{0}/{1}_{2}/1.jpg", productInCart.Item.idItem, productInCart.Item.idItem, colorM.ToLower()))" class="shopping-cart__product-image" alt="obrazek" />
+                            <a href="@Url.Action("Product", "Shop", new { id = productInCart.Item.idItem, model = (productInCart.Item.idItem + "_" + colorM.ToLower()) })">
+                                <img src="@(String.Format("../../Content/Images/Products/{0}/{1}_{2}/1.jpg", productInCart.Item.idItem, productInCart.Item.idItem, colorM.ToLower()))" class="shopping-cart__product-image" alt="obrazek" />
+                            </a>
                         </td>
                         <td>
-                            <p class="h5"> @productInCart.Item.name </p>
+                            <a href="@Url.Action("Product", "Shop", new { id = productInCart.Item.idItem, model = (productInCart.Item.idItem + "_" + colorM.ToLower()) })">
+                                <p class="h5">
+                                    @productInCart.Item.name
+                                </p>
+                            </a>
                             @{
                                 List<string> values = productInCart.Options.Split(';').ToList();
                                 foreach (var val in values)
