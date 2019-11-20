@@ -12,78 +12,328 @@
 
     <div class="flex-fill px-2">
         <div class="container-fluid jumbotron-fluid my-2 d-flex flex-column flex-md-row">
-            <aside class="list-group flex-lg-shrink-0">
-                <a href="#" class="list-group-item list-group-item-action active px-5 text-nowrap"> Kategoria pierwsza </a>
-                <a href="#" class="list-group-item list-group-item-action px-5 text-nowrap"> Kategoria druga </a>
-                <a href="#" class="list-group-item list-group-item-action px-5 text-nowrap"> Kategoria trzecia </a>
-                <a href="#" class="list-group-item list-group-item-action px-5 text-nowrap"> Kategoria czwarta </a>
-                <a href="#" class="list-group-item list-group-item-action px-5 text-nowrap"> Kategoria piąta </a>
+            <aside role="tablist" class="list-group flex-lg-shrink-0">
+                <a class="nav-link list-group-item list-group-item-action active px-5 text-nowrap" id="beforePurchase-tab" data-toggle="tab" href="#beforePurchase" role="tab" aria-controls="beforePurchase" aria-selected="true">Przed zakupem</a>
+                <a class="nav-link list-group-item list-group-item-action px-5 text-nowrap" id="delivery-tab" data-toggle="tab" href="#delivery" role="tab" aria-controls="delivery" aria-selected="true">Dostawa</a>
+                <a class="nav-link list-group-item list-group-item-action px-5 text-nowrap" id="afterPurchase-tab" data-toggle="tab" href="#afterPurchase" role="tab" aria-controls="afterPurchase" aria-selected="true">Po zakupie</a>
+                <a class="nav-link list-group-item list-group-item-action px-5 text-nowrap" id="tips-tab" data-toggle="tab" href="#tips" role="tab" aria-controls="tips" aria-selected="true">Porady</a>
+                <a class="nav-link list-group-item list-group-item-action px-5 text-nowrap" id="others-tab" data-toggle="tab" href="#others" role="tab" aria-controls="others" aria-selected="true">Inne</a>
             </aside>
 
-            <article class="flex-fill ml-md-2 mt-md-0 mt-2">
-                <div id="accordion" role="tablist" aria-multiselectable="true">
-                    <div class="card">
-                        <h5 class="card-header" role="tab" id="headingOne">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="collapsed d-block collapsedTab">
-                                <span>1. Kim jesteśmy?</span>
-                                <i class="fas fa-chevron-down float-right rotate"></i>
-                            </a>
-                        </h5>
+            <article class="tab-content flex-fill ml-md-2 mt-md-0 mt-2">
+                <div class="tab-pane fade show active" id="beforePurchase" role="tabpanel" aria-labelledby="beforePurchase-tab">
+                    <div id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="card">
+                            <h5 class="card-header" role="tab" id="beforePurchaseHeadingOne">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#beforePurchaseCollapseOne" aria-expanded="true" aria-controls="beforePurchaseCollapseOne" class="collapsed d-block collapsedTab">
+                                    <span>1. Jak zamawiać online w BIKEVISION?</span>
+                                    <i class="fas fa-chevron-down float-right rotate"></i>
+                                </a>
+                            </h5>
 
-                        <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
-                            <div class="card-body">
-                                <p class="text-justify">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
-                                    moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-                                    Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
-                                    shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea
-                                    proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim
-                                    aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                </p>
+                            <div id="beforePurchaseCollapseOne" class="collapse" role="tabpanel" aria-labelledby="beforePurchaseHeadingOne">
+                                <div class="card-body">
+                                    <p class="text-justify">
+                                        <span class="h5">1. Wyszukaj produkty i dodaj je do koszyka.</span>
+                                        <br />
+                                        Wyszukaj w naszym sklepie rowerowym produkt, który chcesz kupić i kliknij na przycick &ldquo; koszyka&rdquo;, bez zobowiązań. Wybrane produkty będą dostępne w wirtualnym koszyku i można usunąć je lub zmienić ilość wybranych produktów. Jeżeli jesteś zadowolony ze swojego wyboru, kliknij przycisk &lsquo;Dalej&rsquo;
+                                        <br /><br />
+
+                                        <span class="h5">2. Wypełnij zamówienie.</span>
+                                        <br />
+                                        Adres:<br />
+                                        Jeśli masz już konto w naszym sklepie, podaj swój adres e-mail oraz swoje osobiste hasło i kliknij &ldquo;Zaloguj się&rdquo;. Poprzez kliknięcie przycisku &ldquo;Dodaj dane personalne&rdquo;, można określić nowy adres. Proszę potwierdzić adres dostawy, klikając przycisk &ldquo;Dalej&rdquo;.
+
+                                        Jeżeli nie masz jeszcze konta klienta, proszę wprowadzić wymagane dane, a następnie kliknąć przycisk &lsquo;Dalej&rsquo;. Posiadając adres dostawy, wiemy dokąd wysłać przesyłkę.
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card">
-                        <h5 class="card-header" role="tab" id="headingTwo">
-                            <a class="collapsed d-block collapsedTab" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                <span>2. Co to za sklep?</span>
-                                <i class="fas fa-chevron-down float-right rotate"></i>
-                            </a>
-                        </h5>
-                        <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
-                            <div class="card-body">
-                                <p class="text-justify">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
-                                    moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-                                    Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
-                                    shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea
-                                    proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim
-                                    aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                </p>
+                        <div class="card">
+                            <h5 class="card-header" role="tab" id="beforePurchaseheadingTwo">
+                                <a class="collapsed d-block collapsedTab" data-toggle="collapse" data-parent="#accordion" href="#beforePurchasecollapseTwo" aria-expanded="false" aria-controls="beforePurchasecollapseTwo">
+                                    <span>2. Jak mogę domówić produkt później?</span>
+                                    <i class="fas fa-chevron-down float-right rotate"></i>
+                                </a>
+                            </h5>
+                            <div id="beforePurchasecollapseTwo" class="collapse" role="tabpanel" aria-labelledby="beforePurchaseheadingTwo">
+                                <div class="card-body">
+                                    <p class="text-justify">
+                                        Dodanie pozycji do zamówienia po jego zakończeniu nie jest możliwe, ponieważ zamówienie jest przetwarzane zaraz po jego potwierdzeniu.
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card">
-                        <h5 class="card-header" role="tab" id="headingThree">
-                            <a class="collapsed d-block collapsedTab" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                <span>3. Czego tutaj szukam?</span>
-                                <i class="fas fa-chevron-down float-right rotate"></i>
-                            </a>
-                        </h5>
-                        <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
-                            <div class="card-body">
-                                <p class="text-justify">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
-                                    moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-                                    Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
-                                    shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea
-                                    proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim
-                                    aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                </p>
+                        <div class="card">
+                            <h5 class="card-header" role="tab" id="beforePurchaseheadingThree">
+                                <a class="collapsed d-block collapsedTab" data-toggle="collapse" data-parent="#accordion" href="#beforePurchasecollapseThree" aria-expanded="false" aria-controls="beforePurchasecollapseThree">
+                                    <span>3. Czy obowiązuje minimalna kwota zamówienia?</span>
+                                    <i class="fas fa-chevron-down float-right rotate"></i>
+                                </a>
+                            </h5>
+                            <div id="beforePurchasecollapseThree" class="collapse" role="tabpanel" aria-labelledby="beforePurchaseheadingThree">
+                                <div class="card-body">
+                                    <p class="text-justify">
+                                        Nie ma żadnej minimalnej kwoty zamówienia. Jednak koszty dostawy mogą różnić się w zależności od wielkości zamówienia.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <h5 class="card-header" role="tab" id="beforePurchaseheadingFour">
+                                <a class="collapsed d-block collapsedTab" data-toggle="collapse" data-parent="#accordion" href="#beforePurchasecollapseFour" aria-expanded="false" aria-controls="beforePurchasecollapseFour">
+                                    <span>4. Czy mogę zamówić produkt, któego nie ma w asortymencie?</span>
+                                    <i class="fas fa-chevron-down float-right rotate"></i>
+                                </a>
+                            </h5>
+                            <div id="beforePurchasecollapseFour" class="collapse" role="tabpanel" aria-labelledby="beforePurchaseheadingFour">
+                                <div class="card-body">
+                                    <p class="text-justify">
+                                        Nie, niestety możemy dostarczyć tylko te produkty, które posiadamy w swoim asortymencie. Zamówienia specjalne są dla nas niewykonalne.
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <div class="tab-pane fade" id="delivery" role="tabpanel" aria-labelledby="delivery-tab">
+                    <div id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="card">
+                            <h5 class="card-header" role="tab" id="deliveryheadingOne">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#deliverycollapseOne" aria-expanded="true" aria-controls="deliverycollapseOne" class="collapsed d-block collapsedTab">
+                                    <span>1. Czy ponoszę koszty dostawy, w przypadku, gdy zamówię darmowy produkt?</span>
+                                    <i class="fas fa-chevron-down float-right rotate"></i>
+                                </a>
+                            </h5>
+
+                            <div id="deliverycollapseOne" class="collapse" role="tabpanel" aria-labelledby="deliveryheadingOne">
+                                <div class="card-body">
+                                    <p class="text-justify">
+                                        Kupując darmowy produkt, wszystkie koszty przesyłki ponosi sklep.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <h5 class="card-header" role="tab" id="deliveryheadingTwo">
+                                <a class="collapsed d-block collapsedTab" data-toggle="collapse" data-parent="#accordion" href="#deliverycollapseTwo" aria-expanded="false" aria-controls="deliverycollapseTwo">
+                                    <span>2. Jakie są koszty dostawy w przypadku zamówienia produktów z różnych kategorii?</span>
+                                    <i class="fas fa-chevron-down float-right rotate"></i>
+                                </a>
+                            </h5>
+                            <div id="deliverycollapseTwo" class="collapse" role="tabpanel" aria-labelledby="deliveryheadingTwo">
+                                <div class="card-body">
+                                    <p class="text-justify">
+                                        Koszty wysyłki dla koszyka zawierającego produkty z różnych kategorii (rowery + mniejsze elementy) są zawsze obliczane na podstawie zamówionego roweru. A zatem w przypadku zamówienia roweru elektrycznego, pokrywamy koszty dostawy także zamówionych mniejszych części, niezależnie od ich wartości. Wartość zamówienia w przypadku rowerów i e-rowerów jest zawsze obliczana niezależnie od wartości zamówionych mniejszych produktów.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <h5 class="card-header" role="tab" id="deliveryheadingThree">
+                                <a class="collapsed d-block collapsedTab" data-toggle="collapse" data-parent="#accordion" href="#deliverycollapseThree" aria-expanded="false" aria-controls="deliverycollapseThree">
+                                    <span>3. Jakie są koszty dostawy?</span>
+                                    <i class="fas fa-chevron-down float-right rotate"></i>
+                                </a>
+                            </h5>
+                            <div id="deliverycollapseThree" class="collapse" role="tabpanel" aria-labelledby="deliveryheadingThree">
+                                <div class="card-body">
+                                    <p class="text-justify">
+                                        W przypadku odbioru osobistego w naszym sklepie nie ponosza Państwo żadnej opłaty. Dostawa za pośrednictwem firmy Paczkomaty InPost wynosi 14,00 PLN. W przypadku dostawy kurierskiej świadczymy usługi za pośrednictwem firmy DHL. Koszt przesyłki kurierskiej wynosi 21,00 PLN.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <h5 class="card-header" role="tab" id="deliveryheadingFour">
+                                <a class="collapsed d-block collapsedTab" data-toggle="collapse" data-parent="#accordion" href="#deliverycollapseFour" aria-expanded="false" aria-controls="deliverycollapseFour">
+                                    <span>4. Czy koszty dostawy zawierają podatek VAT?</span>
+                                    <i class="fas fa-chevron-down float-right rotate"></i>
+                                </a>
+                            </h5>
+                            <div id="deliverycollapseFour" class="collapse" role="tabpanel" aria-labelledby="deliveryheadingFour">
+                                <div class="card-body">
+                                    <p class="text-justify">
+                                        Do kosztów dostawy został już naliczony podatek VAT.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="afterPurchase" role="tabpanel" aria-labelledby="afterPurchase-tab">
+                    <div id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="card">
+                            <h5 class="card-header" role="tab" id="afterPurchaseheadingOne">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#afterPurchasecollapseOne" aria-expanded="true" aria-controls="afterPurchasecollapseOne" class="collapsed d-block collapsedTab">
+                                    <span>1. Czy mogę zmienić swoje zamówienie lub je anulować?</span>
+                                    <i class="fas fa-chevron-down float-right rotate"></i>
+                                </a>
+                            </h5>
+
+                            <div id="afterPurchasecollapseOne" class="collapse" role="tabpanel" aria-labelledby="afterPurchaseheadingOne">
+                                <div class="card-body">
+                                    <p class="text-justify">
+                                        Dokonanie zmian w zamówieniu możliwe jest do momentu przekazania przesyłki firmie kurierskiej. W celu dokonania zmian należy skontaktować się z biurem obsługi Klienta pod numerem telefonu 52 363 40 50, lub za pomocą wiadomości e-mail, pisząc na adres help<span>&#64;</span>bikevision.com
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <h5 class="card-header" role="tab" id="afterPurchaseheadingTwo">
+                                <a class="collapsed d-block collapsedTab" data-toggle="collapse" data-parent="#accordion" href="#afterPurchasecollapseTwo" aria-expanded="false" aria-controls="afterPurchasecollapseTwo">
+                                    <span>2. Czy mam prawo do zwrotu towaru w BIKEVISION?</span>
+                                    <i class="fas fa-chevron-down float-right rotate"></i>
+                                </a>
+                            </h5>
+                            <div id="afterPurchasecollapseTwo" class="collapse" role="tabpanel" aria-labelledby="afterPurchaseheadingTwo">
+                                <div class="card-body">
+                                    <p class="text-justify">
+                                        Klient kupujący towar w sklepie internetowym centrumrowerowe.pl ma prawo do jego zwrotu w czasie 14 dni od dnia otrzymania przesyłki bez konieczności podania przyczyny.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <h5 class="card-header" role="tab" id="afterPurchaseheadingThree">
+                                <a class="collapsed d-block collapsedTab" data-toggle="collapse" data-parent="#accordion" href="#afterPurchasecollapseThree" aria-expanded="false" aria-controls="afterPurchasecollapseThree">
+                                    <span>3. Czy mogę przesyłać rower lub części do naprawy?</span>
+                                    <i class="fas fa-chevron-down float-right rotate"></i>
+                                </a>
+                            </h5>
+                            <div id="afterPurchasecollapseThree" class="collapse" role="tabpanel" aria-labelledby="afterPurchaseheadingThree">
+                                <div class="card-body">
+                                    <p class="text-justify">
+                                        Oczywiście, jest taka możliwość.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="tips" role="tabpanel" aria-labelledby="tips-tab">
+                    <div id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="card">
+                            <h5 class="card-header" role="tab" id="tipsheadingOne">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#tipscollapseOne" aria-expanded="true" aria-controls="tipscollapseOne" class="collapsed d-block collapsedTab">
+                                    <span>1. Kiedy i jak mogę się z wami skontaktować?</span>
+                                    <i class="fas fa-chevron-down float-right rotate"></i>
+                                </a>
+                            </h5>
+
+                            <div id="tipscollapseOne" class="collapse" role="tabpanel" aria-labelledby="tipsheadingOne">
+                                <div class="card-body">
+                                    <p class="text-justify">
+                                        Nasi pracownicy obsługi klienta sklepu BIKEVISION z chęcią odpowiedzą na wszystkie szczegółowe pytania. W celu zaoszczędzenia czasu klienta, zamieściliśmy odpowiedzi na najczęściej zadawane pytania tutaj <a href="@Url.Action("Help", "Home")">FAQ - najczęściej zadawane pytania</a>. Mogą się Pańśtwo skontaktować z Nami poprzez formularz kontaktowy znajdujący się tutaj <a href="@Url.Action("Contact","Home")">strona kontaktowa</a>.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <h5 class="card-header" role="tab" id="tipsheadingTwo">
+                                <a class="collapsed d-block collapsedTab" data-toggle="collapse" data-parent="#accordion" href="#tipscollapseTwo" aria-expanded="false" aria-controls="tipscollapseTwo">
+                                    <span>2. Jaki rozmiar ramy dla dzieci polecacie?</span>
+                                    <i class="fas fa-chevron-down float-right rotate"></i>
+                                </a>
+                            </h5>
+                            <div id="tipscollapseTwo" class="collapse" role="tabpanel" aria-labelledby="tipsheadingTwo">
+                                <div class="card-body">
+                                    <p class="text-justify">
+                                        Wymiary rowerów dziecięcych podane są w calach. Rowery w tym dziale skierowane są dla dzieci w wieku od 3 do 6 lat i mieszczą się w przedziale od 12 do 18 cali. Mają one zwykle nie mają kompletnego wyposażenia, zgodnego z normami StVZO. Co nie jest konieczne, gdyż są one wykorzystywane głównie na chodnikach, a tym samym używane z dala od ruchu ulicznego. Dla większych dzieci (rowery od 20&rdquo;) posiadamy różne modele. Posiadają one po jednej stronie kompletne wyposażenie, zgodne z normami StVZO, co tym samym pozwala na pełne uczestnictwo w ruchu drogowym.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <h5 class="card-header" role="tab" id="tipsheadingThree">
+                                <a class="collapsed d-block collapsedTab" data-toggle="collapse" data-parent="#accordion" href="#tipscollapseThree" aria-expanded="false" aria-controls="tipscollapseThree">
+                                    <span>3. Dlaczego warto zacząć przygodę z rowerem elektrycznym?</span>
+                                    <i class="fas fa-chevron-down float-right rotate"></i>
+                                </a>
+                            </h5>
+                            <div id="tipscollapseThree" class="collapse" role="tabpanel" aria-labelledby="tipsheadingThree">
+                                <div class="card-body">
+                                    <p class="text-justify">
+                                        Jazda na rowerze elektrycznym dostarcza niesamowitej frajdy i przyjemności już po pierwszych pokonanych metrach. Ta zupełnie nowa jakość jazdy na rowerze sprawia, że coraz więcej osób decyduje się rozpocząć swoją przygodę z e-rowerami. Wystarczy tylko rozejrzeć się po ulicach europejskich miast, by na własne oczy zaobserwować ten dynamicznie rosnący nowy trend. A elektryczna rewolucja dopiero się zaczyna, co oznacza, że w najbliższych miesiącach i latach wielu rowerzystów będzie przesiadać się na dwa kółka ze wspomaganiem elektrycznym. Dlatego nasi specjaliści postanowili przygotować ten wyjątkowy przewodnik zawierający wyczerpujące i rzetelne informacje na temat rowerów elektrycznych.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="others" role="tabpanel" aria-labelledby="others-tab">
+                    <div id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="card">
+                            <h5 class="card-header" role="tab" id="othersheadingOne">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#otherscollapseOne" aria-expanded="true" aria-controls="otherscollapseOne" class="collapsed d-block collapsedTab">
+                                    <span>1. Mój rower został skradziony. Czy istnieje możliwość uzyskania informacji dtyczących numeru ramy?</span>
+                                    <i class="fas fa-chevron-down float-right rotate"></i>
+                                </a>
+                            </h5>
+
+                            <div id="otherscollapseOne" class="collapse" role="tabpanel" aria-labelledby="othersheadingOne">
+                                <div class="card-body">
+                                    <p class="text-justify">
+                                        Niestety z logistycznych względów nie możemy przechowywać danych dotyczących numerów ram poszczególnych zamówionych rowerów. Z tego również powodu klient nie znajdzie tych danych na swoim rachunku
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <h5 class="card-header" role="tab" id="othersheadingTwo">
+                                <a class="collapsed d-block collapsedTab" data-toggle="collapse" data-parent="#accordion" href="#otherscollapseTwo" aria-expanded="false" aria-controls="otherscollapseTwo">
+                                    <span>2. Czy mogę się rozliczyć częściowo?</span>
+                                    <i class="fas fa-chevron-down float-right rotate"></i>
+                                </a>
+                            </h5>
+                            <div id="otherscollapseTwo" class="collapse" role="tabpanel" aria-labelledby="othersheadingTwo">
+                                <div class="card-body">
+                                    <p class="text-justify">
+                                        Nie, niestety nie posiadamy możliwości częściowego rozliczania się.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <h5 class="card-header" role="tab" id="othersheadingThree">
+                                <a class="collapsed d-block collapsedTab" data-toggle="collapse" data-parent="#accordion" href="#otherscollapseThree" aria-expanded="false" aria-controls="otherscollapseThree">
+                                    <span>3. Czy mogę otrzymać od Was naklejki, produkty promocyjne lub podobne materiały?</span>
+                                    <i class="fas fa-chevron-down float-right rotate"></i>
+                                </a>
+                            </h5>
+                            <div id="otherscollapseThree" class="collapse" role="tabpanel" aria-labelledby="othersheadingThree">
+                                <div class="card-body">
+                                    <p class="text-justify">
+                                        Nie, niestety nie posiadamy żadnych materiałów reklamowych do dyspozycji. Proszę skierować zapytanie bezpośrednio do danego producenta.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <h5 class="card-header" role="tab" id="othersheadingFour">
+                                <a class="collapsed d-block collapsedTab" data-toggle="collapse" data-parent="#accordion" href="#otherscollapseFour" aria-expanded="false" aria-controls="otherscollapseFour">
+                                    <span>4. Czy domówione akcesoria będą zamontowane przy rowerze?</span>
+                                    <i class="fas fa-chevron-down float-right rotate"></i>
+                                </a>
+                            </h5>
+                            <div id="otherscollapseFour" class="collapse" role="tabpanel" aria-labelledby="othersheadingFour">
+                                <div class="card-body">
+                                    <p class="text-justify">
+                                        Niestety nie możemy zaoferować tej usługi ze względu na prawo do zwrotu towaru oraz ewentualnie występujące ślady po instalacji.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </article>
         </div>
     </div>
