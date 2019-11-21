@@ -134,7 +134,7 @@ namespace bikevision.Controllers
 
         bikewayDBEntities db = new bikewayDBEntities();
         // GET: /Account
-        [Authorize(Roles = "Administrator, Uzytkownik, Moderator, Pracownik sklepu, Pracownik serwisu")]
+        [Authorize(Roles = "Administrator, Użytkownik, Moderator, Pracownik sklepu, Pracownik serwisu")]
         public ActionResult Index()
         {
             AccountDataViewModel accountData = new AccountDataViewModel();
@@ -161,7 +161,7 @@ namespace bikevision.Controllers
         }
 
         // GET: /Account/PersonalData
-        [Authorize(Roles = "Administrator, Uzytkownik, Moderator, Pracownik sklepu, Pracownik serwisu")]
+        [Authorize(Roles = "Administrator, Użytkownik, Moderator, Pracownik sklepu, Pracownik serwisu")]
         public ActionResult PersonalData()
         {
             if(User.Identity.IsAuthenticated)
@@ -197,7 +197,7 @@ namespace bikevision.Controllers
         }        
 
         // GET: /Account/Orders
-        [Authorize(Roles = "Administrator, Uzytkownik, Moderator, Pracownik sklepu, Pracownik serwisu")]
+        [Authorize(Roles = "Administrator, Użytkownik, Moderator, Pracownik sklepu, Pracownik serwisu")]
         public ActionResult Orders()
         {
             if (User.Identity.IsAuthenticated)
@@ -243,7 +243,7 @@ namespace bikevision.Controllers
             return View();
         }
         // GET: /Account/Orders
-        [Authorize(Roles = "Administrator, Uzytkownik, Moderator, Pracownik sklepu, Pracownik serwisu")]
+        [Authorize(Roles = "Administrator, Użytkownik, Moderator, Pracownik sklepu, Pracownik serwisu")]
         public ActionResult ServiceOrders()
         {
             List<Service> listOfOrders;
@@ -326,7 +326,7 @@ namespace bikevision.Controllers
             }
         }
 
-        [Authorize(Roles = "Administrator, Uzytkownik, Moderator, Pracownik sklepu, Pracownik serwisu")]
+        [Authorize(Roles = "Administrator, Użytkownik, Moderator, Pracownik sklepu, Pracownik serwisu")]
         public ActionResult ManagementPanel()
         {
             return View();
@@ -428,7 +428,7 @@ namespace bikevision.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    await this.UserManager.AddToRoleAsync(user.Id, "Uzytkownik");
+                    await this.UserManager.AddToRoleAsync(user.Id, "Użytkownik");
                     return RedirectToAction("Index", "Account");
                 }
                 AddErrors(result);

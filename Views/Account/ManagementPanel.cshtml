@@ -19,6 +19,7 @@
 
         @if (User.IsInRole("Administrator"))
         {
+            @Html.ActionLink("Tabela ról użytkowników", "Index", "RoleManager", new { area = "" }, new { @class = "btn btn-info hover-bg" })
             @Html.ActionLink("Tabela klientów", "Index", "Customers", new { area = "" }, new { @class = "btn btn-info hover-bg" })
             @Html.ActionLink("Tabela pracowników", "Index", "Employees", new { area = "" }, new { @class = "btn btn-info hover-bg" })
             @Html.ActionLink("Tabela pracowników na pozycji", "Index", "EmployeeInThePositions", new { area = "" }, new { @class = "btn btn-info hover-bg" })

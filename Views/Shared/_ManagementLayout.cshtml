@@ -6,18 +6,20 @@
     <section class="container-fluid flex-fill">
         <h2>Panel zarządzania</h2>
 
-        @Html.ActionLink("Powrót do strony głownej", "Index", "Home", new { area = "" }, new { @class = "btn btn-primary m-1" })
-        @Html.ActionLink("Powrót do panelu zarządzania", "ManagementPanel", "Account", new { area = "" }, new { @class = "btn btn-primary m-1" })
+        <div class="d-flex flex-row">
+            @Html.ActionLink("Powrót do strony głownej", "Index", "Home", new { area = "" }, new { @class = "btn btn-primary m-1" })
+            @Html.ActionLink("Powrót do panelu zarządzania", "ManagementPanel", "Account", new { area = "" }, new { @class = "btn btn-primary m-1" })
 
-        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "float-right" }))
-        {
-            @Html.AntiForgeryToken()
+            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "float-right" }))
+            {
+                @Html.AntiForgeryToken()
 
-            <a class="btn btn-primary" href="javascript:document.getElementById('logoutForm').submit()">
-                <span><i class="fas fa-sign-out-alt small-icon mr-1"></i> Wyloguj </span>
-            </a>
-        }
+                <a class="btn btn-primary" href="javascript:document.getElementById('logoutForm').submit()">
+                    <span><i class="fas fa-sign-out-alt small-icon mr-1"></i> Wyloguj </span>
+                </a>
+            }
+        </div>
 
         @RenderBody()
-    </section>
+</section>
 

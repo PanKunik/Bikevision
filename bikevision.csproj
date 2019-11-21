@@ -183,6 +183,7 @@
     <Compile Include="Controllers\OpinionsController.cs" />
     <Compile Include="Controllers\PermanentDiscountsController.cs" />
     <Compile Include="Controllers\PositionsController.cs" />
+    <Compile Include="Controllers\RoleManagerController.cs" />
     <Compile Include="Controllers\SaleDetailsController.cs" />
     <Compile Include="Controllers\SalesController.cs" />
     <Compile Include="Controllers\SaleStatesController.cs" />
@@ -693,6 +694,7 @@
     <Content Include="Views\SaleDetails\Details.cshtml" />
     <Content Include="Views\SaleDetails\Edit.cshtml" />
     <Content Include="Views\SaleDetails\Index.cshtml" />
+    <Content Include="Views\RoleManager\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

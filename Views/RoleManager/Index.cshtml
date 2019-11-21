@@ -1,0 +1,59 @@
+﻿@model List<Tuple<string, string>>
+    @using bikevision.Models;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_ManagementLayout.cshtml";
+
+    List<SelectListItem> roles = new List<SelectListItem>();
+    List<AspNetRole> ss = new List<AspNetRole>();
+
+    if(Session["roles"] != null)
+    {
+        ss = ((List<AspNetRole>)(Session["roles"])).ToList();
+    }
+    else
+    {
+        ss = null;
+        roles = null;
+    }
+}
+
+<h2>Role manager</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            User name
+        </th>
+        <th>
+            User role
+        </th>
+    </tr>
+    @foreach (var userWithRole in Model)
+    {
+        roles = new List<SelectListItem>();
+
+        foreach(var s in ss)
+        {
+            SelectListItem i = new SelectListItem();
+            i.Text = s.Name;
+            i.Value = s.Id;
+            i.Selected = (userWithRole.Item2 == s.Name) ? true:false ;
+            roles.Add(i);
+        }
+        
+        using (Html.BeginForm("EditRole", "RoleManager", new { userId = userWithRole.Item1 }))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => userWithRole.Item1)
+                </td>
+                <td>
+                    @Html.DropDownList("role", roles, new { @onchange = "form.submit();", @class = "form-control" })
+                </td>
+            </tr>
+        }
+    }
+</table>
