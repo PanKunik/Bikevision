@@ -43,7 +43,7 @@
     }
 }
 
-<div class="shopping-card__main-content">
+<div class="shopping-card__main-content clearfix">
     @if (Model.discount != 0)
     {
         <a href="@Url.Action("Product", "Shop", new { id = Model.idItem, model = imgPath.Replace("../Content\\Images\\Products\\" + Model.idItem + "\\", "").Replace("/1.jpg", "") })" class="shopping-card__banner badge-pill badge-info px-2 py-1">
@@ -108,31 +108,31 @@
     {
         if (favoriteItemsIds.Contains(Model.idItem))
         {
-            @Html.Raw(Html.ActionLink("ToReplace", "DeleteFromFavorites", "Shop", new { idItem = Model.idItem, returnUrl = Request.Url }, new { @class = "btn btn-primary col-4 m-0" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-heart text-size-very-small\"></span>"))
+            @Html.Raw(Html.ActionLink("ToReplace", "DeleteFromFavorites", "Shop", new { idItem = Model.idItem, returnUrl = Request.Url }, new { @class = "btn btn-primary col-4 m-0 float-left" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-heart text-size-very-small\"></span>"))
         }
         else
         {
-            @Html.Raw(Html.ActionLink("ToReplace", "AddToFavorites", "Shop", new { itemId = Model.idItem, returnUrl = Request.Url }, new { @class = "btn btn-outline-primary col-4 m-0" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-heart text-size-very-small\"></span>"))
+            @Html.Raw(Html.ActionLink("ToReplace", "AddToFavorites", "Shop", new { itemId = Model.idItem, returnUrl = Request.Url }, new { @class = "btn btn-outline-primary col-4 m-0 float-left" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-heart text-size-very-small\"></span>"))
         }
     }
     else
     {
-        @Html.Raw(Html.ActionLink("ToReplace", "AddToFavorites", "Shop", new { itemId = Model.idItem, returnUrl = Request.Url }, new { @class = "btn btn-outline-primary col-4 m-0" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-heart text-size-very-small\"></span>"))
+        @Html.Raw(Html.ActionLink("ToReplace", "AddToFavorites", "Shop", new { itemId = Model.idItem, returnUrl = Request.Url }, new { @class = "btn btn-outline-primary col-4 m-0 float-left" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-heart text-size-very-small\"></span>"))
     }
 
     @if (compareItemsIds.Count() > 0)
     {
         if (compareItemsIds.Contains(Model.idItem))
         {
-            @Html.Raw(Html.ActionLink("ToReplace", "RemoveFromComparation", "Shop", new { itemId = Model.idItem, returnUrl = Request.Url }, new { @class = "btn btn-primary col-4 m-0" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-retweet text-size-very-small\"></span>"))
+            @Html.Raw(Html.ActionLink("ToReplace", "RemoveFromComparation", "Shop", new { itemId = Model.idItem, returnUrl = Request.Url }, new { @class = "btn btn-primary col-4 m-0 float-left" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-retweet text-size-very-small\"></span>"))
         }
         else
         {
-            @Html.Raw(Html.ActionLink("ToReplace", "AddToComparation", "Shop", new { itemId = Model.idItem, returnUrl = Request.Url }, new { @class = "btn btn-outline-primary col-4 m-0" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-retweet text-size-very-small\"></span>"))
+            @Html.Raw(Html.ActionLink("ToReplace", "AddToComparation", "Shop", new { itemId = Model.idItem, returnUrl = Request.Url }, new { @class = "btn btn-outline-primary col-4 m-0 float-left" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-retweet text-size-very-small\"></span>"))
         }
     }
     else
     {
-        @Html.Raw(Html.ActionLink("ToReplace", "AddToComparation", "Shop", new { itemId = Model.idItem, returnUrl = Request.Url }, new { @class = "btn btn-outline-primary col-4 m-0" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-retweet text-size-very-small\"></span>"))
+        @Html.Raw(Html.ActionLink("ToReplace", "AddToComparation", "Shop", new { itemId = Model.idItem, returnUrl = Request.Url }, new { @class = "btn btn-outline-primary col-4 m-0 float-left" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-retweet text-size-very-small\"></span>"))
     }
 </div>

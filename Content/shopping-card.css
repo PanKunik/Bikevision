@@ -47,7 +47,8 @@
     }
 
 .shopping-card .shopping-card__image {
-    width: 75%;
+    max-width: 65%;
+    width: auto;
     margin: 0 auto;
     position: relative;
     left: 50%;
