@@ -218,7 +218,12 @@ namespace bikevision.Controllers
 
             if (User.Identity.IsAuthenticated)
             {
-                int? customerId = db.Customers.Where(user => user.AspNetUser.UserName == User.Identity.Name).First().idCustomer;
+                List<Customer> c = db.Customers.Where(user => user.AspNetUser.UserName == User.Identity.Name).ToList();
+
+                int? customerId = null;
+                if (c != null)
+                    if(c.Count() > 0)
+                        customerId = c.First().idCustomer;
 
                 if (customerId == null)
                 {
