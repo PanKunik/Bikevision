@@ -27,8 +27,10 @@ namespace bikevision.Controllers
             this.MainLayoutViewModel.BicyclesByUsage = new List<CategoryIdWithName>();
             this.MainLayoutViewModel.BicyclesByBrands = new List<CategoryIdWithName>();
             this.MainLayoutViewModel.BicyclesByWheels = new List<CategoryIdWithName>();
+
+            this.MainLayoutViewModel.Brands = new List<CategoryIdWithName>();
             // this.MainLayoutViewModel.CategoriesOfSpareParts 
-            IQueryable<Item> allItems = db.Items.Include(cat => cat.Category).Include(type => type.ItemType);
+            IQueryable<Item> allItems = db.Items.Include(cat => cat.Category).Include(type => type.ItemType).Include(b => b.Brand);
             
             List<Item> itemsSpareParts = allItems.Where(type => type.ItemType.type == "Części zamienne").ToList();
                 //  db.Items.Include(cat => cat.Category).Include(type => type.ItemType).Where(type => type.ItemType.type == "Części zamienne").ToList();
@@ -42,7 +44,7 @@ namespace bikevision.Controllers
             List<Item> bicyclesUsages = db.Items.Include(cat => cat.Category).Include(type => type.ItemType).Where(type => type.ItemType.type == "Rowery").ToList();
             List<Item> bicyclesBrands = db.Items.Include(brand => brand.Brand).Include(type => type.ItemType).Where(type => type.ItemType.type == "Rowery").ToList();
             List<FeatureValueOfItem> bicyclesWheels = db.FeatureValueOfItems.Include(feat => feat.Feature).Where(type => type.Item.ItemType.type == "Rowery").Where(feature => feature.Feature.feature1 == "Rozmiar kół").ToList();
-
+            
             foreach(var item in itemsSpareParts)
             {
                 CategoryIdWithName newCat = new CategoryIdWithName(item.Category_idCategory, item.Category.category1);
@@ -123,6 +125,17 @@ namespace bikevision.Controllers
 
             if (this.MainLayoutViewModel.BicyclesByBrands.Count() > 0)
                 this.MainLayoutViewModel.BicyclesByBrands = this.MainLayoutViewModel.BicyclesByBrands.OrderBy(name => name.name).ToList();
+
+            foreach (var item in allItems)
+            {
+                CategoryIdWithName newCat = new CategoryIdWithName(item.Brand_idBrand, item.Brand.brand1);
+
+                if (this.MainLayoutViewModel.Brands.Where(id => id.id == item.Brand_idBrand).Where(name => name.name == item.Brand.brand1).Count() <= 0)
+                    this.MainLayoutViewModel.Brands.Add(newCat);
+            }
+
+            if (this.MainLayoutViewModel.Brands.Count() > 0)
+                this.MainLayoutViewModel.Brands = this.MainLayoutViewModel.Brands.OrderBy(name => name.name).ToList();
 
             this.ViewData["MainLayoutViewModel"] = this.MainLayoutViewModel;
         }
@@ -246,16 +259,34 @@ namespace bikevision.Controllers
 
             return View(productDetails);
         }
-        public ActionResult ProductList(string Searching, int? categoryId, string types, int? featureId, int? brandId, decimal? priceFrom, decimal? priceTo, FormCollection coll, string sortOrder, bool? init = false)
+        public ActionResult ProductList(string Searching, int? categoryId, string types, int? featureId, int? brandId, decimal? priceFrom, decimal? priceTo, FormCollection coll, string sortOrder, bool? init = false, bool? newest = false, bool? promotion = false)
         {
             if(init == true)
             {
                 Session["productAvailabilities"] = null;
                 Session["productDiscounts"] = null;
                 Session["productBrands"] = null;
+
+                Session["titleList"] = null;
             }
 
             List<Item> items;
+
+            if (newest != null)
+                if ((bool)newest)
+                {
+                    items = db.Items.OrderByDescending(i => i.idItem).Take(20).ToList();
+                    Session["titleList"] = "20 najnowszych produktów";
+                    return View(items);
+                }
+
+            if (promotion != null)
+                if ((bool)promotion)
+                {
+                    items = db.Items.Where(dis => dis.discount > 0).OrderByDescending(i => i.idItem).Take(20).ToList();
+                    Session["titleList"] = "20 najnowszych produktów z promocji";
+                    return View(items);
+                }
 
             if (sortOrder == null)
                 sortOrder = "";
@@ -395,7 +426,7 @@ namespace bikevision.Controllers
             if (categoryId != null)
             {
                 items = db.Items.Where(cat => cat.Category_idCategory == categoryId).ToList();
-
+                
                 if (whereFuncPrice != null)
                     items = items.Where(whereFuncPrice).ToList();
 
@@ -430,6 +461,7 @@ namespace bikevision.Controllers
                 }
 
                 ViewBag.categoryId = categoryId;
+                Session["titleList"] = db.Categories.Where(id => id.idCategory == categoryId).Select(n => n.category1).First();
                 return View((sortOrder.Contains("asc") ? items.OrderBy(orderByFunc).ToList() : items.OrderByDescending(orderByFunc).ToList()));
             }
 
@@ -488,6 +520,7 @@ namespace bikevision.Controllers
                 }
 
                 //items.SelectMany(items, i => i.idItem == 1);
+                Session["titleList"] = "Rozmiar kół: " + db.FeatureValues.Where(i => i.idFeatureValue == featureId).Select(n => n.featureValue1).First();
                 return View((sortOrder.Contains("asc") ? items.OrderBy(orderByFunc).ToList() : items.OrderByDescending(orderByFunc).ToList()));
             }
 
@@ -533,6 +566,7 @@ namespace bikevision.Controllers
                     items = newItems3;
                 }
 
+                Session["titleList"] = db.Brands.Where(i => i.idBrand == brandId).Select(n => n.brand1).First();
                 return View((sortOrder.Contains("asc") ? items.OrderBy(orderByFunc).ToList() : items.OrderByDescending(orderByFunc).ToList()));
             }
 
@@ -578,7 +612,7 @@ namespace bikevision.Controllers
 
                 items = newItems4;
             }
-
+            
             return View((sortOrder.Contains("asc") ? items.OrderBy(orderByFunc).ToList() : items.OrderByDescending(orderByFunc).ToList()));
         }
 

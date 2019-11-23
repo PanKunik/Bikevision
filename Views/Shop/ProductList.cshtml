@@ -112,7 +112,10 @@
             <p class="align-self-baseline h4">
                 @if (ViewBag.keyword == "" || ViewBag.keyword == null)
                 {
-                    <span>Aktualna kategoria</span>
+                    if(category > 0 || brand > 0 || feature > 0)
+                    {
+                        <span>@Session["titleList"]</span>
+                    }
                 }
                 else
                 {

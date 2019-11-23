@@ -26,8 +26,10 @@ namespace bikevision.Controllers
             this.MainLayoutViewModel.BicyclesByUsage = new List<CategoryIdWithName>();
             this.MainLayoutViewModel.BicyclesByBrands = new List<CategoryIdWithName>();
             this.MainLayoutViewModel.BicyclesByWheels = new List<CategoryIdWithName>();
+
+            this.MainLayoutViewModel.Brands = new List<CategoryIdWithName>();
             // this.MainLayoutViewModel.CategoriesOfSpareParts 
-            IQueryable<Item> allItems = db.Items.Include(cat => cat.Category).Include(type => type.ItemType);
+            IQueryable<Item> allItems = db.Items.Include(cat => cat.Category).Include(type => type.ItemType).Include(b => b.Brand);
 
 
             List<Item> itemsSpareParts = allItems.Where(type => type.ItemType.type == "Części zamienne").ToList();
@@ -123,6 +125,17 @@ namespace bikevision.Controllers
 
             if (this.MainLayoutViewModel.BicyclesByBrands.Count() > 0)
                 this.MainLayoutViewModel.BicyclesByBrands = this.MainLayoutViewModel.BicyclesByBrands.OrderBy(name => name.name).ToList();
+
+            foreach (var item in allItems)
+            {
+                CategoryIdWithName newCat = new CategoryIdWithName(item.Brand_idBrand, item.Brand.brand1);
+
+                if (this.MainLayoutViewModel.Brands.Where(id => id.id == item.Brand_idBrand).Where(name => name.name == item.Brand.brand1).Count() <= 0)
+                    this.MainLayoutViewModel.Brands.Add(newCat);
+            }
+
+            if (this.MainLayoutViewModel.Brands.Count() > 0)
+                this.MainLayoutViewModel.Brands = this.MainLayoutViewModel.Brands.OrderBy(name => name.name).ToList();
 
             this.ViewData["MainLayoutViewModel"] = this.MainLayoutViewModel;
         }

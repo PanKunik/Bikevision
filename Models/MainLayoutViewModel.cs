@@ -17,5 +17,7 @@ namespace bikevision.Models
         public List<CategoryIdWithName> BicyclesByWheels;
         public List<CategoryIdWithName> BicyclesByBrands;
 
+        public List<CategoryIdWithName> Brands;
+
     }
 }

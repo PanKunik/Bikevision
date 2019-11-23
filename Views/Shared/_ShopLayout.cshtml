@@ -219,11 +219,11 @@
             }
 
             <li class="nav-item mr-lg-1">
-                @Html.ActionLink("Nowości", "ProductList", "Shop", new { area = "" }, new { @class = "nav-link" })
+                @Html.ActionLink("Nowości", "ProductList", "Shop", new { newest = true, init = true }, new { @class = "nav-link" })
             </li>
 
             <li class="nav-item mr-lg-1">
-                @Html.ActionLink("Promocje", "ProductList", "Shop", new { area = "" }, new { @class = "nav-link" })
+                @Html.ActionLink("Promocje", "ProductList", "Shop", new { promotion = true, init = true }, new { @class = "nav-link" })
             </li>
 
             <li class="nav-item dropdown mr-lg-1">
@@ -231,11 +231,10 @@
                     Strefa marek
                 </a>
                 <div class="dropdown-menu dropdown-menu-squared">
-                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Action</a>
-                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Another action</a>
-                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Something else here</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="@Url.Action("ProductList", "Shop")">Separated link</a>
+                    @foreach (var brand in viewModel.Brands)
+                    {
+                        <a class="dropdown-item" href="@Url.Action("ProductList", "Shop", new { brandId = brand.id, init = true})">@brand.name</a>
+                    }
                 </div>
             </li>
         </ul>
