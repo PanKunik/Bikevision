@@ -493,6 +493,7 @@
     <Content Include="Models\DatabaseFirstModel.edmx.diagram">
       <DependentUpon>DatabaseFirstModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\Images\Shop\shop_04.webp" />
     <None Include="Properties\PublishProfiles\bikevision - Web Deploy.pubxml" />
     <Content Include="Models\DatabaseFirstModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
