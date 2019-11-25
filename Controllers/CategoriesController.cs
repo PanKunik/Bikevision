@@ -15,14 +15,14 @@ namespace bikevision.Controllers
         private bikewayDBEntities db = new bikewayDBEntities();
 
         // GET: Categories
-        [Authorize(Roles = "Administrator, Moderator")]
+        [Authorize(Roles = "Administrator, Moderator, Pracownik sklepu")]
         public ActionResult Index()
         {
             return View(db.Categories.ToList());
         }
 
         // GET: Categories/Details/5
-        [Authorize(Roles = "Administrator, Moderator")]
+        [Authorize(Roles = "Administrator, Moderator, Pracownik sklepu")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -38,7 +38,7 @@ namespace bikevision.Controllers
         }
 
         // GET: Categories/Create
-        [Authorize(Roles = "Administrator, Moderator")]
+        [Authorize(Roles = "Administrator, Moderator, Pracownik sklepu")]
         public ActionResult Create()
         {
             return View();
@@ -49,7 +49,7 @@ namespace bikevision.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Administrator, Moderator")]
+        [Authorize(Roles = "Administrator, Moderator, Pracownik sklepu")]
         public ActionResult Create([Bind(Include = "idCategory,category1")] Category category)
         {
             if (ModelState.IsValid)

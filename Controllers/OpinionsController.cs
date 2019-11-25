@@ -39,7 +39,7 @@ namespace bikevision.Controllers
         }
 
         // GET: Opinions/Create
-        [Authorize(Roles = "Administrator, Moderator")]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create()
         {
             ViewBag.Customer_idCustomer = new SelectList(db.Customers, "idCustomer", "name");
@@ -52,7 +52,7 @@ namespace bikevision.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Administrator, Moderator")]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create([Bind(Include = "idOpinion,date,opinion1,points,Customer_idCustomer,Item_idItem,")] Opinion opinion)
         {
             if (ModelState.IsValid)

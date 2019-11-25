@@ -15,7 +15,7 @@ namespace bikevision.Controllers
         private bikewayDBEntities db = new bikewayDBEntities();
 
         // GET: Items
-        [Authorize(Roles = "Administrator, Moderator")]
+        [Authorize(Roles = "Administrator, Moderator, Pracownik sklepu")]
         public ActionResult Index()
         {
             var items = db.Items.Include(i => i.Brand).Include(i => i.Category).Include(i => i.ItemType);
@@ -23,7 +23,7 @@ namespace bikevision.Controllers
         }
 
         // GET: Items/Details/5
-        [Authorize(Roles = "Administrator, Moderator")]
+        [Authorize(Roles = "Administrator, Moderator, Pracownik sklepu")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -39,7 +39,7 @@ namespace bikevision.Controllers
         }
 
         // GET: Items/Create
-        [Authorize(Roles = "Administrator, Moderator")]
+        [Authorize(Roles = "Administrator, Moderator, Pracownik sklepu")]
         public ActionResult Create()
         {
             ViewBag.Brand_idBrand = new SelectList(db.Brands, "idBrand", "brand1");
@@ -53,7 +53,7 @@ namespace bikevision.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Administrator, Moderator")]
+        [Authorize(Roles = "Administrator, Moderator, Pracownik sklepu")]
         public ActionResult Create([Bind(Include = "idItem,name,description,availability,price,discount,outlet,weight,dimensions,ItemType_idItemType,Category_idCategory,Brand_idBrand")] Item item)
         {
             if (ModelState.IsValid)
@@ -70,7 +70,7 @@ namespace bikevision.Controllers
         }
 
         // GET: Items/Edit/5
-        [Authorize(Roles = "Administrator, Moderator")]
+        [Authorize(Roles = "Administrator, Moderator, Pracownik sklepu")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -93,7 +93,7 @@ namespace bikevision.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Administrator, Moderator")]
+        [Authorize(Roles = "Administrator, Moderator, Pracownik sklepu")]
         public ActionResult Edit([Bind(Include = "idItem,name,description,availability,price,discount,outlet,weight,dimensions,ItemType_idItemType,Category_idCategory,Brand_idBrand")] Item item)
         {
             if (ModelState.IsValid)

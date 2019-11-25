@@ -15,11 +15,13 @@ namespace bikevision.Controllers
         private bikewayDBEntities db = new bikewayDBEntities();
 
         // GET: AspNetRoles
+        [Authorize(Roles = "Administrator")]
         public ActionResult Index()
         {
             return View(db.AspNetRoles.ToList());
         }
 
+        [Authorize(Roles = "Administrator")]
         // GET: AspNetRoles/Details/5
         public ActionResult Details(string id)
         {
@@ -35,6 +37,7 @@ namespace bikevision.Controllers
             return View(aspNetRole);
         }
 
+        [Authorize(Roles = "Administrator")]
         // GET: AspNetRoles/Create
         public ActionResult Create()
         {
@@ -46,6 +49,7 @@ namespace bikevision.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create([Bind(Include = "Id,Name")] AspNetRole aspNetRole)
         {
             if (ModelState.IsValid)
@@ -59,6 +63,7 @@ namespace bikevision.Controllers
         }
 
         // GET: AspNetRoles/Edit/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -78,6 +83,7 @@ namespace bikevision.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit([Bind(Include = "Id,Name")] AspNetRole aspNetRole)
         {
             if (ModelState.IsValid)
@@ -90,6 +96,7 @@ namespace bikevision.Controllers
         }
 
         // GET: AspNetRoles/Delete/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Delete(string id)
         {
             if (id == null)
@@ -107,6 +114,7 @@ namespace bikevision.Controllers
         // POST: AspNetRoles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult DeleteConfirmed(string id)
         {
             AspNetRole aspNetRole = db.AspNetRoles.Find(id);

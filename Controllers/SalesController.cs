@@ -39,7 +39,7 @@ namespace bikevision.Controllers
         }
 
         // GET: Sales/Create
-        [Authorize(Roles = "Administrator, Pracownik sklepu")]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create()
         {
             ViewBag.Customer_idCustomer = new SelectList(db.Customers, "idCustomer", "name");
@@ -55,7 +55,7 @@ namespace bikevision.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Administrator, Pracownik sklepu")]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create([Bind(Include = "idSale,date,Customer_idCustomer,SaleType_idSaleType,Employee_idEmployee,SaleState_idSaleState,Shipping_idShipping")] Sale sale)
         {
             if (ModelState.IsValid)

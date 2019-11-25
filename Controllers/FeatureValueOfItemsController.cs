@@ -15,7 +15,7 @@ namespace bikevision.Controllers
         private bikewayDBEntities db = new bikewayDBEntities();
 
         // GET: FeatureValueOfItems
-        [Authorize(Roles = "Administrator, Moderator")]
+        [Authorize(Roles = "Administrator, Moderator, Pracownik sklepu")]
         public ActionResult Index()
         {
             var featureValueOfItems = db.FeatureValueOfItems.Include(f => f.Feature).Include(f => f.FeatureValue).Include(f => f.Item);
@@ -23,7 +23,7 @@ namespace bikevision.Controllers
         }
 
         // GET: FeatureValueOfItems/Details/5
-        [Authorize(Roles = "Administrator, Moderator")]
+        [Authorize(Roles = "Administrator, Moderator, Pracownik sklepu")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -39,7 +39,7 @@ namespace bikevision.Controllers
         }
 
         // GET: FeatureValueOfItems/Create
-        [Authorize(Roles = "Administrator, Moderator")]
+        [Authorize(Roles = "Administrator, Moderator, Pracownik sklepu")]
         public ActionResult Create()
         {
             ViewBag.Feature_idFeature1 = new SelectList(db.Features, "idFeature", "feature1");
@@ -53,7 +53,7 @@ namespace bikevision.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Administrator, Moderator")]
+        [Authorize(Roles = "Administrator, Moderator, Pracownik sklepu")]
         public ActionResult Create([Bind(Include = "Feature_idFeature1,Item_idItem1,FeatureValue_idFeatureValue")] FeatureValueOfItem featureValueOfItem)
         {
             if (ModelState.IsValid)
