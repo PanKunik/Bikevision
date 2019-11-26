@@ -293,6 +293,25 @@ namespace bikevision.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    string locality = Request["Locality.locality1"];
+
+                    List<Locality> l = db.Localities.Where(loc => loc.locality1.ToLower().Equals(locality.ToLower())).ToList();
+                    string local = "";
+
+                    if (l.Count() > 0)
+                    {
+                        local = l.First().locality1;
+                    }
+                    else
+                    {
+                        Locality newLocality = new Locality();
+                        newLocality.locality1 = locality;
+                        db.Localities.Add(newLocality);
+                        db.SaveChanges();
+                        l = db.Localities.Where(loc => loc.locality1.ToLower().Equals(locality.ToLower())).ToList();
+                    }
+
+                    customer.Locality_idLocality = l.First().idLocality;
                     db.Customers.Add(customer);
                     db.SaveChanges();
 
@@ -382,8 +401,26 @@ namespace bikevision.Controllers
                 if (ModelState.IsValid)
                 {
                     IQueryable<Customer> Customers = db.Customers.Where(cust => cust.AspNetUser.UserName == User.Identity.Name);
+                    string locality = Request["Locality.locality1"];
+
+                    List<Locality> l = db.Localities.Where(loc => loc.locality1.ToLower().Equals(locality.ToLower())).ToList();
+                    string local = "";
+
+                    if(l.Count() > 0)
+                    {
+                        local = l.First().locality1;
+                    }
+                    else
+                    {
+                        Locality newLocality = new Locality();
+                        newLocality.locality1 = locality;
+                        db.Localities.Add(newLocality);
+                        db.SaveChanges();
+                        l = db.Localities.Where(loc => loc.locality1.ToLower().Equals(locality.ToLower())).ToList();
+                    }
 
                     customer.AspNetUsers_idAspNetUsers = db.AspNetUsers.Where(user => user.UserName == User.Identity.Name).First().Id;
+                    customer.Locality_idLocality = l.First().idLocality;
 
                     if (Customers.Count() > 0)
                     {

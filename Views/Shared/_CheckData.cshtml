@@ -59,7 +59,7 @@
         <div class="form-group m-0 p-0">
             @Html.LabelFor(model => model.Locality.locality1, htmlAttributes: new { @class = "control-label col-12" })
             <div class="col-12">
-                @Html.DropDownList("Locality_idLocality", null, htmlAttributes: new { @class = "form-control" })
+                @Html.EditorFor(model => model.Locality.locality1, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Locality.locality1, "", new { @class = "text-danger" })
             </div>
         </div>
