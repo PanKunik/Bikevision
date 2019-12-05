@@ -89,15 +89,26 @@
                 {
                     total += (productInCart.Quantity * (productInCart.Item.price * ((100.0M - (decimal)productInCart.Item.discount) / 100.0M)));
 
+                    List<string> colorModel = new List<string>();
 
-                    List<string> colorModel = productInCart.Options.Split(';').ToList();
-
-                    foreach (var str in colorModel)
+                    if (productInCart.Options != "")
                     {
-                        if (str.Contains("Kolor"))
+                        colorModel = productInCart.Options.Split(';').ToList();
+
+                        if (colorModel.Count() > 0)
                         {
-                            colorModel = str.Split(':').ToList();
-                            break;
+                            foreach (var str in colorModel)
+                            {
+                                if (str.Contains("Kolor"))
+                                {
+                                    colorModel = str.Split(':').ToList();
+                                    break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            colorModel.Add("");
                         }
                     }
 
