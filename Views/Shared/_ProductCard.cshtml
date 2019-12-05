@@ -13,9 +13,9 @@
         {
             string[] fil = Directory.GetFiles(path + "\\");
 
-            foreach (var f in fil)
+            if (fil.Length > 0)
             {
-                images = images.Append(f.Replace(Server.MapPath("~/Content/"), "../Content/")).ToList();
+                images = images.Append(fil.First().Replace(Server.MapPath("~/Content/"), "../Content/")).ToList();
             }
         }
     }
@@ -33,7 +33,7 @@
                 <div class="d-none d-lg-block shopping-card__gallery-column">
                     @foreach (var path in images)
                     {
-                        <a href="@Url.Action("Product", "Shop", new { id = Model.idItem, model = path.Replace("../Content/Images\\Products\\" + Model.idItem + "\\", "").Replace("\\1.jpg", "") })">
+                        <a href="@Url.Action("Product", "Shop", new { id = Model.idItem, model = path.Replace("../", "").Replace("Content/Images\\Products\\" + Model.idItem + "\\", "").Replace("\\1.jpg", "") })">
                             <img class="shopping-card__gallery-image" src="@path" />
                         </a>
                     }

@@ -9,6 +9,11 @@
 
     string imgPath = directories[0].Replace(Server.MapPath("~/Content"), "../Content") + "/1.jpg";
 
+    if(!File.Exists(imgPath))
+    {
+        imgPath = imgPath.Replace("../", "../../");
+    }
+
     string options = "";
 
     foreach(var feat in Model.FeatureValueOfItems)
@@ -46,16 +51,16 @@
 <div class="shopping-card__main-content clearfix">
     @if (Model.discount != 0)
     {
-        <a href="@Url.Action("Product", "Shop", new { id = Model.idItem, model = imgPath.Replace("../Content\\Images\\Products\\" + Model.idItem + "\\", "").Replace("/1.jpg", "") })" class="shopping-card__banner badge-pill badge-info px-2 py-1">
+        <a href="@Url.Action("Product", "Shop", new { id = Model.idItem, model = imgPath.Replace("../", "").Replace("Content\\Images\\Products\\" + Model.idItem + "\\", "").Replace("/1.jpg", "") })" class="shopping-card__banner badge-pill badge-info px-2 py-1">
             Promocja
         </a>
     }
 
-    <a href="@Url.Action("Product", "Shop", new { id = Model.idItem, model = imgPath.Replace("../Content\\Images\\Products\\" + Model.idItem + "\\", "").Replace("/1.jpg", "") })" class="wrapRow">
+    <a href="@Url.Action("Product", "Shop", new { id = Model.idItem, model = imgPath.Replace("../", "").Replace("Content\\Images\\Products\\" + Model.idItem + "\\", "").Replace("/1.jpg", "") })" class="wrapRow">
     <img class="shopping-card__image" runat="server" src="@imgPath" />
     </a>
     <p class="shopping-card__subtitle mb-0 wrapColumn wrapRow h5"> @Html.DisplayFor(modelItem => Model.Category.category1) </p>
-    <a href="@Url.Action("Product", "Shop", new { id = Model.idItem, model = imgPath.Replace("../Content\\Images\\Products\\" + Model.idItem + "\\", "").Replace("/1.jpg", "") })" class="wrapColumn wrapRow"><p class="shopping-card__title mb-0 h4">@Html.DisplayFor(modelItem => Model.name)</p></a>
+    <a href="@Url.Action("Product", "Shop", new { id = Model.idItem, model = imgPath.Replace("../", "").Replace("Content\\Images\\Products\\" + Model.idItem + "\\", "").Replace("/1.jpg", "") })" class="wrapColumn wrapRow"><p class="shopping-card__title mb-0 h4">@Html.DisplayFor(modelItem => Model.name)</p></a>
     <hr class="shopping-card__underline wrapColumn wrapRow" />
     <div class="shopping-card__footer wrapColumn wrapRow">
         <h3 class="shopping-card__price">@String.Format("{0:F2} zł", Model.price - ((Model.price * Model.discount) / 100))</h3>
