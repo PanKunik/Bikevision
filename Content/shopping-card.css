@@ -47,7 +47,6 @@
     }
 
 .shopping-card .shopping-card__image {
-    max-height: 190px;
     max-width: 100%;
     height: auto;
     margin: 0 auto;
@@ -164,12 +163,8 @@
             font-size: 24px;
         }
 
-    .shopping-card .shopping-card__discount {
-        font-size: 16px;
-    }
-
     .shopping-card__image {
-        max-height: 126px;
+        max-height: 106px;
     }
 }
 

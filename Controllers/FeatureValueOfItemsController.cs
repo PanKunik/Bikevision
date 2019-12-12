@@ -44,7 +44,7 @@ namespace bikevision.Controllers
         {
             ViewBag.Feature_idFeature1 = new SelectList(db.Features, "idFeature", "feature1");
             ViewBag.FeatureValue_idFeatureValue = new SelectList(db.FeatureValues, "idFeatureValue", "featureValue1");
-            ViewBag.Item_idItem1 = new SelectList(db.Items, "idItem", "name");
+            ViewBag.Item_idItem1 = new SelectList(db.Items.OrderByDescending(i => i.idItem), "idItem", "name");
             return View();
         }
 
