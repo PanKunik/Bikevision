@@ -590,6 +590,12 @@
     <Content Include="Content\Images\Products\61\61_żółty\3.jpg" />
     <Content Include="Content\Images\Products\61\61_żółty\4.jpg" />
     <Content Include="Content\Images\Products\61\61_żółty\5.jpg" />
+    <Content Include="Content\Images\Products\62\62_night_sky\1.jpg" />
+    <Content Include="Content\Images\Products\63\63_night_sky\1.jpg" />
+    <Content Include="Content\Images\Products\64\64_black_splash\1.jpg" />
+    <Content Include="Content\Images\Products\64\64_black_splash\2.jpg" />
+    <Content Include="Content\Images\Products\64\64_black_splash\3.jpg" />
+    <Content Include="Content\Images\Products\64\64_black_splash\4.jpg" />
     <Content Include="Content\Images\Products\6\6_czarny\1.jpg" />
     <Content Include="Content\Images\Products\6\6_czerwony\1.jpg" />
     <Content Include="Content\Images\Products\6\6_fioletowy\1.jpg" />
