@@ -57,7 +57,7 @@
     }
 
     <a href="@Url.Action("Product", "Shop", new { id = Model.idItem, model = imgPath.Replace("../", "").Replace("Content\\Images\\Products\\" + Model.idItem + "\\", "").Replace("/1.jpg", "") })" class="wrapRow">
-    <img class="shopping-card__image" runat="server" src="@imgPath" />
+    <img class="shopping-card__image smaller-card" runat="server" src="@imgPath" />
     </a>
     <p class="shopping-card__subtitle mb-0 wrapColumn wrapRow h5"> @Html.DisplayFor(modelItem => Model.Category.category1) </p>
     <a href="@Url.Action("Product", "Shop", new { id = Model.idItem, model = imgPath.Replace("../", "").Replace("Content\\Images\\Products\\" + Model.idItem + "\\", "").Replace("/1.jpg", "") })" class="wrapColumn wrapRow"><p class="shopping-card__title mb-0 h4">@Html.DisplayFor(modelItem => Model.name)</p></a>

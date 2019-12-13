@@ -164,10 +164,13 @@
         bottom: 107px;
         width: 100%;
     }
+        .shopping-card .shopping-card__image {
+            height: calc(100% - 150px);
+            object-fit: contain;
+            position: absolute;
+            top: 0px;
+        }
 
-    .shopping-card__image {
-        max-height: 280px;
-    }
 }
 
 /* For Bootstrap 4 'sm' breakpoint */
@@ -182,6 +185,9 @@
 
     .shopping-card__image {
         max-height: 380px;
+        height: auto !important;
+        object-fit:unset;
+        position: relative;
     }
 
     .shopping-card .shopping-card__hidden-content--small {
@@ -191,6 +197,12 @@
     }
 }
 
+@media (min-width: 768px) and (max-width: 991.98px)
+{
+    .MultiCarousel-inner .smaller-card {
+        max-height: 110px !important;
+    }
+}
 /* For Bootstrap 4 'md' breakpoint */
 @media (min-width: 768px) {
     .shopping-card {
