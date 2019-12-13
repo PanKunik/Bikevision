@@ -130,12 +130,12 @@
                     //total += (productInCart.Quantity * productInCart.Item.price);
                     <tr>
                         <td scope="row">
-                            <a href="@Url.Action("Product", "Shop", new { id = productInCart.Item.idItem, model = (productInCart.Item.idItem + "_" + colorM.ToLower()) })">
-                                <img src="@(String.Format("../../Content/Images/Products/{0}/{1}_{2}/1.jpg", productInCart.Item.idItem, productInCart.Item.idItem, colorM.ToLower()))" class="shopping-cart__product-image" alt="obrazek" />
+                            <a href="@Url.Action("Product", "Shop", new { id = productInCart.Item.idItem, model = (productInCart.Item.idItem + "_" + colorM.Replace(" ", "_").ToLower()) })">
+                                <img src="@(String.Format("../../Content/Images/Products/{0}/{1}_{2}/1.jpg", productInCart.Item.idItem, productInCart.Item.idItem, colorM.Replace(" ", "_").ToLower()))" class="shopping-cart__product-image" alt="obrazek" />
                             </a>
                         </td>
                         <td>
-                            <a href="@Url.Action("Product", "Shop", new { id = productInCart.Item.idItem, model = (productInCart.Item.idItem + "_" + colorM.ToLower()) })">
+                            <a href="@Url.Action("Product", "Shop", new { id = productInCart.Item.idItem, model = (productInCart.Item.idItem + "_" + colorM.Replace(" ", "_").ToLower()) })">
                                 <p class="h5">
                                     @productInCart.Item.name
                                 </p>
