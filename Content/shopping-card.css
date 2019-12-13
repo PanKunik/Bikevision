@@ -55,28 +55,44 @@
     transform: translateX(-50%);
 }
 
-.shopping-card .shopping-card__title {
-    text-transform: none;
-    letter-spacing: 0px;
-    font-weight: 900;
-    color: black;
-    font-size: 18px;
-    width: 100%;
-}
+    .shopping-card .shopping-card__title {
+        text-transform: none;
+        letter-spacing: 0px;
+        font-weight: 900;
+        color: black;
+        font-size: 18px;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        bottom: 50px;
+        padding-bottom: 0px;
+        transition: .5s ease;
+    }
 
-.shopping-card .shopping-card__subtitle {
-    color: black;
-    font-weight: normal;
-    text-transform: none;
-    letter-spacing: 0px;
-    font-size: 14px;
-}
+    /*.shopping-card:hover .shopping-card__title {
+        bottom: 110px;
+        transition: .5s ease;
+    }*/
 
-.shopping-card .shopping-card__underline {
-    width: 100%;
-    border: 1px solid black;
-    margin: 0 auto;
-}
+    .shopping-card .shopping-card__subtitle {
+        color: black;
+        font-weight: normal;
+        text-transform: none;
+        letter-spacing: 0px;
+        font-size: 14px;
+        position: absolute;
+        left: 0;
+        bottom: 90px;
+    }
+
+    .shopping-card .shopping-card__underline {
+        width: 100%;
+        border: 1px solid black;
+        margin: 0 auto;
+        position: absolute;
+        left: 0;
+        bottom: 45px;
+    }
 
 .shopping-card .shopping-card__footer {
     margin-top: 5px;
@@ -86,7 +102,7 @@
 .shopping-card .shopping-card__price {
     float: left;
     margin-right: 5px;
-    height: 100%;
+    height: auto;
     width: calc(65% - 5px);
     font-size: 24px;
     color: #0066bb;
@@ -94,21 +110,27 @@
     letter-spacing: -.75px;
     text-transform: lowercase;
     font-weight: 900;
+    position: absolute;
+    left: 0;
+    bottom: 0;
 }
 
-.shopping-card .shopping-card__discount {
-    float: left;
-    /*width: 42%;*/
-    height: 100%;
-    width: 35%;
-    font-size: 16px;
-    text-decoration: line-through;
-    color: gray;
-    line-height: 1.5;
-    letter-spacing: -.75px;
-    text-transform: lowercase;
-    font-weight: 900;
-}
+    .shopping-card .shopping-card__discount {
+        float: left;
+        /*width: 42%;*/
+        height: auto;
+        width: 35%;
+        font-size: 16px;
+        text-decoration: line-through;
+        color: gray;
+        line-height: 1.5;
+        letter-spacing: -.75px;
+        text-transform: lowercase;
+        font-weight: 900;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
 
 .shopping-card__hidden-button {
     position: absolute;
@@ -118,9 +140,11 @@
     transform: translateX(-50%);
 }
 
+.shopping-list .shopping-card__hidden-content--small {
+    display: none !important;
+}
 /* For Bootstrap 4 'default' and 'sm'  breakpoint */
 @media (min-width: 0px) {
-
     .shopping-card {
         width: calc(calc(100% / 1) - 10px);
         height: 0;
@@ -133,6 +157,16 @@
 
     .shopping-card .shopping-card__discount {
         font-size: 10px;
+    }
+
+    .shopping-card .shopping-card__hidden-content--small {
+        position: absolute;
+        bottom: 107px;
+        width: 100%;
+    }
+
+    .shopping-card__image {
+        max-height: 280px;
     }
 }
 
@@ -147,7 +181,13 @@
     }
 
     .shopping-card__image {
-        max-height: 405px;
+        max-height: 380px;
+    }
+
+    .shopping-card .shopping-card__hidden-content--small {
+        position: absolute;
+        bottom: 107px;
+        width: 100%;
     }
 }
 
@@ -164,7 +204,13 @@
         }
 
     .shopping-card__image {
-        max-height: 106px;
+        max-height: 215px;
+    }
+
+    .shopping-card .shopping-card__hidden-content--small {
+        position: absolute;
+        bottom: 107px;
+        width: 100%;
     }
 }
 
@@ -185,7 +231,7 @@
     }
 
     .shopping-card__image {
-        max-height: 240px;
+        max-height: 235px;
     }
 
         .shopping-card:hover {
@@ -226,13 +272,25 @@
             top: 5px;
         }
 
-        .shopping-card .shopping-card__hidden-content {
-            width: 100%;
-            height: 105px;
-            position: relative;
-            top: 5px;
-            left: 0;
-        }
+    .shopping-card:hover .shopping-card__hidden-content {
+        transition: .25s ease;
+        opacity: 1 !important;
+    }
+
+    .shopping-card .shopping-card__hidden-content {
+        opacity: 0 !important;
+        width: 100%;
+        height: 105px;
+        position: relative;
+        top: -100px;
+        left: 0;
+    }
+
+    .shopping-card .shopping-card__hidden-content--small {
+        position: absolute;
+        bottom: 107px;
+        width: 100%;
+    }
 
     .shopping-card__cart-button {
         width: calc(100% - 4px);
@@ -294,7 +352,7 @@
     }
 
     .shopping-card__image {
-        max-height: 300px;
+        max-height: 210px;
     }
 }
 
@@ -307,7 +365,7 @@
     }
 
     .shopping-card__image {
-        max-height: 300px;
+        max-height: 215px;
     }
 }
 
