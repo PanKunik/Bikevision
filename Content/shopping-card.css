@@ -260,12 +260,17 @@
         width: 95px;
         height: calc(100% - 10px);
         /*height: 540px;*/
+        overflow-y: scroll;
         position: absolute;
         border-left: 1px solid darkgrey;
         padding: 5px;
         left: 100%;
         transition: .5s ease;
         top: 5px;
+    }
+
+    .shopping-card__gallery-column::-webkit-scrollbar {
+        display: none;
     }
 
         .shopping-card:hover .shopping-card__gallery-column {
@@ -276,6 +281,7 @@
         .shopping-card__gallery-image {
             width: 100%;
             height: auto;
+            padding-bottom: 5px;
         }
 }
 

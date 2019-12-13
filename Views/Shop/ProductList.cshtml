@@ -49,11 +49,13 @@
     if (Session["productAvailabilities"] != null)
     {
         avas = (List<string>)(Session["productAvailabilities"]);
+        avas = (from code in avas orderby Convert.ToInt32(code) select code).ToList();
     }
     else
     {
         Session["productAvailabilities"] = avaliabilities;
         avas = avaliabilities;
+        avas = (from code in avas orderby Convert.ToInt32(code) select code).ToList();
     }
 
     if (Session["productBrands"] != null)
@@ -167,13 +169,13 @@
                     </article>
 
                     <article class="card-group-item">
-                        <header class="card-header">
+                        <header class="card-header text-left">
                             <h6 class="title">Zakres cenowy:</h6>
                         </header>
                         <div class="filter-content">
                             <div class="card-body">
                                 <div class="form-row">
-                                    <div class="form-group col-lg-6">
+                                    <div class="form-group col-lg-6 text-left">
                                         <label>Od</label>
                                         <input type="number" name="priceFrom" @if (ViewBag.priceFrom != null) { @String.Format("value={0}", ViewBag.priceFrom) ; } class="form-control" id="inputEmail4" placeholder="0 zł">
                                     </div>
@@ -182,9 +184,9 @@
                                         <input type="number" name="priceTo" @if (ViewBag.priceTo != null) { @String.Format("value={0}", ViewBag.priceTo) ; } class="form-control" placeholder="10000 zł">
                                     </div>
                                 </div>
+                                <input type="submit" onclick="form.submit();" value="Filtruj" class="btn btn-sm btn-primary text-center" />
                             </div> <!-- card-body.// -->
                         </div>
-                        <input type="submit" onclick="form.submit();" value="Filtruj" class="btn btn-sm btn-primary" />
                     </article> <!-- card-group-item.// -->
 
                     <article class="card-group-item">
@@ -246,7 +248,7 @@
             }
         </div>
 
-        <div class="d-flex flex-column right-column">
+        <div class="d-flex flex-column right-column mb-2">
             <div class="d-flex flex-row justify-content-between flex-wrap">
                 <div class="btn-group ml-1" role="group">
                     <button type="button" id="gridButton" class="btn btn-sm btn-primary active text-size-very-small"><i class="fas fa-th-large mr-2"></i>Siatka</button>
@@ -276,7 +278,7 @@
                 </div>
             </div>
 
-            <div class="d-flex flex-row flex-wrap">
+            <div class="d-flex flex-row flex-wrap pb-5">
                 @if (Model.Count() > 0)
                 {
                     foreach (var product in Model)
