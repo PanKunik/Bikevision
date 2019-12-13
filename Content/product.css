@@ -45,6 +45,24 @@
     font-weight: bold;
 }
 
+@media (max-width: 575.96px) {
+    .product__actual-price {
+        font-size: 40px !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .product__actual-price {
+        font-size: 55px !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .product__actual-price {
+        font-size: 64px !important;
+    }
+}
+
 .product__option {
     font-weight: bold;
     color: black;

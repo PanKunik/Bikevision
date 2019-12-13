@@ -24,6 +24,7 @@ namespace bikevision.Models
         public int idFeatureValue { get; set; }
         [Display(Name = "Wartość cechy:")]
         [Required(ErrorMessage = "Wartość cechy jest wymagana.")]
+        [StringLength(50)]
         public string featureValue1 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

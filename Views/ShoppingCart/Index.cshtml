@@ -23,14 +23,7 @@
 }
 
 <section class="container py-5 text-primary">
-    <nav class="px-0" aria-label="breadcrumb">
-        <ol class="breadcrumb px-0">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Shop</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Kategoria</li>
-        </ol>
-    </nav>
-
+    
     @if (Session["Cart"] != null)
     {
         List<Cart> temp = (List<Cart>)Session["Cart"];
