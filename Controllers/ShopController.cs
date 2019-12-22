@@ -150,9 +150,34 @@ namespace bikevision.Controllers
             }
             CarouselItemsViewModel itemList = new CarouselItemsViewModel();
             
-            itemList.ItemsOnPromotion = db.Items.Where(i => i.discount > 0).Take(15).ToList();
-            itemList.NewestItems = db.Items.OrderByDescending(i => i.idItem).Take(15).ToList();
-            itemList.PopularItems = db.Items.Take(15).ToList();
+            itemList.ItemsOnPromotion = db.Items.Where(i => i.discount > 0).OrderByDescending(key => key.idItem).Take(20).ToList();
+            itemList.NewestItems = db.Items.OrderByDescending(i => i.idItem).Where(i => i.discount == 0).Take(20).ToList();
+
+            List<SaleDetail> listD = db.SaleDetails.Where(q => q.quantity > 0).ToList();
+
+            List<HighestQuantity> hQ = new List<HighestQuantity>();
+
+            foreach(var el in listD)
+            {
+                int id = el.Item_idItem;
+                int sumOfQuan = listD.Where(i => i.Item_idItem == el.Item_idItem).Sum(k => k.quantity);
+
+                HighestQuantity newEl = new HighestQuantity(id, sumOfQuan);
+                
+                if (hQ.AsQueryable().Where(i => i.id == id && i.sum == sumOfQuan).Count() == 0)
+                    hQ.Add(newEl);
+            }
+
+            hQ = hQ.Take(15).ToList();
+
+            List<Item> popItems = new List<Item>();
+            foreach(var e in hQ)
+            {
+                if(db.Items.Where(i => i.idItem == e.id).First() != null)
+                    popItems.Add(db.Items.Where(i => i.idItem == e.id).First());
+            }
+
+            itemList.PopularItems = popItems;
 
             if (itemList != null)
             {

@@ -64,6 +64,10 @@ html, body {
     font-weight: bold;
 }
 
+.comparation-container {
+    overflow-x: auto;
+}
+
 .rotate {
     -moz-transition: all .25s linear;
     -webkit-transition: all .25s linear;

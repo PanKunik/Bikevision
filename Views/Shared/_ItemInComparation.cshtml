@@ -10,14 +10,14 @@
     string color = (Model.FeaturesList.Where(s => s.Item1 == "Kolor").Count() > 0 ) ? Model.FeaturesList.Where(s => s.Item1 == "Kolor").First().Item2.First():"main";
 
 }
-    <article class="col-3 p-0 m-0 text-center mx-1">
+    <article class="p-0 mx-1 m-0 text-center text-wrap" style="min-width: 300px; float: left;">
         <a href="@Url.Action("Product", "Shop", new { id = Model.ComparationItem.idItem, model= color.ToLower() })">
             <img src="@String.Format("../Content/Images/Products/{0}/{1}_{2}/1.jpg", Model.ComparationItem.idItem, Model.ComparationItem.idItem, color.ToLower())" class="text-center" style="max-height: 100px; height: auto;"/>
         </a>
             <table class="table table-striped">
                 <thead class="thead-dark">
                     <tr>
-                        <th colspan="2" class="text-center" scope="col">
+                        <th colspan="2" class="text-center text-wrap" scope="col">
                             @Model.ComparationItem.name
                         </th>
                     </tr>

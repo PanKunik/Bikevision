@@ -1,11 +1,31 @@
 ﻿$(document).ready(function () {
 
     var tableTds = $("td[name^='comparation_']");
-        
+
+    var maxHeight = -1;
+
+    $("th").each(function () {
+        maxHeight = maxHeight > $(this).height() ? maxHeight : $(this).height();
+    });
+
+    $("th").each(function () {
+        $(this).height(maxHeight);
+    });
+
     tableTds.each(function () {
         var elements = $("td[name='" + $(this).attr('name') + "']");
         var namedTds = elements.toArray();
-        
+
+        maxHeight = -1;
+
+        $("td[name='" + $(this).attr('name') + "']").each(function () {
+            maxHeight = maxHeight > $(this).height() ? maxHeight : $(this).height();
+        });
+
+        $("td[name='" + $(this).attr('name') + "']").each(function () {
+            $(this).height(maxHeight);
+        });
+
         var lengths = namedTds.length;
         
         var same = true;
