@@ -146,8 +146,9 @@ namespace bikevision.Controllers
 
             if (Searching != null && Searching != "")
             {
-                return RedirectToAction("ProductList", new { Searching = Searching });
+                return RedirectToAction("ProductList", new { Searching = Searching, init = true});
             }
+
             CarouselItemsViewModel itemList = new CarouselItemsViewModel();
             
             itemList.ItemsOnPromotion = db.Items.Where(i => i.discount > 0).OrderByDescending(key => key.idItem).Take(20).ToList();
