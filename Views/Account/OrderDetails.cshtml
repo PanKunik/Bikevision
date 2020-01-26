@@ -2,12 +2,14 @@
 @{
     ViewBag.Title = "Szczegóły zamówienia";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
+
+    var sumOfOrder = 0.0M;
 }
 
 <h2>@(ViewBag.Title + " nr " + Model.First().Sale_idSale)</h2>
 <hr />
 
-<table class="table table-striped text-primary">
+<table class="table table-striped text-primary table-responsive-md">
     <thead class="thead-dark">
         <tr>
             <th scope="col">Produkt</th>
@@ -24,7 +26,28 @@
                 <td>@String.Format("{0:F2} zł", sale.Item.price)</td>
                 <td>@(sale.value / sale.Item.price)</td>
                 <td>@String.Format("{0:F2} zł", sale.value)</td>
+                @{ sumOfOrder += sale.value; }
             </tr>
         }
+
+        <tr>
+            <td scope="row">
+                Koszt dostawy:
+            </td>
+            <td colspan="2" scope="row">
+                @Model.First().Sale.Shipping.name
+            </td>
+            <td scope="row">
+                @String.Format("{0:F2} zł", Model.First().Sale.Shipping.cost)
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                Suma zamówienia:
+            </td>
+            <td>
+                @String.Format("{0:F2} zł", (sumOfOrder + Model.First().Sale.Shipping.cost))
+            </td>
+        </tr>
     </tbody>
 </table>  

@@ -30,9 +30,9 @@
     {
         countOfItems = ((List<Cart>)(Session["Cart"])).Count();
 
-        foreach(var item in (List<Cart>)(Session["Cart"]))
+        foreach (var item in (List<Cart>)(Session["Cart"]))
         {
-            sumOfOrderInCart += (decimal)item.Quantity * (item.Item.price * ((100.0M - (decimal)item.Item.discount)/ 100.0M));
+            sumOfOrderInCart += (decimal)item.Quantity * (item.Item.price * ((100.0M - (decimal)item.Item.discount) / 100.0M));
         }
     }
 
@@ -62,7 +62,7 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text bg-transparent"><i class="fas fa-search"></i></div>
                 </div>
-                @Html.TextBox("Searching", null, new { @class = "form-control border-0 bg-dark", @placeholder = "Wyszukiwanie frazą"})
+                @Html.TextBox("Searching", null, new { @class = "form-control border-0 bg-dark", @placeholder = "Wyszukiwanie frazą" })
                 <input type="submit" value="Szukaj" class="btn btn-primary btn-sm" />
             </div>
         }
@@ -161,7 +161,7 @@
                     @if (type.type == "Narzędzia")
                     {
                         int count = viewModel.CategoriesOfTools.Count();
-                        <div class="dropdown-menu mega-area dropdown-menu-squared" aria-labelledby="mega-parts">
+                        <div class="dropdown-menu mega-area dropdown-menu-squared" aria-labelledby="mega-tools">
                             <div class="col">
                                 <h3 class="dropdown-header text-center">@type.type</h3>
                                 <div class="dropdown-divider"></div>
@@ -181,7 +181,7 @@
                     {
                         int count = viewModel.CategoriesOfClothing.Count();
 
-                        <div class="dropdown-menu mega-area dropdown-menu-squared" aria-labelledby="mega-parts">
+                        <div class="dropdown-menu mega-area dropdown-menu-squared" aria-labelledby="mega-clothing">
                             <div class="col">
                                 <h3 class="dropdown-header text-center">@type.type</h3>
                                 <div class="dropdown-divider"></div>
@@ -200,7 +200,7 @@
                     @if (type.type == "Akcesoria")
                     {
                         int count = viewModel.CategoriesAccessories.Count();
-                        <div class="dropdown-menu mega-area dropdown-menu-squared" aria-labelledby="mega-parts">
+                        <div class="dropdown-menu mega-area dropdown-menu-squared" aria-labelledby="mega-accessories">
                             <div class="col">
                                 <h3 class="dropdown-header text-center">@type.type</h3>
                                 <div class="dropdown-divider"></div>
@@ -226,15 +226,25 @@
                 @Html.ActionLink("Promocje", "ProductList", "Shop", new { promotion = true, init = true }, new { @class = "nav-link" })
             </li>
 
-            <li class="nav-item dropdown mr-lg-1">
+            <li class="nav-item dropdown menu-area mr-lg-1">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     Strefa marek
                 </a>
-                <div class="dropdown-menu dropdown-menu-squared">
-                    @foreach (var brand in viewModel.Brands)
-                    {
-                        <a class="dropdown-item" href="@Url.Action("ProductList", "Shop", new { brandId = brand.id, init = true})">@brand.name</a>
-                    }
+                <div class="dropdown-menu mega-area dropdown-menu-squared" aria-labelledby="mega-brands">
+                    <div class="col">
+                        <h3 class="dropdown-header text-center">Marki</h3>
+                        <div class="dropdown-divider"></div>
+                        <div class="row px-lg-5">
+                            @{
+                                foreach (var brand in viewModel.Brands)
+                                {
+                                    <div class="col-lg-3">
+                                        <a class="dropdown-item" href="@Url.Action("ProductList", "Shop", new { brandId = brand.id, init = true })">@brand.name</a>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
                 </div>
             </li>
         </ul>

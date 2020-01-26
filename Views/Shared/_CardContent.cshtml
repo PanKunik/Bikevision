@@ -108,7 +108,7 @@
     </div>
 </div>
 <div class="d-block d-lg-none p-0 shopping-card__hidden-content--small">
-    @Html.Raw(Html.ActionLink("ToReplace", "OrderNow", "ShoppingCart", new { id = Model.idItem, quantity = 1, area = "" }, new { @class = classesResponsive }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-shopping-cart small-icon\"></span>"))
+    @Html.Raw(Html.ActionLink("ToReplace", "OrderNow", "ShoppingCart", new { id = Model.idItem, option=options, quantity = 1, area = "" }, new { @class = classesResponsive }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-shopping-cart small-icon\"></span>"))
     @if (favoriteItemsIds.Count() > 0)
     {
         if (favoriteItemsIds.Contains(Model.idItem))

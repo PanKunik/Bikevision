@@ -6,6 +6,19 @@
     {
         classes += " disabled";
     }
+    
+    string options = "";
+
+    foreach(var feat in Model.ComparationItem.FeatureValueOfItems)
+    {
+        if(feat.Feature.selectable != null && (bool)feat.Feature.selectable)
+        {
+            if(!options.Contains(feat.Feature.feature1))
+            {
+                options += feat.Feature.feature1 + ":" + feat.FeatureValue.FeatureValueOfItems.Where(f => f.Feature.feature1 == feat.Feature.feature1).Select(s => s.FeatureValue.featureValue1).First() + ";";
+            }
+        }
+    }
 
     string color = (Model.FeaturesList.Where(s => s.Item1 == "Kolor").Count() > 0 ) ? Model.FeaturesList.Where(s => s.Item1 == "Kolor").First().Item2.First():"main";
 
@@ -53,7 +66,7 @@
                     }
                 </tbody>
             </table>
-            @Html.Raw(Html.ActionLink("ToReplace", "OrderNow", "ShoppingCart", new { id = Model.ComparationItem.idItem, quantity = 1, area = "" }, new { @class = classes }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-shopping-cart text-size-very-small\"></span><span class=\"text-size-very-small\"> Do koszyka </span>"))
+            @Html.Raw(Html.ActionLink("ToReplace", "OrderNow", "ShoppingCart", new { id = Model.ComparationItem.idItem, option=options, quantity = 1, area = "" }, new { @class = classes }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-shopping-cart text-size-very-small\"></span><span class=\"text-size-very-small\"> Do koszyka </span>"))
 
             @Html.Raw(Html.ActionLink("ToReplace", "RemoveFromComparation", "Shop", new { itemId = Model.ComparationItem.idItem, returnUrl = Request.Url }, new { @class = "btn btn-primary" }).ToHtmlString().Replace("ToReplace", "<span class=\"fas fa-retweet text-size-very-small\"></span><span class=\"text-size-very-small\"> Usuń</span>"))
 </article>
